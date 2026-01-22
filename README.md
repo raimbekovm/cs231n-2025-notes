@@ -1,13 +1,19 @@
 # CS231n 2025 Lecture Notes
 
+[![Active Development](https://img.shields.io/badge/status-active%20development-brightgreen)](https://github.com/raimbekovm/cs231n-2025-notes)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-orange)](CONTRIBUTING.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Unofficial lecture notes for **Stanford CS231n: Deep Learning for Computer Vision** (2025, 10th Anniversary Edition).
 
 The official [cs231n.github.io](https://cs231n.github.io/) notes are outdated and don't cover the 2025 curriculum. This project aims to fill that gap with modern, comprehensive materials.
 
+> **Work in Progress** — New lectures coming soon. Watch for updates, ⭐ star if useful!
+
 ## Contents
 
 ### Part 1: Fundamentals (Lectures 1-4)
-- [ ] Lecture 1: Introduction
+- [x] Lecture 1: Introduction — Part 1 done | Part 2 in progress
 - [ ] Lecture 2: Image Classification, Linear Classifiers, K-NN
 - [ ] Lecture 3: Regularization, Optimization (SGD, Adam)
 - [ ] Lecture 4: Neural Networks, Backpropagation
@@ -102,7 +108,9 @@ This project is licensed under the **MIT License** — see [LICENSE](LICENSE) fo
 
 ## Contributing
 
-Contributions are welcome! Please ensure any additions:
-- Are written in your own words
-- Do not copy copyrighted materials
-- Include proper attribution for any referenced sources
+Contributions are welcome! Ways to help:
+- Report typos, grammatical errors, or formatting issues
+- Suggest improvements or point out academic inaccuracies
+- Open issues with feedback or questions
+
+See **[CONTRIBUTING.md](CONTRIBUTING.md)** for guidelines.
