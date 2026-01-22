@@ -1,0 +1,70 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (large files)
+data/
+*.csv
+*.h5
+*.hdf5
+*.pkl
+*.npy
+*.npz
+
+# Model weights
+*.pth
+*.pt
+*.ckpt
+weights/
+checkpoints/
+
+# Logs
+logs/
+*.log
+
+# Misc
+.env
+.cache/
+
+# Stanford copyrighted materials (do not distribute)
+slides/
+transcripts/
+
+# Internal working files
+outlines/
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Figures (decide later)
+notes/figures/
