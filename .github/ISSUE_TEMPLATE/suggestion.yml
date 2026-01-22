@@ -1,0 +1,59 @@
+name: Suggestion
+description: Suggest an improvement or ask a question
+labels: ["suggestion"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - Clarification needed
+        - Missing information
+        - Better explanation idea
+        - General feedback
+        - Question
+    validations:
+      required: true
+
+  - type: dropdown
+    id: lecture
+    attributes:
+      label: Lecture (if applicable)
+      options:
+        - Not specific
+        - Lecture 1
+        - Lecture 2
+        - Lecture 3
+        - Lecture 4
+        - Lecture 5
+        - Lecture 6
+        - Lecture 7
+        - Lecture 8
+        - Lecture 9
+        - Lecture 10
+        - Lecture 11
+        - Lecture 12
+        - Lecture 13
+        - Lecture 14
+        - Lecture 15
+        - Lecture 16
+        - Lecture 17
+        - Lecture 18
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe your suggestion or question
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Any other information that might be helpful
+    validations:
+      required: false

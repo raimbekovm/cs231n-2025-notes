@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question
+    url: https://github.com/raimbekovm/cs231n-2025-notes/issues/new?labels=question
+    about: Ask a question about the content

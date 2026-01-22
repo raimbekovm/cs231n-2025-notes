@@ -1,0 +1,55 @@
+name: Typo Report
+description: Report a spelling or grammar error
+labels: ["typo"]
+body:
+  - type: dropdown
+    id: lecture
+    attributes:
+      label: Lecture
+      options:
+        - Lecture 1
+        - Lecture 2
+        - Lecture 3
+        - Lecture 4
+        - Lecture 5
+        - Lecture 6
+        - Lecture 7
+        - Lecture 8
+        - Lecture 9
+        - Lecture 10
+        - Lecture 11
+        - Lecture 12
+        - Lecture 13
+        - Lecture 14
+        - Lecture 15
+        - Lecture 16
+        - Lecture 17
+        - Lecture 18
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Section, page, or line number
+      placeholder: "Section 2.3, page 5"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current text
+      description: Quote the text with the typo
+      placeholder: "The perceptorn was invented..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested
+    attributes:
+      label: Suggested fix
+      placeholder: "The perceptron was invented..."
+    validations:
+      required: true

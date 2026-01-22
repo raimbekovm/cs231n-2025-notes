@@ -1,0 +1,71 @@
+name: Academic Correction
+description: Report an academic inaccuracy or wrong formula
+labels: ["correction"]
+body:
+  - type: dropdown
+    id: lecture
+    attributes:
+      label: Lecture
+      options:
+        - Lecture 1
+        - Lecture 2
+        - Lecture 3
+        - Lecture 4
+        - Lecture 5
+        - Lecture 6
+        - Lecture 7
+        - Lecture 8
+        - Lecture 9
+        - Lecture 10
+        - Lecture 11
+        - Lecture 12
+        - Lecture 13
+        - Lecture 14
+        - Lecture 15
+        - Lecture 16
+        - Lecture 17
+        - Lecture 18
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Section, equation number, or page
+      placeholder: "Equation (7) in Section 3.2"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current content
+      description: Quote or describe the incorrect content
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's wrong
+      description: Explain the error
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested
+    attributes:
+      label: Correct version
+      description: Provide the correct formula or explanation
+    validations:
+      required: true
+
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: Link to paper, textbook, or other reference supporting the correction
+      placeholder: "Goodfellow et al., Deep Learning, Chapter 6, p. 205"
+    validations:
+      required: false
