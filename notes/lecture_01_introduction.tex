@@ -1,0 +1,810 @@
+\documentclass[11pt,a4paper]{article}
+
+% ============================================
+% PACKAGES
+% ============================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+% Math
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{textcomp}
+\usepackage{array} % for tables
+
+% Graphics
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[bottom]{footmisc} % Force footnotes to bottom of page
+\usepackage{caption}
+\captionsetup{
+    font=small,
+    labelfont=bf,
+    labelsep=period,
+    justification=raggedright,
+    singlelinecheck=false
+}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+
+% Colors and boxes
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% Citations
+\usepackage[round]{natbib}
+\bibliographystyle{plainnat}
+
+% Hyperlinks
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{CS231n 2025}
+\lhead{Lecture 1: Introduction}
+\rfoot{Page \thepage}
+
+% ============================================
+% CUSTOM ENVIRONMENTS
+% ============================================
+
+% Deep Dive box
+\newtcolorbox{deepdive}[1][]{
+    colback=blue!5!white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    title={Deep Dive: #1},
+    breakable
+}
+
+% Key Takeaways box
+\newtcolorbox{keytakeaways}{
+    colback=green!5!white,
+    colframe=green!75!black,
+    fonttitle=\bfseries,
+    title={Key Takeaways},
+    breakable
+}
+
+% Note box
+\newtcolorbox{notebox}{
+    colback=yellow!10!white,
+    colframe=yellow!75!black,
+    fonttitle=\bfseries,
+    title={Note},
+    breakable
+}
+
+% ============================================
+% DOCUMENT
+% ============================================
+\begin{document}
+
+% Title
+\begin{center}
+    {\LARGE\textbf{Lecture 1: Introduction to Computer Vision and Deep Learning}}\\[0.5em]
+    {\large CS231n: Deep Learning for Computer Vision}\\[0.3em]
+    {\normalsize Stanford University, Spring 2025}\\[1em]
+    \textit{Based on lectures by Fei-Fei Li and Ehsan Adeli}\\[0.5em]
+    {\small \faGithub\ \href{https://github.com/raimbekovm/cs231n-2025-notes}{Source Code}}
+\end{center}
+
+\vspace{1em}
+
+\tableofcontents
+\newpage
+
+% ============================================
+% PART 1: HISTORY (Fei-Fei Li)
+% ============================================
+
+\section{Introduction}
+\label{sec:introduction}
+
+Artificial Intelligence has evolved into one of the most interdisciplinary fields in modern science. What began as a branch of computer science now intersects with mathematics, neuroscience, psychology, physics, biology, and countless application domains---from medicine and law to education and business.
+
+This course, CS231n, focuses on a specific and powerful intersection: \textbf{computer vision} and \textbf{deep learning}. While we cannot cover the entirety of either field in a single quarter, we will explore their core overlap---the algorithms and techniques that enable machines to understand visual information.
+
+\subsection{What You Will Learn}
+
+By the end of this course, you will be able to:
+\begin{itemize}
+    \item Formalize computer vision problems as machine learning tasks
+    \item Understand and implement core deep learning architectures (CNNs, RNNs, Transformers)
+    \item Train and evaluate models for image classification, object detection, and segmentation
+    \item Explore advanced topics: generative models, vision-language models, 3D vision
+    \item Gain perspective on where the field is headed and its broader implications
+\end{itemize}
+
+\subsection{Course Scope}
+
+Figure~\ref{fig:course-scope} illustrates how this course fits within the broader AI landscape. Machine learning, and particularly deep learning, provides the mathematical toolkit. Computer vision defines the problems we aim to solve. This course lives at their intersection.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+        every node/.style={font=\normalsize}
+    ]
+        % AI - outermost ellipse
+        \draw[thick] (0,0) ellipse (6cm and 3.2cm);
+        \node at (0, 2.7) {Artificial Intelligence};
+
+        % Computer Vision - LEFT side
+        \draw[thick] (-2.2, -0.3) ellipse (2.8cm and 2cm);
+        \node[align=center] at (-3.3, -0.3) {Computer\\Vision};
+
+        % Machine Learning - RIGHT side, overlapping with CV
+        \draw[thick] (1.8, 0.2) ellipse (3cm and 1.8cm);
+        \node at (2.2, 1.5) {Machine Learning};
+
+        % Deep Learning - nested inside ML
+        \draw[thick] (1.2, -0.2) ellipse (1.8cm and 1.2cm);
+        \node[align=center] at (1.8, -0.2) {Deep\\Learning};
+
+        % Intersection highlight (CV ∩ DL) - red fill
+        \begin{scope}
+            \clip (-2.2, -0.3) ellipse (2.8cm and 2cm);
+            \clip (1.2, -0.2) ellipse (1.8cm and 1.2cm);
+            \fill[red!70] (-1, -1.5) rectangle (1, 1.5);
+        \end{scope}
+
+        % "This class" label with arrow
+        \node[align=center] at (5.5, 2.5) {This class};
+        \draw[thick, olive] (5.5, 2.2) -- (5.5, 0.5) -- (0, 0);
+
+    \end{tikzpicture}
+    \caption{The scope of this course: the intersection of Computer Vision and Deep Learning, within the broader fields of Machine Learning and Artificial Intelligence.}
+    \label{fig:course-scope}
+\end{figure}
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item AI is highly interdisciplinary---skills from this course apply across many domains
+    \item CS231n focuses on the intersection of computer vision and deep learning
+    \item Deep learning provides algorithms; computer vision provides problems
+\end{itemize}
+\end{keytakeaways}
+
+
+\section{Computer Vision in the AI Landscape}
+\label{sec:cv-in-ai}
+
+If we think of AI as a broad field encompassing all efforts to create intelligent machines, computer vision is one of its most fundamental subfields. But vision is more than just a component of AI---it may be a \textit{cornerstone} of intelligence itself.
+
+\subsection{Why Vision Matters}
+
+Consider this: more than 50\% of the human cerebral cortex is involved in visual processing\footnote{This estimate varies by study, but visual processing undeniably dominates cortical function.}. Humans are profoundly visual creatures. We navigate the world, recognize faces, read emotions, and make countless decisions based on what we see.
+
+The argument can be made that understanding visual intelligence is inseparable from understanding intelligence as a whole. As Fei-Fei Li puts it: ``\textit{Unlocking the mystery of visual intelligence is unlocking the mystery of intelligence.}'' If we want to build truly intelligent machines, they must be able to see and interpret the world.
+
+\subsection{Connections to Other Fields}
+
+Computer vision does not exist in isolation. It connects deeply with:
+
+\begin{itemize}
+    \item \textbf{Natural Language Processing}: Image captioning, visual question answering
+    \item \textbf{Robotics}: Perception for navigation, manipulation, and interaction
+    \item \textbf{Speech Recognition}: Multimodal understanding (lip reading, audio-visual fusion)
+    \item \textbf{Neuroscience}: Inspiration from biological visual systems
+    \item \textbf{Cognitive Science}: Understanding how humans perceive and interpret scenes
+\end{itemize}
+
+The techniques you learn in this course---convolutional networks, attention mechanisms, generative models---have applications far beyond vision. They form the foundation of modern AI.
+
+
+\section{A Brief History of Vision}
+\label{sec:history-vision}
+
+The history of vision did not begin with cameras or computers. It began approximately 540 million years ago, during one of the most dramatic periods in evolutionary history.
+
+\subsection{The Cambrian Explosion}
+\label{subsec:cambrian}
+
+Fossil records reveal a mysterious period known as the \textbf{Cambrian explosion}---a span of roughly 10 million years during which the diversity of animal species increased dramatically. Before this period, life on Earth was relatively simple: organisms floated passively in ancient oceans, with no predators, no prey, and little need for complex behavior.
+
+What triggered this explosion of diversity? Scientists have proposed many theories---changes in ocean chemistry, shifts in climate, increases in atmospheric oxygen. But one of the most compelling explanations centers on the evolution of \textbf{vision}.
+
+\subsection{The First Eyes}
+
+The earliest eyes were remarkably simple---not the sophisticated lenses and retinas we possess today, but basic photosensitive cells. Trilobites, among the first animals to develop eyes, had simple structures that could detect light and darkness.
+
+But even this primitive ability to sense light transformed life on Earth. Suddenly, animals could perceive their environment in a fundamentally new way:
+\begin{itemize}
+    \item \textbf{Predators} could see prey and hunt actively
+    \item \textbf{Prey} could see predators and flee
+    \item \textbf{Navigation} became possible---toward light, away from danger
+\end{itemize}
+
+Without senses, life is passive---mere metabolism. With vision, organisms became active participants in their environment. Evolutionary pressures intensified. Species that could see better survived longer and reproduced more successfully.
+
+\subsection{Vision and the Evolution of Intelligence}
+
+The development of visual systems drove the evolution of nervous systems. Processing visual information requires neural circuits---first simple, then increasingly complex. Over 540 million years, these circuits grew into the sophisticated brains we see today.
+
+\begin{notebox}
+Almost all animals on Earth today rely on vision as one of their primary senses. The evolution of eyes was not just an anatomical development---it was the catalyst for the evolution of intelligence itself.
+\end{notebox}
+
+This perspective motivates why computer vision is such a fundamental problem in AI. If biological vision drove the evolution of natural intelligence, perhaps understanding visual processing is key to building artificial intelligence.
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item The Cambrian explosion ($\sim$540 million years ago) saw rapid diversification of species
+    \item The evolution of eyes may have triggered this explosion
+    \item Vision transformed passive organisms into active agents
+    \item Visual processing drove the evolution of nervous systems and intelligence
+\end{itemize}
+\end{keytakeaways}
+
+
+\section{From Biological Eyes to Cameras}
+\label{sec:cameras}
+
+Humans have long been fascinated not only by seeing, but by building machines that can capture images. The desire to replicate vision mechanically predates computers by centuries.
+
+\subsection{Early Optical Devices}
+
+The principles of image formation were understood in antiquity. Ancient Greek and Chinese scholars documented how light passing through a small hole projects an inverted image onto a surface---the principle behind the \textbf{camera obscura} (Latin for ``dark room''), illustrated in Figure~\ref{fig:camera-obscura}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/camera_obscura_1545.jpg}
+    \caption{Illustration of a camera obscura used to observe a solar eclipse, from Gemma Frisius (1545). Light enters through a small opening and projects an inverted image onto the opposite wall. \textit{Source: Wikimedia Commons, public domain.}}
+    \label{fig:camera-obscura}
+\end{figure}
+
+Leonardo da Vinci studied the camera obscura extensively in the 15th and 16th centuries, exploring its potential for art and understanding vision. Artists used these devices to trace accurate perspectives long before photography existed.
+
+\subsection{The Invention of Photography}
+
+The camera obscura could project images, but it could not preserve them. The breakthrough came in the 19th century with the development of \textbf{photography}---chemical processes that could fix an image permanently.
+
+Key milestones include:
+\begin{itemize}
+    \item \textbf{1826}: Joseph Nicéphore Niépce captures the first permanent photograph
+    \item \textbf{1839}: Louis Daguerre introduces the daguerreotype process
+    \item \textbf{1888}: George Eastman introduces the Kodak camera, making photography accessible
+\end{itemize}
+
+\subsection{Cameras Are Not Enough}
+
+Modern life is saturated with cameras. Smartphones, security systems, satellites, medical devices---we capture billions of images every day. But cameras alone do not provide vision.
+
+A camera is merely an apparatus for recording light. An eye, too, is just an optical sensor. True vision---the ability to understand, interpret, and act on visual information---requires something more: \textbf{intelligence}.
+
+\begin{deepdive}[The Gap Between Sensing and Understanding]
+Consider what happens when you look at a photograph:
+\begin{itemize}
+    \item Your retina receives photons and converts them to neural signals
+    \item Your visual cortex processes edges, colors, textures, shapes
+    \item Higher brain regions recognize objects, faces, scenes
+    \item You understand the context, the story, the meaning
+\end{itemize}
+A camera performs only the first step. The remaining steps---perception, recognition, understanding---are what computer vision aims to replicate.
+\end{deepdive}
+
+This is the central challenge of computer vision: not capturing images (cameras do that well), but \textit{understanding} them. How do we go from pixels to meaning? From raw data to intelligent interpretation?
+
+The rest of this lecture---and this course---explores how researchers have approached this challenge, from early attempts in the 1960s to the deep learning revolution of today.
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item The camera obscura demonstrates basic principles of image formation
+    \item Photography (19th century) enabled permanent image capture
+    \item Cameras capture light; they do not provide understanding
+    \item Computer vision aims to bridge the gap between sensing and intelligence
+\end{itemize}
+\end{keytakeaways}
+
+
+% ============================================
+% HISTORY OF COMPUTER VISION
+% ============================================
+
+\section{A Brief History of Computer Vision}
+\label{sec:history-cv}
+
+The field of computer vision---teaching machines to interpret images---is relatively young. Its history is intertwined with neuroscience, artificial intelligence, and the gradual recognition that ``seeing'' is far more complex than anyone initially imagined.
+
+\subsection{Neuroscience Foundations: Hubel and Wiesel (1959)}
+
+In the late 1950s, neurophysiologists David Hubel and Torsten Wiesel conducted \href{https://www.semanticscholar.org/paper/6b4fe4aa4d66fecc7b2869569002714d91d0b3f7}{groundbreaking experiments} on the visual cortex of cats (see Figure~\ref{fig:hubel-wiesel}). By inserting electrodes into the brains of anesthetized animals and presenting visual stimuli, they discovered two fundamental principles.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figures/hubel_wiesel_1959.png}
+    \caption{The Hubel \& Wiesel experimental setup. A cat views oriented bar stimuli on a screen while a recording electrode measures electrical activity from neurons in the visual cortex. Different neurons responded maximally to bars at specific orientations.}
+    \label{fig:hubel-wiesel}
+\end{figure}
+
+\textbf{First}, neurons in the primary visual cortex have \textbf{receptive fields}---each neuron responds to stimuli in a specific, localized region of the visual field. A single neuron does not ``see'' the entire image; it processes only a small, confined patch of space. In the primary visual cortex (located at the back of the head, not near the eyes), these neurons respond to simple patterns like oriented edges.
+
+\textbf{Second}, visual processing is \textbf{hierarchical}. Neurons in early layers respond to simple features. These signals feed into deeper layers, where neurons respond to increasingly complex patterns---corners, shapes, and eventually objects.
+
+\begin{notebox}
+Hubel and Wiesel received the Nobel Prize in Physiology or Medicine in 1981 for their discoveries concerning information processing in the visual system.
+\end{notebox}
+
+These findings---local receptive fields and hierarchical feature extraction---would become the foundational principles of convolutional neural networks decades later.
+
+\subsection{The Birth of Computer Vision (1960s)}
+
+The formal study of computer vision began in the early 1960s:
+
+\begin{itemize}
+    \item \textbf{1963}: Larry Roberts at MIT wrote what is often considered the first PhD thesis in computer vision, focusing on extracting 3D information from 2D images of simple geometric shapes (see Figure~\ref{fig:roberts-blocks}).
+
+    \item \textbf{1966}: Seymour Papert at MIT initiated the famous ``Summer Vision Project,'' proposing to hire undergraduates to ``solve'' computer vision over a single summer.\footnote{The project memo (MIT AI Memo 100, 1966) is often cited as an example of early AI optimism.}
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/roberts_1963_blocks.png}
+    \caption{Larry Roberts' PhD thesis (1963): extracting 3D structure from 2D images of polyhedral ``blocks world'' scenes. From \textit{Machine Perception of Three-Dimensional Solids}, MIT.}
+    \label{fig:roberts-blocks}
+\end{figure}
+
+Of course, vision was not solved that summer---nor the next, nor the decade after. Just like the rest of AI history, researchers were overly optimistic about what could be achieved in a short period. The field has since blossomed into a major computer science discipline, with annual conferences now attracting over 10,000 attendees.
+
+\subsection{The David Marr Era (1970s)}
+
+British neuroscientist David Marr proposed an influential framework for understanding vision as an information-processing problem. His approach decomposed vision into levels (see Figure~\ref{fig:marr-stages}):
+
+\begin{figure}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|p{2.8cm}|p{2.8cm}|p{2.8cm}|p{3.2cm}|}
+        \hline
+        \centering\textbf{Input Image} &
+        \centering\textbf{Primal Sketch} &
+        \centering\textbf{2$\frac{1}{2}$-D Sketch} &
+        \centering\arraybackslash\textbf{3-D Model} \\
+        \hline
+        \centering\small Perceived intensities &
+        \centering\small Edges, blobs, bars, contours, curves, boundaries &
+        \centering\small Surface orientation, depth discontinuities &
+        \centering\arraybackslash\small Hierarchical structure of surfaces and volumes \\
+        \hline
+    \end{tabular}
+    \caption{Marr's stages of visual representation: from raw pixels through intermediate representations to 3D understanding.}
+    \label{fig:marr-stages}
+\end{figure}
+
+Marr emphasized that recovering 3D information from 2D images is fundamentally an \textbf{ill-posed problem}.\footnote{In Hadamard's sense: a problem is ``well-posed'' if a solution exists, is unique, and depends continuously on the input. 3D reconstruction from a single 2D image violates uniqueness---infinitely many 3D scenes can produce the same 2D projection.} Nature solved this partly through binocular vision (two eyes for triangulation), but the problem remains challenging even for modern algorithms.
+
+\subsection{Early Approaches (1970s-1980s)}
+
+During this period, researchers at Stanford and elsewhere developed early approaches to object recognition:
+
+\begin{itemize}
+    \item \textbf{Generalized cylinders}: Work by Rodney Brooks and Tom Binford at Stanford represented objects as compositions of cylindrical parts.\footnote{Brooks later became one of the most influential roboticists, founding iRobot (creators of the Roomba vacuum cleaner).}
+
+    \item \textbf{Pictorial structures}: Representing objects (especially human bodies) as collections of parts with spatial relationships (see Figure~\ref{fig:pictorial-structures}).
+
+    \item \textbf{Edge detection}: Algorithms to extract boundaries and contours from images (see Figure~\ref{fig:edge-detection}).
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{figures/pictorial_structures.png}
+    \caption{Pictorial structures for object representation: decomposing complex objects into parts connected by spatial relationships. Originally introduced by Fischler \& Elschlager (1973), later refined by Felzenszwalb \& Huttenlocher (2005).}
+    \label{fig:pictorial-structures}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/canny_edge_detection.png}
+    \caption{Canny edge detection: extracting object boundaries from images. Left: original image. Right: detected edges. Edge detection was a major focus in 1980s computer vision.}
+    \label{fig:edge-detection}
+\end{figure}
+
+Despite these efforts, progress felt limited---extracting edges and sketches didn't seem to capture real visual understanding. Around this time, AI entered its ``winter''---a period of reduced funding and enthusiasm as many AI promises failed to deliver.
+
+\subsection{Cognitive Insights: How Humans See}
+
+Even during the AI winter, research continued. Cognitive scientists provided crucial insights about human visual processing:
+
+\textbf{Context matters.} Psychologist Irving Biederman showed that humans detect objects differently depending on the surrounding scene. A bicycle is recognized differently in a coherent street scene versus a scrambled image---even when the bicycle pixels are identical.
+
+\textbf{Vision is fast.} Simon Thorpe measured that humans can categorize complex natural images (``contains an animal'' vs. ``no animal'') within approximately 150 milliseconds.\footnote{Thorpe, Fize \& Marlot (1996), ``Speed of processing in the human visual system,'' \textit{Nature}.} While this seems slow compared to modern GPUs, it's remarkably fast for biological neurons---only a few ``hops'' of neural processing.
+
+\textbf{Specialized regions exist.} Neuroscientists at MIT discovered brain areas specialized for faces, places, and body parts, suggesting that certain visual categories require dedicated processing.
+
+These findings pointed researchers toward studying natural images and object recognition, rather than just simple geometric shapes.
+
+\subsection{Features and Datasets (1990s-2000s)}
+
+As the field matured, researchers developed hand-crafted feature descriptors that could reliably identify corresponding points across images.
+
+\subsubsection{SIFT: Scale-Invariant Feature Transform (1999)}
+
+David Lowe introduced \href{https://www.semanticscholar.org/paper/f9f836d28f52ad260213d32224a6d227f8e8849a}{SIFT}, which detects \textbf{keypoints}---distinctive locations in an image---and computes a descriptor for each based on local gradient orientations (see Figure~\ref{fig:sift}). The key insight: these descriptors remain stable across changes in scale, rotation, and viewpoint.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/sift_features.png}
+    \caption{SIFT feature matching: keypoints (yellow boxes) are detected on a toy truck and matched across different views. Despite changes in angle and scale, corresponding features are reliably identified (colored lines show matches).}
+    \label{fig:sift}
+\end{figure}
+
+SIFT enabled applications like panorama stitching, object recognition, and 3D reconstruction. It dominated computer vision for nearly a decade before deep learning.
+
+\subsubsection{Viola-Jones: Real-Time Face Detection (2001)}
+
+\href{https://www.semanticscholar.org/paper/dc6ea0e30e46163b706f2f8bdc9c67ca87f83d63}{Paul Viola and Michael Jones} achieved a breakthrough in face detection with a system fast enough for real-time use (see Figure~\ref{fig:viola-jones}). Their approach combined three key ideas:
+
+\begin{enumerate}
+    \item \textbf{Haar-like features}: Simple rectangular patterns (black/white regions) that capture local contrast---for example, the eyes are darker than the cheeks below them
+    \item \textbf{Integral images}: A data structure enabling extremely fast feature computation
+    \item \textbf{Cascade classifier}: A sequence of increasingly complex classifiers that quickly reject obvious non-faces, spending more computation only on promising regions
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/viola_jones.png}
+    \caption{Viola-Jones face detection: (a) integral image for fast computation, (b) Haar-like features---simple rectangular patterns, (c) cascade classifier that quickly rejects non-face regions, (d) Haar features applied to faces detect contrast between eyes and cheeks, (e) Local Binary Patterns (LBP) encode texture.}
+    \label{fig:viola-jones}
+\end{figure}
+
+Within five years of publication, this algorithm appeared in consumer digital cameras for automatic face focusing---one of the first widespread applications of computer vision.
+
+\subsubsection{Benchmark Datasets}
+
+The early 2000s brought a crucial development: the internet. Combined with digital cameras, data started to proliferate. Benchmark datasets emerged:
+\begin{itemize}
+    \item \textbf{Caltech-101} (2003): 101 object categories
+    \item \textbf{PASCAL VOC} (2005-2012): Object detection challenges
+\end{itemize}
+
+These datasets, though small by modern standards, established the paradigm of training and evaluating on standardized benchmarks.
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item Hubel \& Wiesel (1959): receptive fields and hierarchical processing
+    \item Early CV (1960s) vastly underestimated the difficulty of vision
+    \item David Marr: vision as computational information processing
+    \item Cognitive science: human vision is fast, context-dependent, specialized
+    \item Hand-crafted features and benchmark datasets drove progress (1990s-2000s)
+\end{itemize}
+\end{keytakeaways}
+
+
+% ============================================
+% HISTORY OF DEEP LEARNING
+% ============================================
+
+\section{A Brief History of Deep Learning}
+\label{sec:history-dl}
+
+While computer vision researchers were developing hand-crafted features, a parallel thread of research was progressing: neural networks. This approach would eventually revolutionize not just vision but all of AI.
+
+\subsection{Perceptrons and Early Setbacks (1950s-1960s)}
+
+In 1958, Frank Rosenblatt at Cornell introduced the \href{https://www.semanticscholar.org/paper/5d11aad09f65431b5d3cb1d85328743c9e53ba96}{\textbf{Perceptron}}---a machine that could learn to classify inputs by adjusting connection weights (see Figure~\ref{fig:perceptron-1958}). The Mark I Perceptron was a physical device with 400 photocells (the ``retina''), randomly wired to association units, which fed into response units.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/rosenblatt_perceptron_1958.png}
+    \caption{The Mark I Perceptron (1958). Left: Frank Rosenblatt adjusting the machine's wiring. Right: Architecture diagram showing sensory units (S-Units) receiving input from the retina, association units (A-Units) with random connections, and response units (R-Units) producing output.}
+    \label{fig:perceptron-1958}
+\end{figure}
+
+The perceptron could learn simple classification tasks---given labeled examples, it would automatically adjust weights to improve accuracy. This sparked enormous excitement about machine learning.
+
+However, in 1969, Marvin Minsky and Seymour Papert published \textit{Perceptrons}, a rigorous mathematical analysis showing fundamental limitations (see Figure~\ref{fig:minsky-papert}). They proved that single-layer perceptrons cannot learn certain simple functions---most famously, XOR (exclusive or).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/minsky_papert_1969.png}
+    \caption{The Minsky-Papert critique (1969). Left: Mathematical formalization of the perceptron---inputs $\varphi_1, \ldots, \varphi_n$ are weighted, summed, and thresholded to produce output $\psi$. Right: The influential book ``Perceptrons: An Introduction to Computational Geometry'' that demonstrated fundamental limitations of single-layer networks.}
+    \label{fig:minsky-papert}
+\end{figure}
+
+This critique contributed to the first ``AI winter''---a period of reduced funding and enthusiasm for neural network research.
+
+\subsection{Neocognitron: A Hand-Designed CNN (1980)}
+
+Despite setbacks, work continued. Kunihiko Fukushima in Japan created the \href{https://www.semanticscholar.org/paper/69e68bfaadf2dccff800158749f5a50fe82d173b}{\textbf{Neocognitron}}---a neural network directly inspired by Hubel and Wiesel's findings (see Figure~\ref{fig:neocognitron-lenet}a). It alternated between two types of layers:
+\begin{itemize}
+    \item \textbf{S-cells} (simple cells): Detect local features like edges---analogous to convolution
+    \item \textbf{C-cells} (complex cells): Pool information from S-cells, providing tolerance to small shifts---analogous to pooling
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/neocognitron_lenet.png}
+    \caption{(a) Fukushima's Neocognitron (1980): alternating layers of S-cells and C-cells, directly inspired by Hubel \& Wiesel's hierarchy. (b) LeCun's LeNet (1989): similar architecture but with learnable parameters via backpropagation. The structural similarity is striking---the key difference is how parameters were set.}
+    \label{fig:neocognitron-lenet}
+\end{figure}
+
+The Neocognitron could recognize digits and letters, but it was an engineering feat: every parameter was hand-designed. Fukushima had to meticulously tune hundreds of parameters to make it work. The architecture was remarkably similar to modern CNNs---what was missing was an automatic way to learn the parameters.
+
+\subsection{The Backpropagation Breakthrough (1986)}
+
+The real breakthrough came with \href{https://www.semanticscholar.org/paper/052b1d8ce63b07fec3de9dbb583772d860b7c769}{\textbf{backpropagation}}---a learning rule that eliminated the need for hand-tuning (see Figure~\ref{fig:backprop}). In 1986, Rumelhart, Hinton, and Williams showed how to:
+\begin{enumerate}
+    \item Define an error function comparing network output to correct answers
+    \item Propagate error information backward through the network
+    \item Automatically adjust parameters using calculus (chain rule)
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/backprop_1986.png}
+    \caption{A network trained with backpropagation to solve XOR---the very problem Minsky and Papert proved impossible for single-layer perceptrons. The numbers show weights learned automatically: 2 input units, 2 hidden units, 1 output unit. From Rumelhart, Hinton \& Williams (1986).}
+    \label{fig:backprop}
+\end{figure}
+
+This was a watershed moment---networks could now learn their own parameters. The XOR problem that had haunted neural networks for nearly two decades was finally solved, not by human engineering, but by letting the network learn.
+
+\subsection{LeNet: CNNs in Practice (1989-1998)}
+
+Yann LeCun, working at Bell Labs, combined backpropagation with convolutional architectures to create \href{https://www.semanticscholar.org/paper/162d958ff885f1462aeda91cd72582323fd6a1f4}{\textbf{LeNet}} (see Figure~\ref{fig:lenet}). The architecture alternated convolutional layers (feature extraction) with subsampling layers (dimensionality reduction), followed by fully connected layers for classification.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/lenet_1998.png}
+    \caption{LeNet-5 architecture (LeCun et al., 1998). A 32×32 input image passes through convolutional layers (C1, C3) that extract features, subsampling layers (S2, S4) that reduce spatial dimensions, and fully connected layers (C5, F6) that produce the final classification into 10 digit classes.}
+    \label{fig:lenet}
+\end{figure}
+
+LeNet was trained to recognize handwritten digits and was actually deployed in US postal offices and banks to read checks---one of the first real-world applications of deep learning.
+
+LeNet proved that neural networks could achieve practical results on real tasks.
+
+\subsection{The Stall: Why Deep Learning Didn't Take Off (1990s-2000s)}
+
+Despite LeNet's success on digits, neural networks didn't scale to natural images:
+
+\begin{itemize}
+    \item When tested on photos of cats, dogs, chairs, and flowers---the kind used by neuroscientists---they simply didn't work
+    \item Other methods like SVMs often performed better on benchmarks
+    \item Training was unstable; gradients would vanish or explode
+    \item Most critically: \textbf{there wasn't enough data}
+\end{itemize}
+
+\begin{deepdive}[Why Data Matters]
+Neural networks are high-capacity models with millions of parameters. Without enough data, they memorize training examples instead of learning generalizable patterns (overfitting). This is a mathematical problem, not just an inconvenience. Data was underappreciated---most researchers focused on architectures while ignoring that data is a ``first-class citizen'' in machine learning.
+\end{deepdive}
+
+A small community---including Geoffrey Hinton, Yann LeCun, and Yoshua Bengio---continued working on neural networks through this difficult period.
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item Perceptrons (1958) introduced learnable artificial neurons
+    \item Neocognitron (1980): CNN architecture, but hand-designed parameters
+    \item Backpropagation (1986): automatic learning of parameters
+    \item LeNet (1989): practical CNN for digit recognition
+    \item Neural networks stalled in 1990s-2000s due to lack of data
+\end{itemize}
+\end{keytakeaways}
+
+
+% ============================================
+% THE 2012 MOMENT
+% ============================================
+
+\section{The 2012 Moment: ImageNet and AlexNet}
+\label{sec:2012-moment}
+
+The histories of computer vision and deep learning converged dramatically in 2012, in what many consider the birth of the modern AI era.
+
+\subsection{ImageNet: Data at Scale}
+
+Recognizing that lack of data was holding back the field, Fei-Fei Li and her students set out to create an unprecedented dataset. They hypothesized that the field was underappreciating the importance of data.
+
+\href{https://www.semanticscholar.org/paper/d2c733e34d48784a37d717fe43d9e93277a8c53e}{\textbf{ImageNet}}, released in 2009, contained (see Figure~\ref{fig:imagenet}):
+\begin{itemize}
+    \item \textbf{15 million} images (cleaned from over 1 billion)
+    \item \textbf{22,000} object categories (roughly the number humans learn in early life)
+    \item Human-verified labels via Amazon Mechanical Turk
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/imagenet_mosaic.png}
+    \caption{ImageNet: a mosaic of sample images forming the dataset's name. The sheer diversity and scale of ImageNet---15 million images across 22,000 categories---was unprecedented and proved essential for training deep networks.}
+    \label{fig:imagenet}
+\end{figure}
+
+The \textbf{ImageNet Large Scale Visual Recognition Challenge (ILSVRC)} used a curated subset: 1 million+ images across 1,000 classes. Researchers competed to build algorithms that could correctly classify images.
+
+\subsection{AlexNet: The Breakthrough}
+
+In 2012, Geoffrey Hinton and his students (Alex Krizhevsky, Ilya Sutskever) entered the challenge with a deep convolutional neural network called \href{https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks}{\textbf{AlexNet}} (see Figure~\ref{fig:alexnet}):
+
+\begin{center}
+\begin{tabular}{lc}
+\hline
+\textbf{Year} & \textbf{Top-5 Error Rate} \\
+\hline
+2010 (first year) & $\sim$28\% \\
+2011 & $\sim$26\% \\
+\textbf{2012 (AlexNet)} & \textbf{$\sim$15\%} \\
+Human performance\footnotemark & $\sim$5\% \\
+\hline
+\end{tabular}
+\end{center}
+\footnotetext{Russakovsky et al. (2015), ``ImageNet Large Scale Visual Recognition Challenge,'' \textit{IJCV}.}
+
+AlexNet reduced the error rate by \textbf{almost half}---an enormous improvement when annual progress was typically measured in single percentage points.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/alexnet_2012.png}
+    \caption{AlexNet architecture (Krizhevsky, Sutskever \& Hinton, 2012). Input 224×224×3 images pass through 5 convolutional layers and 3 fully connected layers, outputting 1000 class probabilities. The network was split across two GPUs (top/bottom paths) due to memory constraints---a detail that influenced the design.}
+    \label{fig:alexnet}
+\end{figure}
+
+\subsection{What Made It Work?}
+
+Remarkably, AlexNet's architecture wasn't radically different from Fukushima's Neocognitron designed 32 years earlier. The differences were:
+
+\begin{enumerate}
+    \item \textbf{Backpropagation}: A principled, mathematically rigorous learning rule---no more hand-tuning parameters
+
+    \item \textbf{Data}: ImageNet provided 1.2 million labeled training images, orders of magnitude more than previous datasets
+
+    \item \textbf{Compute}: GPUs (originally for video games) proved ideal for the parallel matrix operations in neural networks
+\end{enumerate}
+
+Many consider 2012 and AlexNet the historical moment of the \textbf{birth (or rebirth) of modern AI} and the \textbf{deep learning revolution}.
+
+\subsection{The Deep Learning Explosion}
+
+After 2012, progress accelerated dramatically. The ImageNet error rate dropped below human performance ($\sim$5\%) by 2015. The number of papers at computer vision conferences exploded.
+
+Deep learning transformed every computer vision task:
+\begin{itemize}
+    \item Object detection and segmentation
+    \item Image captioning and visual question answering
+    \item Style transfer and image generation
+    \item Video classification and activity recognition
+    \item Medical imaging, scientific discovery, sustainability
+\end{itemize}
+
+\subsection{The Three Converging Forces}
+
+The 2012 moment illustrates a pattern that continues to drive AI:
+
+\begin{enumerate}
+    \item \textbf{Data}: Large, labeled datasets enable learning rich representations
+    \item \textbf{Compute}: GPUs provide necessary computational power (NVIDIA's FLOPS per dollar has skyrocketed since 2020)
+    \item \textbf{Algorithms}: Architectural innovations unlock new capabilities
+\end{enumerate}
+
+We are now ``totally out of AI winter''---in what might be called an \textbf{AI global warming} period, with no signs of slowing down.
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item ImageNet (2009): 15M images, 22K categories---data at unprecedented scale
+    \item AlexNet (2012): reduced ImageNet error by $\sim$50\%, using backpropagation + data + GPUs
+    \item Three converging forces: data, compute, algorithms
+    \item 2012 marks the birth of the modern deep learning era
+    \item We are in an ``AI global warming'' period of rapid progress
+\end{itemize}
+\end{keytakeaways}
+
+
+% ============================================
+% POST-2012 EXPLOSION
+% ============================================
+
+\section{Post-2012: The AI Explosion}
+\label{sec:post-2012}
+
+The years following AlexNet's victory saw an explosion of activity in deep learning research. What began as a breakthrough in image classification quickly spread to every corner of computer vision---and beyond.
+
+\subsection{Advances in Visual Recognition}
+
+Deep learning quickly transformed every major computer vision task:
+
+\begin{itemize}
+    \item \textbf{Object detection}: Locating and classifying multiple objects in images
+    \item \textbf{Semantic segmentation}: Labeling every pixel with its object class
+    \item \textbf{Instance segmentation}: Distinguishing individual object instances
+    \item \textbf{Image captioning}: Generating natural language descriptions of images
+    \item \textbf{Visual question answering}: Answering questions about image content
+\end{itemize}
+
+Applications spread rapidly: medical imaging (radiology, pathology), scientific discovery (the first black hole photograph used CV techniques), autonomous vehicles, sustainability monitoring, and countless others.
+
+\subsection{The Hardware Revolution}
+
+The deep learning explosion drove---and was driven by---dramatic improvements in hardware. NVIDIA's GPUs, originally designed for video games, became the engines of AI research.
+
+Before 2020, GPU performance improved steadily. After deep learning took hold, FLOPS per dollar skyrocketed. Custom AI accelerators (TPUs, specialized chips) pushed performance even further.
+
+\subsection{Generative AI}
+
+Beyond recognition, deep learning enabled \textbf{generation}:
+
+\begin{itemize}
+    \item \textbf{Style transfer}: Reimagining images in different artistic styles
+    \item \textbf{Face generation}: Creating photorealistic faces of people who don't exist
+    \item \textbf{Text-to-image}: DALL-E, Midjourney, Stable Diffusion---generating images from text prompts
+    \item \textbf{Diffusion models}: State-of-the-art generative techniques
+\end{itemize}
+
+\subsection{The Current Landscape}
+
+Conference attendance exploded (CVPR now attracts 10,000+ attendees). AI startups proliferated. Enterprise adoption accelerated across industries.
+
+The impact of deep learning has been recognized at the highest levels:
+\begin{itemize}
+    \item \textbf{Turing Award 2018}: Geoffrey Hinton, Yoshua Bengio, and Yann LeCun received computing's most prestigious honor for ``conceptual and engineering breakthroughs that have made deep neural networks a critical component of computing.''
+    \item \textbf{Nobel Prize in Physics 2024}: Geoffrey Hinton and John Hopfield were recognized for foundational contributions to machine learning with artificial neural networks.
+\end{itemize}
+
+\begin{notebox}
+With great power comes great responsibility. AI systems can perpetuate human biases present in training data. Face recognition systems have shown demographic disparities. AI increasingly affects employment, financial decisions, and healthcare. These human-centered concerns are as important as technical advances.
+\end{notebox}
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item Post-2012, deep learning transformed all areas of computer vision
+    \item Hardware (GPUs) and software (algorithms) advanced in a virtuous cycle
+    \item Generative AI emerged: style transfer, image generation, diffusion models
+    \item We are in an ``AI global warming'' period---rapid progress, no slowdown in sight
+    \item Human-centered concerns (bias, ethics, societal impact) are critical
+\end{itemize}
+\end{keytakeaways}
+
+
+% ============================================
+% REFERENCES
+% ============================================
+
+\section*{References}
+
+\begin{itemize}
+    \item Rosenblatt, F. (1958). The perceptron: A probabilistic model for information storage and organization in the brain. \textit{Psychological Review}, 65(6), 386-408.
+
+    \item Hubel, D. H., \& Wiesel, T. N. (1962). Receptive fields, binocular interaction and functional architecture in the cat's visual cortex. \textit{The Journal of Physiology}, 160(1), 106-154.
+
+    \item Roberts, L. G. (1963). \textit{Machine Perception of Three-Dimensional Solids}. PhD thesis, MIT.
+
+    \item Minsky, M., \& Papert, S. (1969). \textit{Perceptrons: An Introduction to Computational Geometry}. MIT Press.
+
+    \item Fischler, M. A., \& Elschlager, R. A. (1973). The representation and matching of pictorial structures. \textit{IEEE Transactions on Computers}, 22(1), 67-92.
+
+    \item Fukushima, K. (1980). Neocognitron: A self-organizing neural network model for a mechanism of pattern recognition unaffected by shift in position. \textit{Biological Cybernetics}, 36(4), 193-202.
+
+    \item Marr, D. (1982). \textit{Vision: A Computational Investigation}. MIT Press.
+
+    \item Canny, J. (1986). A computational approach to edge detection. \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, 8(6), 679-698.
+
+    \item Rumelhart, D. E., Hinton, G. E., \& Williams, R. J. (1986). Learning representations by back-propagating errors. \textit{Nature}, 323(6088), 533-536.
+
+    \item LeCun, Y., et al. (1989). Backpropagation applied to handwritten zip code recognition. \textit{Neural Computation}, 1(4), 541-551.
+
+    \item Thorpe, S., Fize, D., \& Marlot, C. (1996). Speed of processing in the human visual system. \textit{Nature}, 381(6582), 520-522.
+
+    \item LeCun, Y., et al. (1998). Gradient-based learning applied to document recognition. \textit{Proceedings of the IEEE}, 86(11), 2278-2324.
+
+    \item Lowe, D. G. (1999). Object recognition from local scale-invariant features. \textit{ICCV}, 1150-1157.
+
+    \item Viola, P., \& Jones, M. (2001). Rapid object detection using a boosted cascade of simple features. \textit{CVPR}, 511-518.
+
+    \item Felzenszwalb, P. F., \& Huttenlocher, D. P. (2005). Pictorial structures for object recognition. \textit{International Journal of Computer Vision}, 61(1), 55-79.
+
+    \item Deng, J., et al. (2009). ImageNet: A large-scale hierarchical image database. \textit{CVPR}.
+
+    \item Krizhevsky, A., Sutskever, I., \& Hinton, G. E. (2012). ImageNet classification with deep convolutional neural networks. \textit{NeurIPS}.
+
+    \item Russakovsky, O., et al. (2015). ImageNet Large Scale Visual Recognition Challenge. \textit{International Journal of Computer Vision}, 115(3), 211-252.
+\end{itemize}
+
+\end{document}
