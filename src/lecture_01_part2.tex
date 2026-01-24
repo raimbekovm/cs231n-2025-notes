@@ -262,7 +262,7 @@ Key characteristics of semantic segmentation:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{figures/lecture_01_part2/object_detection.jpg}
-    \caption{Object detection with \protect\href{https://arxiv.org/abs/1506.02640}{YOLO}\footnotemark\ on a cluttered desk scene. The detector identifies multiple everyday objects---laptop, bottles, vase, wine glass, mouse, bowl, cup, chair, handbag---each localized with a colored bounding box and class label.}
+    \caption{Object detection with YOLO\protect\footnotemark\ on a cluttered desk scene. The detector identifies multiple everyday objects---laptop, bottles, vase, wine glass, mouse, bowl, cup, chair, handbag---each localized with a colored bounding box and class label.}
     \label{fig:object-detection}
 \end{figure}
 \footnotetext{YOLO (``You Only Look Once'') processes the entire image in a single forward pass, achieving real-time detection at 45+ FPS. This was a breakthrough compared to earlier methods like R-CNN that required thousands of region proposals.}
@@ -599,7 +599,7 @@ The breakthrough idea of \textbf{contrastive learning} is to learn representatio
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{figures/lecture_01_part2/simclr.png}
-    \caption{The \protect\href{https://arxiv.org/abs/2002.05709}{\textbf{SimCLR}}\footnotemark\ framework for contrastive learning. An image undergoes random data augmentation twice, producing two views $x_i$ and $x_j$. Both pass through the same encoder $f(\cdot)$ yielding representations $h_i, h_j$, then a projection head $g(\cdot)$ produces embeddings $z_i, z_j$. Training maximizes similarity between $z_i$ and $z_j$ (positive pair) while minimizing similarity to embeddings from other images (negative pairs).}
+    \caption{The \textbf{SimCLR}\protect\footnotemark\ framework for contrastive learning. An image undergoes random data augmentation twice, producing two views $x_i$ and $x_j$. Both pass through the same encoder $f(\cdot)$ yielding representations $h_i, h_j$, then a projection head $g(\cdot)$ produces embeddings $z_i, z_j$. Training maximizes similarity between $z_i$ and $z_j$ (positive pair) while minimizing similarity to embeddings from other images (negative pairs).}
     \label{fig:simclr}
 \end{figure}
 \footnotetext{SimCLR showed that with strong enough augmentations and large enough batches, simple contrastive learning rivals supervised pre-training. The key insight: aggressive augmentation (blur, color distortion, cropping) forces the model to learn semantic rather than superficial features.}
