@@ -14,8 +14,8 @@ Comprehensive lecture notes for **Stanford CS231n: Deep Learning for Computer Vi
 
 | Lecture | Topic | PDF | Status |
 |:-------:|-------|:---:|:------:|
-| 1.1 | History of Computer Vision | [Download](pdf/lecture_01_part1.pdf) | Done |
-| 1.2 | Course Overview: Tasks, Models, Applications | [Download](pdf/lecture_01_part2.pdf) | Done |
+| 1.1 | History of Computer Vision | [View PDF](https://raimbekovm.github.io/cs231n-2025-notes/pdf/lecture_01_part1.pdf) | Done |
+| 1.2 | Course Overview: Tasks, Models, Applications | [View PDF](https://raimbekovm.github.io/cs231n-2025-notes/pdf/lecture_01_part2.pdf) | Done |
 | 2 | Image Classification, KNN, Linear Classifiers | Coming soon | In Progress |
 | 3 | Regularization, Optimization (SGD, Adam) | Coming soon | Planned |
 | 4 | Neural Networks, Backpropagation | Coming soon | Planned |
