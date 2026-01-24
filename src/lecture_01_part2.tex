@@ -1,0 +1,1221 @@
+\documentclass[11pt,a4paper]{article}
+
+% ============================================
+% PACKAGES
+% ============================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+% Math
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{textcomp}
+\usepackage{array}
+
+% Graphics
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[bottom]{footmisc}
+\usepackage{caption}
+\captionsetup{
+    font=small,
+    labelfont=bf,
+    labelsep=period,
+    justification=raggedright,
+    singlelinecheck=false
+}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+
+% Colors and boxes
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% Hyperlinks
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{CS231n 2025}
+\lhead{Lecture 1: Course Overview}
+\rfoot{Page \thepage}
+
+% ============================================
+% CUSTOM ENVIRONMENTS
+% ============================================
+
+% Deep Dive box
+\newtcolorbox{deepdive}[1][]{
+    colback=blue!5!white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    title={Deep Dive: #1},
+    breakable
+}
+
+% Key Takeaways box
+\newtcolorbox{keytakeaways}{
+    colback=green!5!white,
+    colframe=green!75!black,
+    fonttitle=\bfseries,
+    title={Key Takeaways},
+    breakable
+}
+
+% Note box
+\newtcolorbox{notebox}{
+    colback=yellow!10!white,
+    colframe=yellow!75!black,
+    fonttitle=\bfseries,
+    title={Note},
+    breakable
+}
+
+% ============================================
+% DOCUMENT
+% ============================================
+\begin{document}
+
+% Title
+\begin{center}
+    {\LARGE\textbf{Lecture 1, Part 2: Course Overview}}\\[0.5em]
+    {\large CS231n: Deep Learning for Computer Vision}\\[0.3em]
+    {\normalsize Stanford University, Spring 2025}\\[1em]
+    \textit{Based on the lecture by Ehsan Adeli}\\[0.5em]
+    {\small \faGithub\ \href{https://github.com/raimbekovm/cs231n-2025-notes}{Source Code}}
+\end{center}
+
+\vspace{1em}
+
+\tableofcontents
+\newpage
+
+
+\section{What is Computer Vision?}
+\label{sec:what-is-cv}
+
+At its core, computer vision is about enabling machines to interpret and understand visual information. The most fundamental task in this space is \textbf{image classification}: given an image, the model outputs a label describing its content.
+
+\subsection{Image Classification: The Foundation}
+
+Image classification may seem deceptively simple---show the model a photo of a cat, and it should output ``cat.'' Yet this apparently trivial task forms the foundation for much more complex applications, from self-driving cars to medical diagnosis.
+
+How do we approach this problem mathematically? The simplest method is \textbf{linear classification}. We represent each image as a vector $\mathbf{x} \in \mathbb{R}^d$ (e.g., by flattening all pixel values), and learn a weight matrix $\mathbf{W}$ and bias $\mathbf{b}$ such that:
+\[
+f(\mathbf{x}) = \mathbf{W}\mathbf{x} + \mathbf{b}
+\]
+The output $f(\mathbf{x})$ gives scores for each class---the highest score determines our prediction. Geometrically, each row of $\mathbf{W}$ defines a \textbf{hyperplane} in feature space that separates one class from the others.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.0]
+        % Axes
+        \draw[->] (0,0) -- (5,0) node[right] {$x_1$};
+        \draw[->] (0,0) -- (0,4) node[above] {$x_2$};
+
+        % Class 1 (filled circles) - upper left cluster
+        \foreach \x/\y in {0.9/3.3, 1.2/3.0, 1.4/3.5, 1.1/2.7, 1.5/3.2, 1.3/2.9, 1.0/3.1, 1.6/3.0, 1.2/3.4} {
+            \fill[black] (\x,\y) circle (3pt);
+        }
+
+        % Class 2 (empty circles) - lower right cluster
+        \foreach \x/\y in {3.0/1.6, 3.3/1.2, 3.6/1.8, 3.2/0.9, 3.8/1.4, 3.5/0.6, 4.0/1.0, 4.2/1.5} {
+            \draw[black, thick] (\x,\y) circle (3pt);
+        }
+
+        % H1 (cyan) - vertical line in CENTER
+        \draw[thick, cyan] (2.3,3.8) -- (2.3,0.2);
+
+        % H2 (red) - diagonal from bottom-left to top-right
+        \draw[thick, red] (0.5,0.3) -- (4.5,3.8);
+
+        % H3 (green) - vertical line on far RIGHT
+        \draw[thick, green!60!black] (4.5,3.8) -- (4.5,0.2);
+
+        % Labels at top
+        \node[cyan] at (2.3, 4.1) {\small $H_1$};
+        \node[red] at (4.0, 4.1) {\small $H_2$};
+        \node[green!60!black] at (4.8, 4.1) {\small $H_3$};
+
+        % Title
+        \node at (2.5, -0.5) {Linear Classifier};
+    \end{tikzpicture}
+    \caption{Linear classification in feature space. Different hyperplanes ($H_1$, $H_2$, $H_3$) can separate the two classes. $H_1$ and $H_2$ both achieve perfect separation, but $H_2$ (with larger margin) may generalize better. $H_3$ fails to separate the classes.}
+    \label{fig:linear-classifier}
+\end{figure}
+
+Figure~\ref{fig:linear-classifier} illustrates this concept in 2D: each hyperplane represents a different linear classifier. Notice that $H_1$ and $H_2$ both perfectly separate the two classes, but which is ``better''? This question leads us to the concepts of \textbf{loss functions} and \textbf{optimization}.
+
+\subsection{Loss Functions and Optimization}
+
+To train a classifier, we need to quantify how ``wrong'' its predictions are. A \textbf{loss function} measures this error---it outputs a high value when predictions are poor and a low value when they're accurate. We will explore specific loss functions (cross-entropy, hinge loss) in detail in future lectures.
+
+Training minimizes this loss over the dataset using \textbf{optimization algorithms} like \textbf{gradient descent}. The key idea: compute how each weight contributes to the error, then adjust weights in the direction that reduces it. The \textbf{learning rate} controls how large each adjustment step is---too large and we overshoot, too small and training is slow.
+
+\subsection{Regularization: Controlling Complexity}
+
+With enough parameters, a model can memorize the training data perfectly---but this \textbf{overfitting} hurts generalization to new data. \textbf{Regularization} adds a penalty that discourages overly complex models by keeping weights small. We will cover specific regularization techniques (L1, L2, dropout) in future lectures.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.0]
+        % Axes
+        \draw[->] (0,0) -- (5,0) node[right] {$x$};
+        \draw[->] (0,0) -- (0,4) node[above] {$y$};
+
+        % f1 (green line) - good linear fit, passes through middle of points
+        \draw[thick, green!60!black] (0.2,1.1) -- (4.8,2.7);
+
+        % f2 (blue curve) - passes through all data points
+        \draw[thick, blue] plot[smooth, tension=0.5] coordinates {(0.2,0.3) (0.8,1.4) (1.3,2.4) (1.8,1.6) (2.3,2.1) (2.8,1.8) (3.3,2.4) (3.8,2.0) (4.3,2.7) (4.8,3.5)};
+
+        % Data points (smaller light blue circles) - on the curve
+        \foreach \x/\y in {0.8/1.4, 1.8/1.6, 2.3/2.1, 2.8/1.8, 3.3/2.4, 4.3/2.7} {
+            \fill[cyan!40] (\x,\y) circle (4pt);
+            \draw[cyan!60!blue] (\x,\y) circle (4pt);
+        }
+
+        % Labels
+        \node[green!60!black] at (5.0,2.7) {\small $f_1$};
+        \node[blue] at (5.0, 3.5) {\small $f_2$};
+
+        % Title
+        \node at (2.5, -0.5) {Regularization \& Optimization};
+    \end{tikzpicture}
+    \caption{Overfitting vs. good generalization. The green line ($f_1$) represents a well-regularized model that captures the underlying trend. The blue curve ($f_2$) overfits by passing through every training point, capturing noise rather than signal---it will perform poorly on new data.}
+    \label{fig:regularization}
+\end{figure}
+
+Figure~\ref{fig:regularization} visualizes this trade-off: $f_2$ achieves zero training error but is clearly overfitting, while $f_1$ makes small errors on training data but will generalize better.
+
+\subsection{From Linear Models to Neural Networks}
+
+Linear classifiers have a fundamental limitation: they can only learn linear decision boundaries. Many real-world problems require more complex separations---imagine trying to classify images of cats vs. dogs with a single hyperplane in pixel space!
+
+This is where \textbf{neural networks} come in. By stacking multiple layers with nonlinear \textbf{activation functions}, neural networks can learn arbitrarily complex decision boundaries.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/lecture_01_part2/neural_network.png}
+    \caption{A neural network with two hidden layers. Each layer applies a linear transformation followed by a nonlinear activation (e.g., ReLU). This composition of simple functions enables learning complex patterns that linear models cannot capture.}
+    \label{fig:neural-network}
+\end{figure}
+
+Each layer applies a linear transformation followed by a nonlinear \textbf{activation function} (like ReLU). This composition of simple functions enables learning complex patterns that linear models cannot capture. Training uses \textbf{backpropagation}\footnote{Backpropagation was popularized by Rumelhart, Hinton, and Williams in 1986, though the core ideas trace back to earlier work in control theory. It remains the foundation of all neural network training today.}---applying the chain rule to compute gradients through all layers---combined with optimization algorithms we'll study in detail later.
+
+Neural networks are the foundation of modern computer vision, powering everything from Google Photos to autonomous vehicles. In this course, we will go deep into how they work, how to train them, and how to debug and improve them.
+
+\subsection{From Classification to Understanding}
+
+While classification assigns a single label to an entire image, real-world computer vision requires much richer understanding. Consider an autonomous vehicle: knowing an image ``contains a pedestrian'' is not enough---we need to know \textit{where} they are, \textit{how fast} they're moving, and \textit{which direction}. This leads us to more sophisticated tasks:
+\begin{itemize}
+    \item \textit{Where} are the objects in the image? $\rightarrow$ \textbf{Object Detection}
+    \item \textit{What} are the precise boundaries? $\rightarrow$ \textbf{Segmentation}
+    \item \textit{How many} instances are present? $\rightarrow$ \textbf{Instance Segmentation}
+\end{itemize}
+
+
+\section{Tasks Beyond Classification}
+\label{sec:tasks-beyond}
+
+Having established image classification as the foundation, we now explore tasks that require deeper spatial understanding. Each task builds on the previous, adding new dimensions of visual reasoning.
+
+\subsection{Semantic Segmentation}
+
+In \textbf{semantic segmentation}, we don't just label the image as a whole---we assign a class label to \textit{every single pixel}. The output is a dense prediction map where each pixel belongs to a category: sky, grass, cat, tree, road, etc.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/lecture_01_part2/semantic_segmentation.png}
+    \caption{Semantic segmentation: each pixel is labeled with its class (sky, trees, grass, cat, cow). The top row shows original images; the bottom row shows the segmentation masks where each color represents a different class. Note that we don't distinguish between individual instances---both cows share the same ``Cow'' label.}
+    \label{fig:semantic-segmentation}
+\end{figure}
+
+Key characteristics of semantic segmentation:
+\begin{itemize}
+    \item \textbf{Dense prediction}: Every pixel receives a label
+    \item \textbf{No instance distinction}: All pixels of the same class share one label---in Figure~\ref{fig:semantic-segmentation}, both cows are labeled with the same ``Cow'' color
+    \item \textbf{Applications}: Autonomous driving (road vs. sidewalk), medical imaging (tumor vs. healthy tissue), agricultural monitoring
+\end{itemize}
+
+\subsection{Object Detection}
+
+\textbf{Object detection} goes beyond classification by answering \textit{where} objects are located. The model outputs:
+\begin{enumerate}
+    \item \textbf{Bounding boxes}: Rectangular regions containing objects
+    \item \textbf{Class labels}: What each detected object is
+    \item \textbf{Confidence scores}: How certain the model is about each detection
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/lecture_01_part2/object_detection.jpg}
+    \caption{Object detection with \href{https://arxiv.org/abs/1506.02640}{YOLO}\footnotemark\ on a cluttered desk scene. The detector identifies multiple everyday objects---laptop, bottles, vase, wine glass, mouse, bowl, cup, chair, handbag---each localized with a colored bounding box and class label.}
+    \label{fig:object-detection}
+\end{figure}
+\footnotetext{YOLO (``You Only Look Once'') processes the entire image in a single forward pass, achieving real-time detection at 45+ FPS. This was a breakthrough compared to earlier methods like R-CNN that required thousands of region proposals.}
+
+Figure~\ref{fig:object-detection} shows a typical indoor scene where the detector identifies over ten different objects simultaneously. This ability to localize multiple objects of various classes makes object detection fundamental to:
+\begin{itemize}
+    \item \textbf{Autonomous vehicles}: Detecting pedestrians, vehicles, traffic signs
+    \item \textbf{Smart home devices}: Understanding room layouts and object positions
+    \item \textbf{Retail}: Checkout-free stores, inventory management
+    \item \textbf{Robotics}: Object manipulation, navigation
+\end{itemize}
+
+\subsection{Instance Segmentation}
+
+\textbf{Instance segmentation}\footnote{The \href{https://arxiv.org/abs/1703.06870}{Mask R-CNN} architecture (2017) elegantly extended object detection by adding a parallel branch that predicts a binary mask for each detected object. This simple addition enabled pixel-precise instance boundaries.} combines the best of both worlds---it provides pixel-level precision like semantic segmentation while distinguishing individual object instances like detection.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/lecture_01_part2/instance_segmentation.png}
+    \caption{Instance segmentation in crowded outdoor scenes. Each person receives a unique pixel-precise mask (purple, yellow, green, pink, etc.), allowing the model to distinguish between individuals even in a crowd.}
+    \label{fig:instance-segmentation}
+\end{figure}
+
+Figure~\ref{fig:instance-segmentation} demonstrates this on crowded scenes: unlike semantic segmentation where all people would share the same color, here each individual person gets their own distinct colored mask---purple, yellow, green, pink, and so on. This allows downstream applications to count objects, track individuals across frames, or select specific instances for editing.
+
+\begin{notebox}
+Instance segmentation is the most granular of these tasks---it combines detection (what and where) with segmentation (precise boundaries) and adds instance awareness (which specific object). This is crucial for applications like autonomous driving (distinguishing between nearby pedestrians) or video editing (selecting individual people in a crowd).
+\end{notebox}
+
+\subsection{Task Hierarchy}
+
+These tasks form a natural hierarchy of increasing complexity:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Task} & \textbf{What?} & \textbf{Where?} & \textbf{Which instance?} \\
+\hline
+Classification & \checkmark & & \\
+\hline
+Object Detection & \checkmark & \checkmark (box) & \\
+\hline
+Semantic Segmentation & \checkmark & \checkmark (pixel) & \\
+\hline
+Instance Segmentation & \checkmark & \checkmark (pixel) & \checkmark \\
+\hline
+\end{tabular}
+\end{center}
+
+Each task requires progressively deeper spatial understanding and presents unique modeling challenges that we will explore throughout this course.
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item \textbf{Image classification}: One label for the entire image---the foundation of CV
+    \item \textbf{Semantic segmentation}: Per-pixel classification, no instance distinction
+    \item \textbf{Object detection}: Bounding boxes + labels for each object
+    \item \textbf{Instance segmentation}: Pixel-precise masks for each individual object
+    \item These tasks form a hierarchy of increasing spatial granularity
+\end{itemize}
+\end{keytakeaways}
+
+
+\section{Temporal Tasks}
+\label{sec:temporal-tasks}
+
+So far we've focused on static images---single snapshots frozen in time. But the visual world is dynamic: people walk, cars drive, expressions change. When we move to \textbf{video}, we add a temporal dimension that fundamentally changes the problem. Understanding ``what's in this frame'' becomes ``what's \textit{happening} over time.'' This opens up new tasks and new challenges.
+
+\subsection{Video Classification}
+
+In \textbf{video classification}, the goal is to understand what action is happening across a sequence of frames. Is someone running? Jumping? Dancing? Unlike image classification where we have a single static input, video presents a temporal sequence that must be processed and aggregated.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/lecture_01_part2/video_classification_frames.png}
+    \caption{Frame-by-frame video classification. Each frame is processed independently by a CNN, producing per-frame predictions. For action recognition, these predictions must be aggregated across time---here, all frames consistently predict ``Running.''}
+    \label{fig:video-classification-frames}
+\end{figure}
+
+The simplest approach (shown in Figure~\ref{fig:video-classification-frames}) processes each frame independently through a CNN. However, this ignores temporal relationships between frames. More sophisticated approaches include:
+
+\begin{itemize}
+    \item \textbf{Late fusion}: Aggregate CNN features from multiple frames before final classification
+    \item \textbf{3D convolutions}: Extend 2D filters to operate across space \textit{and} time
+    \item \textbf{Two-stream networks}\footnote{Inspired by neuroscience: the human visual system has separate ``ventral'' (what) and ``dorsal'' (where/how) pathways. Two-stream networks mimic this with parallel RGB and optical flow streams.}: Separate pathways for appearance (RGB) and motion (optical flow)
+    \item \textbf{Recurrent models}: Use RNNs/LSTMs to maintain temporal state across frames
+\end{itemize}
+
+\subsection{Multimodal Video Understanding}
+
+Real-world videos contain multiple modalities---not just visual information, but also \textbf{audio} and \textbf{speech}. To truly understand a scene, we often need to combine all of these signals.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/lecture_01_part2/multimodal_video.png}
+    \caption{Multimodal video understanding pipeline. \textbf{Left}: Uni-modal processing extracts separate features---visual concepts (running kid, soldier), audio events (bell sound), speech (``mummy!''). \textbf{Center}: The video contains RGB frames, audio waveforms, and ASR (automatic speech recognition) transcripts. \textbf{Right}: Multi-modal fusion combines all streams to produce rich understanding: ``Child runs to welcome their mum coming back home after deployment.''}
+    \label{fig:multimodal-video}
+\end{figure}
+
+Consider the example in Figure~\ref{fig:multimodal-video}: from visual information alone, we see a child running toward an adult. The audio adds a doorbell sound. Speech recognition captures ``mummy is here!'' Only by \textbf{fusing} all modalities can we understand the full story---a child welcoming their mother home.
+
+\begin{deepdive}[Fusion Strategies]
+How do we combine information from multiple modalities? Three main approaches:
+\begin{itemize}
+    \item \textbf{Early fusion}: Concatenate raw inputs or low-level features before processing. Simple but may not capture modality-specific patterns well.
+    \item \textbf{Late fusion}: Process each modality independently through separate networks, then combine final predictions (e.g., by averaging). Preserves modality-specific learning but misses cross-modal interactions.
+    \item \textbf{Attention-based fusion}: Learn to dynamically weight modalities based on context. Modern approaches like Transformers excel here, allowing the model to decide when audio matters more than vision and vice versa.
+\end{itemize}
+\end{deepdive}
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item \textbf{Video classification}: Extends image classification to temporal sequences; requires aggregating information across frames
+    \item \textbf{Temporal modeling}: Options include late fusion, 3D convolutions, two-stream networks, and recurrent models
+    \item \textbf{Multimodal learning}: Combining vision, audio, and speech for richer understanding
+    \item \textbf{Fusion strategies}: Early, late, or attention-based---each with trade-offs
+\end{itemize}
+\end{keytakeaways}
+
+
+\section{Deep Learning Architectures}
+\label{sec:models}
+
+We've explored \textit{what} computer vision systems need to do (classification, detection, segmentation, temporal understanding). Now we turn to \textit{how}---the neural network architectures that make these tasks possible. While basic neural networks (MLPs) can theoretically approximate any function, specialized architectures dramatically improve efficiency and performance by building in useful \textbf{inductive biases}.
+
+\subsection{Convolutional Neural Networks (CNNs)}
+
+\textbf{Convolutional Neural Networks} are the workhorse of computer vision. Instead of treating an image as a flat vector of pixels, CNNs exploit spatial structure through a series of operations that progressively transform raw pixels into abstract representations.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/lecture_01_part2/cnn_detailed.jpg}
+    \caption{Detailed CNN architecture for image classification. \textbf{Feature Extraction}: Multiple stages of Convolution+ReLU followed by Pooling produce feature maps of decreasing spatial size but increasing semantic content. \textbf{Classification}: Features are flattened into a vector and passed through fully connected layers. The final softmax produces a probability distribution over classes (here: Horse 0.2, Zebra 0.7, Dog 0.1).}
+    \label{fig:cnn-detailed}
+\end{figure}
+
+The key operations in a CNN:
+\begin{itemize}
+    \item \textbf{Convolutions}: Small learnable filters (kernels) of size $k \times k$ slide across the image. Each filter computes a dot product at every position, producing a \textit{feature map} that highlights where that pattern occurs. Mathematically: $(I * K)_{ij} = \sum_m \sum_n I_{i+m, j+n} \cdot K_{mn}$
+    \item \textbf{ReLU Activation}: After each convolution, a nonlinearity (typically ReLU: $\max(0, x)$) is applied element-wise. Without nonlinearities, stacking layers would just produce another linear function!
+    \item \textbf{Pooling}: Downsamples feature maps (e.g., $2\times2$ max pooling takes the maximum value in each $2\times2$ region), reducing spatial dimensions by half while retaining the strongest activations.
+    \item \textbf{Flatten \& Fully Connected}: After multiple conv-pool stages, the 3D feature maps are flattened into a 1D vector and passed through fully connected layers for classification.
+    \item \textbf{Softmax Output}: Converts raw scores into probabilities: $\text{softmax}(z_i) = \frac{e^{z_i}}{\sum_j e^{z_j}}$
+\end{itemize}
+
+A key property of CNNs is \textbf{hierarchical feature learning}---earlier layers detect simple patterns, while deeper layers combine them into complex concepts.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/lecture_01_part2/cnn_layer_activations.png}
+    \caption{Visualizing what CNNs learn at each layer. For several input images, we show activation heatmaps from Conv1 through Conv5. \textbf{Early layers} (Conv1, Conv2) respond to low-level features spread across the image. \textbf{Deeper layers} (Conv4, Conv5) focus increasingly on semantically relevant regions---the person and their action.}
+    \label{fig:cnn-activations}
+\end{figure}
+
+Figure~\ref{fig:cnn-activations} demonstrates this hierarchy in action:
+\begin{itemize}
+    \item \textbf{Conv1--Conv2}: Detect edges, colors, simple textures. Activations are distributed broadly.
+    \item \textbf{Conv3}: Combine low-level features into parts---eyes, wheels, fur patterns.
+    \item \textbf{Conv4--Conv5}: Respond to high-level, semantic concepts. Notice how activations concentrate on the person performing each action.
+\end{itemize}
+
+This visualization also serves as a debugging tool: if a model focuses on the wrong regions (e.g., background instead of the object), we know something is wrong with the training data or process.
+
+\subsection{Recurrent Neural Networks (RNNs)}
+
+For \textbf{sequential data}---like video frames or text---we need models that can handle variable-length inputs and maintain memory across time steps. \textbf{Recurrent Neural Networks} process sequences one element at a time, passing hidden state from step to step.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/lecture_01_part2/rnn_diagram.png}
+    \caption{Basic RNN architecture. The \textbf{Input Layer} receives sequential data (e.g., video frames or word embeddings). \textbf{Hidden Layers} contain recurrent connections (shown as curved arrows) that allow information to persist across time steps---this is the network's ``memory.'' The \textbf{Output Layer} produces predictions based on accumulated context.}
+    \label{fig:rnn-basic}
+\end{figure}
+
+The key innovation of RNNs is the \textbf{recurrent connection}: at each time step $t$, the hidden state $h_t$ depends not only on the current input $x_t$ but also on the previous hidden state $h_{t-1}$:
+\[
+h_t = f(W_{xh} x_t + W_{hh} h_{t-1} + b_h)
+\]
+
+This creates a ``memory'' that allows information from earlier in the sequence to influence later predictions. However, vanilla RNNs struggle with long sequences due to \textbf{vanishing gradients}---the signal weakens exponentially as it propagates through many time steps.
+
+\href{https://www.bioinf.jku.at/publications/older/2604.pdf}{\textbf{LSTM}}\footnote{LSTMs were invented in 1997 but only became practical with GPU acceleration in the 2010s. They dominated sequence modeling until Transformers arrived in 2017.} (Long Short-Term Memory) cells solve this with a gating mechanism:
+\begin{itemize}
+    \item \textbf{Forget gate} ($f$): Decides what to discard from the cell state
+    \item \textbf{Input gate} ($i$): Decides what new information to store
+    \item \textbf{Output gate} ($o$): Decides what to output from the cell state
+\end{itemize}
+
+These gates use sigmoid activations to produce values between 0 and 1, acting as ``soft switches'' that learn when to remember, update, or expose information.
+
+\subsection{Transformers and Attention}
+
+More recently, \href{https://arxiv.org/abs/1706.03762}{\textbf{Transformers}}\footnote{The paper title ``Attention Is All You Need'' (2017) was provocative---it claimed attention alone could replace recurrence entirely. This turned out to be true, and the architecture now dominates NLP, vision, audio, and beyond.} have revolutionized not just NLP but also computer vision. The key innovation is the \textbf{attention mechanism}, which allows every element to directly attend to every other element.
+
+The core computation is \textbf{scaled dot-product attention}:
+\[
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V
+\]
+where:
+\begin{itemize}
+    \item \textbf{Queries} ($Q$): ``What am I looking for?''
+    \item \textbf{Keys} ($K$): ``What do I contain?''
+    \item \textbf{Values} ($V$): ``What information do I provide?''
+    \item $d_k$: Dimension of keys (scaling prevents large dot products from saturating softmax)
+\end{itemize}
+
+The softmax produces attention weights that sum to 1, effectively computing a weighted average of values based on query-key similarity.
+
+Unlike RNNs, Transformers process all positions in parallel, making them much faster to train on modern hardware. \href{https://arxiv.org/abs/2010.11929}{\textbf{Vision Transformers (ViT)}}\footnote{ViT's success surprised many---treating images as sequences of patches seemed ``unnatural'' compared to convolutions. Yet with enough data, ViT matches or exceeds CNNs, suggesting that inductive biases matter less at scale.} apply this architecture to images by:
+\begin{enumerate}
+    \item Splitting the image into fixed-size patches (e.g., $16 \times 16$ pixels)
+    \item Flattening each patch and projecting it to an embedding
+    \item Adding positional encodings (since attention is permutation-invariant)
+    \item Processing through standard Transformer encoder layers
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/lecture_01_part2/vit_attention.jpg}
+    \caption{Attention maps from a Vision Transformer. Each row shows an input image (left) followed by attention patterns from different layers/heads. Bright regions (yellow/cyan) indicate high attention weights. The model learns to focus on semantically relevant regions---the ball, the dog, the parachute---discovering object structure without explicit supervision.}
+    \label{fig:vit-attention}
+\end{figure}
+
+Figure~\ref{fig:vit-attention} reveals what ViT ``sees'': attention concentrates on the main object in each image while ignoring backgrounds. This emergent localization arises purely from classification training---no bounding box labels needed!
+
+\begin{notebox}
+Why do Transformers work so well? The attention mechanism allows \textbf{global context} from the first layer---any patch can attend to any other patch. In contrast, CNNs build global understanding slowly through stacked local convolutions. This global view helps Transformers capture long-range dependencies but requires more data to train effectively.
+\end{notebox}
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item \textbf{CNNs}: Exploit spatial structure via local convolutions and pooling; learn hierarchical features from edges to objects
+    \item \textbf{RNNs}: Process sequences with memory; LSTM gates (forget, input, output) control information flow to handle long-term dependencies
+    \item \textbf{Transformers}: Attention-based models that process all positions in parallel; Vision Transformers treat image patches as tokens
+    \item \textbf{Trade-offs}: CNNs have strong inductive bias (locality); Transformers are more flexible but need more data
+\end{itemize}
+\end{keytakeaways}
+
+
+\section{Large-Scale Distributed Training}
+\label{sec:distributed-training}
+
+Modern deep learning has an insatiable appetite for computation. State-of-the-art models like GPT-4 and Gemini contain hundreds of billions of parameters and require training on massive datasets. A single GPU---even the most powerful---would take years to train such models. The solution is \textbf{distributed training}: spreading the workload across many devices working in parallel.
+
+Two fundamental strategies exist for distributing deep learning workloads, each with distinct trade-offs.
+
+\subsection{Data Parallelism}
+
+In \textbf{data parallelism}, we replicate the entire model on each worker (GPU), but partition the training data across workers. Each worker processes a different mini-batch, computes gradients locally, and then all workers synchronize their gradients before updating the shared model.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/lecture_01_part2/parallelism.png}
+    \caption{\textbf{Left}: Data Parallelism---the training data is partitioned across workers, but each worker holds a complete copy of the model (Shared Model). \textbf{Right}: Model Parallelism---all workers see the same data, but the model itself is partitioned across workers (Partitioned Model).}
+    \label{fig:parallelism}
+\end{figure}
+
+The data parallelism workflow:
+\begin{enumerate}
+    \item \textbf{Distribute}: Split the batch into $N$ mini-batches, one per GPU
+    \item \textbf{Forward}: Each GPU computes predictions on its mini-batch using its local model copy
+    \item \textbf{Backward}: Each GPU computes gradients locally
+    \item \textbf{AllReduce}: Aggregate (average) gradients across all GPUs
+    \item \textbf{Update}: Each GPU applies the same gradient update, keeping models synchronized
+\end{enumerate}
+
+The key operation is \textbf{AllReduce}---a collective communication primitive that efficiently computes the sum (or average) of gradients across all workers. Modern implementations use ring-based algorithms that scale efficiently to hundreds of GPUs.
+
+\begin{notebox}
+\textbf{Scaling batch size:} With $N$ GPUs, the effective batch size is $N \times \text{batch\_per\_GPU}$. Larger batches can accelerate training but may require:
+\begin{itemize}
+    \item \textbf{Learning rate scaling}: Linear scaling rule---if batch doubles, double the learning rate
+    \item \textbf{Warmup}: Gradually increase learning rate at start to avoid divergence
+    \item \textbf{LARS/LAMB optimizers}: Layer-wise adaptive learning rates for very large batches
+\end{itemize}
+\end{notebox}
+
+\subsection{Model Parallelism}
+
+When a model is too large to fit in a single GPU's memory, we turn to \textbf{model parallelism}: the model itself is partitioned across devices. As shown in Figure~\ref{fig:parallelism} (right), all workers receive the same data, but each worker holds only a portion of the model.
+
+Two main variants exist:
+
+\textbf{Pipeline Parallelism}: Split the model by layers. GPU 1 holds layers 1--10, GPU 2 holds layers 11--20, etc. Data flows through GPUs sequentially like an assembly line. The challenge is \textbf{pipeline bubbles}---GPUs sit idle while waiting for activations from previous stages.
+
+\textbf{Tensor Parallelism}: Split individual layers across GPUs. For example, a large matrix multiplication $\mathbf{Y} = \mathbf{X}\mathbf{W}$ can be split by partitioning $\mathbf{W}$ column-wise across GPUs, computing partial results in parallel, then combining them. This requires fast inter-GPU communication (NVLink).
+
+\begin{deepdive}[Hybrid Parallelism at Scale]
+Training models like GPT-3 (175B parameters) or PaLM (540B parameters) requires combining multiple parallelism strategies:
+\begin{itemize}
+    \item \textbf{Within a node} (8 GPUs): Tensor parallelism via fast NVLink
+    \item \textbf{Across nodes}: Pipeline parallelism to minimize communication
+    \item \textbf{Across the cluster}: Data parallelism with gradient compression
+\end{itemize}
+Additionally, techniques like \textbf{gradient checkpointing} (recompute activations instead of storing them), \textbf{mixed-precision training} (FP16/BF16), and \textbf{ZeRO optimizer} (partition optimizer states) further reduce memory requirements.
+\end{deepdive}
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item \textbf{Data parallelism}: Same model on all GPUs, different data; gradients synchronized via AllReduce
+    \item \textbf{Model parallelism}: Model split across GPUs; necessary when model doesn't fit in single GPU memory
+    \item \textbf{Pipeline parallelism}: Split by layers; suffers from pipeline bubbles
+    \item \textbf{Tensor parallelism}: Split individual operations; requires fast interconnect
+    \item \textbf{At scale}: Combine all strategies in a hierarchy tailored to hardware topology
+\end{itemize}
+\end{keytakeaways}
+
+
+\section{Self-Supervised Learning}
+\label{sec:self-supervised}
+
+Supervised learning has driven remarkable progress in computer vision, but it has a critical bottleneck: \textbf{labeled data}. Creating datasets like ImageNet required millions of human annotations---expensive, time-consuming, and often noisy. Meanwhile, the internet contains billions of unlabeled images. Can we learn useful representations from this vast unlabeled data?
+
+\textbf{Self-supervised learning} answers yes by creating \textbf{pretext tasks}---artificial supervised problems where labels come from the data itself, requiring no human annotation.
+
+\subsection{The Key Insight}
+
+The core idea is simple but powerful: design tasks that force the model to learn useful representations in order to solve them. If a model can predict how an image was rotated, it must understand object orientation. If it can colorize grayscale images, it must understand object semantics (grass is green, sky is blue).
+
+Classic pretext tasks include:
+\begin{itemize}
+    \item \textbf{Rotation prediction}: Rotate image by 0°, 90°, 180°, or 270°; predict which
+    \item \textbf{Jigsaw puzzles}: Shuffle image patches; predict correct arrangement
+    \item \textbf{Colorization}: Given grayscale, predict colors
+    \item \textbf{Inpainting}: Mask a region; predict missing content
+\end{itemize}
+
+However, these hand-crafted tasks have limitations---they may teach representations that don't transfer well to downstream tasks. Modern approaches take a different path: \textbf{contrastive learning}.
+
+\subsection{Contrastive Learning}
+
+The breakthrough idea of \textbf{contrastive learning} is to learn representations by comparing examples: similar things should have similar representations, dissimilar things should have dissimilar representations.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/lecture_01_part2/simclr.png}
+    \caption{The \href{https://arxiv.org/abs/2002.05709}{\textbf{SimCLR}}\footnotemark\ framework for contrastive learning. An image undergoes random data augmentation twice, producing two views $x_i$ and $x_j$. Both pass through the same encoder $f(\cdot)$ yielding representations $h_i, h_j$, then a projection head $g(\cdot)$ produces embeddings $z_i, z_j$. Training maximizes similarity between $z_i$ and $z_j$ (positive pair) while minimizing similarity to embeddings from other images (negative pairs).}
+    \label{fig:simclr}
+\end{figure}
+\footnotetext{SimCLR showed that with strong enough augmentations and large enough batches, simple contrastive learning rivals supervised pre-training. The key insight: aggressive augmentation (blur, color distortion, cropping) forces the model to learn semantic rather than superficial features.}
+
+The SimCLR framework (Figure~\ref{fig:simclr}) works as follows:
+\begin{enumerate}
+    \item \textbf{Augmentation}: Apply random transformations (crop, flip, color jitter, blur) to create two ``views'' of the same image
+    \item \textbf{Encoding}: Pass both views through a shared encoder (e.g., ResNet) to get representations
+    \item \textbf{Projection}: A small MLP ``projection head'' maps representations to a lower-dimensional space where contrastive loss is computed
+    \item \textbf{Contrastive loss}: The \textbf{NT-Xent} (Normalized Temperature-scaled Cross Entropy) loss pulls positive pairs together and pushes negative pairs apart:
+\end{enumerate}
+\[
+\mathcal{L}_{i,j} = -\log \frac{\exp(\text{sim}(z_i, z_j)/\tau)}{\sum_{k \neq i} \exp(\text{sim}(z_i, z_k)/\tau)}
+\]
+where $\text{sim}(u,v) = u^\top v / (\|u\| \|v\|)$ is cosine similarity and $\tau$ is a temperature parameter.
+
+The magic: after pre-training, we discard the projection head and use the encoder for downstream tasks. The representations learned by contrasting augmented views transfer remarkably well to classification, detection, and segmentation---often matching or exceeding supervised pre-training!
+
+\subsection{Masked Image Modeling}
+
+Inspired by BERT's success in NLP (predicting masked words), \href{https://arxiv.org/abs/2111.06377}{\textbf{Masked Autoencoders (MAE)}}\footnote{MAE's 75\% masking ratio was surprisingly high---earlier work used 15-50\%. The insight: images have massive spatial redundancy (neighboring pixels are similar), so harder tasks are needed to learn useful representations.} apply the same idea to images: mask random patches and train the model to reconstruct them.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/lecture_01_part2/mae.png}
+    \caption{\textbf{Masked Autoencoder (MAE)} architecture. The input image is divided into patches, and a large fraction (e.g., 75\%) are randomly masked (gray). Only visible patches are fed to the encoder. A lightweight decoder then reconstructs the full image, including masked regions. The model learns rich representations by solving this reconstruction task.}
+    \label{fig:mae}
+\end{figure}
+
+The MAE approach (Figure~\ref{fig:mae}) has elegant properties:
+\begin{itemize}
+    \item \textbf{High masking ratio}: Unlike BERT (15\% masking), MAE masks 75\% of patches. Images have more redundancy than text, so harder tasks are needed.
+    \item \textbf{Asymmetric encoder-decoder}: The encoder only processes visible patches (fast!), while a lightweight decoder reconstructs all patches.
+    \item \textbf{Pixel reconstruction}: The target is simply the original pixel values---no discrete tokens needed.
+\end{itemize}
+
+Why does this work? To reconstruct masked regions, the model must understand:
+\begin{itemize}
+    \item Object structure (a dog's head predicts a body nearby)
+    \item Texture patterns (grass continues as grass)
+    \item Semantic context (indoor scenes have consistent furniture)
+\end{itemize}
+
+\begin{deepdive}[Foundation Models]
+Self-supervised learning is the key ingredient behind \textbf{foundation models}---large models pre-trained on massive data that transfer to many tasks:
+\begin{itemize}
+    \item \textbf{CLIP}: Contrastive learning between images and text captions; enables zero-shot classification
+    \item \textbf{DINO/DINOv2}: Self-distillation with no labels; emergent segmentation properties
+    \item \href{https://arxiv.org/abs/2304.02643}{\textbf{SAM}}: Segment Anything Model; trained on 1B masks, generalizes to any object
+    \item \textbf{GPT-4V, Gemini}: Multimodal models combining vision and language
+\end{itemize}
+The recipe: massive unlabeled data + self-supervised objectives + scale = emergent capabilities.
+\end{deepdive}
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item \textbf{Self-supervised learning}: Learn from unlabeled data via pretext tasks
+    \item \textbf{Contrastive learning}: Pull augmented views together, push different images apart; SimCLR uses NT-Xent loss
+    \item \textbf{Masked image modeling}: Mask patches, reconstruct pixels; MAE uses 75\% masking with asymmetric encoder-decoder
+    \item \textbf{Foundation models}: Self-supervised pre-training at scale enables transfer to diverse downstream tasks
+    \item \textbf{Key insight}: Good pretext tasks force learning of semantic representations
+\end{itemize}
+\end{keytakeaways}
+
+
+\section{Generative Models}
+\label{sec:generative}
+
+So far we've focused on \textbf{discriminative} models---given an input, predict a label or bounding box. But what if we want to go the other direction: \textit{generate} new images from scratch? This is the domain of \textbf{generative models}, which learn the underlying distribution of images and can sample new examples from it.
+
+Generative models have exploded in capability and popularity, powering applications from artistic style transfer to text-to-image systems like DALL-E and Midjourney. Let's explore the key architectures.
+
+\subsection{Neural Style Transfer}
+
+One of the earliest and most visually striking applications of deep learning for image generation is \href{https://arxiv.org/abs/1508.06576}{\textbf{neural style transfer}}: taking the \textit{content} of one image and rendering it in the \textit{style} of another.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/lecture_01_part2/style_transfer.jpg}
+    \caption{Neural style transfer. \textbf{Top-left}: Style image (Van Gogh's ``Starry Night''). \textbf{Bottom-left}: Content image (a German riverside town). \textbf{Right}: Result---the photograph rendered with Van Gogh's distinctive swirling brushstrokes, color palette, and texture while preserving the original scene's structure.}
+    \label{fig:style-transfer}
+\end{figure}
+
+The key insight\footnote{Neural style transfer was one of the first ``artistic AI'' applications to go viral. Apps like Prisma brought it to millions of smartphones, demonstrating the public appeal of creative AI tools.} is that CNNs trained for classification \textit{already} encode both content and style:
+\begin{itemize}
+    \item \textbf{Content} is captured by \textit{activations} in deeper layers---what objects are where
+    \item \textbf{Style} is captured by \textit{correlations} between activations (Gram matrices)---textures, brushstrokes, color relationships
+\end{itemize}
+
+The algorithm optimizes a generated image to minimize:
+\[
+\mathcal{L}_{\text{total}} = \alpha \mathcal{L}_{\text{content}} + \beta \mathcal{L}_{\text{style}}
+\]
+where $\mathcal{L}_{\text{content}}$ measures how different the generated image's activations are from the content image, and $\mathcal{L}_{\text{style}}$ measures how different the Gram matrices are from the style image. The hyperparameters $\alpha$ and $\beta$ control the balance.
+
+\subsection{Generative Adversarial Networks (GANs)}
+
+\href{https://arxiv.org/abs/1406.2661}{\textbf{GANs}}\footnote{GANs were famously conceived during a bar conversation in 2014. Ian Goodfellow implemented the first version that same night---it worked on the first try. Yann LeCun called GANs ``the most interesting idea in the last 10 years in machine learning.''} introduced a revolutionary idea: train two networks that compete against each other. This adversarial game drives both networks to improve, ultimately producing a generator capable of creating remarkably realistic images.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/lecture_01_part2/gan_architecture.png}
+    \caption{GAN architecture. The \textbf{Generator} takes random noise and produces fake images. The \textbf{Discriminator} receives both real images (from the training set) and fake images, trying to classify them as Real or Fake. Training is adversarial: the generator tries to fool the discriminator, while the discriminator tries not to be fooled.}
+    \label{fig:gan}
+\end{figure}
+
+The two players in this game:
+\begin{itemize}
+    \item \textbf{Generator} $G$: Takes random noise $z \sim p(z)$ and produces an image $G(z)$. Its goal is to generate images indistinguishable from real ones.
+    \item \textbf{Discriminator} $D$: Takes an image and outputs the probability it's real. Its goal is to correctly classify real vs. fake images.
+\end{itemize}
+
+The training objective is a minimax game:
+\[
+\min_G \max_D \; \mathbb{E}_{x \sim p_{\text{data}}}[\log D(x)] + \mathbb{E}_{z \sim p(z)}[\log(1 - D(G(z)))]
+\]
+
+At equilibrium, the generator produces images so realistic that the discriminator outputs 0.5 (random guessing) for all inputs. In practice, training GANs is notoriously unstable---mode collapse (generator produces limited variety) and training divergence are common challenges.
+
+\begin{notebox}
+GAN variants have addressed many limitations:
+\begin{itemize}
+    \item \textbf{DCGAN}: Deep convolutional architecture with batch normalization
+    \item \href{https://arxiv.org/abs/1812.04948}{\textbf{StyleGAN}}\footnote{The website ``thispersondoesnotexist.com'' showcased StyleGAN's ability to generate photorealistic human faces, raising public awareness about AI-generated imagery and deepfakes.}: Produces photorealistic faces with controllable attributes
+    \item \textbf{CycleGAN}: Unpaired image-to-image translation (e.g., horse $\leftrightarrow$ zebra)
+    \item \textbf{Pix2Pix}: Paired image-to-image translation (e.g., sketch $\rightarrow$ photo)
+\end{itemize}
+\end{notebox}
+
+\subsection{Diffusion Models}
+
+The current state-of-the-art in image generation comes from \href{https://arxiv.org/abs/2006.11239}{\textbf{diffusion models}}\footnote{Diffusion models were initially dismissed as too slow (requiring hundreds of denoising steps). Techniques like DDIM and classifier-free guidance made them practical, and by 2022 they had overtaken GANs as the dominant generative paradigm.}, which take a fundamentally different approach: learn to \textit{reverse} a gradual noising process.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/lecture_01_part2/diffusion_process.png}
+    \caption{The diffusion process. \textbf{Forward process} $q(x_t|x_{t-1})$: Gradually add Gaussian noise over $T$ steps until the image becomes pure noise $x_T$. \textbf{Reverse process} $p_\theta(x_{t-1}|x_t)$: A neural network learns to denoise step-by-step, recovering the original image $x_0$ from noise.}
+    \label{fig:diffusion}
+\end{figure}
+
+The two processes:
+\begin{itemize}
+    \item \textbf{Forward (diffusion)}: Add small amounts of Gaussian noise over $T$ timesteps:
+    \[
+    q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t} x_{t-1}, \beta_t \mathbf{I})
+    \]
+    After enough steps, $x_T$ is approximately pure Gaussian noise.
+
+    \item \textbf{Reverse (denoising)}: Learn a neural network $p_\theta$ to reverse each step:
+    \[
+    p_\theta(x_{t-1} | x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \sigma_t^2 \mathbf{I})
+    \]
+    The network predicts the noise to subtract at each step.
+\end{itemize}
+
+Why do diffusion models work so well?
+\begin{itemize}
+    \item \textbf{Stable training}: Unlike GANs, no adversarial dynamics---just regression to predict noise
+    \item \textbf{Mode coverage}: The stochastic sampling process naturally covers the full distribution
+    \item \textbf{Flexible conditioning}: Easy to add text, class labels, or other conditions
+\end{itemize}
+
+\subsection{Text-to-Image Generation}
+
+Combining diffusion models with large language models has enabled remarkable \textbf{text-to-image generation}---describe what you want, and the model creates it.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/lecture_01_part2/stable_diffusion_examples.png}
+    \caption{Image editing with Stable Diffusion. Each row shows an input image transformed according to a text prompt. Examples: ``a bird spreading wings,'' ``a person diving,'' ``two kissing parrots''---the model modifies the image while preserving structure and adding the requested changes.}
+    \label{fig:stable-diffusion}
+\end{figure}
+
+Systems like \textbf{DALL-E}, \textbf{Midjourney}, and \textbf{Stable Diffusion} work by:
+\begin{enumerate}
+    \item \textbf{Text encoding}: A language model (e.g., CLIP text encoder) converts the prompt into embeddings
+    \item \textbf{Conditional diffusion}: The denoising network receives text embeddings as conditioning, guiding generation toward the description
+    \item \textbf{Classifier-free guidance}: Amplify the effect of conditioning by contrasting conditional and unconditional predictions
+\end{enumerate}
+
+Beyond generation from scratch, these models enable powerful \textbf{image editing}:
+\begin{itemize}
+    \item \textbf{Inpainting}: Mask a region and regenerate it based on a prompt
+    \item \textbf{Image-to-image}: Transform an existing image according to text instructions
+    \item \textbf{ControlNet}: Add spatial conditioning (edges, poses, depth maps) for precise control
+\end{itemize}
+
+\begin{deepdive}[The Latent Diffusion Revolution]
+A key innovation in \href{https://arxiv.org/abs/2112.10752}{Stable Diffusion}\footnote{Stable Diffusion was released as open-source in August 2022, democratizing high-quality image generation. Within months, thousands of fine-tuned models and applications emerged from the community.} is performing diffusion in a \textbf{latent space} rather than pixel space:
+\begin{enumerate}
+    \item An autoencoder compresses images to a lower-dimensional latent representation
+    \item Diffusion happens in this compact space (much faster!)
+    \item The decoder reconstructs the final image from the denoised latent
+\end{enumerate}
+This reduces computation by $\sim$50$\times$ while maintaining quality, making high-resolution generation practical on consumer GPUs.
+\end{deepdive}
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item \textbf{Style transfer}: Separate content (deep activations) from style (Gram matrices); optimize to combine them
+    \item \textbf{GANs}: Generator vs. discriminator in a minimax game; powerful but unstable training
+    \item \textbf{Diffusion models}: Learn to reverse gradual noising; stable training, excellent mode coverage
+    \item \textbf{Text-to-image}: Condition diffusion on text embeddings; DALL-E, Midjourney, Stable Diffusion
+    \item \textbf{Latent diffusion}: Work in compressed space for efficiency; enables high-resolution generation
+\end{itemize}
+\end{keytakeaways}
+
+
+\section{Vision-Language Models}
+\label{sec:vision-language}
+
+We've seen models that understand images and models that understand text. But humans effortlessly connect these modalities---we can describe what we see, answer questions about images, and imagine scenes from descriptions. \textbf{Vision-language models} bridge this gap, learning joint representations of images and text that enable powerful cross-modal reasoning.
+
+\subsection{CLIP: Connecting Images and Text}
+
+\href{https://arxiv.org/abs/2103.00020}{\textbf{CLIP}} (Contrastive Language-Image Pre-training, OpenAI 2021) revolutionized vision-language learning with a simple but powerful idea: train on 400 million image-text pairs from the internet using contrastive learning.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/lecture_01_part2/clip_architecture.png}
+    \caption{The CLIP framework. \textbf{(1) Contrastive pre-training}: An image encoder and text encoder are trained jointly. Matching image-text pairs (diagonal) should have high similarity; non-matching pairs should have low similarity. \textbf{(2) Zero-shot classifier}: Convert class labels to text prompts (``A photo of a \{object\}''). \textbf{(3) Inference}: Encode the image and all prompts; predict the class with highest image-text similarity.}
+    \label{fig:clip}
+\end{figure}
+
+The training process (Figure~\ref{fig:clip}, left):
+\begin{enumerate}
+    \item \textbf{Encode}: Pass images through an image encoder (ResNet or ViT) to get embeddings $I_1, I_2, \ldots, I_N$
+    \item \textbf{Encode}: Pass corresponding captions through a text encoder (Transformer) to get embeddings $T_1, T_2, \ldots, T_N$
+    \item \textbf{Contrastive loss}: Maximize similarity for matching pairs $(I_i, T_i)$, minimize for non-matching pairs $(I_i, T_j)$ where $i \neq j$
+\end{enumerate}
+
+The loss is symmetric---both ``image-to-text'' and ``text-to-image'' directions are optimized:
+\[
+\mathcal{L} = \frac{1}{2}\left(\mathcal{L}_{I \rightarrow T} + \mathcal{L}_{T \rightarrow I}\right)
+\]
+
+The magic of CLIP is \textbf{zero-shot transfer}: after pre-training, CLIP can classify images into \textit{any} categories without additional training. Simply encode the class names as text (``A photo of a dog'', ``A photo of a cat'', etc.) and pick the one most similar to the image embedding. This works remarkably well---CLIP matches supervised ImageNet models without seeing a single ImageNet training example!
+
+\subsection{Visual Question Answering (VQA)}
+
+\textbf{Visual Question Answering} combines image understanding with language comprehension: given an image and a natural language question, the model must produce an answer.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/lecture_01_part2/vqa_example.webp}
+    \caption{VQA architecture with attention. The image passes through CNN layers to produce spatial features. The question (``What color shirt is the referee wearing?'') is encoded via an RNN/Transformer. An \textbf{attention mechanism} learns which image regions are relevant to the question, producing attention-weighted features that inform the final answer.}
+    \label{fig:vqa}
+\end{figure}
+
+The key insight is that different questions require attending to different image regions. ``What color is the car?'' needs to focus on the car; ``How many people are there?'' needs to scan the whole scene. Figure~\ref{fig:vqa} shows how attention mechanisms solve this:
+
+\begin{enumerate}
+    \item \textbf{Image encoding}: CNN extracts spatial feature maps (preserving location information)
+    \item \textbf{Question encoding}: RNN or Transformer encodes the question into a vector
+    \item \textbf{Attention}: Question features query image features to produce attention weights over spatial locations
+    \item \textbf{Fusion}: Attention-weighted image features are combined with question features
+    \item \textbf{Answer prediction}: A classifier outputs the answer (often from a fixed vocabulary)
+\end{enumerate}
+
+\begin{notebox}
+Modern VQA systems have evolved significantly:
+\begin{itemize}
+    \item \textbf{Early models}: CNN + LSTM with simple fusion
+    \item \textbf{Attention-based}: Learn to focus on relevant regions
+    \item \textbf{Transformer-based}: ViLT, BLIP, Flamingo use unified architectures
+    \item \textbf{LLM-based}: GPT-4V, LLaVA, Gemini treat VQA as part of general multimodal reasoning
+\end{itemize}
+\end{notebox}
+
+\begin{deepdive}[From VQA to Multimodal LLMs]
+The latest frontier in vision-language models is \textbf{Multimodal Large Language Models}:
+\begin{itemize}
+    \item \textbf{Architecture}: Vision encoder (often CLIP) + Large Language Model (GPT-4, LLaMA)
+    \item \textbf{Training}: Align visual features with LLM's text embedding space, then instruction-tune
+    \item \textbf{Capabilities}: Open-ended conversation about images, complex reasoning, following instructions
+\end{itemize}
+Models like GPT-4V, Gemini, and LLaVA represent a paradigm shift---instead of task-specific models, a single system handles VQA, captioning, OCR, reasoning, and more through natural language interaction.
+\end{deepdive}
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item \textbf{CLIP}: Contrastive learning on image-text pairs; enables zero-shot classification via text prompts
+    \item \textbf{VQA}: Answer questions about images; attention mechanisms focus on relevant regions
+    \item \textbf{Key insight}: Joint embedding spaces allow seamless transfer between vision and language
+    \item \textbf{Multimodal LLMs}: GPT-4V, Gemini combine vision encoders with LLMs for general-purpose visual reasoning
+\end{itemize}
+\end{keytakeaways}
+
+
+\section{3D Computer Vision}
+\label{sec:3d-vision}
+
+The world we live in is three-dimensional, yet most computer vision has focused on 2D images. \textbf{3D computer vision} tackles the challenge of understanding and reconstructing the 3D structure of scenes and objects. This is crucial for robotics, autonomous driving, augmented reality, and manufacturing.
+
+\subsection{3D Representations}
+
+Before diving into tasks, we need to understand how 3D data is represented:
+
+\begin{itemize}
+    \item \textbf{Point clouds}: Unordered sets of 3D points $(x, y, z)$, often with color/intensity. Common output from LiDAR and depth sensors.
+    \item \textbf{Voxels}: 3D grids of binary or continuous values---the 3D analog of pixels. Simple but memory-intensive ($O(n^3)$).
+    \item \textbf{Meshes}: Vertices connected by edges and faces. Efficient for surfaces but complex topology.
+    \item \textbf{Implicit functions}: Neural networks that output occupancy or signed distance for any 3D point. Memory-efficient, continuous.
+\end{itemize}
+
+Each representation has trade-offs in memory, resolution, and ease of processing.
+
+\subsection{3D Reconstruction}
+
+Given 2D images, can we recover the 3D structure of a scene? This classic problem has been transformed by deep learning.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/lecture_01_part2/voxel_reconstruction.png}
+    \caption{Single-image 3D reconstruction. \textbf{Top row}: Input RGB images of indoor scenes. \textbf{Middle rows}: 3D mesh reconstructions from different methods, with colored bounding boxes showing detected objects. \textbf{Bottom row}: Ground truth 3D meshes. The network learns to infer 3D structure from 2D appearance cues.}
+    \label{fig:voxel-reconstruction}
+\end{figure}
+
+Figure~\ref{fig:voxel-reconstruction} shows reconstruction of indoor scenes: from a single RGB image, the model outputs 3D meshes of furniture and objects. This requires learning strong priors about:
+\begin{itemize}
+    \item \textbf{Shape}: What do chairs, desks, toilets look like in 3D?
+    \item \textbf{Depth}: How far away are objects based on visual cues (size, occlusion, texture)?
+    \item \textbf{Layout}: How do objects relate spatially in typical scenes?
+\end{itemize}
+
+Modern approaches use encoder-decoder architectures: a CNN encodes the image, then a 3D decoder (voxel grid, mesh deformation, or implicit function) outputs the reconstruction.
+
+\subsection{Shape Completion}
+
+Real-world 3D scans are often incomplete---sensors only capture visible surfaces, leaving holes and missing parts. \textbf{Shape completion} fills in these gaps.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/lecture_01_part2/shape_completion.jpg}
+    \caption{3D shape completion. \textbf{Left column}: Partial, incomplete 3D shapes with missing regions (holes, unseen surfaces). \textbf{Right column}: Completed shapes with plausible geometry inferred for missing parts. Examples include a fox, bear, chair, and dragon---the network learns shape priors to fill gaps realistically.}
+    \label{fig:shape-completion}
+\end{figure}
+
+The task requires learning what ``makes sense''---if we see half a chair, we can infer where the legs should be. As shown in Figure~\ref{fig:shape-completion}, neural networks learn these shape priors from large 3D datasets:
+
+\begin{itemize}
+    \item \textbf{Input}: Partial point cloud or voxel grid
+    \item \textbf{Architecture}: 3D CNNs, PointNet variants, or Transformer-based models
+    \item \textbf{Output}: Complete 3D shape
+    \item \textbf{Training}: Supervise with complete ground truth shapes; use chamfer distance or IoU loss
+\end{itemize}
+
+Applications include robotics (grasping objects from partial views), AR/VR (completing scanned environments), and cultural heritage (restoring damaged artifacts).
+
+\subsection{3D Object Detection}
+
+For autonomous vehicles, understanding the 3D positions of other cars, pedestrians, and obstacles is literally a matter of life and death. \textbf{3D object detection} localizes objects with 3D bounding boxes specifying position, dimensions, and orientation.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/lecture_01_part2/3d_object_detection.png}
+    \caption{LiDAR point cloud visualization for autonomous driving. The sensor emits laser pulses and measures their return time, creating a 3D map of the environment. Colors indicate distance or intensity. The ego vehicle is visible in the center; surrounding roads, buildings, and objects appear as dense point patterns. This raw 3D data is the input for object detection algorithms.}
+    \label{fig:3d-detection}
+\end{figure}
+
+Figure~\ref{fig:3d-detection} shows what a LiDAR sensor ``sees'': thousands of 3D points forming a detailed map of the street. From this raw point cloud, detection algorithms must identify and localize all relevant objects. Key challenges:
+
+\begin{itemize}
+    \item \textbf{Sparse and unstructured}: Unlike images with regular grids, point clouds are irregular and sparse, especially at distance
+    \item \textbf{Varying density}: Objects close to the sensor have thousands of points; distant objects may have only a few
+    \item \textbf{Real-time constraints}: Must process at 10+ Hz for safe driving decisions
+    \item \textbf{Multi-sensor fusion}: Combining LiDAR (precise depth) with cameras (rich appearance) improves robustness
+\end{itemize}
+
+Popular architectures include:
+\begin{itemize}
+    \item \textbf{PointPillars}: Convert point cloud to vertical columns (``pillars''), encode as pseudo-image, apply 2D detection
+    \item \textbf{VoxelNet}: Discretize space into voxels, apply 3D convolutions
+    \item \textbf{PointNet++}: Process points directly with hierarchical set abstraction layers
+    \item \textbf{CenterPoint}: Detect object centers in bird's-eye view, then regress 3D box parameters
+\end{itemize}
+
+\begin{deepdive}[Neural Radiance Fields (NeRF)]
+A breakthrough in 3D vision is \href{https://arxiv.org/abs/2003.08934}{\textbf{NeRF}}---representing scenes as neural networks that map 3D coordinates to color and density:
+\[
+F_\theta: (x, y, z, \theta, \phi) \rightarrow (r, g, b, \sigma)
+\]
+Given a sparse set of 2D images, NeRF learns a continuous 3D representation that can render photorealistic novel views. Extensions handle dynamic scenes, faster rendering, and generalization across scenes. This implicit representation sidesteps the limitations of explicit meshes or voxels.
+\end{deepdive}
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item \textbf{3D representations}: Point clouds, voxels, meshes, implicit functions---each with trade-offs
+    \item \textbf{3D reconstruction}: Infer 3D structure from 2D images using learned shape priors
+    \item \textbf{Shape completion}: Fill in missing parts of partial 3D scans
+    \item \textbf{3D object detection}: Localize objects with 3D bounding boxes; crucial for autonomous driving
+    \item \textbf{NeRF}: Implicit neural representations enable photorealistic novel view synthesis
+\end{itemize}
+\end{keytakeaways}
+
+
+\section{Embodied AI and Robotics}
+\label{sec:embodied-ai}
+
+Vision doesn't exist in isolation---it evolved to guide action. \textbf{Embodied AI} brings computer vision into the physical world, powering robots and agents that must perceive their environment, plan actions, and execute them in real time.
+
+\subsection{The Perception-Action Loop}
+
+Unlike passive image classification, embodied agents operate in a continuous loop with the environment.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/lecture_01_part2/embodied_ai_loop.png}
+    \caption{The embodied AI perception-action loop. \textbf{Sensors} (cameras, LiDAR, sonar) capture data from the environment. \textbf{Environment Representation} builds maps and 3D models. \textbf{AI/ML Methods} perform prediction and reasoning. \textbf{Action} executes planning and navigation, affecting the environment and closing the loop.}
+    \label{fig:embodied-loop}
+\end{figure}
+
+The key stages:
+\begin{itemize}
+    \item \textbf{Perception}: Process sensor data (RGB, depth, LiDAR) to understand the scene
+    \item \textbf{Representation}: Build internal models---occupancy grids, semantic maps, object databases
+    \item \textbf{Planning}: Decide what actions to take to achieve goals
+    \item \textbf{Execution}: Send commands to actuators; handle feedback and errors
+\end{itemize}
+
+This loop runs continuously---the robot perceives, acts, observes the result, and adjusts. Computer vision is critical at every stage: recognizing objects to manipulate, estimating distances for navigation, detecting obstacles to avoid.
+
+\subsection{Learning from Human Demonstrations}
+
+How do robots learn complex tasks like tidying a room? One powerful approach is \textbf{imitation learning}: learning by watching humans.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/lecture_01_part2/robot_tidying.jpg}
+    \caption{Learning from human demonstrations. A human operator wearing a VR headset and controllers performs a task. The humanoid robot observes and mimics the movements in real time, learning the mapping from perception to action. This teleoperation data can then train policies that generalize to new situations.}
+    \label{fig:robot-imitation}
+\end{figure}
+
+Figure~\ref{fig:robot-imitation} shows a modern approach: a human demonstrates tasks via teleoperation (VR controllers), and the robot learns to replicate them. Key methods include:
+\begin{itemize}
+    \item \textbf{Behavioral cloning}: Directly learn a policy $\pi(a|s)$ mapping states to actions from demonstration data
+    \item \textbf{Inverse reinforcement learning}: Infer the reward function the human is optimizing, then train a policy
+    \item \textbf{Sim-to-real transfer}: Train in simulation with abundant data, then transfer to real robots
+\end{itemize}
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item \textbf{Embodied AI}: Vision systems that perceive, plan, and act in the physical world
+    \item \textbf{Perception-action loop}: Continuous cycle of sensing, reasoning, and executing
+    \item \textbf{Imitation learning}: Learn from human demonstrations via teleoperation or observation
+    \item \textbf{Key challenges}: Real-time processing, handling uncertainty, generalizing to new environments
+\end{itemize}
+\end{keytakeaways}
+
+
+\section{Human-Centered AI}
+\label{sec:human-centered}
+
+As AI systems become more powerful and pervasive, we must consider their impact on people and society. \textbf{Human-centered AI} focuses on building systems that are fair, beneficial, and aligned with human values.
+
+\subsection{Bias in AI Systems}
+
+AI systems learn from data, and data reflects human history---including our biases. This creates serious problems:
+\begin{itemize}
+    \item \textbf{Face recognition}: Studies have shown significantly higher error rates for certain demographic groups, particularly darker-skinned women
+    \item \textbf{Hiring algorithms}: Systems trained on historical hiring data can perpetuate past discrimination
+    \item \textbf{Criminal justice}: Risk assessment tools may encode racial biases present in arrest records
+\end{itemize}
+
+The root cause: training data is ``an artifact of human activities on earth and in history'' (Fei-Fei Li). When data is imbalanced or reflects historical inequities, models learn and amplify those patterns.
+
+Mitigation strategies include:
+\begin{itemize}
+    \item \textbf{Dataset auditing}: Analyze training data for demographic imbalances
+    \item \textbf{Fairness constraints}: Add regularization terms that penalize disparate outcomes
+    \item \textbf{Diverse evaluation}: Test on balanced benchmarks across demographic groups
+\end{itemize}
+
+\subsection{AI for Healthcare}
+
+One of the most promising applications of computer vision is \textbf{medical imaging}---using AI to assist diagnosis and improve patient outcomes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/lecture_01_part2/ai_medical_xray.png}
+    \caption{AI-assisted chest X-ray analysis. The model detects potential abnormalities and visualizes them using different methods: (A) full-color heatmap, (B) grayscale contour, (C) combined overlay, (D) single-color highlight. Such visualizations help radiologists quickly focus on regions of concern.}
+    \label{fig:ai-medical}
+\end{figure}
+
+Figure~\ref{fig:ai-medical} shows AI analyzing chest X-rays---detecting potential lung abnormalities and highlighting them for radiologist review. Applications span:
+\begin{itemize}
+    \item \textbf{Radiology}: Detecting tumors, fractures, and diseases in X-rays, CT, MRI
+    \item \textbf{Pathology}: Analyzing tissue samples for cancer cells
+    \item \textbf{Ophthalmology}: Screening for diabetic retinopathy from retinal images
+    \item \textbf{Elderly care}: Monitoring activity patterns to detect falls or health changes
+\end{itemize}
+
+\begin{notebox}
+The instructors of this course (Fei-Fei Li, Ehsan Adeli) actively research AI for aging populations and patient care---using computer vision to deliver better healthcare to those who need it most.
+\end{notebox}
+
+\subsection{The Path Forward}
+
+AI is neither purely good nor purely bad---it's a powerful tool whose impact depends on how we build and deploy it. Key considerations:
+\begin{itemize}
+    \item \textbf{Transparency}: Can we explain why a model made a decision?
+    \item \textbf{Accountability}: Who is responsible when AI systems fail?
+    \item \textbf{Consent}: Do people know when AI is being used on them?
+    \item \textbf{Inclusion}: Are affected communities involved in system design?
+\end{itemize}
+
+The field has been recognized with major awards: the \textbf{Turing Award 2018} (Hinton, Bengio, LeCun) for deep learning breakthroughs, and the \textbf{Nobel Prize in Physics 2024} (Hinton, Hopfield) for foundational neural network contributions. With recognition comes responsibility---to ensure these powerful tools benefit humanity broadly.
+
+\begin{keytakeaways}
+\begin{itemize}
+    \item \textbf{AI bias}: Models learn biases present in training data; face recognition shows demographic disparities
+    \item \textbf{Healthcare AI}: Medical imaging is a high-impact application---radiology, pathology, elderly care
+    \item \textbf{Ethical considerations}: Transparency, accountability, fairness must be designed in from the start
+    \item \textbf{Interdisciplinary}: AI challenges require input from law, ethics, medicine, and affected communities
+\end{itemize}
+\end{keytakeaways}
+
+
+\section{Course Learning Objectives}
+\label{sec:learning-objectives}
+
+This course covers a vast landscape of deep learning for computer vision. By the end, you will be able to:
+
+\begin{enumerate}
+    \item \textbf{Formalize computer vision applications into tasks}---given a real-world problem, identify the appropriate task formulation (classification, detection, segmentation, generation, etc.)
+
+    \item \textbf{Develop and train vision models}---build neural networks from scratch that operate on images, videos, and other visual data
+
+    \item \textbf{Understand where the field is and where it is headed}---grasp both foundational techniques and cutting-edge advances like diffusion models, vision-language models, and embodied AI
+\end{enumerate}
+
+\subsection{Course Structure}
+
+The course is organized into four main topics:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{Part} & \textbf{Topic} & \textbf{Content} \\
+\hline
+1 & Deep Learning Basics & Linear classifiers, neural networks, optimization, CNNs \\
+\hline
+2 & Perceiving the Visual World & Detection, segmentation, video understanding, 3D vision \\
+\hline
+3 & Generative \& Interactive AI & Self-supervised learning, generative models, vision-language \\
+\hline
+4 & Human-Centered AI & Bias, ethics, healthcare applications, societal impact \\
+\hline
+\end{tabular}
+\end{center}
+
+The first few weeks focus on fundamentals---linear classifiers, backpropagation, CNNs. These foundations are essential; everything else builds on them. Then we progress to the exciting frontiers: generative models, multimodal AI, and real-world applications.
+
+\subsection{What's Next}
+
+The next lecture covers \textbf{image classification and linear classifiers}---the starting point for understanding how machines learn to see. We will formalize the classification problem, introduce loss functions, and lay the groundwork for neural networks.
+
+\vspace{1em}
+
+\begin{keytakeaways}
+\textbf{Summary of Lecture 1, Part 2:}
+\begin{itemize}
+    \item \textbf{Tasks}: Classification $\rightarrow$ detection $\rightarrow$ segmentation $\rightarrow$ video $\rightarrow$ 3D
+    \item \textbf{Models}: CNNs (spatial), RNNs (temporal), Transformers (attention)
+    \item \textbf{Training at scale}: Data parallelism, model parallelism
+    \item \textbf{Learning without labels}: Self-supervised learning, contrastive methods, MAE
+    \item \textbf{Generation}: Style transfer, GANs, diffusion models, text-to-image
+    \item \textbf{Multimodal}: Vision-language models (CLIP, VQA)
+    \item \textbf{3D \& Embodied}: Reconstruction, detection, robotics
+    \item \textbf{Human-centered}: Bias awareness, healthcare applications, ethical AI
+\end{itemize}
+\end{keytakeaways}
+
+
+% ============================================
+% REFERENCES
+% ============================================
+\newpage
+
+\section*{References}
+
+\begin{itemize}
+    \item Rumelhart, D. E., Hinton, G. E., \& Williams, R. J. (1986). Learning representations by back-propagating errors. \textit{Nature}, 323(6088), 533--536.
+
+    \item Hochreiter, S., \& Schmidhuber, J. (1997). Long Short-Term Memory. \textit{Neural Computation}, 9(8), 1735--1780.
+
+    \item Simonyan, K., \& Zisserman, A. (2014). Two-Stream Convolutional Networks for Action Recognition in Videos. \textit{NeurIPS}.
+
+    \item Goodfellow, I., et al. (2014). Generative Adversarial Nets. \textit{NeurIPS}.
+
+    \item Long, J., Shelhamer, E., \& Darrell, T. (2015). Fully Convolutional Networks for Semantic Segmentation. \textit{CVPR}.
+
+    \item Gatys, L. A., Ecker, A. S., \& Bethge, M. (2016). Image Style Transfer Using Convolutional Neural Networks. \textit{CVPR}.
+
+    \item Redmon, J., et al. (2016). You Only Look Once: Unified, Real-Time Object Detection. \textit{CVPR}.
+
+    \item He, K., et al. (2017). Mask R-CNN. \textit{ICCV}.
+
+    \item Vaswani, A., et al. (2017). Attention Is All You Need. \textit{NeurIPS}.
+
+    \item Karras, T., Laine, S., \& Aila, T. (2019). A Style-Based Generator Architecture for Generative Adversarial Networks. \textit{CVPR}.
+
+    \item Chen, T., et al. (2020). A Simple Framework for Contrastive Learning of Visual Representations. \textit{ICML}.
+
+    \item Ho, J., Jain, A., \& Abbeel, P. (2020). Denoising Diffusion Probabilistic Models. \textit{NeurIPS}.
+
+    \item Dosovitskiy, A., et al. (2021). An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. \textit{ICLR}.
+
+    \item Radford, A., et al. (2021). Learning Transferable Visual Models From Natural Language Supervision. \textit{ICML}.
+
+    \item He, K., et al. (2022). Masked Autoencoders Are Scalable Vision Learners. \textit{CVPR}.
+
+    \item Rombach, R., et al. (2022). High-Resolution Image Synthesis with Latent Diffusion Models. \textit{CVPR}.
+
+    \item Kirillov, A., et al. (2023). Segment Anything. \textit{ICCV}.
+\end{itemize}
+
+\end{document}

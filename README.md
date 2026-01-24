@@ -1,116 +1,134 @@
 # CS231n 2025 Lecture Notes
 
-[![Active Development](https://img.shields.io/badge/status-active%20development-brightgreen)](https://github.com/raimbekovm/cs231n-2025-notes)
+[![Compile LaTeX](https://github.com/raimbekovm/cs231n-2025-notes/actions/workflows/compile-latex.yml/badge.svg)](https://github.com/raimbekovm/cs231n-2025-notes/actions/workflows/compile-latex.yml)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-orange)](CONTRIBUTING.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Unofficial lecture notes for **Stanford CS231n: Deep Learning for Computer Vision** (2025, 10th Anniversary Edition).
+Comprehensive lecture notes for **Stanford CS231n: Deep Learning for Computer Vision** (Spring 2025).
 
-The official [cs231n.github.io](https://cs231n.github.io/) notes are outdated and don't cover the 2025 curriculum. This project aims to fill that gap with modern, comprehensive materials.
+> The official [cs231n.github.io](https://cs231n.github.io/) notes haven't been updated since 2017. This project provides modern, in-depth notes covering the 2025 curriculum including Transformers, Diffusion Models, Vision-Language Models, and more.
 
-> **Work in Progress** — New lectures coming soon. Watch for updates, ⭐ star if useful!
+---
 
-## Contents
+## Quick Download
 
-### Part 1: Fundamentals (Lectures 1-4)
-- [x] Lecture 1: Introduction — Part 1 done | Part 2 in progress
-- [ ] Lecture 2: Image Classification, Linear Classifiers, K-NN
-- [ ] Lecture 3: Regularization, Optimization (SGD, Adam)
-- [ ] Lecture 4: Neural Networks, Backpropagation
+| Lecture | Topic | PDF | Status |
+|:-------:|-------|:---:|:------:|
+| 1.1 | History of Computer Vision | [Download](pdf/lecture_01_part1.pdf) | Done |
+| 1.2 | Course Overview: Tasks, Models, Applications | [Download](pdf/lecture_01_part2.pdf) | Done |
+| 2 | Image Classification, KNN, Linear Classifiers | Coming soon | In Progress |
+| 3 | Regularization, Optimization (SGD, Adam) | Coming soon | Planned |
+| 4 | Neural Networks, Backpropagation | Coming soon | Planned |
+| ... | More lectures coming | — | — |
 
-### Part 2: Convolutional Neural Networks (Lectures 5-6)
-- [ ] Lecture 5: Image Classification with CNNs
-- [ ] Lecture 6: CNN Architectures (AlexNet, VGG, ResNet)
+---
 
-### Part 3: Sequence Models (Lectures 7-8)
-- [ ] Lecture 7: RNN, LSTM, GRU, Image Captioning
-- [ ] Lecture 8: Attention, Transformers
+## What's Inside
 
-### Part 4: Computer Vision Tasks (Lectures 9-12)
-- [ ] Lecture 9: Object Detection, Segmentation
-- [ ] Lecture 10: Video Understanding, 3D CNNs, Multimodal
-- [ ] Lecture 11: Large Scale Distributed Training
-- [ ] Lecture 12: Self-supervised Learning
+Each lecture note includes:
+- Clear explanations of core concepts
+- Mathematical formulations with intuition
+- Visualizations and diagrams
+- Links to original papers
+- Key takeaways and summaries
 
-### Part 5: Generative Models (Lectures 13-14)
-- [ ] Lecture 13: VAE, GAN, Autoregressive Models
-- [ ] Lecture 14: Diffusion Models
+### Preview
 
-### Part 6: Advanced Topics (Lectures 15-18)
-- [ ] Lecture 15: 3D Vision, Neural Implicit Representations
-- [ ] Lecture 16: Vision and Language
-- [ ] Lecture 17: Robot Learning, Reinforcement Learning
-- [ ] Lecture 18: Human-Centered AI
+<p align="center">
+  <img src="src/figures/lecture_01_part2/cnn_layer_activations.png" width="600" alt="CNN Layer Activations">
+</p>
 
-## Materials
+*Example: Visualizing what CNNs learn at each layer — from edges to semantic concepts.*
 
-| Format | Location | Description |
-|--------|----------|-------------|
-| Jupyter Notebooks | `notebooks/` | Interactive notes with theory + code, Colab ready |
-| PDF Notes | `notes/` | Printable notes, theory focused |
+---
 
-## Usage
+## Repository Structure
 
-### Running Notebooks Locally
-
-```bash
-pip install jupyter numpy matplotlib torch torchvision
-jupyter notebook notebooks/
+```
+cs231n-2025-notes/
+├── pdf/                    # Compiled PDFs (download these!)
+├── src/                    # LaTeX source files
+│   ├── lecture_01_part1.tex
+│   ├── lecture_01_part2.tex
+│   └── figures/            # Images and diagrams
+├── transcripts/            # Lecture transcripts
+└── .github/workflows/      # Auto-compilation on push
 ```
 
-### Google Colab
+---
 
-Each notebook includes a Colab badge — click to open directly in Colab.
+## Course Outline
+
+### Part 1: Fundamentals
+- **Lecture 1**: Introduction & Course Overview
+- **Lecture 2**: Image Classification, KNN, Linear Classifiers
+- **Lecture 3**: Regularization, Optimization
+- **Lecture 4**: Neural Networks, Backpropagation
+
+### Part 2: Convolutional Neural Networks
+- **Lecture 5**: CNNs for Image Classification
+- **Lecture 6**: CNN Architectures (AlexNet → ResNet → ConvNeXt)
+
+### Part 3: Sequence Models
+- **Lecture 7**: RNN, LSTM, Image Captioning
+- **Lecture 8**: Attention, Transformers, ViT
+
+### Part 4: Vision Tasks
+- **Lecture 9**: Object Detection, Segmentation
+- **Lecture 10**: Video Understanding, 3D Vision
+- **Lecture 11**: Distributed Training
+- **Lecture 12**: Self-Supervised Learning
+
+### Part 5: Generative Models
+- **Lecture 13**: VAE, GAN
+- **Lecture 14**: Diffusion Models
+
+### Part 6: Advanced Topics
+- **Lecture 15**: 3D Vision, NeRF
+- **Lecture 16**: Vision & Language (CLIP, VQA)
+- **Lecture 17**: Robot Learning
+- **Lecture 18**: Human-Centered AI
+
+---
+
+## Building from Source
+
+PDFs are auto-compiled via GitHub Actions. To build locally:
+
+```bash
+cd src
+pdflatex lecture_01_part1.tex
+pdflatex lecture_01_part2.tex
+```
+
+Requirements: LaTeX distribution (TeX Live, MiKTeX, or MacTeX)
+
+---
+
+## Contributing
+
+Found a typo? Want to improve explanations? Contributions welcome!
+
+1. Open an [Issue](https://github.com/raimbekovm/cs231n-2025-notes/issues) for bugs/suggestions
+2. Submit a [Pull Request](https://github.com/raimbekovm/cs231n-2025-notes/pulls) for fixes
+3. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines
+
+---
 
 ## References
 
 - [CS231n Official Website](https://cs231n.stanford.edu/)
-- [2025 Lecture Slides](https://cs231n.stanford.edu/slides/2025/)
-- [Official GitHub Notes](https://cs231n.github.io/) (MIT License)
-- [2025 Assignments](https://cs231n.github.io/assignments2025/)
+- [2025 Lecture Videos](https://www.youtube.com/playlist?list=PLoROMvodv4rOmsNzYBMe0gJY2XS8AQg16)
+- [Original Course Notes](https://cs231n.github.io/) by Andrej Karpathy (MIT License)
 
-## Acknowledgments & Attribution
-
-This project is inspired by and based on:
-
-- **Stanford CS231n: Deep Learning for Computer Vision** (2025, 10th Anniversary Edition)
-  Course by Fei-Fei Li and team at Stanford University
-  https://cs231n.stanford.edu/
-
-- **CS231n Course Notes** by Andrej Karpathy
-  Licensed under the MIT License
-  https://cs231n.github.io/
-  Copyright (c) 2015 Andrej Karpathy
-
-All content in this repository is **written independently in our own words**. We do not copy or redistribute Stanford lecture slides, diagrams, or copyrighted materials. Concepts and ideas (which are not copyrightable) are explained using original text and visualizations.
-
-## License
-
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
-
-### What This Means
-
-- You are free to use, copy, modify, and distribute these notes
-- Attribution is appreciated but not required
-- No warranty is provided
-
-### Third-Party Content
-
-- Some explanations may be adapted from [cs231n.github.io](https://cs231n.github.io/), which is MIT-licensed (Copyright (c) 2015 Andrej Karpathy)
-- All diagrams and visualizations are original or use permissively-licensed sources (cited where applicable)
+---
 
 ## Disclaimer
 
-- This is an **unofficial** resource created for educational purposes
-- **Not affiliated with Stanford University** or the CS231n teaching staff
-- For official course materials, visit [cs231n.stanford.edu](https://cs231n.stanford.edu/)
-- We do not redistribute copyrighted Stanford materials (slides, assignments, etc.)
+This is an **unofficial** resource created for educational purposes. Not affiliated with Stanford University. For official materials, visit [cs231n.stanford.edu](https://cs231n.stanford.edu/).
 
-## Contributing
+---
 
-Contributions are welcome! Ways to help:
-- Report typos, grammatical errors, or formatting issues
-- Suggest improvements or point out academic inaccuracies
-- Open issues with feedback or questions
+## License
 
-See **[CONTRIBUTING.md](CONTRIBUTING.md)** for guidelines.
+MIT License — free to use, modify, and distribute. See [LICENSE](LICENSE).

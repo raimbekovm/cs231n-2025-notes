@@ -1,0 +1,52 @@
+name: Compile LaTeX
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**/*.tex'
+      - 'src/figures/**/*'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/**/*.tex'
+      - 'src/figures/**/*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX documents
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: src
+          root_file: |
+            lecture_01_part1.tex
+            lecture_01_part2.tex
+          latexmk_shell_escape: true
+
+      - name: Move PDFs to pdf folder
+        run: |
+          mkdir -p pdf
+          mv src/*.pdf pdf/
+
+      - name: Upload PDF artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: lecture-notes
+          path: pdf/*.pdf
+          retention-days: 30
+
+      - name: Commit and push PDFs
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add pdf/*.pdf
+          git diff --staged --quiet || git commit -m "Build PDFs [skip ci]"
+          git push
