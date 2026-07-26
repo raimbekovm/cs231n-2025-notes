@@ -7,11 +7,11 @@ description: "The landscape of modern computer vision: classification, detection
 *Based on the lecture by Ehsan Adeli — [CS231n](https://cs231n.stanford.edu/),
 Stanford University, Spring 2025.*
 
-# What is Computer Vision? {#sec-what-is-cv}
+## What is Computer Vision? {#sec-what-is-cv}
 
 At its core, computer vision is about enabling machines to interpret and understand visual information. The most fundamental task in this space is **image classification**: given an image, the model outputs a label describing its content.
 
-## Image Classification: The Foundation
+### Image Classification: The Foundation
 
 Image classification may seem deceptively simple---show the model a photo of a cat, and it should output "cat." Yet this apparently trivial task forms the foundation for much more complex applications, from self-driving cars to medical diagnosis.
 
@@ -21,13 +21,13 @@ How do we approach this problem mathematically? The simplest method is **linear 
 
 @fig-linear-classifier illustrates this concept in 2D: each hyperplane represents a different linear classifier. Notice that $H_1$ and $H_2$ both perfectly separate the two classes, but which is "better"? This question leads us to the concepts of **loss functions** and **optimization**.
 
-## Loss Functions and Optimization
+### Loss Functions and Optimization
 
 To train a classifier, we need to quantify how "wrong" its predictions are. A **loss function** measures this error---it outputs a high value when predictions are poor and a low value when they're accurate. We will explore specific loss functions (cross-entropy, hinge loss) in detail in future lectures.
 
 Training minimizes this loss over the dataset using **optimization algorithms** like **gradient descent**. The key idea: compute how each weight contributes to the error, then adjust weights in the direction that reduces it. The **learning rate** controls how large each adjustment step is---too large and we overshoot, too small and training is slow.
 
-## Regularization: Controlling Complexity
+### Regularization: Controlling Complexity
 
 With enough parameters, a model can memorize the training data perfectly---but this **overfitting** hurts generalization to new data. **Regularization** adds a penalty that discourages overly complex models by keeping weights small. We will cover specific regularization techniques (L1, L2, dropout) in future lectures.
 
@@ -35,7 +35,7 @@ With enough parameters, a model can memorize the training data perfectly---but t
 
 @fig-regularization visualizes this trade-off: $f_2$ achieves zero training error but is clearly overfitting, while $f_1$ makes small errors on training data but will generalize better.
 
-## From Linear Models to Neural Networks
+### From Linear Models to Neural Networks
 
 Linear classifiers have a fundamental limitation: they can only learn linear decision boundaries. Many real-world problems require more complex separations---imagine trying to classify images of cats vs. dogs with a single hyperplane in pixel space!
 
@@ -47,7 +47,7 @@ Each layer applies a linear transformation followed by a nonlinear **activation 
 
 Neural networks are the foundation of modern computer vision, powering everything from Google Photos to autonomous vehicles. In this course, we will go deep into how they work, how to train them, and how to debug and improve them.
 
-## From Classification to Understanding
+### From Classification to Understanding
 
 While classification assigns a single label to an entire image, real-world computer vision requires much richer understanding. Consider an autonomous vehicle: knowing an image "contains a pedestrian" is not enough---we need to know *where* they are, *how fast* they're moving, and *which direction*. This leads us to more sophisticated tasks:
 
@@ -57,11 +57,11 @@ While classification assigns a single label to an entire image, real-world compu
 
 - *How many* instances are present? $\rightarrow$ **Instance Segmentation**
 
-# Tasks Beyond Classification {#sec-tasks-beyond}
+## Tasks Beyond Classification {#sec-tasks-beyond}
 
 Having established image classification as the foundation, we now explore tasks that require deeper spatial understanding. Each task builds on the previous, adding new dimensions of visual reasoning.
 
-## Semantic Segmentation
+### Semantic Segmentation
 
 In **semantic segmentation**, we don't just label the image as a whole---we assign a class label to *every single pixel*. The output is a dense prediction map where each pixel belongs to a category: sky, grass, cat, tree, road, etc.
 
@@ -75,7 +75,7 @@ Key characteristics of semantic segmentation:
 
 - **Applications**: Autonomous driving (road vs. sidewalk), medical imaging (tumor vs. healthy tissue), agricultural monitoring
 
-## Object Detection
+### Object Detection
 
 **Object detection** goes beyond classification by answering *where* objects are located. The model outputs:
 
@@ -97,7 +97,7 @@ Key characteristics of semantic segmentation:
 
 - **Robotics**: Object manipulation, navigation
 
-## Instance Segmentation
+### Instance Segmentation
 
 **Instance segmentation**[^01b-course-overview-2] combines the best of both worlds---it provides pixel-level precision like semantic segmentation while distinguishing individual object instances like detection.
 
@@ -111,7 +111,7 @@ Instance segmentation is the most granular of these tasks---it combines detectio
 
 :::
 
-## Task Hierarchy
+### Task Hierarchy
 
 These tasks form a natural hierarchy of increasing complexity:
 
@@ -138,11 +138,11 @@ Each task requires progressively deeper spatial understanding and presents uniqu
 
 :::
 
-# Temporal Tasks {#sec-temporal-tasks}
+## Temporal Tasks {#sec-temporal-tasks}
 
 So far we've focused on static images---single snapshots frozen in time. But the visual world is dynamic: people walk, cars drive, expressions change. When we move to **video**, we add a temporal dimension that fundamentally changes the problem. Understanding "what's in this frame" becomes "what's *happening* over time." This opens up new tasks and new challenges.
 
-## Video Classification
+### Video Classification
 
 In **video classification**, the goal is to understand what action is happening across a sequence of frames. Is someone running? Jumping? Dancing? Unlike image classification where we have a single static input, video presents a temporal sequence that must be processed and aggregated.
 
@@ -158,7 +158,7 @@ The simplest approach (shown in @fig-video-classification-frames) processes each
 
 - **Recurrent models**: Use RNNs/LSTMs to maintain temporal state across frames
 
-## Multimodal Video Understanding
+### Multimodal Video Understanding
 
 Real-world videos contain multiple modalities---not just visual information, but also **audio** and **speech**. To truly understand a scene, we often need to combine all of these signals.
 
@@ -190,11 +190,11 @@ How do we combine information from multiple modalities? Three main approaches:
 
 :::
 
-# Deep Learning Architectures {#sec-models}
+## Deep Learning Architectures {#sec-models}
 
 We've explored *what* computer vision systems need to do (classification, detection, segmentation, temporal understanding). Now we turn to *how*---the neural network architectures that make these tasks possible. While basic neural networks (MLPs) can theoretically approximate any function, specialized architectures dramatically improve efficiency and performance by building in useful **inductive biases**.
 
-## Convolutional Neural Networks (CNNs)
+### Convolutional Neural Networks (CNNs)
 
 **Convolutional Neural Networks** are the workhorse of computer vision. Instead of treating an image as a flat vector of pixels, CNNs exploit spatial structure through a series of operations that progressively transform raw pixels into abstract representations.
 
@@ -226,7 +226,7 @@ A key property of CNNs is **hierarchical feature learning**---earlier layers det
 
 This visualization also serves as a debugging tool: if a model focuses on the wrong regions (e.g., background instead of the object), we know something is wrong with the training data or process.
 
-## Recurrent Neural Networks (RNNs)
+### Recurrent Neural Networks (RNNs)
 
 For **sequential data**---like video frames or text---we need models that can handle variable-length inputs and maintain memory across time steps. **Recurrent Neural Networks** process sequences one element at a time, passing hidden state from step to step.
 
@@ -246,7 +246,7 @@ This creates a "memory" that allows information from earlier in the sequence to 
 
 These gates use sigmoid activations to produce values between 0 and 1, acting as "soft switches" that learn when to remember, update, or expose information.
 
-## Transformers and Attention
+### Transformers and Attention
 
 More recently, [**Transformers**](https://arxiv.org/abs/1706.03762)[^01b-course-overview-5] have revolutionized not just NLP but also computer vision. The key innovation is the **attention mechanism**, which allows every element to directly attend to every other element.
 
@@ -294,13 +294,13 @@ Why do Transformers work so well? The attention mechanism allows **global contex
 
 :::
 
-# Large-Scale Distributed Training {#sec-distributed-training}
+## Large-Scale Distributed Training {#sec-distributed-training}
 
 Modern deep learning has an insatiable appetite for computation. State-of-the-art models like GPT-4 and Gemini contain hundreds of billions of parameters and require training on massive datasets. A single GPU---even the most powerful---would take years to train such models. The solution is **distributed training**: spreading the workload across many devices working in parallel.
 
 Two fundamental strategies exist for distributing deep learning workloads, each with distinct trade-offs.
 
-## Data Parallelism
+### Data Parallelism
 
 In **data parallelism**, we replicate the entire model on each worker (GPU), but partition the training data across workers. Each worker processes a different mini-batch, computes gradients locally, and then all workers synchronize their gradients before updating the shared model.
 
@@ -332,7 +332,7 @@ The key operation is **AllReduce**---a collective communication primitive that e
 
 :::
 
-## Model Parallelism
+### Model Parallelism
 
 When a model is too large to fit in a single GPU's memory, we turn to **model parallelism**: the model itself is partitioned across devices. As shown in @fig-parallelism (right), all workers receive the same data, but each worker holds only a portion of the model.
 
@@ -370,13 +370,13 @@ Additionally, techniques like **gradient checkpointing** (recompute activations 
 
 :::
 
-# Self-Supervised Learning {#sec-self-supervised}
+## Self-Supervised Learning {#sec-self-supervised}
 
 Supervised learning has driven remarkable progress in computer vision, but it has a critical bottleneck: **labeled data**. Creating datasets like ImageNet required millions of human annotations---expensive, time-consuming, and often noisy. Meanwhile, the internet contains billions of unlabeled images. Can we learn useful representations from this vast unlabeled data?
 
 **Self-supervised learning** answers yes by creating **pretext tasks**---artificial supervised problems where labels come from the data itself, requiring no human annotation.
 
-## The Key Insight
+### The Key Insight
 
 The core idea is simple but powerful: design tasks that force the model to learn useful representations in order to solve them. If a model can predict how an image was rotated, it must understand object orientation. If it can colorize grayscale images, it must understand object semantics (grass is green, sky is blue).
 
@@ -392,7 +392,7 @@ Classic pretext tasks include:
 
 However, these hand-crafted tasks have limitations---they may teach representations that don't transfer well to downstream tasks. Modern approaches take a different path: **contrastive learning**.
 
-## Contrastive Learning
+### Contrastive Learning
 
 The breakthrough idea of **contrastive learning** is to learn representations by comparing examples: similar things should have similar representations, dissimilar things should have dissimilar representations.
 
@@ -412,7 +412,7 @@ $$\mathcal{L}_{i,j} = -\log \frac{\exp(\text{sim}(z_i, z_j)/\tau)}{\sum_{k \neq 
 
 The magic: after pre-training, we discard the projection head and use the encoder for downstream tasks. The representations learned by contrasting augmented views transfer remarkably well to classification, detection, and segmentation---often matching or exceeding supervised pre-training!
 
-## Masked Image Modeling
+### Masked Image Modeling
 
 Inspired by BERT's success in NLP (predicting masked words), [**Masked Autoencoders (MAE)**](https://arxiv.org/abs/2111.06377)[^01b-course-overview-7] apply the same idea to images: mask random patches and train the model to reconstruct them.
 
@@ -464,13 +464,13 @@ The recipe: massive unlabeled data + self-supervised objectives + scale = emerge
 
 :::
 
-# Generative Models {#sec-generative}
+## Generative Models {#sec-generative}
 
 So far we've focused on **discriminative** models---given an input, predict a label or bounding box. But what if we want to go the other direction: *generate* new images from scratch? This is the domain of **generative models**, which learn the underlying distribution of images and can sample new examples from it.
 
 Generative models have exploded in capability and popularity, powering applications from artistic style transfer to text-to-image systems like DALL-E and Midjourney. Let's explore the key architectures.
 
-## Neural Style Transfer
+### Neural Style Transfer
 
 One of the earliest and most visually striking applications of deep learning for image generation is [**neural style transfer**](https://arxiv.org/abs/1508.06576): taking the *content* of one image and rendering it in the *style* of another.
 
@@ -484,7 +484,7 @@ The key insight[^01b-course-overview-8] is that CNNs trained for classification 
 
 The algorithm optimizes a generated image to minimize: $$\mathcal{L}_{\text{total}} = \alpha \mathcal{L}_{\text{content}} + \beta \mathcal{L}_{\text{style}}$$ where $\mathcal{L}_{\text{content}}$ measures how different the generated image's activations are from the content image, and $\mathcal{L}_{\text{style}}$ measures how different the Gram matrices are from the style image. The hyperparameters $\alpha$ and $\beta$ control the balance.
 
-## Generative Adversarial Networks (GANs)
+### Generative Adversarial Networks (GANs)
 
 [**GANs**](https://arxiv.org/abs/1406.2661)[^01b-course-overview-9] introduced a revolutionary idea: train two networks that compete against each other. This adversarial game drives both networks to improve, ultimately producing a generator capable of creating remarkably realistic images.
 
@@ -514,7 +514,7 @@ GAN variants have addressed many limitations:
 
 :::
 
-## Diffusion Models
+### Diffusion Models
 
 The current state-of-the-art in image generation comes from [**diffusion models**](https://arxiv.org/abs/2006.11239)[^01b-course-overview-11], which take a fundamentally different approach: learn to *reverse* a gradual noising process.
 
@@ -534,7 +534,7 @@ Why do diffusion models work so well?
 
 - **Flexible conditioning**: Easy to add text, class labels, or other conditions
 
-## Text-to-Image Generation
+### Text-to-Image Generation
 
 Combining diffusion models with large language models has enabled remarkable **text-to-image generation**---describe what you want, and the model creates it.
 
@@ -566,7 +566,7 @@ A key innovation in [Stable Diffusion](https://arxiv.org/abs/2112.10752)[^01b-co
 
 3.  The decoder reconstructs the final image from the denoised latent
 
-This reduces computation by $\sim$50$\times$ while maintaining quality, making high-resolution generation practical on consumer GPUs.
+This reduces computation by $\sim 50\times$ while maintaining quality, making high-resolution generation practical on consumer GPUs.
 
 :::
 
@@ -584,11 +584,11 @@ This reduces computation by $\sim$50$\times$ while maintaining quality, making h
 
 :::
 
-# Vision-Language Models {#sec-vision-language}
+## Vision-Language Models {#sec-vision-language}
 
 We've seen models that understand images and models that understand text. But humans effortlessly connect these modalities---we can describe what we see, answer questions about images, and imagine scenes from descriptions. **Vision-language models** bridge this gap, learning joint representations of images and text that enable powerful cross-modal reasoning.
 
-## CLIP: Connecting Images and Text
+### CLIP: Connecting Images and Text
 
 [**CLIP**](https://arxiv.org/abs/2103.00020) (Contrastive Language-Image Pre-training, OpenAI 2021) revolutionized vision-language learning with a simple but powerful idea: train on 400 million image-text pairs from the internet using contrastive learning.
 
@@ -606,7 +606,7 @@ The loss is symmetric---both "image-to-text" and "text-to-image" directions are 
 
 The magic of CLIP is **zero-shot transfer**: after pre-training, CLIP can classify images into *any* categories without additional training. Simply encode the class names as text ("A photo of a dog", "A photo of a cat", etc.) and pick the one most similar to the image embedding. This works remarkably well---CLIP matches supervised ImageNet models without seeing a single ImageNet training example!
 
-## Visual Question Answering (VQA)
+### Visual Question Answering (VQA)
 
 **Visual Question Answering** combines image understanding with language comprehension: given an image and a natural language question, the model must produce an answer.
 
@@ -664,11 +664,11 @@ Models like GPT-4V, Gemini, and LLaVA represent a paradigm shift---instead of ta
 
 :::
 
-# 3D Computer Vision {#sec-3d-vision}
+## 3D Computer Vision {#sec-3d-vision}
 
 The world we live in is three-dimensional, yet most computer vision has focused on 2D images. **3D computer vision** tackles the challenge of understanding and reconstructing the 3D structure of scenes and objects. This is crucial for robotics, autonomous driving, augmented reality, and manufacturing.
 
-## 3D Representations
+### 3D Representations
 
 Before diving into tasks, we need to understand how 3D data is represented:
 
@@ -682,7 +682,7 @@ Before diving into tasks, we need to understand how 3D data is represented:
 
 Each representation has trade-offs in memory, resolution, and ease of processing.
 
-## 3D Reconstruction
+### 3D Reconstruction
 
 Given 2D images, can we recover the 3D structure of a scene? This classic problem has been transformed by deep learning.
 
@@ -698,7 +698,7 @@ Given 2D images, can we recover the 3D structure of a scene? This classic proble
 
 Modern approaches use encoder-decoder architectures: a CNN encodes the image, then a 3D decoder (voxel grid, mesh deformation, or implicit function) outputs the reconstruction.
 
-## Shape Completion
+### Shape Completion
 
 Real-world 3D scans are often incomplete---sensors only capture visible surfaces, leaving holes and missing parts. **Shape completion** fills in these gaps.
 
@@ -716,7 +716,7 @@ The task requires learning what "makes sense"---if we see half a chair, we can i
 
 Applications include robotics (grasping objects from partial views), AR/VR (completing scanned environments), and cultural heritage (restoring damaged artifacts).
 
-## 3D Object Detection
+### 3D Object Detection
 
 For autonomous vehicles, understanding the 3D positions of other cars, pedestrians, and obstacles is literally a matter of life and death. **3D object detection** localizes objects with 3D bounding boxes specifying position, dimensions, and orientation.
 
@@ -762,11 +762,11 @@ A breakthrough in 3D vision is [**NeRF**](https://arxiv.org/abs/2003.08934)---re
 
 :::
 
-# Embodied AI and Robotics {#sec-embodied-ai}
+## Embodied AI and Robotics {#sec-embodied-ai}
 
 Vision doesn't exist in isolation---it evolved to guide action. **Embodied AI** brings computer vision into the physical world, powering robots and agents that must perceive their environment, plan actions, and execute them in real time.
 
-## The Perception-Action Loop
+### The Perception-Action Loop
 
 Unlike passive image classification, embodied agents operate in a continuous loop with the environment.
 
@@ -784,7 +784,7 @@ The key stages:
 
 This loop runs continuously---the robot perceives, acts, observes the result, and adjusts. Computer vision is critical at every stage: recognizing objects to manipulate, estimating distances for navigation, detecting obstacles to avoid.
 
-## Learning from Human Demonstrations
+### Learning from Human Demonstrations
 
 How do robots learn complex tasks like tidying a room? One powerful approach is **imitation learning**: learning by watching humans.
 
@@ -810,11 +810,11 @@ How do robots learn complex tasks like tidying a room? One powerful approach is 
 
 :::
 
-# Human-Centered AI {#sec-human-centered}
+## Human-Centered AI {#sec-human-centered}
 
 As AI systems become more powerful and pervasive, we must consider their impact on people and society. **Human-centered AI** focuses on building systems that are fair, beneficial, and aligned with human values.
 
-## Bias in AI Systems
+### Bias in AI Systems
 
 AI systems learn from data, and data reflects human history---including our biases. This creates serious problems:
 
@@ -834,7 +834,7 @@ Mitigation strategies include:
 
 - **Diverse evaluation**: Test on balanced benchmarks across demographic groups
 
-## AI for Healthcare
+### AI for Healthcare
 
 One of the most promising applications of computer vision is **medical imaging**---using AI to assist diagnosis and improve patient outcomes.
 
@@ -856,7 +856,7 @@ The instructors of this course (Fei-Fei Li, Ehsan Adeli) actively research AI fo
 
 :::
 
-## The Path Forward
+### The Path Forward
 
 AI is neither purely good nor purely bad---it's a powerful tool whose impact depends on how we build and deploy it. Key considerations:
 
@@ -882,7 +882,7 @@ The field has been recognized with major awards: the **Turing Award 2018** (Hint
 
 :::
 
-# Course Learning Objectives {#sec-learning-objectives}
+## Course Learning Objectives {#sec-learning-objectives}
 
 This course covers a vast landscape of deep learning for computer vision. By the end, you will be able to:
 
@@ -892,7 +892,7 @@ This course covers a vast landscape of deep learning for computer vision. By the
 
 3.  **Understand where the field is and where it is headed**---grasp both foundational techniques and cutting-edge advances like diffusion models, vision-language models, and embodied AI
 
-## Course Structure
+### Course Structure
 
 The course is organized into four main topics:
 
@@ -905,7 +905,7 @@ The course is organized into four main topics:
 
 The first few weeks focus on fundamentals---linear classifiers, backpropagation, CNNs. These foundations are essential; everything else builds on them. Then we progress to the exciting frontiers: generative models, multimodal AI, and real-world applications.
 
-## What's Next
+### What's Next
 
 The next lecture covers **image classification and linear classifiers**---the starting point for understanding how machines learn to see. We will formalize the classification problem, introduce loss functions, and lay the groundwork for neural networks.
 
@@ -931,7 +931,7 @@ The next lecture covers **image classification and linear classifiers**---the st
 
 :::
 
-# References {#references-01b-course-overview .unnumbered}
+## References {#references-01b-course-overview .unnumbered}
 
 - Rumelhart, D. E., Hinton, G. E., & Williams, R. J. (1986). Learning representations by back-propagating errors. *Nature*, 323(6088), 533--536.
 

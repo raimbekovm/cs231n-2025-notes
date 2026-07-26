@@ -1,90 +1,58 @@
 /*-- scss:defaults --*/
 
-// Slightly warmer, higher-contrast reading surface than stock cosmo.
-$font-family-sans-serif:
-  "Inter",
-  -apple-system,
-  BlinkMacSystemFont,
-  "Segoe UI",
-  Roboto,
-  "Helvetica Neue",
-  Arial,
-  sans-serif !default;
-$font-family-monospace: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace !default;
+// Light mode. Type, geometry and every structural rule live in
+// theme-common.scss; this file supplies only the colour tokens it reads.
 
-$body-color: #1f2328 !default;
-$body-bg: #ffffff !default;
-$link-color: #0b5cad !default;
+// --- Reading surface -------------------------------------------------------
+// A cool near-white rather than a cream: viridis is a cool ramp, and cream
+// would fight the teal it leans on.
+$cs-paper: #ffffff;
+$cs-surface: #f4f7f8;
+$cs-ink: #14181d;
+$cs-ink-muted: #525c67;
+$cs-ink-faint: #868f99;
+$cs-rule: #e2e7ea;
+$cs-rule-strong: #c7ced5;
 
-$font-size-root: 17px !default;
-$line-height-base: 1.65 !default;
+// --- Accent ---------------------------------------------------------------
+$cs-accent: #16707f;
+$cs-accent-hover: #0e5460;
+$cs-accent-wash: rgba(22, 112, 127, 0.08);
 
-$h1-font-size: 2.1rem !default;
-$h2-font-size: 1.55rem !default;
-$h3-font-size: 1.25rem !default;
+// --- The ramp: true viridis, decoration only ------------------------------
+$cs-plum: #440154;
+$cs-indigo: #414487;
+$cs-teal: #2a788e;
+$cs-jade: #22a884;
+$cs-lime: #7ad151;
+$cs-citron: #e3ca1f;
 
-$toc-color: #57606a !default;
+// --- Text-safe ramp: all >= 4.5:1 on #ffffff ------------------------------
+$cs-tx-teal: #16707f;
+$cs-tx-indigo: #3a3f7e;
+$cs-tx-jade: #0d7a5c;
+$cs-tx-plum: #4c1160;
+$cs-tx-citron: #7d6410;
 
-/*-- scss:rules --*/
+// --- Hero panel: dark in both modes ---------------------------------------
+$cs-hero-bg: #12141c;
+$cs-hero-ink: #f2f5f8;
+$cs-hero-ink-muted: #a5aebb;
+$cs-hero-accent: #22a884;
+$cs-hero-accent-2: #7ad151;
 
-// Long-form prose reads badly at full container width.
-main.content {
-  max-width: 46rem;
-}
+$cs-figure-filter: none;
+$cs-figure-plate: #ffffff;
+$cs-shadow:
+  0 1px 2px rgba(16, 20, 28, 0.05),
+  0 10px 28px -14px rgba(16, 20, 28, 0.22);
 
-// Figures: give them room and a soft frame so slide screenshots don't bleed
-// into the surrounding text.
-figure {
-  margin: 2rem auto;
-
-  img {
-    border-radius: 6px;
-    border: 1px solid #d8dee4;
-    background: #fff;
-  }
-
-  figcaption {
-    font-size: 0.88rem;
-    color: #57606a;
-    margin-top: 0.6rem;
-  }
-}
-
-// Callouts carry most of the pedagogical structure — make them distinct.
-div.callout {
-  margin: 1.75rem 0;
-  border-radius: 6px;
-}
-
-div.callout-tip .callout-title {
-  // "Key Takeaways" closes every major section; it should feel like a summary.
-  font-weight: 600;
-}
-
-// Section numbers shouldn't shout louder than the heading text.
-.header-section-number {
-  color: #8c959f;
-  font-weight: 400;
-  padding-right: 0.35rem;
-}
-
-// KaTeX display equations get cramped next to dense paragraphs.
-.katex-display {
-  margin: 1.4rem 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-// Wide tables must scroll themselves, never the page.
-.table-responsive,
-main.content > table {
-  display: block;
-  overflow-x: auto;
-  max-width: 100%;
-}
-
-blockquote {
-  border-left: 3px solid #d0d7de;
-  color: #57606a;
-  padding-left: 1rem;
-}
+// --- Bootstrap ------------------------------------------------------------
+$body-bg: $cs-paper;
+$body-color: $cs-ink;
+$link-color: $cs-accent;
+$link-hover-color: $cs-accent-hover;
+$border-color: $cs-rule;
+$table-border-color: $cs-rule;
+$toc-color: $cs-ink-muted;
+$code-color: $cs-accent-hover;
