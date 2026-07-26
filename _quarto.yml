@@ -76,7 +76,23 @@ format:
     fig-cap-location: bottom
     keep-tex: false
 
+# Inputs for filters/seo-metadata.lua, which needs them per page.
+seo:
+  site-url: https://raimbekovm.github.io/cs231n-2025-notes/
+  author-url: https://github.com/raimbekovm
+  license-url: https://opensource.org/licenses/MIT
+  keywords:
+    - computer vision
+    - deep learning
+    - convolutional neural networks
+    - vision transformers
+    - diffusion models
+    - vision-language models
+    - CS231n
+
 filters:
+  - at: pre-quarto
+    path: filters/seo-metadata.lua
   # Must run after Quarto has built its figure containers: given the image's
   # style attribute earlier, Quarto hoists it onto the enclosing float div,
   # which then constrains the caption as well as the image.
