@@ -57,6 +57,7 @@ cs231n-2025-notes/
 ├── index.qmd              # site landing page
 ├── lectures/              # one .qmd per lecture — the source of truth
 ├── figures/               # images, one directory per lecture
+│                          #   diagram_*.svg ship with their TikZ source
 ├── _quarto.yml            # site and PDF configuration
 ├── theme.scss             #   light theme
 ├── theme-dark.scss        #   dark theme

@@ -57,7 +57,8 @@ transcripts/
 # Internal working files
 outlines/
 
-# LaTeX build artifacts
+# LaTeX build artifacts. The only LaTeX left in the repository is the standalone
+# TikZ source beside each generated diagram; only its .svg output is committed.
 *.aux
 *.log
 *.out
@@ -65,6 +66,7 @@ outlines/
 *.synctex.gz
 *.fls
 *.fdb_latexmk
+figures/**/*.pdf
 
 # Quarto build output. The site and the book PDF are produced by CI and served
 # from the gh-pages branch, so nothing built belongs in the repository.
