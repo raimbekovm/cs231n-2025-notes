@@ -60,13 +60,9 @@ format:
     # image path would resolve against raimbekovm.github.io instead.
     open-graph:
       image: https://raimbekovm.github.io/cs231n-2025-notes/figures/social-card.png
-      image-width: 1280
-      image-height: 640
       locale: en_US
     twitter-card:
       image: https://raimbekovm.github.io/cs231n-2025-notes/figures/social-card.png
-      image-width: 1280
-      image-height: 640
       card-style: summary_large_image
 
   pdf:
