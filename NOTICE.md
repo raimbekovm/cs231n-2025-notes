@@ -15,11 +15,23 @@ included here under a good-faith understanding of fair use for non-commercial
 educational purposes; no licence to them is granted by this project, and the MIT
 grant above does not extend to them.
 
-Where a figure originates from published research, its source is credited in the
-figure caption. If a caption is missing a credit, that is an oversight rather
-than a claim of authorship — please
+Every figure is listed in [`figures/SOURCES.md`](figures/SOURCES.md), which
+records what is known about each one and how confidently. Figures whose source
+has been established are credited both there and in their caption.
+
+**Not every figure has been traced.** Of the 39 third-party figures currently in
+the notes, 17 carry a source and 22 do not. The untraced ones were collected
+while drafting without a record of their origin, and the record cannot be
+reconstructed after the fact: the files carry no metadata, they were added in a
+single commit, and — apart from two — none is the bitmap used in the CS231n
+slides, so the decks' own credit lines do not apply to them. They are listed
+individually as `unidentified` in `figures/SOURCES.md`. A missing credit is
+never a claim of authorship, and no plausible-looking citation has been invented
+to fill a gap, because a wrong credit reads as a verified one.
+
+If you recognise an untraced figure, or hold rights to one, please
 [open an issue](https://github.com/raimbekovm/cs231n-2025-notes/issues) and it
-will be corrected.
+will be credited or removed.
 
 Diagrams generated for this project (currently `figures/*/diagram_*.svg`, drawn
 in TikZ) are original work and are covered by the MIT licence.
