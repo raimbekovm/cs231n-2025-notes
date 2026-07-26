@@ -65,6 +65,13 @@ format:
     fig-cap-location: bottom
     keep-tex: false
 
+filters:
+  # Must run after Quarto has built its figure containers: given the image's
+  # style attribute earlier, Quarto hoists it onto the enclosing float div,
+  # which then constrains the caption as well as the image.
+  - at: post-quarto
+    path: filters/lazy-images.lua
+
 crossref:
   fig-title: Figure
   eq-prefix: Equation
