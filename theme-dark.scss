@@ -1,79 +1,64 @@
 /*-- scss:defaults --*/
 
-$font-family-sans-serif:
-  "Inter",
-  -apple-system,
-  BlinkMacSystemFont,
-  "Segoe UI",
-  Roboto,
-  "Helvetica Neue",
-  Arial,
-  sans-serif !default;
-$font-family-monospace: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace !default;
+// Dark mode. Same tokens as theme.scss, re-valued for a dark ground; all
+// structure lives in theme-common.scss.
 
-// darkly's default background is close to pure black; lift it so figures
-// (mostly white-background slide screenshots) don't glare.
-$body-bg: #16191d !default;
-$body-color: #d6dae0 !default;
-$link-color: #6cb6ff !default;
+// --- Reading surface -------------------------------------------------------
+// Lifted well off pure black, with a slight indigo cast so it sits in the same
+// family as the viridis ramp instead of reading as neutral charcoal.
+$cs-paper: #12151c;
+$cs-surface: #1a1e27;
+$cs-ink: #e4e8ee;
+$cs-ink-muted: #a3acb9;
+$cs-ink-faint: #737d8b;
+$cs-rule: #262c37;
+$cs-rule-strong: #3a4250;
 
-$font-size-root: 17px !default;
-$line-height-base: 1.65 !default;
+// --- Accent ---------------------------------------------------------------
+$cs-accent: #5ec8d8;
+$cs-accent-hover: #8fdce8;
+$cs-accent-wash: rgba(94, 200, 216, 0.11);
 
-$h1-font-size: 2.1rem !default;
-$h2-font-size: 1.55rem !default;
-$h3-font-size: 1.25rem !default;
+// --- The ramp: true viridis, decoration only ------------------------------
+$cs-plum: #440154;
+$cs-indigo: #414487;
+$cs-teal: #2a788e;
+$cs-jade: #22a884;
+$cs-lime: #7ad151;
+$cs-citron: #e3ca1f;
 
-/*-- scss:rules --*/
+// --- Text-safe ramp: all >= 4.5:1 on #12151c ------------------------------
+// Viridis's dark end is unreadable on a dark ground, so plum and indigo are
+// raised until they read; they keep their hue, not their lightness.
+$cs-tx-teal: #56c4d5;
+$cs-tx-indigo: #9aa0e8;
+$cs-tx-jade: #3fd3a8;
+$cs-tx-plum: #d193e0;
+$cs-tx-citron: #e0c73c;
 
-main.content {
-  max-width: 46rem;
-}
+// --- Hero panel: dark in both modes ---------------------------------------
+$cs-hero-bg: #0d1015;
+$cs-hero-ink: #f2f5f8;
+$cs-hero-ink-muted: #a5aebb;
+$cs-hero-accent: #22a884;
+$cs-hero-accent-2: #7ad151;
 
-figure {
-  margin: 2rem auto;
+// Most figures are diagrams on white; dimming them slightly is far less
+// jarring than a full-brightness panel on a dark page.
+$cs-figure-filter: brightness(0.94) contrast(1.02);
+// Line art needs a light plate to survive on a dark page; the plate is dimmed
+// by the same filter, which lands it as a soft off-white panel.
+$cs-figure-plate: #eef1f5;
+$cs-shadow:
+  0 1px 2px rgba(0, 0, 0, 0.4),
+  0 10px 28px -14px rgba(0, 0, 0, 0.7);
 
-  img {
-    border-radius: 6px;
-    border: 1px solid #30363d;
-    // Most figures are diagrams on white. Dimming them slightly is far less
-    // jarring than a full-brightness panel on a dark page.
-    filter: brightness(0.92);
-  }
-
-  figcaption {
-    font-size: 0.88rem;
-    color: #9198a1;
-    margin-top: 0.6rem;
-  }
-}
-
-div.callout {
-  margin: 1.75rem 0;
-  border-radius: 6px;
-}
-
-.header-section-number {
-  color: #6e7681;
-  font-weight: 400;
-  padding-right: 0.35rem;
-}
-
-.katex-display {
-  margin: 1.4rem 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-.table-responsive,
-main.content > table {
-  display: block;
-  overflow-x: auto;
-  max-width: 100%;
-}
-
-blockquote {
-  border-left: 3px solid #30363d;
-  color: #9198a1;
-  padding-left: 1rem;
-}
+// --- Bootstrap ------------------------------------------------------------
+$body-bg: $cs-paper;
+$body-color: $cs-ink;
+$link-color: $cs-accent;
+$link-hover-color: $cs-accent-hover;
+$border-color: $cs-rule;
+$table-border-color: $cs-rule;
+$toc-color: $cs-ink-muted;
+$code-color: $cs-accent-hover;

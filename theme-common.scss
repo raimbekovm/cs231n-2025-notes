@@ -1,0 +1,1004 @@
+/*-- scss:defaults --*/
+
+// Shared across light and dark. Every colour lives in theme.scss /
+// theme-dark.scss; this file only defines what does not change between them —
+// type, scale, geometry — plus the structural rules at the bottom.
+//
+// The palette both mode files draw from is viridis, the perceptual colormap
+// that computer vision actually runs on: activation maps, attention maps,
+// depth maps. Deliberately not Stanford Cardinal — these notes are unofficial
+// and a cardinal site would imply an affiliation that does not exist.
+
+$font-family-sans-serif:
+  "Space Grotesk",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  "Helvetica Neue",
+  Arial,
+  sans-serif !default;
+$font-family-serif: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif !default;
+$font-family-monospace: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace !default;
+
+$cs-font-display: $font-family-sans-serif !default;
+$cs-font-body: $font-family-serif !default;
+$cs-font-mono: $font-family-monospace !default;
+
+$font-size-root: 17px !default;
+$line-height-base: 1.7 !default;
+
+// Display faces need a tighter, more decisive scale than the body text.
+$h1-font-size: 2.45rem !default;
+$h2-font-size: 1.72rem !default;
+$h3-font-size: 1.28rem !default;
+$h4-font-size: 1.06rem !default;
+$headings-font-weight: 600 !default;
+
+$border-radius: 8px !default;
+$code-font-size: 0.86em !default;
+
+// Fallbacks so this file always compiles even if a mode file forgets a token.
+$cs-paper: #ffffff !default;
+$cs-surface: #f6f7f9 !default;
+$cs-ink: #16191f !default;
+$cs-ink-muted: #565f6b !default;
+$cs-ink-faint: #8b939e !default;
+$cs-rule: #e2e6ea !default;
+$cs-rule-strong: #cbd2d9 !default;
+$cs-accent: #196f7d !default;
+$cs-accent-hover: #12525c !default;
+$cs-accent-wash: rgba(33, 120, 142, 0.09) !default;
+$cs-plum: #3f0f52 !default;
+$cs-indigo: #414487 !default;
+$cs-teal: #21788e !default;
+$cs-jade: #22a884 !default;
+$cs-lime: #7ad151 !default;
+$cs-citron: #c9a227 !default;
+$cs-hero-bg: #12141c !default;
+$cs-hero-ink: #f3f5f8 !default;
+$cs-hero-ink-muted: #a7b0bd !default;
+// Text-safe counterparts, darkened (light mode) or lightened (dark mode) until
+// they clear WCAG AA against that mode's paper. Verified, not eyeballed.
+$cs-tx-teal: #16707f !default;
+$cs-tx-indigo: #3a3f7e !default;
+$cs-tx-jade: #0d7a5c !default;
+$cs-tx-plum: #4c1160 !default;
+$cs-tx-citron: #7d6410 !default;
+$cs-figure-filter: none !default;
+// Several figures are line art on a transparent background — the own-work TikZ
+// SVGs among them. Without a plate they are black strokes on a dark page.
+$cs-figure-plate: #ffffff !default;
+// Always-bright ramp values, for the permanently dark hero panel.
+$cs-hero-accent: #22a884 !default;
+$cs-hero-accent-2: #7ad151 !default;
+$cs-shadow:
+  0 1px 2px rgba(16, 20, 28, 0.04),
+  0 8px 24px -12px rgba(16, 20, 28, 0.16) !default;
+
+/*-- scss:rules --*/
+
+// ---------------------------------------------------------------------------
+// Reading surface
+// ---------------------------------------------------------------------------
+
+body {
+  font-family: $cs-font-body;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+// A serif at 17px over ~66 characters is the measure these notes are written
+// for; the stock container is roughly half again as wide.
+main.content {
+  max-width: 43rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-title,
+.sidebar-title {
+  font-family: $cs-font-display;
+  letter-spacing: -0.018em;
+}
+
+h2 {
+  margin-top: 3.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid $cs-rule;
+}
+
+h3 {
+  margin-top: 2.4rem;
+  margin-bottom: 0.75rem;
+}
+
+h4 {
+  margin-top: 1.9rem;
+  font-family: $cs-font-mono;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $cs-ink-muted;
+}
+
+// Section numbers are addresses into the book, not decoration — every one of
+// them is a shareable link target. Setting them in tabular mono says so.
+.header-section-number {
+  font-family: $cs-font-mono;
+  font-size: 0.78em;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  color: $cs-tx-teal;
+  padding-right: 0.55rem;
+  vertical-align: 0.08em;
+}
+
+p {
+  margin-bottom: 1.15rem;
+}
+
+main.content {
+  li {
+    margin-bottom: 0.3rem;
+  }
+
+  li > p {
+    margin-bottom: 0.55rem;
+  }
+
+  li > p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  text-decoration-color: rgba($cs-accent, 0.35);
+}
+
+a:hover {
+  text-decoration-color: $cs-accent-hover;
+}
+
+// ---------------------------------------------------------------------------
+// Title block
+// ---------------------------------------------------------------------------
+
+#title-block-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.3rem;
+  border-bottom: 1px solid $cs-rule;
+
+  .quarto-title h1.title {
+    margin-bottom: 0.35rem;
+    line-height: 1.12;
+  }
+
+  .subtitle {
+    font-family: $cs-font-mono;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $cs-tx-teal;
+  }
+
+  .description {
+    font-size: 1.02rem;
+    color: $cs-ink-muted;
+    max-width: 34rem;
+  }
+
+  .quarto-title-meta {
+    font-family: $cs-font-mono;
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    padding-top: 1rem;
+    margin-top: 1.1rem;
+
+    .quarto-title-meta-heading {
+      color: $cs-ink-faint;
+      text-transform: uppercase;
+    }
+  }
+}
+
+// Quarto emits the meta grid even with no author or date, which on every
+// lecture page left 2rem of air above the first paragraph. Its own selector is
+// #title-block-header.quarto-title-block.default .quarto-title-meta, so this
+// has to carry the same specificity to win.
+#title-block-header.quarto-title-block .quarto-title-meta:not(:has(.quarto-title-meta-heading)) {
+  display: none;
+}
+
+.quarto-page-breadcrumbs .breadcrumb {
+  font-family: $cs-font-mono;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+// ---------------------------------------------------------------------------
+// Navbar
+// ---------------------------------------------------------------------------
+
+.navbar {
+  background: $cs-paper;
+  border-bottom: 1px solid $cs-rule;
+  min-height: 3.6rem;
+
+  .navbar-title {
+    font-weight: 600;
+    font-size: 1.02rem;
+    letter-spacing: -0.01em;
+  }
+
+  // A hairline of the full ramp under the navbar: the site's one persistent
+  // reminder of where the palette comes from.
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: linear-gradient(to right, $cs-plum, $cs-indigo, $cs-teal, $cs-jade, $cs-lime, $cs-citron);
+  }
+}
+
+.sidebar-title,
+.sidebar-header .navbar-brand {
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.quarto-navigation-tool {
+  color: $cs-ink-muted;
+
+  &:hover {
+    color: $cs-accent;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Sidebar navigation
+// ---------------------------------------------------------------------------
+
+#quarto-sidebar {
+  background: $cs-surface;
+  border-right: 1px solid $cs-rule;
+
+  .sidebar-item {
+    font-family: $cs-font-display;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .sidebar-item-container .sidebar-item-text {
+    padding-top: 0.34rem;
+    padding-bottom: 0.34rem;
+  }
+
+  // Part headings ("Fundamentals") organise the book; make them read as
+  // labels rather than as another link.
+  .sidebar-item.sidebar-item-section > .sidebar-item-container > .sidebar-item-text {
+    font-family: $cs-font-mono;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: $cs-ink-faint;
+  }
+
+  .chapter-number {
+    font-family: $cs-font-mono;
+    font-size: 0.78em;
+    font-variant-numeric: tabular-nums;
+    color: $cs-ink-faint;
+    margin-right: 0.15rem;
+  }
+
+  a.sidebar-item-text {
+    color: $cs-ink-muted;
+    border-left: 2px solid transparent;
+    padding-left: 0.55rem;
+    margin-left: -0.55rem;
+    border-radius: 0 4px 4px 0;
+
+    &:hover {
+      color: $cs-ink;
+      background: $cs-accent-wash;
+    }
+
+    &.active {
+      color: $cs-accent;
+      font-weight: 600;
+      border-left-color: $cs-accent;
+      background: $cs-accent-wash;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Table of contents
+// ---------------------------------------------------------------------------
+
+#quarto-margin-sidebar {
+  #toc-title {
+    font-family: $cs-font-mono;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: $cs-ink-faint;
+    border-bottom: 1px solid $cs-rule;
+    padding-bottom: 0.55rem;
+    margin-bottom: 0.6rem;
+  }
+
+  nav#TOC {
+    font-family: $cs-font-display;
+    font-size: 0.82rem;
+    line-height: 1.35;
+
+    .nav-link {
+      color: $cs-ink-muted;
+      border-left: 2px solid $cs-rule;
+      padding: 0.22rem 0 0.22rem 0.7rem;
+
+      &:hover {
+        color: $cs-ink;
+        border-left-color: $cs-rule-strong;
+      }
+
+      &.active {
+        color: $cs-accent;
+        font-weight: 600;
+        border-left-color: $cs-accent;
+      }
+    }
+  }
+
+  .toc-actions {
+    font-family: $cs-font-mono;
+    font-size: 0.74rem;
+    border-top: 1px solid $cs-rule;
+    padding-top: 0.8rem;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Figures
+// ---------------------------------------------------------------------------
+
+figure {
+  margin: 2.4rem auto;
+
+  img {
+    border-radius: 6px;
+    border: 1px solid $cs-rule;
+    background: $cs-figure-plate;
+    padding: 0.5rem;
+    filter: $cs-figure-filter;
+  }
+
+  figcaption {
+    font-family: $cs-font-body;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: $cs-ink-muted;
+    margin-top: 0.7rem;
+    padding-left: 0.8rem;
+    border-left: 2px solid $cs-teal;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Callouts — mapped onto the ramp so the type of a box is legible at a glance
+// ---------------------------------------------------------------------------
+
+div.callout {
+  margin: 2rem 0;
+  border: 1px solid $cs-rule;
+  border-left-width: 3px;
+  border-radius: 6px;
+  background: $cs-surface;
+
+  .callout-title {
+    font-family: $cs-font-display;
+    font-weight: 600;
+    font-size: 0.98rem;
+    letter-spacing: -0.005em;
+  }
+
+  .callout-header {
+    background: transparent !important;
+    padding-top: 0.75rem;
+    padding-bottom: 0.35rem;
+  }
+
+  .callout-body-container {
+    font-size: 0.97rem;
+  }
+
+  > .callout-body-container > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+// "Key Takeaways" closes every major section; jade makes it the resting point.
+div.callout-tip {
+  border-left-color: $cs-jade;
+
+  .callout-title {
+    color: $cs-tx-jade;
+  }
+}
+
+// "Deep Dive" boxes go past the lecture; indigo reads as an aside.
+div.callout-note {
+  border-left-color: $cs-indigo;
+
+  .callout-title {
+    color: $cs-tx-indigo;
+  }
+}
+
+div.callout-important {
+  border-left-color: $cs-plum;
+
+  .callout-title {
+    color: $cs-tx-plum;
+  }
+}
+
+div.callout-warning,
+div.callout-caution {
+  border-left-color: $cs-citron;
+
+  .callout-title {
+    color: $cs-tx-citron;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Prose furniture
+// ---------------------------------------------------------------------------
+
+blockquote {
+  border-left: 2px solid $cs-rule-strong;
+  color: $cs-ink-muted;
+  font-size: 1rem;
+  padding-left: 1.1rem;
+  margin: 1.8rem 0;
+}
+
+code:not(.sourceCode) {
+  font-family: $cs-font-mono;
+  background: $cs-accent-wash;
+  color: $cs-accent-hover;
+  padding: 0.1em 0.34em;
+  border-radius: 4px;
+}
+
+div.sourceCode {
+  border: 1px solid $cs-rule;
+  border-radius: 6px;
+  background: $cs-surface;
+}
+
+.katex-display {
+  margin: 1.6rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.2rem 0;
+}
+
+// Wide tables must scroll themselves, never the page. Quarto nests tables
+// inside the section it emits per heading, so this cannot be a child selector.
+.table-responsive,
+main.content table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+table {
+  font-family: $cs-font-display;
+  font-size: 0.92rem;
+
+  thead th {
+    font-family: $cs-font-mono;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: $cs-ink-muted;
+    border-bottom: 1px solid $cs-rule-strong !important;
+  }
+
+  caption {
+    font-family: $cs-font-body;
+    font-size: 0.85rem;
+    color: $cs-ink-faint;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Page navigation and footer
+// ---------------------------------------------------------------------------
+
+.page-navigation {
+  border-top: 1px solid $cs-rule;
+  padding-top: 1.4rem;
+  margin-top: 3.5rem;
+
+  .nav-page a {
+    font-family: $cs-font-display;
+    color: $cs-ink-muted;
+
+    &:hover {
+      color: $cs-accent;
+    }
+  }
+}
+
+.nav-footer {
+  font-family: $cs-font-mono;
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+  border-top: 1px solid $cs-rule;
+  color: $cs-ink-faint;
+}
+
+// ---------------------------------------------------------------------------
+// Landing page: hero
+// ---------------------------------------------------------------------------
+
+// The reading measure is wrong for the landing page, and its default title
+// block would repeat what the hero already says.
+main.content:has(.cs-hero) {
+  max-width: min(72rem, 100%);
+
+  > #title-block-header {
+    display: none;
+  }
+
+  // The extra width is for the hero and the card grid only. Prose keeps the
+  // same measure as the lecture pages, or the callout would run 70 characters
+  // past comfortable.
+  > *:not(section),
+  > section > * {
+    max-width: 44rem;
+  }
+
+  .cs-hero,
+  .cs-cards {
+    max-width: none;
+  }
+}
+
+.cs-hero {
+  position: relative;
+  overflow: hidden;
+  background: $cs-hero-bg;
+  color: $cs-hero-ink;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 3.4rem 2.6rem 3.1rem;
+  margin: 0 0 3.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 2.8rem;
+  align-items: center;
+  isolation: isolate;
+}
+
+.cs-hero__eyebrow {
+  font-family: $cs-font-mono;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: $cs-hero-accent;
+  margin-bottom: 1.1rem;
+}
+
+.cs-hero__title {
+  font-family: $cs-font-display;
+  font-size: clamp(1.9rem, 4.4vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin: 0 0 1.1rem;
+  color: $cs-hero-ink;
+}
+
+.cs-hero__title em {
+  font-style: normal;
+  background: linear-gradient(to right, $cs-hero-accent, $cs-hero-accent-2, #fde725);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cs-hero__lede {
+  font-family: $cs-font-body;
+  font-size: 1.03rem;
+  line-height: 1.6;
+  color: $cs-hero-ink-muted;
+  max-width: 30rem;
+  margin: 0 0 1.8rem;
+}
+
+.cs-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.cs-btn {
+  font-family: $cs-font-mono;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.68rem 1.15rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition:
+    transform 0.12s ease,
+    background-color 0.12s ease,
+    border-color 0.12s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+}
+
+.cs-btn--primary {
+  background: $cs-hero-accent;
+  color: #06231b;
+
+  &:hover {
+    background: $cs-hero-accent-2;
+    color: #10230a;
+  }
+}
+
+.cs-btn--ghost {
+  border-color: rgba(255, 255, 255, 0.22);
+  color: $cs-hero-ink;
+
+  &:hover {
+    border-color: $cs-hero-accent;
+    color: $cs-hero-accent;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// The signature: a 3x3 kernel striding across a feature grid, leaving a
+// false-colour activation map behind it. This is the subject of the first
+// third of the course, drawn rather than described, and it is the only place
+// on the site where anything moves.
+// ---------------------------------------------------------------------------
+
+.cs-conv {
+  margin: 0;
+}
+
+.cs-conv__field {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 14 / 8;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+// The activation map: viridis, revealed column by column as the kernel passes.
+.cs-conv__map {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, #440154 0%, #414487 22%, #2a788e 44%, #22a884 64%, #7ad151 82%, #fde725 100%);
+  opacity: 0.85;
+  clip-path: inset(0 78.57% 0 0);
+  animation: cs-conv-reveal 7.5s infinite;
+}
+
+// The feature grid itself: hairlines at every cell boundary, 14 x 8.
+.cs-conv__grid {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: overlay;
+  background-image:
+    repeating-linear-gradient(to right, rgba(255, 255, 255, 0.13) 0 1px, transparent 1px calc(100% / 14)),
+    repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.13) 0 1px, transparent 1px calc(100% / 8));
+}
+
+// The kernel window, three cells wide, snapping one stride at a time.
+.cs-conv__kernel {
+  position: absolute;
+  top: calc(100% / 8 * 2);
+  left: 0;
+  width: calc(100% / 14 * 3);
+  height: calc(100% / 8 * 3);
+  border: 1.5px solid rgba(255, 255, 255, 0.92);
+  border-radius: 2px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.35),
+    0 0 22px rgba(122, 209, 81, 0.45);
+  animation: cs-conv-stride 7.5s infinite;
+}
+
+.cs-conv__label {
+  margin-top: 0.7rem;
+  font-family: $cs-font-mono;
+  font-size: 0.63rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  border: 0;
+  padding: 0;
+}
+
+@keyframes cs-conv-stride {
+  0% {
+    transform: translateX(0);
+    animation-timing-function: steps(11, end);
+  }
+
+  72% {
+    transform: translateX(366.66%);
+    opacity: 1;
+  }
+
+  88% {
+    transform: translateX(366.66%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+
+@keyframes cs-conv-reveal {
+  0% {
+    clip-path: inset(0 78.57% 0 0);
+    animation-timing-function: steps(11, end);
+  }
+
+  72%,
+  88% {
+    clip-path: inset(0 0 0 0);
+  }
+
+  100% {
+    clip-path: inset(0 78.57% 0 0);
+  }
+}
+
+// One pass, then hold: the finished activation map with the kernel at rest.
+@media (prefers-reduced-motion: reduce) {
+  .cs-conv__map {
+    animation: none;
+    clip-path: inset(0 0 0 0);
+  }
+
+  .cs-conv__kernel {
+    animation: none;
+    transform: translateX(366.66%);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Landing page: lecture cards
+// ---------------------------------------------------------------------------
+
+.cs-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1rem;
+  margin: 1.75rem 0 2.5rem;
+}
+
+.cs-card {
+  position: relative;
+  border: 1px solid $cs-rule;
+  border-radius: 10px;
+  background: $cs-paper;
+  padding: 1.15rem 1.25rem 1.2rem;
+  transition:
+    border-color 0.14s ease,
+    transform 0.14s ease,
+    box-shadow 0.14s ease;
+
+  // The status stripe is the card's one piece of colour, and it carries real
+  // information: how far along this lecture is.
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1.1rem;
+    bottom: 1.1rem;
+    width: 2px;
+    border-radius: 0 2px 2px 0;
+    background: $cs-rule-strong;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  p + p {
+    margin-top: 0.5rem;
+  }
+
+  .cs-card__index {
+    font-family: $cs-font-mono;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $cs-ink-faint;
+  }
+
+  .cs-card__title {
+    font-family: $cs-font-display;
+    font-size: 1.06rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+
+  .cs-card__title a {
+    color: $cs-ink;
+    text-decoration: none;
+
+    &:hover {
+      color: $cs-accent;
+    }
+  }
+
+  .cs-card__blurb {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: $cs-ink-muted;
+  }
+
+  .cs-card__status {
+    font-family: $cs-font-mono;
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+}
+
+.cs-card--done {
+  &::before {
+    background: $cs-jade;
+  }
+
+  .cs-card__status {
+    color: $cs-tx-jade;
+  }
+
+  &:hover {
+    border-color: $cs-jade;
+    transform: translateY(-2px);
+    box-shadow: $cs-shadow;
+  }
+}
+
+.cs-card--wip {
+  &::before {
+    background: $cs-citron;
+  }
+
+  .cs-card__status {
+    color: $cs-tx-citron;
+  }
+}
+
+.cs-card--planned {
+  background: transparent;
+  border-style: dashed;
+
+  .cs-card__title,
+  .cs-card__blurb {
+    color: $cs-ink-faint;
+  }
+
+  .cs-card__status {
+    color: $cs-ink-faint;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Landing page: the roadmap as a typed sequence. Numbering is used here and
+// nowhere else on the site, because here the order genuinely is the content.
+// ---------------------------------------------------------------------------
+
+.cs-roadmap {
+  counter-reset: cs-stage;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 2.5rem;
+  border-left: 1px solid $cs-rule;
+
+  li {
+    counter-increment: cs-stage;
+    position: relative;
+    padding: 0.55rem 0 0.55rem 1.6rem;
+    font-size: 0.97rem;
+
+    &::before {
+      content: counter(cs-stage, decimal-leading-zero);
+      position: absolute;
+      left: -0.95rem;
+      top: 0.62rem;
+      font-family: $cs-font-mono;
+      font-size: 0.62rem;
+      font-weight: 500;
+      line-height: 1.9rem;
+      width: 1.9rem;
+      height: 1.9rem;
+      text-align: center;
+      border-radius: 50%;
+      background: $cs-surface;
+      border: 1px solid $cs-rule;
+      color: $cs-ink-muted;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Responsive
+// ---------------------------------------------------------------------------
+
+@media (max-width: 991px) {
+  .cs-hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 2.4rem 1.6rem 2.2rem;
+    gap: 1.9rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .cs-hero {
+    border-radius: 0;
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+
+  .cs-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// Keyboard focus must stay visible everywhere, including on the hero.
+:focus-visible {
+  outline: 2px solid $cs-accent;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.cs-hero :focus-visible {
+  outline-color: $cs-hero-accent-2;
+}

@@ -2,15 +2,47 @@
 title: "CS231n 2025 Lecture Notes"
 subtitle: "Deep Learning for Computer Vision — Stanford University, Spring 2025"
 description: "Modern, in-depth lecture notes for Stanford CS231n covering the 2025 curriculum: CNNs, Transformers, diffusion models, and vision-language models."
-number-sections: false
+format:
+  html:
+    # The hero replaces the title block and the page is a landing page, not an
+    # article; a margin TOC of five headings would only crowd it.
+    number-sections: false
+    toc: false
+    page-layout: full
 ---
 
-The official [cs231n.github.io](https://cs231n.github.io/) notes are excellent — and
-they stopped being updated in 2017. Everything that has since reshaped computer
-vision is missing from them: Vision Transformers, contrastive pretraining, latent
-diffusion, segmentation foundation models, vision-language models.
+::: {.content-visible when-format="html"}
 
-These notes follow the **Spring 2025** lectures and cover that material.
+```{=html}
+<section class="cs-hero">
+  <div class="cs-hero__copy">
+    <p class="cs-hero__eyebrow">CS231n lecture notes &middot; Stanford &middot; Spring 2025 &middot; Unofficial</p>
+    <h1 class="cs-hero__title">The official notes stopped in 2017.<br><em>These don&rsquo;t.</em></h1>
+    <p class="cs-hero__lede">
+      Vision Transformers, contrastive pretraining, latent diffusion,
+      segmentation foundation models, vision&ndash;language models &mdash; written
+      from the 2025 lectures, with every result linked to the paper it came from.
+    </p>
+    <div class="cs-hero__actions">
+      <a class="cs-btn cs-btn--primary" href="lectures/01-history.qmd">Start with lecture 1</a>
+      <a class="cs-btn cs-btn--ghost" href="CS231n-2025-Lecture-Notes.pdf">Read as PDF</a>
+    </div>
+  </div>
+  <!-- A 3x3 kernel striding across a feature grid, leaving a viridis
+       activation map behind it: the subject of the first third of the course,
+       drawn rather than described. -->
+  <figure class="cs-conv">
+    <div class="cs-conv__field">
+      <div class="cs-conv__map"></div>
+      <div class="cs-conv__grid"></div>
+      <div class="cs-conv__kernel"></div>
+    </div>
+    <figcaption class="cs-conv__label">conv 3&times;3 &middot; stride 1 &middot; activation map</figcaption>
+  </figure>
+</section>
+```
+
+:::
 
 ::: {.callout-tip title="How to read these notes"}
 Each lecture is a standalone page. Sections are numbered and individually
@@ -21,6 +53,72 @@ material that goes beyond what the lecture covered.
 
 ## Lectures
 
+The course runs to 18 lectures; these are the pages written so far. See the
+[roadmap](#roadmap) for what is coming.
+
+::: {.content-visible when-format="html"}
+
+::: {.cs-cards}
+
+::: {.cs-card .cs-card--done}
+[Lecture 1.1]{.cs-card__index}
+
+[[History of Computer Vision](lectures/01-history.qmd)]{.cs-card__title}
+
+[From the camera obscura and Hubel & Wiesel to AlexNet: how vision became a deep
+learning field.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
+::: {.cs-card .cs-card--done}
+[Lecture 1.2]{.cs-card__index}
+
+[[Course Overview: Tasks, Models, Applications](lectures/01b-course-overview.qmd)]{.cs-card__title}
+
+[The problems computer vision actually solves, the architectures that solve them,
+and where the field is going.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
+::: {.cs-card .cs-card--wip}
+[Lecture 2]{.cs-card__index}
+
+[Image Classification, k-NN, Linear Classifiers]{.cs-card__title}
+
+[The classification setup, nearest neighbours, and why linear models are the
+right place to start.]{.cs-card__blurb}
+
+[In progress]{.cs-card__status}
+:::
+
+::: {.cs-card .cs-card--planned}
+[Lecture 3]{.cs-card__index}
+
+[Regularization and Optimization]{.cs-card__title}
+
+[Loss landscapes, gradient descent and its variants.]{.cs-card__blurb}
+
+[Planned]{.cs-card__status}
+:::
+
+::: {.cs-card .cs-card--planned}
+[Lecture 4]{.cs-card__index}
+
+[Neural Networks and Backpropagation]{.cs-card__title}
+
+[Computational graphs and the chain rule, done properly.]{.cs-card__blurb}
+
+[Planned]{.cs-card__status}
+:::
+
+:::
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
 | # | Topic | Status |
 |:--|:------|:-------|
 | 1.1 | [History of Computer Vision](lectures/01-history.qmd) | Complete |
@@ -29,13 +127,19 @@ material that goes beyond what the lecture covered.
 | 3 | Regularization and Optimization | Planned |
 | 4 | Neural Networks and Backpropagation | Planned |
 
-: Lectures published so far. The course runs to 18 lectures; see the [roadmap](#roadmap).
+: Lectures published so far.
+
+:::
 
 ## What these notes are
 
-Written from the lecture recordings and slides, not summarised from the 2017
-notes. That means they follow what the lecturers actually emphasised in 2025,
-including the parts that changed.
+The official [cs231n.github.io](https://cs231n.github.io/) notes are excellent —
+and they stopped being updated in 2017. Everything that has since reshaped
+computer vision is missing from them.
+
+These notes are written from the Spring 2025 lecture recordings and slides, not
+summarised from the 2017 notes. That means they follow what the lecturers
+actually emphasised in 2025, including the parts that changed.
 
 Each page aims to be:
 
@@ -47,15 +151,17 @@ Each page aims to be:
 
 ## Roadmap {#roadmap}
 
-Lectures are published as they are written, in course order. The plan follows the
-2025 syllabus:
+Lectures are published as they are written, in course order, following the 2025
+syllabus.
 
+::: {.cs-roadmap}
 1. **Fundamentals** — introduction, image classification, optimisation, backpropagation
 2. **Convolutional networks** — CNNs, architectures from AlexNet to ConvNeXt
 3. **Sequence models** — RNNs, attention, Transformers, ViT
 4. **Vision tasks** — detection, segmentation, video, 3D
 5. **Generative models** — VAEs, GANs, diffusion
 6. **Advanced topics** — NeRF, vision-language models, robot learning, ethics
+:::
 
 ## Contributing
 

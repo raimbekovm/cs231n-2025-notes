@@ -30,9 +30,9 @@ book:
   back-to-top-navigation: true
   navbar:
     right:
-      - icon: github
-        href: https://github.com/raimbekovm/cs231n-2025-notes
-        aria-label: GitHub
+      - text: PDF
+        href: https://raimbekovm.github.io/cs231n-2025-notes/CS231n-2025-Lecture-Notes.pdf
+        aria-label: Download the notes as a PDF
   chapters:
     - index.qmd
     - part: "Fundamentals"
@@ -43,11 +43,14 @@ book:
 format:
   html:
     theme:
-      light: [cosmo, theme.scss]
-      dark: [darkly, theme-dark.scss]
+      # theme-common.scss holds type, geometry and every structural rule; the
+      # mode files supply only the colour tokens it reads.
+      light: [cosmo, theme-common.scss, theme.scss]
+      dark: [darkly, theme-common.scss, theme-dark.scss]
+    include-in-header: head.html
     toc: true
     toc-depth: 3
-    toc-expand: 2
+    toc-expand: 1
     number-sections: true
     code-copy: true
     link-external-newwindow: true
