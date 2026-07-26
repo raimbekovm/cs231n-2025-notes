@@ -29,6 +29,12 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+        # Installing TinyTeX asks api.github.com for the latest
+        # rstudio/tinytex-releases release. Unauthenticated that call is rate
+        # limited per runner IP and intermittently returns 403, failing the
+        # build. Quarto sends the token as a bearer if GH_TOKEN is set.
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           version: 1.10.18
           # pulls in TinyTeX, needed for the book PDF

@@ -70,11 +70,36 @@ one) and are the only figures covered by the MIT licence.
 | `robot_tidying.jpg`               | unidentified | Photograph of a humanoid robot being teleoperated by a person in a VR headset. Appears to be a press photograph.                                                                                                                                                                                                           |
 | `ai_medical_xray.jpg`             | unidentified | Four chest X-rays comparing heatmap visualisation styles (A–D).                                                                                                                                                                                                                                                            |
 
-## Figures not currently used
+## Site assets
+
+| File              | Status               | Source                                                                                                                                                                                                                                                                                                          |
+| :---------------- | :------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `social-card.png` | own work (composite) | The 1280×640 Open Graph / Twitter card set in `_quarto.yml`. Layout, type and colours drawn for this project. Its background, however, is a blurred and dimmed tiling of `cnn_layer_activations.jpg`, so the `unidentified` status of that figure applies to the card as well until the background is replaced. |
+
+Because the card is what X, Slack, Discord and GitHub display for every shared
+link, its background should be swapped for one of the `diagram_*.svg` drawings or
+a flat pattern; that is the one place where an untraced bitmap is served as this
+project's own public face.
+
+## Figures no longer in the repository
 
 `cat_example.jpg`, `cnn_architecture.png`, `rnn_transformer.png` and
-`temporal_tasks.jpg` are in the repository but referenced by no lecture. They
-carry the same provenance uncertainty and should be either sourced or deleted.
+`temporal_tasks.jpg` were present but referenced by no lecture, and have been
+deleted.
+
+Three of them — `cnn_architecture.png`, `rnn_transformer.png` and
+`temporal_tasks.jpg` — were verbatim screen captures of CS231n 2025 Lecture 1
+Part 2 slides 16, 17 and 15, footer (_"Stanford CS231n 10th Anniversary · April
+1, 2025"_) included. Redistributing whole slides is exactly what keeping
+`slides/` out of version control is meant to avoid, so their removal is a
+licensing fix and not only housekeeping. `cat_example.jpg` was an untraced stock
+photograph of a cat.
+
+Every remaining figure was checked for that footer, by eye and not only by
+script: none of the figures still in the repository is a slide capture.
+`semantic_segmentation.jpg` is the closest case — it is the CS231n cat/cow
+figure, but cropped to the figure itself, and the deck credits the underlying
+photograph to Nikita under CC BY 2.0.
 
 ## On the unidentified figures
 
