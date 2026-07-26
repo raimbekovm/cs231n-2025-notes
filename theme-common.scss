@@ -1264,12 +1264,21 @@ main.content:has(.cs-hero) {
 // nowhere else on the site, because here the order genuinely is the content.
 // ---------------------------------------------------------------------------
 
+// Pandoc renders `::: {.cs-roadmap}` as a div wrapping an <ol>, so the class
+// lands on the wrapper and the list markers belong to the child. Suppressing
+// them has to happen on the ol itself — left on the div it does nothing, and
+// the browser's own "1." sits next to the counter's "01".
 .cs-roadmap {
   counter-reset: cs-stage;
-  list-style: none;
-  padding: 0;
   margin: 1.5rem 0 2.5rem;
   border-left: 1px solid $cs-rule;
+
+  ol,
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 
   li {
     counter-increment: cs-stage;
