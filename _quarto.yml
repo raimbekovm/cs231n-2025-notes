@@ -1,0 +1,73 @@
+project:
+  type: book
+  output-dir: _site
+  preview:
+    port: 4321
+    browser: false
+
+book:
+  title: "CS231n 2025 Lecture Notes"
+  subtitle: "Deep Learning for Computer Vision — Stanford, Spring 2025"
+  author: "Murat Raimbekov"
+  description: >
+    Comprehensive, modern lecture notes for Stanford CS231n (Spring 2025):
+    CNNs, Transformers, diffusion models, and vision-language models.
+    The official notes stopped at 2017 — these do not.
+  site-url: https://raimbekovm.github.io/cs231n-2025-notes/
+  repo-url: https://github.com/raimbekovm/cs231n-2025-notes
+  repo-branch: main
+  repo-actions: [edit, issue]
+  search:
+    location: sidebar
+    type: overlay
+  sidebar:
+    style: docked
+    collapse-level: 1
+  page-navigation: true
+  back-to-top-navigation: true
+  navbar:
+    right:
+      - icon: github
+        href: https://github.com/raimbekovm/cs231n-2025-notes
+        aria-label: GitHub
+  chapters:
+    - index.qmd
+    - part: "Fundamentals"
+      chapters:
+        - lectures/01-history.qmd
+        - lectures/01b-course-overview.qmd
+
+format:
+  html:
+    theme:
+      light: [cosmo, theme.scss]
+      dark: [darkly, theme-dark.scss]
+    toc: true
+    toc-depth: 3
+    toc-expand: 2
+    number-sections: true
+    code-copy: true
+    link-external-newwindow: true
+    fig-align: center
+    fig-cap-location: bottom
+    html-math-method: katex
+    anchor-sections: true
+    smooth-scroll: true
+
+  pdf:
+    documentclass: scrbook
+    papersize: a4
+    geometry:
+      - margin=1in
+    toc: true
+    number-sections: true
+    colorlinks: true
+    fig-cap-location: bottom
+    keep-tex: false
+
+crossref:
+  fig-title: Figure
+  eq-prefix: Equation
+
+# Every page inherits these
+lightbox: true

@@ -1,0 +1,76 @@
+---
+title: "CS231n 2025 Lecture Notes"
+subtitle: "Deep Learning for Computer Vision — Stanford University, Spring 2025"
+description: "Modern, in-depth lecture notes for Stanford CS231n covering the 2025 curriculum: CNNs, Transformers, diffusion models, and vision-language models."
+number-sections: false
+---
+
+The official [cs231n.github.io](https://cs231n.github.io/) notes are excellent — and
+they stopped being updated in 2017. Everything that has since reshaped computer
+vision is missing from them: Vision Transformers, contrastive pretraining, latent
+diffusion, segmentation foundation models, vision-language models.
+
+These notes follow the **Spring 2025** lectures and cover that material.
+
+::: {.callout-tip title="How to read these notes"}
+Each lecture is a standalone page. Sections are numbered and individually
+linkable, so you can share a link to exactly the part you mean. Every major
+section ends with a **Key Takeaways** box, and optional **Deep Dive** boxes hold
+material that goes beyond what the lecture covered.
+:::
+
+## Lectures
+
+| # | Topic | Status |
+|:--|:------|:-------|
+| 1.1 | [History of Computer Vision](lectures/01-history.qmd) | Complete |
+| 1.2 | [Course Overview: Tasks, Models, Applications](lectures/01b-course-overview.qmd) | Complete |
+| 2 | Image Classification, k-NN, Linear Classifiers | In progress |
+| 3 | Regularization and Optimization | Planned |
+| 4 | Neural Networks and Backpropagation | Planned |
+
+: Lectures published so far. The course runs to 18 lectures; see the [roadmap](#roadmap).
+
+## What these notes are
+
+Written from the lecture recordings and slides, not summarised from the 2017
+notes. That means they follow what the lecturers actually emphasised in 2025,
+including the parts that changed.
+
+Each page aims to be:
+
+- **Self-contained** — you should not need the video open alongside it.
+- **Honest about depth** — core ideas get full derivations; peripheral ones get
+  an intuition and a link to the paper.
+- **Linked to sources** — every result points at the original paper, not at a
+  secondary summary.
+
+## Roadmap {#roadmap}
+
+Lectures are published as they are written, in course order. The plan follows the
+2025 syllabus:
+
+1. **Fundamentals** — introduction, image classification, optimisation, backpropagation
+2. **Convolutional networks** — CNNs, architectures from AlexNet to ConvNeXt
+3. **Sequence models** — RNNs, attention, Transformers, ViT
+4. **Vision tasks** — detection, segmentation, video, 3D
+5. **Generative models** — VAEs, GANs, diffusion
+6. **Advanced topics** — NeRF, vision-language models, robot learning, ethics
+
+## Contributing
+
+Found an error? Corrections are genuinely welcome — there is an **Edit this page**
+link at the bottom of every lecture, which opens a pull request in your browser.
+For anything larger, open an [issue](https://github.com/raimbekovm/cs231n-2025-notes/issues).
+
+## Disclaimer
+
+This is an **unofficial** resource, not affiliated with Stanford University.
+For official course materials see [cs231n.stanford.edu](https://cs231n.stanford.edu/).
+
+The notes are released under the
+[MIT licence](https://github.com/raimbekovm/cs231n-2025-notes/blob/main/LICENSE),
+which covers the writing and the diagrams made for this project. Figures
+reproduced from research papers and lecture slides remain the property of their
+original authors and are credited in their captions — see
+[NOTICE](https://github.com/raimbekovm/cs231n-2025-notes/blob/main/NOTICE.md).

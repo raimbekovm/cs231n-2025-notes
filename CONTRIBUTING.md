@@ -31,17 +31,18 @@ Thank you for your interest in improving these lecture notes! This document expl
 
 We welcome the following contributions:
 
-| Type | Description | Label |
-|------|-------------|-------|
-| Typo | Spelling or grammar error | `typo` |
-| Bug fix | Formatting issues, broken links | `bug` |
-| Correction | Academic inaccuracies, wrong formulas | `correction` |
-| Clarification | Improve unclear explanations | `enhancement` |
-| Suggestion | Ideas for improvement | `suggestion` |
+| Type          | Description                           | Label         |
+| ------------- | ------------------------------------- | ------------- |
+| Typo          | Spelling or grammar error             | `typo`        |
+| Bug fix       | Formatting issues, broken links       | `bug`         |
+| Correction    | Academic inaccuracies, wrong formulas | `correction`  |
+| Clarification | Improve unclear explanations          | `enhancement` |
+| Suggestion    | Ideas for improvement                 | `suggestion`  |
 
 ### Available Labels
 
 **Issue type:**
+
 - `typo` — Spelling or grammar error
 - `bug` — Something isn't working (formatting, links)
 - `correction` — Academic inaccuracies, wrong formulas
@@ -50,9 +51,11 @@ We welcome the following contributions:
 - `question` — Questions about the content
 
 **Lecture-specific:**
+
 - `lecture-1` through `lecture-N` — Tag by lecture number
 
 **Status:**
+
 - `good first issue` — Good for newcomers
 - `help wanted` — Extra attention needed
 - `duplicate` — Already exists
@@ -90,15 +93,19 @@ When reporting an error, please include:
 ### Issue Types
 
 **Typo/Grammar**
+
 > "In section 2.1, 'recieve' should be 'receive'"
 
 **Academic Error**
+
 > "The gradient formula in equation (3) is missing a negative sign. See [Goodfellow et al., Deep Learning, p. 205]"
 
 **Unclear Explanation**
+
 > "The explanation of receptive fields in section 4 assumes prior knowledge of convolutions, but convolutions aren't introduced until section 5"
 
 **Broken Link**
+
 > "The link to the AlexNet paper in section 7 returns 404"
 
 ## Submitting Changes
@@ -116,23 +123,26 @@ docs/improve-cnn-explanation
 ### Workflow
 
 1. Create a branch from `main`:
+
    ```bash
    git checkout -b fix/description
    ```
 
 2. Make your changes
 
-3. Test your changes:
-   - For LaTeX: compile the PDF and verify formatting
-   - Check that links work
-   - Verify equations render correctly
+3. Test your changes with `quarto preview` and check that:
+   - the page renders without warnings in the terminal
+   - equations, figures, and cross-references all resolve
+   - any links you added actually work
 
 4. Commit with a clear message:
+
    ```bash
    git commit -m "Fix typo in lecture 1 backprop section"
    ```
 
 5. Push to your fork:
+
    ```bash
    git push origin fix/description
    ```
@@ -157,88 +167,118 @@ The learning rate was on the wrong side of the equation.
 Fixes #12
 
 **Changes**:
+
 - Corrected equation (7) in section 3.2
 ```
 
 ## Style Guide
 
-### LaTeX Conventions
+Notes are written in [Quarto](https://quarto.org/) markdown (`.qmd`). One file
+per lecture, in `lectures/`.
 
-#### Document Structure
+### Document structure
 
-```latex
-\section{Section Title}
-\subsection{Subsection Title}
-\subsubsection{Subsubsection Title}  % use sparingly
+Each file opens with YAML front matter, then uses markdown headings. Section
+numbering is automatic — don't number headings by hand.
+
+```markdown
+---
+title: "Image Classification"
+subtitle: "Lecture 2"
+description: "One sentence, used for search results and link previews."
+lecturer: "Justin Johnson"
+---
+
+## Section title
+
+### Subsection title
 ```
 
-#### Text Formatting
+### Text formatting
 
-| Element | Markup | Example |
-|---------|--------|---------|
-| Key terms (first use) | `\textbf{}` | \textbf{backpropagation} |
-| Emphasis | `\emph{}` | \emph{critical} |
-| Code/variables | `\texttt{}` | \texttt{learning\_rate} |
-| Quotations | `\enquote{}` | \enquote{quote} |
+| Element              | Markup                | Renders as          |
+| -------------------- | --------------------- | ------------------- |
+| Key term (first use) | `**backpropagation**` | **backpropagation** |
+| Emphasis             | `*critical*`          | _critical_          |
+| Code and variables   | `` `learning_rate` `` | `learning_rate`     |
 
-#### Mathematics
+### Mathematics
 
-Inline math for simple expressions:
-```latex
+Inline math uses single dollars, display math double:
+
+```markdown
 The loss function $L(\theta)$ measures error.
+
+$$
+\nabla_\theta L = \frac{1}{n} \sum_{i=1}^{n} \nabla_\theta \ell(f(x_i; \theta), y_i)
+$$ {#eq-gradient}
+$$
 ```
 
-Display math for important equations:
-```latex
-\begin{equation}
-    \nabla_\theta L = \frac{1}{n} \sum_{i=1}^{n} \nabla_\theta \ell(f(x_i; \theta), y_i)
-    \label{eq:gradient}
-\end{equation}
+Reference it as `@eq-gradient`. Quarto inserts the word "Equation" itself, so
+write `see @eq-gradient`, not `see Equation @eq-gradient`.
+
+### Figures
+
+```markdown
+![Description of the figure. Source: Krizhevsky et al., NeurIPS 2012.](../figures/02-classification/example.png){#fig-example}
 ```
 
-Reference equations as `Equation~\ref{eq:gradient}` (with non-breaking space).
+Reference as `@fig-example`. Identifiers must start with `fig-` for figures,
+`eq-` for equations, `tbl-` for tables, and `sec-` for sections — Quarto uses
+the prefix to decide how to number and label the cross-reference.
 
-#### Figures
+Figures live in `figures/<lecture-slug>/`, named in lowercase with underscores.
+Always credit the original paper in the caption, not the lecture slide it was
+screenshotted from.
 
-```latex
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/example.png}
-    \caption{Description of the figure. Source: \cite{author2024}.}
-    \label{fig:example}
-\end{figure}
+### Callout boxes
+
+Three kinds carry the pedagogical structure. Every major section ends with Key
+Takeaways.
+
+```markdown
+::: {.callout-tip title="Key Takeaways"}
+The main points of the section.
+:::
+
+::: {.callout-note title="Deep Dive: Why This Works"}
+Material that goes beyond what the lecture covered.
+:::
+
+::: {.callout-warning title="Note"}
+An important caveat or common misconception.
+:::
 ```
 
-Reference as `Figure~\ref{fig:example}`.
+### Links and footnotes
 
-#### Citations and Links
+Link to the original paper whenever research is mentioned:
 
-Link to original papers when mentioning research:
-```latex
-\href{https://papers.nips.cc/paper/...}{AlexNet} achieved...
+```markdown
+[AlexNet](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks) achieved...
 ```
 
-Use footnotes for supplementary information:
-```latex
-This phenomenon\footnote{First observed by Hubel \& Wiesel in 1959.} suggests...
+Footnotes hold supplementary context:
+
+```markdown
+This phenomenon[^hw] suggests...
+
+[^hw]: First observed by Hubel & Wiesel in 1959.
 ```
 
-#### Custom Environments
+Use a descriptive label rather than a number, so footnotes stay stable when you
+insert one in the middle.
 
-The project uses custom `tcolorbox` environments:
+### Tables
 
-```latex
-\begin{keytakeaways}
-    Main points to remember...
-\end{keytakeaways}
+Use pipe tables — they are the only kind that survives hand-editing:
 
-\begin{deepdive}
-    Advanced material for interested readers...
-\end{deepdive}
-
-\begin{notebox}
-    Important notes or warnings...
-\end{notebox}
+```markdown
+| Task           | Output           |
+| :------------- | :--------------- |
+| Classification | one label        |
+| Detection      | boxes and labels |
 ```
 
 ### Commit Messages
@@ -246,11 +286,13 @@ The project uses custom `tcolorbox` environments:
 Format: `<type>: <description>`
 
 Types:
+
 - `fix`: Bug fixes, typos, corrections
 - `docs`: Documentation improvements
 - `style`: Formatting changes (no content change)
 
 Examples:
+
 ```
 fix: correct ReLU derivative formula in lecture 4
 fix: typo in lecture 1 section 2.3
@@ -259,6 +301,7 @@ style: fix equation alignment in lecture 5
 ```
 
 Keep messages:
+
 - Under 72 characters
 - In imperative mood ("fix" not "fixed")
 - Lowercase (except proper nouns)
@@ -267,24 +310,32 @@ Keep messages:
 
 ```
 cs231n-2025-notes/
-├── notes/                    # LaTeX source and PDFs
-│   ├── lecture_01_part1.pdf
-│   ├── lecture_01_introduction.tex
-│   └── figures/              # Images for notes
+├── index.qmd                 # site landing page
+├── lectures/                 # one .qmd per lecture — the source of truth
+│   ├── 01-history.qmd
+│   └── 01b-course-overview.qmd
+├── figures/                  # images, one directory per lecture
+│   └── 01-history/
+├── _quarto.yml               # site and PDF configuration
+├── theme.scss                # light theme
+├── theme-dark.scss           # dark theme
 ├── notebooks/                # Jupyter notebooks (future)
 ├── CONTRIBUTING.md
 ├── LICENSE
 └── README.md
 ```
 
+`_site/` holds the rendered output. It is generated, gitignored, and rebuilt by
+CI on every push — never edit or commit it.
+
 ### File Naming
 
-- Notes: `lecture_XX_partY.pdf` or `lecture_XX_topic.tex`
-- Figures: `descriptive_name.png` (lowercase, underscores)
+- Lectures: `NN-topic-slug.qmd`, matching the order they appear in `_quarto.yml`
+- Figures: `figures/<lecture-slug>/descriptive_name.png` (lowercase, underscores)
 
 ## Review Process
 
-1. **Automated checks**: PR must not break LaTeX compilation
+1. **Automated checks**: the PR must render cleanly with `quarto render`
 2. **Maintainer review**: Changes reviewed for accuracy and style
 3. **Feedback**: You may be asked to make adjustments
 4. **Merge**: Once approved, changes are merged to `main`
@@ -310,6 +361,7 @@ Typical review time: 1-7 days depending on complexity.
 ### Enforcement
 
 Violations may result in:
+
 1. Warning
 2. Temporary ban
 3. Permanent ban

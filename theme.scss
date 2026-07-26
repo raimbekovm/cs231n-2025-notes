@@ -1,0 +1,90 @@
+/*-- scss:defaults --*/
+
+// Slightly warmer, higher-contrast reading surface than stock cosmo.
+$font-family-sans-serif:
+  "Inter",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  "Helvetica Neue",
+  Arial,
+  sans-serif !default;
+$font-family-monospace: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace !default;
+
+$body-color: #1f2328 !default;
+$body-bg: #ffffff !default;
+$link-color: #0b5cad !default;
+
+$font-size-root: 17px !default;
+$line-height-base: 1.65 !default;
+
+$h1-font-size: 2.1rem !default;
+$h2-font-size: 1.55rem !default;
+$h3-font-size: 1.25rem !default;
+
+$toc-color: #57606a !default;
+
+/*-- scss:rules --*/
+
+// Long-form prose reads badly at full container width.
+main.content {
+  max-width: 46rem;
+}
+
+// Figures: give them room and a soft frame so slide screenshots don't bleed
+// into the surrounding text.
+figure {
+  margin: 2rem auto;
+
+  img {
+    border-radius: 6px;
+    border: 1px solid #d8dee4;
+    background: #fff;
+  }
+
+  figcaption {
+    font-size: 0.88rem;
+    color: #57606a;
+    margin-top: 0.6rem;
+  }
+}
+
+// Callouts carry most of the pedagogical structure — make them distinct.
+div.callout {
+  margin: 1.75rem 0;
+  border-radius: 6px;
+}
+
+div.callout-tip .callout-title {
+  // "Key Takeaways" closes every major section; it should feel like a summary.
+  font-weight: 600;
+}
+
+// Section numbers shouldn't shout louder than the heading text.
+.header-section-number {
+  color: #8c959f;
+  font-weight: 400;
+  padding-right: 0.35rem;
+}
+
+// KaTeX display equations get cramped next to dense paragraphs.
+.katex-display {
+  margin: 1.4rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+// Wide tables must scroll themselves, never the page.
+.table-responsive,
+main.content > table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+blockquote {
+  border-left: 3px solid #d0d7de;
+  color: #57606a;
+  padding-left: 1rem;
+}

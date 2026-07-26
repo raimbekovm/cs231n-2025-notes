@@ -66,5 +66,8 @@ outlines/
 *.fls
 *.fdb_latexmk
 
-# Figures (decide later)
-notes/figures/
+# Quarto build output. The site and the book PDF are produced by CI and served
+# from the gh-pages branch, so nothing built belongs in the repository.
+/_site/
+/.quarto/
+**/*.quarto_ipynb

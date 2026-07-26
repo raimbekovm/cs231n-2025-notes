@@ -1,0 +1,79 @@
+/*-- scss:defaults --*/
+
+$font-family-sans-serif:
+  "Inter",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  "Helvetica Neue",
+  Arial,
+  sans-serif !default;
+$font-family-monospace: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace !default;
+
+// darkly's default background is close to pure black; lift it so figures
+// (mostly white-background slide screenshots) don't glare.
+$body-bg: #16191d !default;
+$body-color: #d6dae0 !default;
+$link-color: #6cb6ff !default;
+
+$font-size-root: 17px !default;
+$line-height-base: 1.65 !default;
+
+$h1-font-size: 2.1rem !default;
+$h2-font-size: 1.55rem !default;
+$h3-font-size: 1.25rem !default;
+
+/*-- scss:rules --*/
+
+main.content {
+  max-width: 46rem;
+}
+
+figure {
+  margin: 2rem auto;
+
+  img {
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    // Most figures are diagrams on white. Dimming them slightly is far less
+    // jarring than a full-brightness panel on a dark page.
+    filter: brightness(0.92);
+  }
+
+  figcaption {
+    font-size: 0.88rem;
+    color: #9198a1;
+    margin-top: 0.6rem;
+  }
+}
+
+div.callout {
+  margin: 1.75rem 0;
+  border-radius: 6px;
+}
+
+.header-section-number {
+  color: #6e7681;
+  font-weight: 400;
+  padding-right: 0.35rem;
+}
+
+.katex-display {
+  margin: 1.4rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.table-responsive,
+main.content > table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+blockquote {
+  border-left: 3px solid #30363d;
+  color: #9198a1;
+  padding-left: 1rem;
+}

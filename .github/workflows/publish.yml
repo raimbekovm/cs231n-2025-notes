@@ -1,0 +1,53 @@
+name: Publish site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# The deploy step pushes to gh-pages; nothing else needs write access.
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.10.18
+          # pulls in TinyTeX, needed for the book PDF
+          tinytex: true
+
+      - name: Render site and PDF
+        run: quarto render
+
+      - name: Upload rendered site
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: _site
+          retention-days: 14
+
+      # Deploying from a PR would publish unreviewed content, so restrict it
+      # to pushes that have already landed on main.
+      - name: Deploy to GitHub Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _site
+          publish_branch: gh-pages
+          # The site is fully regenerated each run; keeping old files would
+          # leave deleted pages live.
+          force_orphan: true
