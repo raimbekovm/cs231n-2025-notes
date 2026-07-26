@@ -31,7 +31,7 @@ By the end of this course, you will be able to:
 
 @fig-course-scope illustrates how this course fits within the broader AI landscape. Machine learning, and particularly deep learning, provides the mathematical toolkit. Computer vision defines the problems we aim to solve. This course lives at their intersection.
 
-![The scope of this course: the intersection of Computer Vision and Deep Learning, within the broader fields of Machine Learning and Artificial Intelligence.](../figures/01-history/diagram_01.svg){#fig-course-scope width="90%"}
+![The scope of this course: the intersection of Computer Vision and Deep Learning, within the broader fields of Machine Learning and Artificial Intelligence. *Drawn for these notes, after the CS231n 2025 Lecture 1 slides.*](../figures/01-history/diagram_01.svg){#fig-course-scope width="90%"}
 
 ::: {.callout-tip title="Key Takeaways"}
 
@@ -209,7 +209,7 @@ The formal study of computer vision began in the early 1960s:
 
 - **1966**: Seymour Papert at MIT initiated the famous "Summer Vision Project," proposing to hire undergraduates to "solve" computer vision over a single summer.[^01-history-2]
 
-![Larry Roberts' PhD thesis (1963): extracting 3D structure from 2D images of polyhedral "blocks world" scenes. From *Machine Perception of Three-Dimensional Solids*, MIT.](../figures/01-history/roberts_1963_blocks.png){#fig-roberts-blocks width="60%"}
+![Larry Roberts' PhD thesis (1963): extracting 3D structure from 2D images of polyhedral "blocks world" scenes. *Source: scan of Pictures 3A--3D from L. G. Roberts, "Machine Perception of Three-Dimensional Solids", PhD thesis, MIT, 1963.*](../figures/01-history/roberts_1963_blocks.png){#fig-roberts-blocks width="60%"}
 
 Of course, vision was not solved that summer---nor the next, nor the decade after. Just like the rest of AI history, researchers were overly optimistic about what could be achieved in a short period. The field has since blossomed into a major computer science discipline, with annual conferences now attracting over 10,000 attendees.
 
@@ -313,13 +313,13 @@ While computer vision researchers were developing hand-crafted features, a paral
 
 In 1958, Frank Rosenblatt at Cornell introduced the [**Perceptron**](https://www.semanticscholar.org/paper/5d11aad09f65431b5d3cb1d85328743c9e53ba96)---a machine that could learn to classify inputs by adjusting connection weights (see @fig-perceptron-1958). The Mark I Perceptron was a physical device with 400 photocells (the "retina"), randomly wired to association units, which fed into response units.
 
-![The Mark I Perceptron (1958). Left: Frank Rosenblatt adjusting the machine's wiring. Right: Architecture diagram showing sensory units (S-Units) receiving input from the retina, association units (A-Units) with random connections, and response units (R-Units) producing output.](../figures/01-history/rosenblatt_perceptron_1958.png){#fig-perceptron-1958 width="85%"}
+![The Mark I Perceptron (1958). Left: Frank Rosenblatt adjusting the machine's wiring. Right: Architecture diagram showing sensory units (S-Units) receiving input from the retina, association units (A-Units) with random connections, and response units (R-Units) producing output. *Source: composite of an archival Cornell University photograph and Figure 1 of the Mark I Perceptron report, Cornell Aeronautical Laboratory.*](../figures/01-history/rosenblatt_perceptron_1958.png){#fig-perceptron-1958 width="85%"}
 
 The perceptron could learn simple classification tasks---given labeled examples, it would automatically adjust weights to improve accuracy. This sparked enormous excitement about machine learning.
 
 However, in 1969, Marvin Minsky and Seymour Papert published *Perceptrons*, a rigorous mathematical analysis showing fundamental limitations (see @fig-minsky-papert). They proved that single-layer perceptrons cannot learn certain simple functions---most famously, XOR (exclusive or).
 
-![The Minsky-Papert critique (1969). Left: Mathematical formalization of the perceptron---inputs $\varphi_1, \ldots, \varphi_n$ are weighted, summed, and thresholded to produce output $\psi$. Right: The influential book "Perceptrons: An Introduction to Computational Geometry" that demonstrated fundamental limitations of single-layer networks.](../figures/01-history/minsky_papert_1969.jpg){#fig-minsky-papert width="80%"}
+![The Minsky-Papert critique (1969). Left: Mathematical formalization of the perceptron---inputs $\varphi_1, \ldots, \varphi_n$ are weighted, summed, and thresholded to produce output $\psi$. Right: The influential book "Perceptrons: An Introduction to Computational Geometry" that demonstrated fundamental limitations of single-layer networks. *Source: figures from and the cover of M. Minsky & S. Papert, "Perceptrons", MIT Press, 1969.*](../figures/01-history/minsky_papert_1969.jpg){#fig-minsky-papert width="80%"}
 
 This critique contributed to the first "AI winter"---a period of reduced funding and enthusiasm for neural network research.
 
@@ -331,7 +331,7 @@ Despite setbacks, work continued. Kunihiko Fukushima in Japan created the [**Neo
 
 - **C-cells** (complex cells): Pool information from S-cells, providing tolerance to small shifts---analogous to pooling
 
-![(a) Fukushima's Neocognitron (1980): alternating layers of S-cells and C-cells, directly inspired by Hubel & Wiesel's hierarchy. (b) LeCun's LeNet (1989): similar architecture but with learnable parameters via backpropagation. The structural similarity is striking---the key difference is how parameters were set.](../figures/01-history/neocognitron_lenet.png){#fig-neocognitron-lenet width="90%"}
+![(a) Fukushima's Neocognitron (1980): alternating layers of S-cells and C-cells, directly inspired by Hubel & Wiesel's hierarchy. (b) LeCun's LeNet (1989): similar architecture but with learnable parameters via backpropagation. The structural similarity is striking---the key difference is how parameters were set. *Source: (a) after Fukushima (1980); (b) a colourised redraw of Figure 2 of LeCun et al. (1998).*](../figures/01-history/neocognitron_lenet.png){#fig-neocognitron-lenet width="90%"}
 
 The Neocognitron could recognize digits and letters, but it was an engineering feat: every parameter was hand-designed. Fukushima had to meticulously tune hundreds of parameters to make it work. The architecture was remarkably similar to modern CNNs---what was missing was an automatic way to learn the parameters.
 
@@ -345,7 +345,7 @@ The real breakthrough came with [**backpropagation**](https://www.semanticschola
 
 3.  Automatically adjust parameters using calculus (chain rule)
 
-![A network trained with backpropagation to solve XOR---the very problem Minsky and Papert proved impossible for single-layer perceptrons. The numbers show weights learned automatically: 2 input units, 2 hidden units, 1 output unit. From Rumelhart, Hinton & Williams (1986).](../figures/01-history/backprop_1986.png){#fig-backprop width="45%"}
+![A network trained with backpropagation to solve XOR---the very problem Minsky and Papert proved impossible for single-layer perceptrons. The numbers show weights learned automatically: 2 input units, 2 hidden units, 1 output unit. *Source: Rumelhart, Hinton & Williams, "Learning representations by back-propagating errors", Nature 323, 1986.*](../figures/01-history/backprop_1986.png){#fig-backprop width="45%"}
 
 This was a watershed moment---networks could now learn their own parameters. The XOR problem that had haunted neural networks for nearly two decades was finally solved, not by human engineering, but by letting the network learn.
 
@@ -353,7 +353,7 @@ This was a watershed moment---networks could now learn their own parameters. The
 
 Yann LeCun, working at Bell Labs, combined backpropagation with convolutional architectures to create [**LeNet**](https://www.semanticscholar.org/paper/162d958ff885f1462aeda91cd72582323fd6a1f4) (see @fig-lenet). The architecture alternated convolutional layers (feature extraction) with subsampling layers (dimensionality reduction), followed by fully connected layers for classification.
 
-![LeNet-5 architecture (LeCun et al., 1998). A 32×32 input image passes through convolutional layers (C1, C3) that extract features, subsampling layers (S2, S4) that reduce spatial dimensions, and fully connected layers (C5, F6) that produce the final classification into 10 digit classes.](../figures/01-history/lenet_1998.png){#fig-lenet width="95%"}
+![LeNet-5 architecture (LeCun et al., 1998). A 32×32 input image passes through convolutional layers (C1, C3) that extract features, subsampling layers (S2, S4) that reduce spatial dimensions, and fully connected layers (C5, F6) that produce the final classification into 10 digit classes. *Source: colourised redraw of Figure 2 of LeCun, Bottou, Bengio & Haffner, "Gradient-Based Learning Applied to Document Recognition", Proc. IEEE 86(11), 1998.*](../figures/01-history/lenet_1998.png){#fig-lenet width="95%"}
 
 LeNet was trained to recognize handwritten digits and was actually deployed in US postal offices and banks to read checks---one of the first real-world applications of deep learning.
 
@@ -409,7 +409,7 @@ Recognizing that lack of data was holding back the field, Fei-Fei Li and her stu
 
 - Human-verified labels via Amazon Mechanical Turk
 
-![ImageNet: a mosaic of sample images forming the dataset's name. The sheer diversity and scale of ImageNet---15 million images across 22,000 categories---was unprecedented and proved essential for training deep networks.](../figures/01-history/imagenet_mosaic.jpg){#fig-imagenet width="85%"}
+![ImageNet: a mosaic of sample images forming the dataset's name. The sheer diversity and scale of ImageNet---15 million images across 22,000 categories---was unprecedented and proved essential for training deep networks. *Source: promotional mosaic from image-net.org; dataset from Deng et al., CVPR 2009.*](../figures/01-history/imagenet_mosaic.jpg){#fig-imagenet width="85%"}
 
 The **ImageNet Large Scale Visual Recognition Challenge (ILSVRC)** used a curated subset: 1 million+ images across 1,000 classes. Researchers competed to build algorithms that could correctly classify images.
 
@@ -426,7 +426,7 @@ In 2012, Geoffrey Hinton and his students (Alex Krizhevsky, Ilya Sutskever) ente
 
 AlexNet reduced the error rate by **almost half**---an enormous improvement when annual progress was typically measured in single percentage points.
 
-![AlexNet architecture (Krizhevsky, Sutskever & Hinton, 2012). Input 224×224×3 images pass through 5 convolutional layers and 3 fully connected layers, outputting 1000 class probabilities. The network was split across two GPUs (top/bottom paths) due to memory constraints---a detail that influenced the design.](../figures/01-history/alexnet_2012.png){#fig-alexnet width="95%"}
+![AlexNet architecture (Krizhevsky, Sutskever & Hinton, 2012). Input 224×224×3 images pass through 5 convolutional layers and 3 fully connected layers, outputting 1000 class probabilities. The network was split across two GPUs (top/bottom paths) due to memory constraints---a detail that influenced the design. *Source: Figure 2 of Krizhevsky, Sutskever & Hinton, "ImageNet Classification with Deep Convolutional Neural Networks", NeurIPS 2012.*](../figures/01-history/alexnet_2012.png){#fig-alexnet width="95%"}
 
 ## What Made It Work?
 

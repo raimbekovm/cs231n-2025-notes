@@ -17,7 +17,7 @@ Image classification may seem deceptively simple---show the model a photo of a c
 
 How do we approach this problem mathematically? The simplest method is **linear classification**. We represent each image as a vector $\mathbf{x} \in \mathbb{R}^d$ (e.g., by flattening all pixel values), and learn a weight matrix $\mathbf{W}$ and bias $\mathbf{b}$ such that: $$f(\mathbf{x}) = \mathbf{W}\mathbf{x} + \mathbf{b}$$ The output $f(\mathbf{x})$ gives scores for each class---the highest score determines our prediction. Geometrically, each row of $\mathbf{W}$ defines a **hyperplane** in feature space that separates one class from the others.
 
-![Linear classification in feature space. Different hyperplanes ($H_1$, $H_2$, $H_3$) can separate the two classes. $H_1$ and $H_2$ both achieve perfect separation, but $H_2$ (with larger margin) may generalize better. $H_3$ fails to separate the classes.](../figures/01b-course-overview/diagram_01.svg){#fig-linear-classifier width="90%"}
+![Linear classification in feature space. Different hyperplanes ($H_1$, $H_2$, $H_3$) can separate the two classes. $H_1$ and $H_2$ both achieve perfect separation, but $H_2$ (with larger margin) may generalize better. $H_3$ fails to separate the classes. *Drawn for these notes.*](../figures/01b-course-overview/diagram_01.svg){#fig-linear-classifier width="90%"}
 
 @fig-linear-classifier illustrates this concept in 2D: each hyperplane represents a different linear classifier. Notice that $H_1$ and $H_2$ both perfectly separate the two classes, but which is "better"? This question leads us to the concepts of **loss functions** and **optimization**.
 
@@ -31,7 +31,7 @@ Training minimizes this loss over the dataset using **optimization algorithms** 
 
 With enough parameters, a model can memorize the training data perfectly---but this **overfitting** hurts generalization to new data. **Regularization** adds a penalty that discourages overly complex models by keeping weights small. We will cover specific regularization techniques (L1, L2, dropout) in future lectures.
 
-![Overfitting vs. good generalization. The green line ($f_1$) represents a well-regularized model that captures the underlying trend. The blue curve ($f_2$) overfits by passing through every training point, capturing noise rather than signal---it will perform poorly on new data.](../figures/01b-course-overview/diagram_02.svg){#fig-regularization width="90%"}
+![Overfitting vs. good generalization. The green line ($f_1$) represents a well-regularized model that captures the underlying trend. The blue curve ($f_2$) overfits by passing through every training point, capturing noise rather than signal---it will perform poorly on new data. *Drawn for these notes.*](../figures/01b-course-overview/diagram_02.svg){#fig-regularization width="90%"}
 
 @fig-regularization visualizes this trade-off: $f_2$ achieves zero training error but is clearly overfitting, while $f_1$ makes small errors on training data but will generalize better.
 
@@ -65,7 +65,7 @@ Having established image classification as the foundation, we now explore tasks 
 
 In **semantic segmentation**, we don't just label the image as a whole---we assign a class label to *every single pixel*. The output is a dense prediction map where each pixel belongs to a category: sky, grass, cat, tree, road, etc.
 
-![Semantic segmentation: each pixel is labeled with its class (sky, trees, grass, cat, cow). The top row shows original images; the bottom row shows the segmentation masks where each color represents a different class. Note that we don't distinguish between individual instances---both cows share the same "Cow" label.](../figures/01b-course-overview/semantic_segmentation.jpg){#fig-semantic-segmentation width="75%"}
+![Semantic segmentation: each pixel is labeled with its class (sky, trees, grass, cat, cow). The top row shows original images; the bottom row shows the segmentation masks where each color represents a different class. Note that we don't distinguish between individual instances---both cows share the same "Cow" label. *Source: CS231n lecture slides; the cat photograph is by Nikita, licensed CC BY 2.0.*](../figures/01b-course-overview/semantic_segmentation.jpg){#fig-semantic-segmentation width="75%"}
 
 Key characteristics of semantic segmentation:
 
@@ -272,7 +272,7 @@ Unlike RNNs, Transformers process all positions in parallel, making them much fa
 
 4.  Processing through standard Transformer encoder layers
 
-![Attention maps from a Vision Transformer. Each row shows an input image (left) followed by attention patterns from different layers/heads. Bright regions (yellow/cyan) indicate high attention weights. The model learns to focus on semantically relevant regions---the ball, the dog, the parachute---discovering object structure without explicit supervision.](../figures/01b-course-overview/vit_attention.jpg){#fig-vit-attention width="95%"}
+![Attention maps from a Vision Transformer. Each image is followed by attention patterns from different layers/heads. Bright regions (yellow/green) indicate high attention weights. Across objects as different as a flower, an apple, a wardrobe and a bird, attention concentrates on the object rather than the background---object structure discovered without explicit supervision.](../figures/01b-course-overview/vit_attention.jpg){#fig-vit-attention width="95%"}
 
 @fig-vit-attention reveals what ViT "sees": attention concentrates on the main object in each image while ignoring backgrounds. This emergent localization arises purely from classification training---no bounding box labels needed!
 
@@ -304,7 +304,7 @@ Two fundamental strategies exist for distributing deep learning workloads, each 
 
 In **data parallelism**, we replicate the entire model on each worker (GPU), but partition the training data across workers. Each worker processes a different mini-batch, computes gradients locally, and then all workers synchronize their gradients before updating the shared model.
 
-![**Left**: Data Parallelism---the training data is partitioned across workers, but each worker holds a complete copy of the model (Shared Model). **Right**: Model Parallelism---all workers see the same data, but the model itself is partitioned across workers (Partitioned Model).](../figures/01b-course-overview/parallelism.png){#fig-parallelism width="85%"}
+![**Left**: Data Parallelism---the training data is partitioned across workers, but each worker holds a complete copy of the model (Shared Model). **Right**: Model Parallelism---all workers see the same data, but the model itself is partitioned across workers (Partitioned Model). *Source: the same illustration used in the CS231n 2025 Lecture 1 slides, in different colours; the original author is untraced.*](../figures/01b-course-overview/parallelism.png){#fig-parallelism width="85%"}
 
 The data parallelism workflow:
 
@@ -396,7 +396,7 @@ However, these hand-crafted tasks have limitations---they may teach representati
 
 The breakthrough idea of **contrastive learning** is to learn representations by comparing examples: similar things should have similar representations, dissimilar things should have dissimilar representations.
 
-![The **SimCLR** framework for contrastive learning. An image undergoes random data augmentation twice, producing two views $x_i$ and $x_j$. Both pass through the same encoder $f(\cdot)$ yielding representations $h_i, h_j$, then a projection head $g(\cdot)$ produces embeddings $z_i, z_j$. Training maximizes similarity between $z_i$ and $z_j$ (positive pair) while minimizing similarity to embeddings from other images (negative pairs). SimCLR showed that with strong enough augmentations and large enough batches, simple contrastive learning rivals supervised pre-training. The key insight: aggressive augmentation (blur, color distortion, cropping) forces the model to learn semantic rather than superficial features.](../figures/01b-course-overview/simclr.png){#fig-simclr width="95%"}
+![The **SimCLR** framework for contrastive learning. An image undergoes random data augmentation twice, producing two views $x_i$ and $x_j$. Both pass through the same encoder $f(\cdot)$ yielding representations $h_i, h_j$, then a projection head $g(\cdot)$ produces embeddings $z_i, z_j$. Training maximizes similarity between $z_i$ and $z_j$ (positive pair) while minimizing similarity to embeddings from other images (negative pairs). SimCLR showed that with strong enough augmentations and large enough batches, simple contrastive learning rivals supervised pre-training. The key insight: aggressive augmentation (blur, color distortion, cropping) forces the model to learn semantic rather than superficial features. *Source: a third-party diagram of the framework of Chen et al., "A Simple Framework for Contrastive Learning of Visual Representations", 2020; not that paper's own figure.*](../figures/01b-course-overview/simclr.png){#fig-simclr width="95%"}
 
 The SimCLR framework (@fig-simclr) works as follows:
 
@@ -416,7 +416,7 @@ The magic: after pre-training, we discard the projection head and use the encode
 
 Inspired by BERT's success in NLP (predicting masked words), [**Masked Autoencoders (MAE)**](https://arxiv.org/abs/2111.06377)[^01b-course-overview-7] apply the same idea to images: mask random patches and train the model to reconstruct them.
 
-![**Masked Autoencoder (MAE)** architecture. The input image is divided into patches, and a large fraction (e.g., 75%) are randomly masked (gray). Only visible patches are fed to the encoder. A lightweight decoder then reconstructs the full image, including masked regions. The model learns rich representations by solving this reconstruction task.](../figures/01b-course-overview/mae.jpg){#fig-mae width="90%"}
+![**Masked Autoencoder (MAE)** architecture. The input image is divided into patches, and a large fraction (e.g., 75%) are randomly masked (gray). Only visible patches are fed to the encoder. A lightweight decoder then reconstructs the full image, including masked regions. The model learns rich representations by solving this reconstruction task. *Source: Figure 1 of He et al., "Masked Autoencoders Are Scalable Vision Learners", 2021.*](../figures/01b-course-overview/mae.jpg){#fig-mae width="90%"}
 
 The MAE approach (@fig-mae) has elegant properties:
 
@@ -474,7 +474,7 @@ Generative models have exploded in capability and popularity, powering applicati
 
 One of the earliest and most visually striking applications of deep learning for image generation is [**neural style transfer**](https://arxiv.org/abs/1508.06576): taking the *content* of one image and rendering it in the *style* of another.
 
-![Neural style transfer. **Top-left**: Style image (Van Gogh's "Starry Night"). **Bottom-left**: Content image (a German riverside town). **Right**: Result---the photograph rendered with Van Gogh's distinctive swirling brushstrokes, color palette, and texture while preserving the original scene's structure.](../figures/01b-course-overview/style_transfer.jpg){#fig-style-transfer width="85%"}
+![Neural style transfer. **Top-left**: Style image (Van Gogh's "Starry Night"). **Bottom-left**: Content image (a German riverside town). **Right**: Result---the photograph rendered with Van Gogh's distinctive swirling brushstrokes, color palette, and texture while preserving the original scene's structure. *Source: the example of Figure 2C of Gatys, Ecker & Bethge, "A Neural Algorithm of Artistic Style", 2015; content photograph of the Tübingen Neckarfront by Andreas Praefcke; "The Starry Night" (Van Gogh, 1889) is public domain.*](../figures/01b-course-overview/style_transfer.jpg){#fig-style-transfer width="85%"}
 
 The key insight[^01b-course-overview-8] is that CNNs trained for classification *already* encode both content and style:
 
@@ -518,7 +518,7 @@ GAN variants have addressed many limitations:
 
 The current state-of-the-art in image generation comes from [**diffusion models**](https://arxiv.org/abs/2006.11239)[^01b-course-overview-11], which take a fundamentally different approach: learn to *reverse* a gradual noising process.
 
-![The diffusion process. **Forward process** $q(x_t|x_{t-1})$: Gradually add Gaussian noise over $T$ steps until the image becomes pure noise $x_T$. **Reverse process** $p_\theta(x_{t-1}|x_t)$: A neural network learns to denoise step-by-step, recovering the original image $x_0$ from noise.](../figures/01b-course-overview/diffusion_process.png){#fig-diffusion width="90%"}
+![The diffusion process. **Forward process** $q(x_t|x_{t-1})$: Gradually add Gaussian noise over $T$ steps until the image becomes pure noise $x_T$. **Reverse process** $p_\theta(x_{t-1}|x_t)$: A neural network learns to denoise step-by-step, recovering the original image $x_0$ from noise. *Source: after Figure 2 of Ho, Jain & Abbeel, "Denoising Diffusion Probabilistic Models", 2020.*](../figures/01b-course-overview/diffusion_process.png){#fig-diffusion width="90%"}
 
 The two processes:
 
@@ -538,7 +538,7 @@ Why do diffusion models work so well?
 
 Combining diffusion models with large language models has enabled remarkable **text-to-image generation**---describe what you want, and the model creates it.
 
-![Image editing with Stable Diffusion. Each row shows an input image transformed according to a text prompt. Examples: "a bird spreading wings," "a person diving," "two kissing parrots"---the model modifies the image while preserving structure and adding the requested changes.](../figures/01b-course-overview/stable_diffusion_examples.jpg){#fig-stable-diffusion width="95%"}
+![Text-based editing of a real photograph with a diffusion model. Each pair shows an input image and the result of one target prompt: "a bird spreading wings," "a person giving the thumbs up," "two kissing parrots"---the model applies the requested change while preserving the rest of the scene. *Source: Figure 1 of Kawar et al., "Imagic: Text-Based Real Image Editing with Diffusion Models", 2022.*](../figures/01b-course-overview/stable_diffusion_examples.jpg){#fig-stable-diffusion width="95%"}
 
 Systems like **DALL-E**, **Midjourney**, and **Stable Diffusion** work by:
 
@@ -592,7 +592,7 @@ We've seen models that understand images and models that understand text. But hu
 
 [**CLIP**](https://arxiv.org/abs/2103.00020) (Contrastive Language-Image Pre-training, OpenAI 2021) revolutionized vision-language learning with a simple but powerful idea: train on 400 million image-text pairs from the internet using contrastive learning.
 
-![The CLIP framework. **(1) Contrastive pre-training**: An image encoder and text encoder are trained jointly. Matching image-text pairs (diagonal) should have high similarity; non-matching pairs should have low similarity. **(2) Zero-shot classifier**: Convert class labels to text prompts ("A photo of a {object}"). **(3) Inference**: Encode the image and all prompts; predict the class with highest image-text similarity.](../figures/01b-course-overview/clip_architecture.jpg){#fig-clip width="95%"}
+![The CLIP framework. **(1) Contrastive pre-training**: An image encoder and text encoder are trained jointly. Matching image-text pairs (diagonal) should have high similarity; non-matching pairs should have low similarity. **(2) Zero-shot classifier**: Convert class labels to text prompts ("A photo of a {object}"). **(3) Inference**: Encode the image and all prompts; predict the class with highest image-text similarity. *Source: Figure 1 of Radford et al., "Learning Transferable Visual Models From Natural Language Supervision", 2021.*](../figures/01b-course-overview/clip_architecture.jpg){#fig-clip width="95%"}
 
 The training process (@fig-clip, left):
 

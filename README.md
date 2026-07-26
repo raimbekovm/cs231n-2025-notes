@@ -57,6 +57,7 @@ cs231n-2025-notes/
 ├── index.qmd              # site landing page
 ├── lectures/              # one .qmd per lecture — the source of truth
 ├── figures/               # images, one directory per lecture
+│   └── SOURCES.md         #   per-figure provenance record
 │                          #   diagram_*.svg ship with their TikZ source
 ├── _quarto.yml            # site and PDF configuration
 ├── theme.scss             #   light theme
@@ -111,5 +112,7 @@ official materials see [cs231n.stanford.edu](https://cs231n.stanford.edu/).
 
 The notes are released under the [MIT licence](LICENSE). That covers the writing
 and the diagrams made for this project; figures reproduced from research papers
-and lecture slides remain the property of their original authors and are credited
-in their captions. See [NOTICE.md](NOTICE.md) for the full picture.
+and lecture slides remain the property of their original authors. Per-figure
+provenance is recorded in [figures/SOURCES.md](figures/SOURCES.md) — including
+the figures whose source has not been traced yet. See [NOTICE.md](NOTICE.md) for
+the full picture.
