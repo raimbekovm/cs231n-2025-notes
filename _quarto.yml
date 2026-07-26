@@ -4,6 +4,9 @@ project:
   preview:
     port: 4321
     browser: false
+  resources:
+    # Nothing links to the social card, so Quarto would not copy it otherwise.
+    - figures/social-card.png
 
 book:
   title: "CS231n 2025 Lecture Notes"
@@ -53,6 +56,14 @@ format:
     html-math-method: katex
     anchor-sections: true
     smooth-scroll: true
+    # Absolute URLs: the site is served from a subpath, so a root-relative
+    # image path would resolve against raimbekovm.github.io instead.
+    open-graph:
+      image: https://raimbekovm.github.io/cs231n-2025-notes/figures/social-card.png
+      locale: en_US
+    twitter-card:
+      image: https://raimbekovm.github.io/cs231n-2025-notes/figures/social-card.png
+      card-style: summary_large_image
 
   pdf:
     documentclass: scrbook
