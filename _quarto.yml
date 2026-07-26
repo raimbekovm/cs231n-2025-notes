@@ -7,6 +7,9 @@ project:
   resources:
     # Nothing links to the social card, so Quarto would not copy it otherwise.
     - figures/social-card.png
+    # Quarto copies fonts/fonts.css because it is listed under format.html.css,
+    # but not the .woff2 files that stylesheet points at.
+    - fonts/*.woff2
 
 book:
   title: "CS231n 2025 Lecture Notes"
@@ -21,8 +24,15 @@ book:
   repo-branch: main
   repo-actions: [edit, issue]
   search:
-    location: sidebar
-    type: overlay
+    # Two deliberate changes from the default. `textbox` swaps the lone
+    # magnifier for a field a reader can see is a field. `navbar` is what makes
+    # it exist on a phone at all: with the search in the sidebar it is simply
+    # absent below the collapse breakpoint — measured at 0x0, both as an overlay
+    # and as a textbox — whereas from the navbar Quarto falls back to a detached
+    # full-screen search.
+    location: navbar
+    type: textbox
+    copy-button: false
   sidebar:
     style: docked
     collapse-level: 1
@@ -44,10 +54,13 @@ format:
   html:
     theme:
       # theme-common.scss holds type, geometry and every structural rule; the
-      # mode files supply only the colour tokens it reads.
-      light: [cosmo, theme-common.scss, theme.scss]
+      # mode files supply only the colour tokens it reads. Dark is listed first
+      # because Quarto treats the first entry as the default scheme, and these
+      # notes are read at a screen for long stretches.
       dark: [darkly, theme-common.scss, theme-dark.scss]
-    include-in-header: head.html
+      light: [cosmo, theme-common.scss, theme.scss]
+    # Self-hosted type; see fonts/README.md.
+    css: fonts/fonts.css
     toc: true
     toc-depth: 3
     toc-expand: 1
@@ -105,6 +118,13 @@ filters:
 crossref:
   fig-title: Figure
   eq-prefix: Equation
+
+# Quarto ships both of these blank or generic, which is most of why the search
+# field and the scheme switch read as unexplained chrome.
+language:
+  search-text-placeholder: "Search the notes…"
+  search-no-results-text: "Nothing matches that"
+  toggle-dark-mode: "Switch between the dark and light theme"
 
 # Every page inherits these
 lightbox: true

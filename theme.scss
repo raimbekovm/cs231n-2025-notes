@@ -13,6 +13,11 @@ $cs-ink-muted: #525c67;
 $cs-ink-faint: #868f99;
 $cs-rule: #e2e7ea;
 $cs-rule-strong: #c7ced5;
+// The outline of an interactive control — the search field, the scheme pill.
+// WCAG 1.4.11 wants 3:1 against the adjacent surface for anything that has to
+// read as a component boundary, and $cs-rule-strong only manages 1.48 on the
+// paper. Measured: 3.05 on $cs-surface, 3.28 on $cs-paper.
+$cs-control-border: #868f99;
 
 // --- Accent ---------------------------------------------------------------
 $cs-accent: #16707f;
@@ -48,6 +53,16 @@ $cs-shadow:
   0 10px 28px -14px rgba(16, 20, 28, 0.22);
 
 // --- Bootstrap ------------------------------------------------------------
+// Quarto paints the selected search result with $primary and white text, so it
+// has to be a colour that works as a fill, not the light-on-dark accent. This
+// is viridis teal at 5.74:1 against white; the same value in both modes, since
+// the surface it fills is the same either way.
+$primary: #16707f;
+// Left unset, Quarto derives the navbar from $primary, decides the bar is dark
+// and picks a near-white foreground — which, against the light bar this theme
+// actually draws, put the PDF link and the scheme pill at 1.07:1.
+$navbar-bg: $cs-paper;
+$navbar-fg: $cs-ink;
 $body-bg: $cs-paper;
 $body-color: $cs-ink;
 $link-color: $cs-accent;

@@ -9,6 +9,13 @@
 // depth maps. Deliberately not Stanford Cardinal — these notes are unofficial
 // and a cardinal site would imply an affiliation that does not exist.
 
+// Both Bootswatch bases pull a webfont from Google of their own — cosmo asks
+// for Source Sans Pro, darkly for Lato — through an @import at the top of their
+// SCSS. Neither is used by anything here (the families below win), but the
+// request goes out on every page load, which defeats self-hosting the type in
+// fonts/. Setting the variable to false takes the theme's `@if` branch.
+$web-font-path: false;
+
 $font-family-sans-serif:
   "Space Grotesk",
   -apple-system,
@@ -46,6 +53,7 @@ $cs-ink-muted: #565f6b !default;
 $cs-ink-faint: #8b939e !default;
 $cs-rule: #e2e6ea !default;
 $cs-rule-strong: #cbd2d9 !default;
+$cs-control-border: #8b939e !default;
 $cs-accent: #196f7d !default;
 $cs-accent-hover: #12525c !default;
 $cs-accent-wash: rgba(33, 120, 142, 0.09) !default;
@@ -242,6 +250,15 @@ a:hover {
     letter-spacing: -0.01em;
   }
 
+  // Bootstrap leaves nav links on the body font, which here is the serif; next
+  // to the title and the two pills that reads as a stray piece of prose.
+  .nav-link,
+  .navbar-nav .nav-link {
+    font-family: $cs-font-display;
+    font-size: 0.86rem;
+    font-weight: 500;
+  }
+
   // A hairline of the full ramp under the navbar: the site's one persistent
   // reminder of where the palette comes from.
   &::after {
@@ -267,6 +284,100 @@ a:hover {
 
   &:hover {
     color: $cs-accent;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Colour-scheme switch
+// ---------------------------------------------------------------------------
+//
+// Quarto ships this as a bare 26px icon in the navbar corner. It reads as
+// decoration: nothing about it says "theme", and nothing says which theme is
+// on. Give it a border, an icon and a word, so it looks like a control and
+// states the mode it is currently in.
+//
+// With the dark theme listed first in _quarto.yml, `.alternate` on the toggle
+// means dark is the live scheme and its absence means light. Confirmed by
+// clicking it and reading back body.className, not assumed from the name.
+.quarto-color-scheme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.36rem;
+  // Bootstrap's px-1 utility is !important, so the horizontal padding has to
+  // match it to win; Quarto puts that class on the element itself.
+  padding: 0.28rem 0.66rem !important;
+  min-height: 2rem;
+  border: 1px solid $cs-control-border;
+  border-radius: 999px;
+  font-family: $cs-font-display;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1;
+  color: $cs-ink-muted;
+  background: $cs-surface;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+
+  .bi {
+    font-size: 0.9rem;
+    line-height: 1;
+
+    // sun-fill
+    &::before {
+      content: "\f5a1";
+    }
+  }
+
+  &::after {
+    content: "Light";
+  }
+
+  &.alternate {
+    // moon-stars-fill
+    .bi::before {
+      content: "\f495";
+    }
+
+    &::after {
+      content: "Dark";
+    }
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: $cs-ink;
+    border-color: $cs-accent;
+    background: $cs-accent-wash;
+  }
+}
+
+// Quarto colours every tool in the bar through
+// `.navbar .quarto-navbar-tools .quarto-navigation-tool`, three classes deep,
+// which outranks a bare class selector. Restate the pill's colours at the same
+// weight rather than leaving them to whatever that derivation produces.
+.navbar .quarto-navbar-tools .quarto-color-scheme-toggle {
+  color: $cs-ink-muted;
+
+  &:hover,
+  &:focus-visible {
+    color: $cs-ink;
+  }
+}
+
+// Below the navbar breakpoint Quarto moves the tools into the sidebar header,
+// where the row is tight; drop the word and keep the pill.
+@media (max-width: 991.98px) {
+  .quarto-color-scheme-toggle {
+    padding: 0.28rem 0.44rem !important;
+
+    &::after,
+    &.alternate::after {
+      content: "";
+    }
   }
 }
 
@@ -327,6 +438,224 @@ a:hover {
       background: $cs-accent-wash;
     }
   }
+}
+
+// ---------------------------------------------------------------------------
+// Search
+// ---------------------------------------------------------------------------
+//
+// `type: textbox` in _quarto.yml swaps the overlay's lone magnifier for a real
+// field. That alone is not enough: Quarto's default placeholder is the empty
+// string, so the input still arrives with nothing in it and no border worth the
+// name. _quarto.yml sets the placeholder under `language`; the rest is here.
+#quarto-search {
+  // It sits in the navbar tools row, so it has to sit on the same axis as the
+  // PDF link and the scheme pill rather than stretch the row.
+  display: flex;
+  align-items: center;
+  width: 15rem;
+  max-width: 100%;
+  margin-left: 0.85rem;
+
+  .aa-Autocomplete {
+    width: 100%;
+  }
+}
+
+// The navbar field and the field inside the full-screen search are the same
+// control on different surfaces, so they are styled together. Without this the
+// detached one keeps Bootstrap's .form-control colours and arrives as a light
+// island in the middle of a dark overlay.
+#quarto-search,
+.aa-DetachedFormContainer {
+  .aa-Form {
+    // Matches the scheme pill's min-height so the two controls sit on one line.
+    height: 2rem;
+    width: 100%;
+    border: 1px solid $cs-control-border;
+    border-radius: 7px;
+    background: $cs-paper;
+    // Set here rather than on .aa-Input: the library's own rule for the input
+    // is `.aa-Form .aa-InputWrapper .aa-Input` and outweighs anything shorter,
+    // but it resolves to `inherit`, so colouring the form carries through.
+    color: $cs-ink;
+    box-shadow: none;
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+
+    &:focus-within {
+      border-color: $cs-accent;
+      box-shadow: 0 0 0 3px $cs-accent-wash;
+    }
+  }
+
+  // Everything below goes through .aa-Form on purpose. The autocomplete library
+  // reaches its own controls as `.aa-Form .aa-InputWrapper .aa-Input`, and a
+  // shorter selector loses to it — which is how the detached field ended up
+  // with rgb(29,32,39) text on an rgb(18,21,28) ground, a contrast of 1.2.
+  .aa-Form {
+    .aa-InputWrapperPrefix,
+    .aa-InputWrapper,
+    .aa-InputWrapperSuffix {
+      height: 100%;
+    }
+
+    // The magnifier is the only thing naming what the field does, so it gets
+    // the muted ink rather than the faint one — at $cs-ink-faint on the dark
+    // paper it measures 4.47:1 and all but disappears.
+    .aa-SubmitButton,
+    .aa-ClearButton {
+      color: $cs-ink-muted;
+      background: transparent;
+      padding-left: 0.5rem;
+      padding-right: 0.25rem;
+    }
+
+    // The library colours the glyph itself and then halves its opacity, via
+    // `.aa-Form .aa-InputWrapperPrefix .aa-Label svg`. Anything shorter loses,
+    // so this override walks the same path.
+    .aa-InputWrapperPrefix .aa-Label svg,
+    .aa-InputWrapperSuffix .aa-ClearButton svg,
+    .aa-SubmitIcon,
+    .aa-ClearIcon {
+      width: 15px;
+      height: 15px;
+      color: $cs-ink-muted;
+      opacity: 1;
+    }
+
+    // Same story, one level deeper: the library declares an explicit colour at
+    // `.aa-Form .aa-InputWrapper .aa-Input` and it is not `inherit`, so the
+    // form's colour never reaches the text. In the navbar the #quarto-search id
+    // was enough to outrank it; the detached field has no id, so this has to
+    // walk the identical path.
+    .aa-InputWrapper .aa-Input {
+      font-family: $cs-font-display;
+      font-size: 0.85rem;
+      color: $cs-ink;
+
+      // The placeholder is the field's only label, so it has to clear AA rather
+      // than sit at the decorative grey the library dims it to.
+      &::placeholder {
+        color: $cs-ink-muted;
+        opacity: 1;
+      }
+    }
+
+    .aa-InputWrapperSuffix .aa-ClearButton {
+      color: $cs-ink-muted;
+      opacity: 1;
+
+      &:hover,
+      &:focus {
+        color: $cs-accent;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// Below the navbar breakpoint Quarto replaces the field with a button that
+// opens a full-screen search. Give it the same pill as the scheme switch so the
+// two controls in the corner read as a matched pair rather than loose icons.
+.aa-DetachedSearchButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  min-width: 2.35rem;
+  padding: 0.28rem 0.5rem;
+  border: 1px solid $cs-control-border;
+  border-radius: 999px;
+  background: $cs-surface;
+  color: $cs-ink-muted;
+
+  .aa-DetachedSearchButtonIcon {
+    color: inherit;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: $cs-ink;
+    border-color: $cs-accent;
+    background: $cs-accent-wash;
+  }
+}
+
+.aa-DetachedFormContainer {
+  border-bottom: 1px solid $cs-rule;
+
+  .aa-DetachedCancelButton {
+    font-family: $cs-font-display;
+    font-size: 0.82rem;
+    color: $cs-ink-muted;
+    background: transparent;
+    border: none;
+
+    &:hover,
+    &:focus-visible {
+      color: $cs-accent;
+      box-shadow: none;
+    }
+  }
+}
+
+// The results popover. Quarto renders it detached from #quarto-search, so this
+// cannot be nested above.
+.aa-Panel {
+  font-family: $cs-font-display;
+  background: $cs-paper;
+  border: 1px solid $cs-rule-strong;
+  border-radius: 8px;
+  box-shadow: $cs-shadow;
+
+  .aa-SourceHeaderTitle,
+  .search-result-section {
+    font-family: $cs-font-mono;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $cs-ink-faint;
+  }
+
+  .search-result-title {
+    color: $cs-ink;
+  }
+
+  .search-result-text {
+    color: $cs-ink-muted;
+  }
+
+  mark,
+  .search-match {
+    background: $cs-accent-wash;
+    color: $cs-accent;
+    padding: 0 0.1em;
+    border-radius: 2px;
+  }
+}
+
+// Quarto's own match highlight is derived from the Bootswatch base and lands on
+// solid black in dark mode, i.e. invisible on the panel. Its selectors run to
+// `.aa-DetachedOverlay li.aa-Item[aria-selected=true] .search-item mark`, so an
+// override has to carry the same weight — hence the repetition here rather than
+// a tidy one-liner.
+.aa-DetachedOverlay li.aa-Item[aria-selected="false"] .search-item mark.search-match,
+#quarto-search-results li.aa-Item[aria-selected="false"] .search-item mark.search-match {
+  background-color: $cs-accent-wash;
+  color: $cs-accent;
+}
+
+// On the selected row the fill is $primary, so the highlight has to sit on the
+// teal. It darkens rather than lightens: a white wash at any alpha strong
+// enough to be seen drops white-on-it to 3.69:1, while deepening the teal puts
+// it at 9.60:1 and reads as a firmer mark besides.
+.aa-DetachedOverlay li.aa-Item[aria-selected="true"] .search-item mark.search-match,
+#quarto-search-results li.aa-Item[aria-selected="true"] .search-item mark.search-match {
+  background-color: rgba(0, 0, 0, 0.32);
+  color: #fff;
 }
 
 // ---------------------------------------------------------------------------
