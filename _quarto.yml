@@ -69,7 +69,17 @@ format:
     link-external-newwindow: true
     fig-align: center
     fig-cap-location: bottom
-    html-math-method: katex
+    # Pinned rather than left to Quarto's default, which is the `katex@latest`
+    # tag: the CDN then serves whatever is current, so a KaTeX release could
+    # change how the maths on these pages renders without a commit here.
+    # 0.18.1 is what `latest` resolved to when this was pinned.
+    #
+    # The trailing slash is load-bearing: pandoc concatenates this with
+    # `katex.min.js` verbatim, so without it the URL comes out as
+    # `.../distkatex.min.js` and the maths silently stops rendering.
+    html-math-method:
+      method: katex
+      url: https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/
     anchor-sections: true
     smooth-scroll: true
     # Absolute URLs: the site is served from a subpath, so a root-relative
