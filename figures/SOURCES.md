@@ -18,18 +18,53 @@ short credit in each figure caption is a summary of the row here.
 Diagrams in `diagram_*.svg` are drawn for this project (TikZ source beside each
 one) and are the only figures covered by the MIT licence.
 
-## Lecture 1.1 — History of Computer Vision
+## Lecture 1 — Introduction
+
+Figures used by `lectures/01-introduction.qmd`. The rows below supersede the
+Lecture 1.1 / 1.2 rows further down, which now describe assets that are staged
+for later chapters rather than in use.
+
+| File | Status | Source |
+| :--- | :----- | :----- |
+| `diagram_scope.svg` | own work | Drawn for this project. Redraws the AI/ML/CV/DL Venn diagram from CS231n 2025 Lecture 1 Part 1, slide 8. Previously `01-history/diagram_01.svg`. |
+| `diagram_projection.svg` | own work | Drawn for this project. Shows that all world points on one ray through the optical centre share an image coordinate, illustrating @eq-projection. Hand-authored SVG; no TikZ source. |
+| `diagram_ilsvrc_error.svg` | own work | Drawn for this project. Winning top-5 error on ILSVRC, 2010–2015, plotted from the official challenge results at <https://www.image-net.org/challenges/LSVRC/>: 2010 NEC-UIUC 0.28191; 2011 XRCE 0.25770; 2012 SuperVision 0.15315 with the best non-network entry (ISI) at 0.26172; 2013 Clarifai 0.11197; 2014 GoogLeNet 6.66%. The 2015 figure (3.57%) is from the ResNet paper, and the 5.1% human annotator figure from Russakovsky et al., IJCV 2015. Plotted from published numbers, not traced from any existing chart. |
+| `diagram_compute_cost.svg` | own work | Drawn for this project. FP32 throughput divided by launch price for six consumer NVIDIA cards (8800 GTX 2006, GTX 580 2010, GTX 780 Ti 2013, GTX 1080 Ti 2017, RTX 2080 Ti 2018, RTX 3090 2020). Throughput is the vendor single-precision figure; price is launch MSRP in nominal US dollars, **not** inflation-adjusted — the caption says so. The CS231n decks carry a similar chart; this one is computed from specifications rather than traced from theirs. |
+| `diagram_four_tasks.svg` | own work | Drawn for this project. Classification, semantic segmentation, object detection and instance segmentation on one schematic scene. Deliberately not sourced from a slide figure: the widely circulated cat/dog/duck version of this comparison is a CS231n deck figure, and copies of it on third-party sites are re-hosts with no traceable licence. |
+| `diagram_linear_classifier.svg` | own work | Drawn for this project (linear classifier and margins). Previously `01b-course-overview/diagram_01.svg`. |
+| `camera_obscura_1545.jpg` | verified | Gemma Frisius, _De Radio Astronomico et Geometrico Liber_ (1545). Public domain; via Wikimedia Commons. The same engraving appears on CS231n 2025 Lecture 1 Part 1 slide 16, also marked public domain. |
+| `roberts_1963_blocks.avif` | attributed | Scan of Pictures 3A–3D from L. G. Roberts, _Machine Perception of Three-Dimensional Solids_, PhD thesis, MIT, 1963. <https://dspace.mit.edu/handle/1721.1/6125> |
+| `neocognitron_lenet.avif` | attributed | Composite. (a) after K. Fukushima, "Neocognitron", _Biological Cybernetics_ 36:193–202, 1980. (b) a colourised redraw of Figure 2 of Y. LeCun et al., _Proc. IEEE_ 86(11), 1998. |
+
+
+Figures stored as `.avif` keep a PNG or JPEG sibling beside them purely so the PDF
+build has something LaTeX can embed; `filters/pdf-images.lua` substitutes it for the
+latex writer. The sibling is not published to the site and no browser fetches it.
+
+### Deliberately not carried over
+
+`alexnet_2012.png` reproduces Figure 2 of the AlexNet paper. The CS231n decks use
+it under a permission granted to that course, which does not extend to this
+repository, so it is not used here — the same ground is covered by
+`neocognitron_lenet.avif` and by prose. `backprop_1986.png` is a figure from a
+_Nature_ paper and carries the same problem. The `unidentified` figures from the
+old Lecture 1.1 table (`hubel_wiesel_1959.png`, `pictorial_structures.png`,
+`canny_edge_detection.png`, `sift_features.jpg`, `viola_jones.png`) are untraced
+and were not carried over; where the chapter needs them, replacements must be
+sourced or drawn.
+
+## Staged assets — Lecture 1.1 (superseded)
 
 | File                             | Status       | Source                                                                                                                                                                                                                                                                                        |
 | :------------------------------- | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `diagram_01.svg`                 | own work     | Drawn for this project. Redraws the AI/ML/CV/DL Venn diagram from CS231n 2025 Lecture 1 Part 1, slide 8.                                                                                                                                                                                      |
 | `camera_obscura_1545.jpg`        | verified     | Gemma Frisius, _De Radio Astronomico et Geometrico Liber_ (1545). Public domain; via Wikimedia Commons. The same engraving appears on CS231n 2025 Lecture 1 Part 1 slide 16, also marked public domain.                                                                                       |
-| `roberts_1963_blocks.png`        | attributed   | Scan of Pictures 3A–3D from L. G. Roberts, _Machine Perception of Three-Dimensional Solids_, PhD thesis, MIT, 1963. <https://dspace.mit.edu/handle/1721.1/6125> (the same thesis is cited on slide 21 of the 2025 deck).                                                                      |
+| `roberts_1963_blocks.avif`        | attributed   | Scan of Pictures 3A–3D from L. G. Roberts, _Machine Perception of Three-Dimensional Solids_, PhD thesis, MIT, 1963. <https://dspace.mit.edu/handle/1721.1/6125> (the same thesis is cited on slide 21 of the 2025 deck).                                                                      |
 | `rosenblatt_perceptron_1958.png` | attributed   | Composite. Left: archival photograph of Frank Rosenblatt with the Mark I Perceptron (Cornell University). Right: "Figure 1: Organization of the Mark I Perceptron", from the Mark I Perceptron report, Cornell Aeronautical Laboratory.                                                       |
 | `minsky_papert_1969.jpg`         | attributed   | Composite of figures from, and the cover of, M. Minsky & S. Papert, _Perceptrons: An Introduction to Computational Geometry_, MIT Press, 1969.                                                                                                                                                |
 | `backprop_1986.png`              | attributed   | The XOR network figure from D. Rumelhart, G. Hinton & R. Williams, "Learning representations by back-propagating errors", _Nature_ 323:533–536, 1986. <https://doi.org/10.1038/323533a0>                                                                                                      |
 | `lenet_1998.png`                 | attributed   | Colourised redraw of Figure 2 of Y. LeCun, L. Bottou, Y. Bengio & P. Haffner, "Gradient-Based Learning Applied to Document Recognition", _Proc. IEEE_ 86(11), 1998. The 2025 deck labels this same lineage "Illustration of LeCun et al. 1998 from CS231n 2017 Lecture 1" (slide 16, Part 2). |
-| `neocognitron_lenet.png`         | attributed   | Composite. (a) after K. Fukushima, "Neocognitron", _Biological Cybernetics_ 36:193–202, 1980. (b) the same colourised LeCun et al. (1998) redraw as `lenet_1998.png`.                                                                                                                         |
+| `neocognitron_lenet.avif`         | attributed   | Composite. (a) after K. Fukushima, "Neocognitron", _Biological Cybernetics_ 36:193–202, 1980. (b) the same colourised LeCun et al. (1998) redraw as `lenet_1998.png`.                                                                                                                         |
 | `imagenet_mosaic.jpg`            | attributed   | ImageNet promotional mosaic, <https://image-net.org>. Dataset: J. Deng et al., "ImageNet: A Large-Scale Hierarchical Image Database", CVPR 2009.                                                                                                                                              |
 | `alexnet_2012.png`               | attributed   | Figure 2 of A. Krizhevsky, I. Sutskever & G. Hinton, "ImageNet Classification with Deep Convolutional Neural Networks", NeurIPS 2012. Note: the CS231n decks reproduce this figure "with permission" granted to that course; no such permission extends to this repository.                   |
 | `hubel_wiesel_1959.png`          | unidentified | Line drawing of the Hubel & Wiesel recording setup. Widely reproduced; the specific drawing is _not_ the one used in the 2025 deck (slide 19), which is a different redraw. Underlying work: D. Hubel & T. Wiesel, _J. Physiol._ 148:574–591, 1959.                                           |
@@ -38,7 +73,7 @@ one) and are the only figures covered by the MIT licence.
 | `sift_features.jpg`              | unidentified | SIFT keypoint matching on a toy truck. Underlying work: D. Lowe, "Object recognition from local scale-invariant features", ICCV 1999.                                                                                                                                                         |
 | `viola_jones.png`                | unidentified | Five-panel composite (integral image, Haar features, cascade, faces, LBP). The inclusion of Local Binary Patterns means it is not from the original paper; it appears to come from a later survey. Underlying work: P. Viola & M. Jones, CVPR 2001.                                           |
 
-## Lecture 1.2 — Course Overview
+## Staged assets — Lecture 1.2 (superseded)
 
 | File                              | Status       | Source                                                                                                                                                                                                                                                                                                                     |
 | :-------------------------------- | :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

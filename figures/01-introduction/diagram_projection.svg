@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 300" width="620" height="300"
+     role="img" aria-labelledby="projTitle projDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="projTitle">Perspective projection is not invertible</title>
+  <desc id="projDesc">Three points at different depths along a single ray through the optical
+  centre project to the same point on the image plane, so a single image cannot determine
+  which of them produced it.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7"
+            orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+
+  <g stroke="currentColor" fill="none" stroke-width="1.1" opacity="0.85">
+    <!-- optical axis -->
+    <path d="M 92 168 L 592 168" stroke-dasharray="5 5" opacity="0.45" marker-end="url(#arrow)"/>
+    <!-- image plane -->
+    <path d="M 168 66 L 208 44 L 208 250 L 168 272 Z" stroke-width="1.4"/>
+  </g>
+
+  <!-- the ray: every point on it lands on the same pixel -->
+  <g stroke="#2a788e" fill="none" stroke-width="2">
+    <path d="M 92 168 L 566 44"/>
+  </g>
+
+  <!-- the three world points -->
+  <g>
+    <circle cx="268" cy="122" r="6" fill="#440154"/>
+    <circle cx="396" cy="88"  r="6" fill="#414487"/>
+    <circle cx="530" cy="53"  r="6" fill="#2a788e"/>
+  </g>
+
+  <!-- optical centre and the single image point -->
+  <circle cx="92" cy="168" r="4.5" fill="currentColor"/>
+  <circle cx="188" cy="143" r="5.5" fill="none" stroke="#2a788e" stroke-width="2.4"/>
+
+  <g fill="currentColor" font-size="14">
+    <text x="66" y="192">O</text>
+    <text x="150" y="300">image plane</text>
+    <text x="252" y="108">P₁</text>
+    <text x="380" y="74">P₂</text>
+    <text x="514" y="39">P₃</text>
+    <text x="196" y="128" fill="#2a788e">(u, v)</text>
+  </g>
+
+  <g fill="currentColor" font-size="13.5" opacity="0.78">
+    <text x="300" y="204">A single ray through the optical centre O.</text>
+    <text x="300" y="224">Every world point on it — P₁, P₂, P₃ and the rest —</text>
+    <text x="300" y="244">produces the identical measurement (u, v).</text>
+    <text x="300" y="268" font-style="italic">Depth is destroyed at the sensor, not lost downstream.</text>
+  </g>
+</svg>

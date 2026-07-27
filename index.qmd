@@ -24,7 +24,7 @@ format:
       from the 2025 lectures, with every result linked to the paper it came from.
     </p>
     <div class="cs-hero__actions">
-      <a class="cs-btn cs-btn--primary" href="lectures/01-history.qmd">Start with lecture 1</a>
+      <a class="cs-btn cs-btn--primary" href="lectures/01-introduction.qmd">Start with lecture 1</a>
       <a class="cs-btn cs-btn--ghost" href="CS231n-2025-Lecture-Notes.pdf">Read as PDF</a>
     </div>
   </div>
@@ -45,10 +45,10 @@ format:
 :::
 
 ::: {.callout-tip title="How to read these notes"}
-Each lecture is a standalone page. Sections are numbered and individually
-linkable, so you can share a link to exactly the part you mean. Every major
-section ends with a **Key Takeaways** box, and optional **Deep Dive** boxes hold
-material that goes beyond what the lecture covered.
+Each lecture is a standalone page written to be read straight through rather than
+skimmed. Sections are numbered and individually linkable, so you can share a link
+to exactly the part you mean, and equations and figures are cross-referenced so a
+later lecture can point back at the thing it depends on.
 :::
 
 ## Lectures
@@ -61,23 +61,12 @@ The course runs to 18 lectures; these are the pages written so far. See the
 ::: {.cs-cards}
 
 ::: {.cs-card .cs-card--done}
-[Lecture 1.1]{.cs-card__index}
+[Lecture 1]{.cs-card__index}
 
-[[History of Computer Vision](lectures/01-history.qmd)]{.cs-card__title}
+[[Introduction](lectures/01-introduction.qmd)]{.cs-card__title}
 
-[From the camera obscura and Hubel & Wiesel to AlexNet: how vision became a deep
-learning field.]{.cs-card__blurb}
-
-[Complete]{.cs-card__status}
-:::
-
-::: {.cs-card .cs-card--done}
-[Lecture 1.2]{.cs-card__index}
-
-[[Course Overview: Tasks, Models, Applications](lectures/01b-course-overview.qmd)]{.cs-card__title}
-
-[The problems computer vision actually solves, the architectures that solve them,
-and where the field is going.]{.cs-card__blurb}
+[Why vision is the hard part of intelligence, how thirty years of geometry stalled
+on it, and what changed in 2012.]{.cs-card__blurb}
 
 [Complete]{.cs-card__status}
 :::
@@ -121,8 +110,7 @@ right place to start.]{.cs-card__blurb}
 
 | # | Topic | Status |
 |:--|:------|:-------|
-| 1.1 | [History of Computer Vision](lectures/01-history.qmd) | Complete |
-| 1.2 | [Course Overview: Tasks, Models, Applications](lectures/01b-course-overview.qmd) | Complete |
+| 1 | [Introduction](lectures/01-introduction.qmd) | Complete |
 | 2 | Image Classification, k-NN, Linear Classifiers | In progress |
 | 3 | Regularization and Optimization | Planned |
 | 4 | Neural Networks and Backpropagation | Planned |

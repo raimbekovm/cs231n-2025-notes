@@ -47,8 +47,7 @@ book:
     - index.qmd
     - part: "Fundamentals"
       chapters:
-        - lectures/01-history.qmd
-        - lectures/01b-course-overview.qmd
+        - lectures/01-introduction.qmd
 
 format:
   html:
@@ -124,6 +123,10 @@ filters:
   # which then constrains the caption as well as the image.
   - at: post-quarto
     path: filters/lazy-images.lua
+  # AVIF is what the browser gets; LaTeX cannot read it and would abort the PDF
+  # build, so the latex writer is pointed at the JPEG sibling instead.
+  - at: post-quarto
+    path: filters/pdf-images.lua
 
 crossref:
   fig-title: Figure
