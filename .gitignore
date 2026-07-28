@@ -56,6 +56,7 @@ transcripts/
 
 # Internal working files
 outlines/
+.claude/
 
 # LaTeX build artifacts. The only LaTeX left in the repository is the standalone
 # TikZ source beside each generated diagram; only its .svg output is committed.
