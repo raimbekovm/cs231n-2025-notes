@@ -156,3 +156,9 @@ need either a traced source or removal.
 
 If you recognise one of these figures, please
 [open an issue](https://github.com/raimbekovm/cs231n-2025-notes/issues).
+
+## Lecture 2 — Image classification
+
+| File | Status | Source |
+| :--- | :----- | :--- |
+| `02-image-classification/diagram_model_loss.svg` | own work | Drawn for this project. Shows the separation between input representation, the linear score function, class scores, and the loss used for training. |

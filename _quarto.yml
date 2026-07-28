@@ -48,6 +48,7 @@ book:
     - part: "Fundamentals"
       chapters:
         - lectures/01-introduction.qmd
+        - lectures/02-image-classification.qmd
 
 format:
   html:
