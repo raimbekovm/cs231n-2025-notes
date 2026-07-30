@@ -71,15 +71,15 @@ on it, and what changed in 2012.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
-::: {.cs-card .cs-card--wip}
+::: {.cs-card .cs-card--done}
 [Lecture 2]{.cs-card__index}
 
-[Image Classification, k-NN, Linear Classifiers]{.cs-card__title}
+[[Image Classification with Linear Classifiers](lectures/02-image-classification.qmd)]{.cs-card__title}
 
 [The classification setup, nearest neighbours, and why linear models are the
 right place to start.]{.cs-card__blurb}
 
-[In progress]{.cs-card__status}
+[Complete]{.cs-card__status}
 :::
 
 ::: {.cs-card .cs-card--planned}
@@ -111,7 +111,7 @@ right place to start.]{.cs-card__blurb}
 | # | Topic | Status |
 |:--|:------|:-------|
 | 1 | [Introduction](lectures/01-introduction.qmd) | Complete |
-| 2 | Image Classification, k-NN, Linear Classifiers | In progress |
+| 2 | [Image Classification with Linear Classifiers](lectures/02-image-classification.qmd) | Complete |
 | 3 | Regularization and Optimization | Planned |
 | 4 | Neural Networks and Backpropagation | Planned |
 
