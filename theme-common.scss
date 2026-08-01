@@ -820,10 +820,98 @@ code:not(.sourceCode) {
   border-radius: 4px;
 }
 
+// Code blocks. The book had none until lecture 4, so everything below is
+// exercising Quarto's defaults for the first time rather than adjusting them.
 div.sourceCode {
   border: 1px solid $cs-rule;
   border-radius: 6px;
   background: $cs-surface;
+  position: relative;
+  margin: 1.7rem 0;
+
+  pre.sourceCode {
+    // Right padding leaves the copy button its corner without letting it sit
+    // on top of a long line.
+    padding: 1rem 3.1rem 1rem 1.15rem;
+    margin: 0;
+    overflow-x: auto;
+    background: none;
+    border: 0;
+  }
+
+  code {
+    font-family: $cs-font-mono;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    background: none;
+    padding: 0;
+  }
+}
+
+// Quarto emits Pandoc's token classes and colours them from its own highlight
+// theme, which is tuned for neither of these palettes. These rules outrank it
+// on specificity and spend the same contrast-checked tokens the prose uses.
+pre.sourceCode code {
+  span.co {
+    color: $cs-ink-faint;
+    font-style: italic;
+  } // comments
+  span.kw,
+  span.cf,
+  span.im {
+    color: $cs-tx-plum;
+  } // keywords
+  span.st,
+  span.ch,
+  span.vs {
+    color: $cs-tx-jade;
+  } // strings
+  span.dv,
+  span.fl,
+  span.bn,
+  span.dt {
+    color: $cs-tx-citron;
+  } // literals
+  span.fu,
+  span.bu {
+    color: $cs-tx-teal;
+  } // calls
+  span.op {
+    color: $cs-ink-muted;
+  }
+  span.va,
+  span.at {
+    color: inherit;
+  }
+}
+
+// The copy button is Quarto's; it is invisible until hover by default, which
+// reads as an empty corner. Kept faintly present, solid on hover and focus.
+.code-copy-button {
+  top: 0.42rem;
+  right: 0.42rem;
+  // Quarto ships margin-right: 1.25em on this button, which would drag it a
+  // full character-width out of the corner that `right` just put it in.
+  margin: 0;
+  color: $cs-ink-faint;
+  opacity: 0.65;
+  border-radius: 5px;
+  transition:
+    opacity 0.12s ease,
+    color 0.12s ease,
+    background-color 0.12s ease;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+    color: $cs-accent-hover;
+    background-color: $cs-accent-wash;
+  }
+
+  &.code-copy-button-checked {
+    opacity: 1;
+    color: $cs-accent;
+  }
 }
 
 .katex-display {
