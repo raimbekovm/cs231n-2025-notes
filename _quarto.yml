@@ -49,6 +49,7 @@ book:
       chapters:
         - lectures/01-introduction.qmd
         - lectures/02-image-classification.qmd
+        - lectures/03-regularization-optimization.qmd
 
 format:
   html:

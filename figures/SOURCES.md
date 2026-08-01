@@ -162,3 +162,18 @@ If you recognise one of these figures, please
 | File | Status | Source |
 | :--- | :----- | :--- |
 | `02-image-classification/diagram_model_loss.svg` | own work | Drawn for this project. Shows the separation between input representation, the linear score function, class scores, and the loss used for training. |
+
+## Lecture 3 — Regularization and optimization
+
+All four are own work with no external source. They are generated rather than hand
+authored: `03-regularization-optimization/make_diagrams.py` sits beside them, is the
+authoritative source, and rewrites all four when run from the repository root. Every
+curve in these figures is evaluated numerically, so what is drawn is what the stated
+formula or simulation produces, not an impression of it.
+
+| File | Status | Source |
+| :--- | :----- | :--- |
+| `03-regularization-optimization/diagram_overfitting.svg` | own work | Drawn for this project. Nine points on the line $y = 1.2111 + 0.5667x$ with hand-chosen residuals, the degree-eight Lagrange interpolant through all nine, and the least-squares line fitted to them. Both curves are computed from the plotted points. |
+| `03-regularization-optimization/diagram_sgd_problems.svg` | own work | Drawn for this project. Left: exact level sets of $f = \tfrac12(w_1^2 + 20w_2^2)$, with gradient descent from $(4.6, 1.25)$ at step size $0.09$ run for 26 iterations. Right: the two principal cross-sections $\pm 0.34u^2$ through a saddle. |
+| `03-regularization-optimization/diagram_lr_curves.svg` | own work | Drawn for this project. SGD on $f = \tfrac12(0.25w_1^2 + 8w_2^2)$ from $(5.0, 0.9)$ with uniform additive gradient noise, ten updates per epoch, plotting the mean loss per epoch at step sizes $0.252$, $0.005$, $0.16$ and $0.06$. Randomness comes from a linear congruential generator seeded in the script, so the figure is reproducible. |
+| `03-regularization-optimization/diagram_lr_schedules.svg` | own work | Drawn for this project. Step, cosine, linear and inverse-square-root decay evaluated over 100 epochs, with a five-epoch linear warmup on the cosine curve. |

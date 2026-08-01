@@ -82,14 +82,15 @@ right place to start.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
-::: {.cs-card .cs-card--planned}
+::: {.cs-card .cs-card--done}
 [Lecture 3]{.cs-card__index}
 
-[Regularization and Optimization]{.cs-card__title}
+[[Regularization and Optimization](lectures/03-regularization-optimization.qmd)]{.cs-card__title}
 
-[Loss landscapes, gradient descent and its variants.]{.cs-card__blurb}
+[Why the data loss underdetermines a classifier, and how gradient descent and
+its variants find one anyway.]{.cs-card__blurb}
 
-[Planned]{.cs-card__status}
+[Complete]{.cs-card__status}
 :::
 
 ::: {.cs-card .cs-card--planned}
@@ -112,7 +113,7 @@ right place to start.]{.cs-card__blurb}
 |:--|:------|:-------|
 | 1 | [Introduction](lectures/01-introduction.qmd) | Complete |
 | 2 | [Image Classification with Linear Classifiers](lectures/02-image-classification.qmd) | Complete |
-| 3 | Regularization and Optimization | Planned |
+| 3 | [Regularization and Optimization](lectures/03-regularization-optimization.qmd) | Complete |
 | 4 | Neural Networks and Backpropagation | Planned |
 
 : Lectures published so far.
