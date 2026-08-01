@@ -93,12 +93,23 @@ its variants find one anyway.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
-::: {.cs-card .cs-card--planned}
+::: {.cs-card .cs-card--done}
 [Lecture 4]{.cs-card__index}
 
-[Neural Networks and Backpropagation]{.cs-card__title}
+[[Neural Networks and Backpropagation](lectures/04-neural-networks-backpropagation.qmd)]{.cs-card__title}
 
-[Computational graphs and the chain rule, done properly.]{.cs-card__blurb}
+[What a hidden layer buys you, and how the chain rule on a graph gets the
+gradient of anything.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
+::: {.cs-card .cs-card--planned}
+[Lecture 5]{.cs-card__index}
+
+[Convolutional Neural Networks]{.cs-card__title}
+
+[Building locality and translation into the layer itself.]{.cs-card__blurb}
 
 [Planned]{.cs-card__status}
 :::
@@ -114,7 +125,8 @@ its variants find one anyway.]{.cs-card__blurb}
 | 1 | [Introduction](lectures/01-introduction.qmd) | Complete |
 | 2 | [Image Classification with Linear Classifiers](lectures/02-image-classification.qmd) | Complete |
 | 3 | [Regularization and Optimization](lectures/03-regularization-optimization.qmd) | Complete |
-| 4 | Neural Networks and Backpropagation | Planned |
+| 4 | [Neural Networks and Backpropagation](lectures/04-neural-networks-backpropagation.qmd) | Complete |
+| 5 | Convolutional Neural Networks | Planned |
 
 : Lectures published so far.
 

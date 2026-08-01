@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 414" width="720" height="414"
+     role="img" aria-labelledby="patFigTitle patFigDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="patFigTitle">Four gradient flow patterns: add, multiply, max and copy</title>
+  <desc id="patFigDesc">Forward values are above each wire and gradients below. Addition passes the upstream gradient to both inputs unchanged. Multiplication scales each input's gradient by the other input. Maximum routes the whole gradient to the largest input and zero to the rest. A copy node sums the gradients arriving from its consumers.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" opacity="0.5"/>
+    </marker>
+  </defs>
+  <text x="158.0" y="34.0" font-size="13.5" fill="#1b1b1b" text-anchor="middle">add</text>
+  <circle cx="158" cy="102" r="18" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.75"/>
+  <text x="158.0" y="109.0" font-size="19" fill="#1b1b1b" text-anchor="middle">+</text>
+  <line x1="70" y1="74" x2="137" y2="102" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#arrow)"/>
+  <text x="60.0" y="72.0" font-size="13" fill="#1b1b1b" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">3</text>
+  <text x="60.0" y="90.0" font-size="12.5" fill="#21918c" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">2</text>
+  <line x1="70" y1="130" x2="137" y2="102" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#arrow)"/>
+  <text x="60.0" y="128.0" font-size="13" fill="#1b1b1b" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">4</text>
+  <text x="60.0" y="146.0" font-size="12.5" fill="#21918c" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">2</text>
+  <line x1="179" y1="102" x2="242" y2="102" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#arrow)"/>
+  <text x="252.0" y="100.0" font-size="13" fill="#1b1b1b" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">7</text>
+  <text x="252.0" y="118.0" font-size="12.5" fill="#21918c" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">2</text>
+  <text x="158.0" y="192.0" font-size="12" fill="#1b1b1b" text-anchor="middle" font-style="italic">sends 2 both ways</text>
+  <text x="518.0" y="34.0" font-size="13.5" fill="#1b1b1b" text-anchor="middle">multiply</text>
+  <circle cx="518" cy="102" r="18" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.75"/>
+  <text x="518.0" y="109.0" font-size="19" fill="#1b1b1b" text-anchor="middle">×</text>
+  <line x1="430" y1="74" x2="497" y2="102" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#arrow)"/>
+  <text x="420.0" y="72.0" font-size="13" fill="#1b1b1b" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">2</text>
+  <text x="420.0" y="90.0" font-size="12.5" fill="#21918c" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">3·5 = 15</text>
+  <line x1="430" y1="130" x2="497" y2="102" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#arrow)"/>
+  <text x="420.0" y="128.0" font-size="13" fill="#1b1b1b" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">3</text>
+  <text x="420.0" y="146.0" font-size="12.5" fill="#21918c" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">2·5 = 10</text>
+  <line x1="539" y1="102" x2="602" y2="102" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#arrow)"/>
+  <text x="612.0" y="100.0" font-size="13" fill="#1b1b1b" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">6</text>
+  <text x="612.0" y="118.0" font-size="12.5" fill="#21918c" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">5</text>
+  <text x="518.0" y="192.0" font-size="12" fill="#1b1b1b" text-anchor="middle" font-style="italic">each input scaled by the other</text>
+  <text x="158.0" y="236.0" font-size="13.5" fill="#1b1b1b" text-anchor="middle">max</text>
+  <circle cx="158" cy="304" r="18" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.75"/>
+  <text x="158.0" y="309.0" font-size="12.5" fill="#1b1b1b" text-anchor="middle">max</text>
+  <line x1="70" y1="276" x2="137" y2="304" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#arrow)"/>
+  <text x="60.0" y="274.0" font-size="13" fill="#1b1b1b" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">4</text>
+  <text x="60.0" y="292.0" font-size="12.5" fill="#21918c" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">0</text>
+  <line x1="70" y1="332" x2="137" y2="304" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#arrow)"/>
+  <text x="60.0" y="330.0" font-size="13" fill="#1b1b1b" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">5</text>
+  <text x="60.0" y="348.0" font-size="12.5" fill="#21918c" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">9</text>
+  <line x1="179" y1="304" x2="242" y2="304" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#arrow)"/>
+  <text x="252.0" y="302.0" font-size="13" fill="#1b1b1b" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">5</text>
+  <text x="252.0" y="320.0" font-size="12.5" fill="#21918c" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">9</text>
+  <text x="158.0" y="394.0" font-size="12" fill="#1b1b1b" text-anchor="middle" font-style="italic">all of it down the winning branch</text>
+  <text x="518.0" y="236.0" font-size="13.5" fill="#1b1b1b" text-anchor="middle">copy</text>
+  <circle cx="518" cy="304" r="20" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.75"/>
+  <text x="518.0" y="309.0" font-size="12.5" fill="#1b1b1b" text-anchor="middle">copy</text>
+  <line x1="430" y1="304" x2="497" y2="304" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#arrow)"/>
+  <text x="420.0" y="302.0" font-size="13" fill="#1b1b1b" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">7</text>
+  <text x="420.0" y="320.0" font-size="12.5" fill="#21918c" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">4+2 = 6</text>
+  <line x1="539" y1="304" x2="602" y2="276" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#arrow)"/>
+  <text x="612.0" y="274.0" font-size="13" fill="#1b1b1b" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">7</text>
+  <text x="612.0" y="292.0" font-size="12.5" fill="#21918c" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">4</text>
+  <line x1="539" y1="304" x2="602" y2="332" stroke="currentColor" stroke-width="1.3" opacity="0.5" marker-end="url(#arrow)"/>
+  <text x="612.0" y="330.0" font-size="13" fill="#1b1b1b" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">7</text>
+  <text x="612.0" y="348.0" font-size="12.5" fill="#21918c" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">2</text>
+  <text x="518.0" y="394.0" font-size="12" fill="#1b1b1b" text-anchor="middle" font-style="italic">gradients from consumers are summed</text>
+</svg>
