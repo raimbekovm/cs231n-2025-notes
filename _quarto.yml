@@ -51,6 +51,7 @@ book:
         - lectures/02-image-classification.qmd
         - lectures/03-regularization-optimization.qmd
         - lectures/04-neural-networks-backpropagation.qmd
+        - lectures/05-convolutional-networks.qmd
 
 format:
   html:

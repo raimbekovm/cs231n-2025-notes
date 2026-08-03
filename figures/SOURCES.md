@@ -194,3 +194,20 @@ inputs, checked by hand.
 | `diagram_activations.svg` | own work | Drawn for this project. ReLU, leaky ReLU, GELU, tanh and sigmoid over z ∈ [−3, 3], evaluated at 601 points. GELU is `z·Φ(z)` with Φ from `math.erf`. **Leaky ReLU is drawn with α = 0.1, not the α = 0.01 of the text**, because at 0.01 the negative slope is under half a pixel across the plot; the caption and the SVG description both say so. |
 | `diagram_backprop_graph.svg` | own work | Drawn for this project. The graph of `f = (x + y)z` at x = −2, y = 5, z = −4, with forward values above each edge and ∂f/∂edge below it: −4 on x, y and q, 3 on z, 1 on f. Verified by hand against a finite difference in the text. |
 | `diagram_gradient_patterns.svg` | own work | Drawn for this project. The add, multiply, max and copy patterns with the worked numbers of @sec-gradient-patterns: add 3+4=7 with upstream 2; multiply 2×3=6 with upstream 5 giving 15 and 10; max(4,5)=5 with upstream 9 routed entirely to 5; copy of 7 receiving 4 and 2 back, summing to 6. |
+
+## Lecture 5 — Convolutional networks
+
+Figures used by `lectures/05-convolutional-networks.qmd`. All seven are generated
+by `figures/05-convolutional-networks/make_diagrams.py`, which is committed
+beside them and is the authoritative source: running it from the repository root
+rewrites all seven. Nothing here is traced from a slide.
+
+| File | Status | Source |
+| :--- | :----- | :----- |
+| `diagram_flatten.svg` | own work | Drawn for this project. A 4×4 image with one pixel and its four four-connected neighbours marked, beside the same sixteen pixels in row-major order. The annotated distances (1, 1, 4, 4) are the actual index differences: pixel (1,1) is index 5, its neighbours are 1, 4, 6 and 9. |
+| `diagram_conv_layer.svg` | own work | Drawn for this project. A 3×32×32 input in oblique projection with one 3×5×5 filter placement, the 28×28 activation map it fills, and six such maps stacked into a 6×28×28 volume. Spatial proportions are to scale (the filter is 5/32 of the input's width); the input grid is drawn at 8×8 rather than 32×32 for legibility, which the caption does not claim otherwise. |
+| `diagram_gabor.svg` | own work | **Computed** for this project, not sampled from any trained model. Rows 1–6 are Gabor functions `exp(−(x'² + γ²y'²)/2σ²)·cos(2πx'/λ + φ)` with σ = 1.15, γ = 0.72, at eight orientations kπ/8, three wavelengths (1.3, 1.9, 2.7) and two phases (0, π/2); rows 7–8 are differences of Gaussians at four scales, both polarities, and two centre offsets. Each patch is evaluated on an 11×11 lattice over [−2.5, 2.5]² and normalised to its own peak, then mapped through the viridis ramp. Deliberately **not** the real AlexNet first layer: that grid is Figure 3 of Krizhevsky et al. (2012) and falls under the same restriction as Figure 2, recorded above. The caption states that these are analytic rather than learned. |
+| `diagram_padding_stride.svg` | own work | Drawn for this project. A 7×7 input with a 3×3 filter in three configurations, with every valid placement outlined. The placement counts (5, 7, 3) are enumerated by the script from `range(0, W + 2P − K + 1, S)`, not asserted. |
+| `diagram_receptive_field.svg` | own work | Drawn for this project. Three stacked 3-wide convolutions in one spatial dimension, 7→5→3→1, with every dependency edge drawn from the actual index arithmetic. Matches `1 + L(K − 1) = 7` for L = 3, K = 3. |
+| `diagram_pooling.svg` | own work | Drawn for this project. The 4×4 plane of @eq-maxpool, with the maximum of each 2×2 tile highlighted by comparison in the script rather than marked by hand, and the 2×2 output beside it. |
+| `diagram_equivariance.svg` | own work | Drawn for this project. The commutative square for `f(T(x)) = T(f(x))`, with a schematic scene shifted by the same fraction of the frame along both routes. |
