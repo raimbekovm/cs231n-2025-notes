@@ -921,6 +921,33 @@ pre.sourceCode code {
   padding: 0.2rem 0;
 }
 
+// KaTeX pins an equation's number absolutely at the right edge of the display
+// line, which holds only while the line is comfortably wider than the formula.
+// It draws the number on top of the maths otherwise, and that is not a phone
+// problem: measured across the book it happens to five equations at 992px and
+// six at 768px, and to a cross-reference hover preview at any width, since the
+// popup shrink-wraps to the formula and leaves the number nowhere to go.
+// Setting the number in flow ends the whole class of bug — it is laid out after
+// the formula and scrolls with it, so no column can be too narrow for it. The
+// cost is that the number no longer hangs at the right margin.
+//
+// KaTeX pins it from `.katex-display > .katex > .katex-html > .katex-tag`, and
+// its stylesheet is loaded after this theme's, so an equally specific selector
+// would lose on order alone. The `.math.display` wrapper pandoc puts around every
+// display equation carries the extra weight. `.tag` is the class name KaTeX used
+// before 0.17; it costs nothing to keep a version bump from silently undoing this.
+.math.display .katex-display > .katex > .katex-html > .katex-tag,
+.math.display .katex-display > .katex > .katex-html > .tag {
+  position: static;
+  display: inline-block;
+  margin-left: 2.5rem;
+}
+
+// Page margins around a display equation are far too much inside a popup.
+.tippy-box .katex-display {
+  margin: 0.4rem 0;
+}
+
 // Wide tables must scroll themselves, never the page. Quarto nests tables
 // inside the section it emits per heading, so this cannot be a child selector.
 .table-responsive,
