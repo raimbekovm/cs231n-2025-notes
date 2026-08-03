@@ -104,14 +104,24 @@ gradient of anything.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
-::: {.cs-card .cs-card--planned}
+::: {.cs-card .cs-card--done}
 [Lecture 5]{.cs-card__index}
 
-[Convolutional Neural Networks]{.cs-card__title}
+[[Convolutional Networks](lectures/05-convolutional-networks.qmd)]{.cs-card__title}
 
 [Building locality and translation into the layer itself.]{.cs-card__blurb}
 
-[Planned]{.cs-card__status}
+[Complete]{.cs-card__status}
+:::
+
+::: {.cs-card .cs-card--done}
+[Lecture 6]{.cs-card__index}
+
+[[CNN Architectures](lectures/06-cnn-architectures.qmd)]{.cs-card__title}
+
+[VGG, ResNet, and the recipe that gets a deep network to train at all.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
 :::
 
 :::
@@ -126,7 +136,8 @@ gradient of anything.]{.cs-card__blurb}
 | 2 | [Image Classification with Linear Classifiers](lectures/02-image-classification.qmd) | Complete |
 | 3 | [Regularization and Optimization](lectures/03-regularization-optimization.qmd) | Complete |
 | 4 | [Neural Networks and Backpropagation](lectures/04-neural-networks-backpropagation.qmd) | Complete |
-| 5 | Convolutional Neural Networks | Planned |
+| 5 | [Convolutional Networks](lectures/05-convolutional-networks.qmd) | Complete |
+| 6 | [CNN Architectures](lectures/06-cnn-architectures.qmd) | Complete |
 
 : Lectures published so far.
 
