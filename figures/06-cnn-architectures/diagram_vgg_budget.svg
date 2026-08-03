@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 470" width="880" height="470"
+     role="img" aria-labelledby="vggBudgetTitle vggBudgetDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="vggBudgetTitle">Activation memory and parameter count per layer of VGG-16</title>
+  <desc id="vggBudgetDesc">A diverging bar chart over the twenty-one layers of VGG-16. Bars above the axis are the number of activation values each layer produces for one 224 by 224 input; bars below are the number of learned parameters. Activations peak in the first two convolutional blocks and parameters peak in the first fully connected layer, which holds about three quarters of the network's weights.</desc>
+  <line x1="74.0" y1="195.5" x2="846.0" y2="195.5" stroke="currentColor" stroke-width="0.6" stroke-opacity="0.16" stroke-dasharray="3 4"/>
+  <text x="64.0" y="199.5" font-size="10" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">0.8M</text>
+  <line x1="74.0" y1="155.0" x2="846.0" y2="155.0" stroke="currentColor" stroke-width="0.6" stroke-opacity="0.16" stroke-dasharray="3 4"/>
+  <text x="64.0" y="159.0" font-size="10" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">1.6M</text>
+  <line x1="74.0" y1="114.5" x2="846.0" y2="114.5" stroke="currentColor" stroke-width="0.6" stroke-opacity="0.16" stroke-dasharray="3 4"/>
+  <text x="64.0" y="118.5" font-size="10" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">2.4M</text>
+  <line x1="74.0" y1="74.0" x2="846.0" y2="74.0" stroke="currentColor" stroke-width="0.6" stroke-opacity="0.16" stroke-dasharray="3 4"/>
+  <text x="64.0" y="78.0" font-size="10" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">3.2M</text>
+  <line x1="74.0" y1="273.5" x2="846.0" y2="273.5" stroke="currentColor" stroke-width="0.6" stroke-opacity="0.16" stroke-dasharray="3 4"/>
+  <text x="64.0" y="277.5" font-size="10" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">26M</text>
+  <line x1="74.0" y1="311.0" x2="846.0" y2="311.0" stroke="currentColor" stroke-width="0.6" stroke-opacity="0.16" stroke-dasharray="3 4"/>
+  <text x="64.0" y="315.0" font-size="10" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">51M</text>
+  <line x1="74.0" y1="348.5" x2="846.0" y2="348.5" stroke="currentColor" stroke-width="0.6" stroke-opacity="0.16" stroke-dasharray="3 4"/>
+  <text x="64.0" y="352.5" font-size="10" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">77M</text>
+  <line x1="74.0" y1="386.0" x2="846.0" y2="386.0" stroke="currentColor" stroke-width="0.6" stroke-opacity="0.16" stroke-dasharray="3 4"/>
+  <text x="64.0" y="390.0" font-size="10" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">103M</text>
+  <rect x="81.0" y="74.0" width="22.8" height="162.0" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="81.0" y="236.0" width="22.8" height="0.0" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="92.4" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">c1_1</text>
+  <rect x="117.7" y="74.0" width="22.8" height="162.0" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="117.7" y="236.0" width="22.8" height="0.1" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="129.1" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">c1_2</text>
+  <rect x="154.5" y="195.5" width="22.8" height="40.5" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="165.9" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">p1</text>
+  <rect x="191.3" y="155.0" width="22.8" height="81.0" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="191.3" y="236.0" width="22.8" height="0.1" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="202.7" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">c2_1</text>
+  <rect x="228.0" y="155.0" width="22.8" height="81.0" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="228.0" y="236.0" width="22.8" height="0.2" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="239.4" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">c2_2</text>
+  <rect x="264.8" y="215.8" width="22.8" height="20.2" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="276.2" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">p2</text>
+  <rect x="301.6" y="195.5" width="22.8" height="40.5" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="301.6" y="236.0" width="22.8" height="0.4" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="313.0" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">c3_1</text>
+  <rect x="338.3" y="195.5" width="22.8" height="40.5" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="338.3" y="236.0" width="22.8" height="0.9" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="349.7" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">c3_2</text>
+  <rect x="375.1" y="195.5" width="22.8" height="40.5" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="375.1" y="236.0" width="22.8" height="0.9" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="386.5" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">c3_3</text>
+  <rect x="411.8" y="225.9" width="22.8" height="10.1" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="423.2" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">p3</text>
+  <rect x="448.6" y="215.8" width="22.8" height="20.2" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="448.6" y="236.0" width="22.8" height="1.7" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="460.0" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">c4_1</text>
+  <rect x="485.4" y="215.8" width="22.8" height="20.2" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="485.4" y="236.0" width="22.8" height="3.4" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="496.8" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">c4_2</text>
+  <rect x="522.1" y="215.8" width="22.8" height="20.2" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="522.1" y="236.0" width="22.8" height="3.4" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="533.5" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">c4_3</text>
+  <rect x="558.9" y="230.9" width="22.8" height="5.1" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="570.3" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">p4</text>
+  <rect x="595.7" y="230.9" width="22.8" height="5.1" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="595.7" y="236.0" width="22.8" height="3.4" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="607.0" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">c5_1</text>
+  <rect x="632.4" y="230.9" width="22.8" height="5.1" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="632.4" y="236.0" width="22.8" height="3.4" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="643.8" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">c5_2</text>
+  <rect x="669.2" y="230.9" width="22.8" height="5.1" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="669.2" y="236.0" width="22.8" height="3.4" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="680.6" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">c5_3</text>
+  <rect x="705.9" y="234.7" width="22.8" height="1.3" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="717.3" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">p5</text>
+  <rect x="742.7" y="235.8" width="22.8" height="0.2" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="742.7" y="236.0" width="22.8" height="150.0" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="754.1" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">fc6</text>
+  <rect x="779.5" y="235.8" width="22.8" height="0.2" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="779.5" y="236.0" width="22.8" height="24.5" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="790.9" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">fc7</text>
+  <rect x="816.2" y="235.9" width="22.8" height="0.1" fill="#5ec962" fill-opacity="0.55" stroke="#5ec962" stroke-width="0.8" stroke-opacity="0.7"/>
+  <rect x="816.2" y="236.0" width="22.8" height="6.0" fill="#440154" fill-opacity="0.55" stroke="#440154" stroke-width="0.8" stroke-opacity="0.7"/>
+  <text x="827.6" y="240.0" font-size="9" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.0">fc8</text>
+  <line x1="74.0" y1="236.0" x2="846.0" y2="236.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.7"/>
+  <text x="92.4" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">c1_1</text>
+  <text x="129.1" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">c1_2</text>
+  <text x="165.9" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">p1</text>
+  <text x="202.7" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">c2_1</text>
+  <text x="239.4" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">c2_2</text>
+  <text x="276.2" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">p2</text>
+  <text x="313.0" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">c3_1</text>
+  <text x="349.7" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">c3_2</text>
+  <text x="386.5" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">c3_3</text>
+  <text x="423.2" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">p3</text>
+  <text x="460.0" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">c4_1</text>
+  <text x="496.8" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">c4_2</text>
+  <text x="533.5" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">c4_3</text>
+  <text x="570.3" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">p4</text>
+  <text x="607.0" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">c5_1</text>
+  <text x="643.8" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">c5_2</text>
+  <text x="680.6" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">c5_3</text>
+  <text x="717.3" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">p5</text>
+  <text x="754.1" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">fc6</text>
+  <text x="790.9" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">fc7</text>
+  <text x="827.6" y="403.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">fc8</text>
+  <text x="74.0" y="44.0" font-size="12.5" fill="#5ec962" text-anchor="start" fill-opacity="0.85">activations per image</text>
+  <text x="74.0" y="60.0" font-size="10.5" fill="currentColor" text-anchor="start" font-style="italic" fill-opacity="0.6">15.1M values in all — 72% of it in the first two blocks</text>
+  <text x="74.0" y="432.0" font-size="12.5" fill="#440154" text-anchor="start" fill-opacity="0.85">learned parameters</text>
+  <text x="74.0" y="444.0" font-size="10.5" fill="currentColor" text-anchor="start" font-style="italic" fill-opacity="0.6">138M in all — 74% of it in fc6 alone</text>
+  <text x="440.0" y="28.0" font-size="14" fill="currentColor" text-anchor="middle" fill-opacity="0.9">VGG-16: the two costs sit at opposite ends</text>
+</svg>
