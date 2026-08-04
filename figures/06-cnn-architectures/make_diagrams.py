@@ -13,90 +13,18 @@ Run from the repository root; rewrites all five files.
 
 import math
 import pathlib
+import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
+from _svg import GREEN, INDIGO, MONO, PURPLE, TEAL, arrow, line, poly, rect, text, wrap  # noqa: E402
 
 OUT = pathlib.Path("figures/06-cnn-architectures")
-
-PURPLE = "#440154"
-INDIGO = "#3b528b"
-TEAL = "#21918c"
-GREEN = "#5ec962"
-YELLOW = "#fde725"
-INK = "#1b1b1b"
-FONT = "Source Serif 4, Georgia, serif"
-MONO = "JetBrains Mono, SFMono-Regular, Menlo, monospace"
-
-
-def wrap(width, height, ids, title, desc, body):
-    """Assemble a complete SVG document."""
-    return (
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}"'
-        f' width="{width}" height="{height}"\n'
-        f'     role="img" aria-labelledby="{ids}Title {ids}Desc"'
-        f' font-family="{FONT}">\n'
-        f'  <title id="{ids}Title">{title}</title>\n'
-        f'  <desc id="{ids}Desc">{desc}</desc>\n'
-        f"{body}"
-        "</svg>\n"
-    )
-
-
-def text(x, y, s, size=13, fill="currentColor", anchor="middle", font=None, style="", weight=None, op=1.0):
-    """One text element. Every caller passes explicit coordinates."""
-    f = f' font-family="{font}"' if font else ""
-    st = f' font-style="{style}"' if style else ""
-    w = f' font-weight="{weight}"' if weight else ""
-    o = f' fill-opacity="{op}"' if op != 1.0 else ""
-    return (
-        f'  <text x="{x:.1f}" y="{y:.1f}" font-size="{size}" fill="{fill}"'
-        f' text-anchor="{anchor}"{f}{st}{w}{o}>{s}</text>\n'
-    )
-
-
-def rect(x, y, w, h, fill="none", stroke="currentColor", sw=1.0, op=1.0, so=1.0, rx=None):
-    """One rectangle."""
-    r = f' rx="{rx}"' if rx else ""
-    return (
-        f'  <rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}"'
-        f' fill="{fill}" fill-opacity="{op}" stroke="{stroke}"'
-        f' stroke-width="{sw}" stroke-opacity="{so}"{r}/>\n'
-    )
-
-
-def line(x0, y0, x1, y1, stroke="currentColor", sw=1.0, op=1.0, dash=None):
-    """One line segment."""
-    d = f' stroke-dasharray="{dash}"' if dash else ""
-    return (
-        f'  <line x1="{x0:.1f}" y1="{y0:.1f}" x2="{x1:.1f}" y2="{y1:.1f}"'
-        f' stroke="{stroke}" stroke-width="{sw}" stroke-opacity="{op}"{d}/>\n'
-    )
-
-
-def poly(points, fill="none", stroke="currentColor", sw=1.0, op=1.0, so=1.0):
-    """One closed polygon."""
-    pts = " ".join(f"{x:.1f},{y:.1f}" for x, y in points)
-    return (
-        f'  <polygon points="{pts}" fill="{fill}" fill-opacity="{op}"'
-        f' stroke="{stroke}" stroke-width="{sw}" stroke-opacity="{so}"/>\n'
-    )
 
 
 def path(d, fill="none", stroke="currentColor", sw=1.0, op=1.0, dash=None):
     """One path."""
     da = f' stroke-dasharray="{dash}"' if dash else ""
     return f'  <path d="{d}" fill="{fill}" stroke="{stroke}" stroke-width="{sw}" stroke-opacity="{op}"{da}/>\n'
-
-
-def arrow(x0, y0, x1, y1, sw=1.4, op=0.75, head=6.0):
-    """A plain line with a solid triangular head; no markers, no defs."""
-    ang = math.atan2(y1 - y0, x1 - x0)
-    bx, by = x1 - head * math.cos(ang), y1 - head * math.sin(ang)
-    out = line(x0, y0, bx, by, sw=sw, op=op)
-    tips = [
-        (x1, y1),
-        (bx - head * 0.45 * math.sin(ang), by + head * 0.45 * math.cos(ang)),
-        (bx + head * 0.45 * math.sin(ang), by - head * 0.45 * math.cos(ang)),
-    ]
-    return out + poly(tips, fill="currentColor", stroke="none", op=op)
 
 
 def cuboid(x, y, w, h, dx, dy, face, top=None, side=None, op=0.85, sw=1.0, so=0.7):
@@ -135,9 +63,19 @@ def _norm_panel(x0, y0, name, shade):
     """One activation block with `shade` = list of (row0, nrow, slice0, nslice)."""
     out = ""
     # Faint wireframe of the whole block.
-    out += poly([(x0, y0), (x0 + DX, y0 + DY), (x0 + BW + DX, y0 + DY), (x0 + BW, y0)], fill="none", sw=0.8, so=0.35)
     out += poly(
-        [(x0 + BW, y0), (x0 + BW + DX, y0 + DY), (x0 + BW + DX, y0 + BH + DY), (x0 + BW, y0 + BH)],
+        [(x0, y0), (x0 + DX, y0 + DY), (x0 + BW + DX, y0 + DY), (x0 + BW, y0)],
+        fill="none",
+        sw=0.8,
+        so=0.35,
+    )
+    out += poly(
+        [
+            (x0 + BW, y0),
+            (x0 + BW + DX, y0 + DY),
+            (x0 + BW + DX, y0 + BH + DY),
+            (x0 + BW, y0 + BH),
+        ],
         fill="none",
         sw=0.8,
         so=0.35,
@@ -151,7 +89,9 @@ def _norm_panel(x0, y0, name, shade):
     # Sample divisions on the top face.
     for k in range(1, NSLICE):
         t = k / NSLICE
-        out += line(x0 + t * DX, y0 + t * DY, x0 + BW + t * DX, y0 + t * DY, sw=0.55, op=0.3)
+        out += line(
+            x0 + t * DX, y0 + t * DY, x0 + BW + t * DX, y0 + t * DY, sw=0.55, op=0.3
+        )
 
     # The shaded region, drawn back-to-front so the near slices overlap correctly.
     for row0, nrow, slice0, nslice in shade:
@@ -161,7 +101,9 @@ def _norm_panel(x0, y0, name, shade):
         far = (slice0 + nslice) / NSLICE
         ox, oy = near * DX, near * DY
         ddx, ddy = (far - near) * DX, (far - near) * DY
-        out += cuboid(x0 + ox, sy + oy, BW, sh, ddx, ddy, TEAL, op=0.62, sw=0.9, so=0.55)
+        out += cuboid(
+            x0 + ox, sy + oy, BW, sh, ddx, ddy, TEAL, op=0.62, sw=0.9, so=0.55
+        )
 
     out += text(x0 + BW / 2 + DX / 2, y0 + BH + 52, name, size=13.5)
     return out
@@ -189,13 +131,23 @@ def fig_norm_axes():
 
     # Axis key, drawn once at the left of the first panel.
     body += arrow(30, 66 + BH, 30, 66 + 16, sw=1.0, op=0.6, head=5)
-    body += text(20, 66 + BH / 2 + 4, "C", size=12, anchor="middle", style="italic", op=0.75)
+    body += text(
+        20, 66 + BH / 2 + 4, "C", size=12, anchor="middle", style="italic", op=0.75
+    )
     body += arrow(42, 66 + BH + 13, 42 + BW, 66 + BH + 13, sw=1.0, op=0.6, head=5)
     body += text(42 + BW / 2, 66 + BH + 26, "H × W", size=11, op=0.75)
-    body += arrow(42 + BW + 6, 66 - 3, 42 + BW + 6 + DX, 66 - 3 + DY, sw=1.0, op=0.6, head=5)
+    body += arrow(
+        42 + BW + 6, 66 - 3, 42 + BW + 6 + DX, 66 - 3 + DY, sw=1.0, op=0.6, head=5
+    )
     body += text(42 + BW + 30, 66 + DY - 8, "N", size=12, style="italic", op=0.75)
 
-    body += text(w / 2, 26, "Which activations are pooled into one mean and variance", size=13.5, op=0.9)
+    body += text(
+        w / 2,
+        26,
+        "Which activations are pooled into one mean and variance",
+        size=13.5,
+        op=0.9,
+    )
     return wrap(
         w,
         h,
@@ -251,10 +203,14 @@ def fig_depth_error():
     # Error gridlines and right-hand axis.
     for e in (2, 4, 8, 16, 32):
         body += line(L, ey(e), R, ey(e), sw=0.6, op=0.18, dash="3 4")
-        body += text(R + 10, ey(e) + 4, f"{e}%", size=11, anchor="start", op=0.65, font=MONO)
+        body += text(
+            R + 10, ey(e) + 4, f"{e}%", size=11, anchor="start", op=0.65, font=MONO
+        )
     # Depth axis on the left.
     for d in (0, 40, 80, 120, 160):
-        body += text(L - 12, dy(d) + 4, f"{d}", size=11, anchor="end", op=0.65, font=MONO)
+        body += text(
+            L - 12, dy(d) + 4, f"{d}", size=11, anchor="end", op=0.65, font=MONO
+        )
 
     body += line(L, B, R, B, sw=1.0, op=0.6)
 
@@ -268,16 +224,41 @@ def fig_depth_error():
         if depth == 0:
             body += line(cx - bw / 2, B, cx + bw / 2, B, sw=2.4, op=0.55, stroke=INDIGO)
             continue
-        body += rect(cx - bw / 2, dy(depth), bw, B - dy(depth), fill=INDIGO, stroke=INDIGO, op=0.34, sw=0.9, so=0.55)
-        body += text(cx, dy(depth) - 6, f"{depth}", size=10.5, op=0.7, font=MONO, fill=INDIGO)
+        body += rect(
+            cx - bw / 2,
+            dy(depth),
+            bw,
+            B - dy(depth),
+            fill=INDIGO,
+            stroke=INDIGO,
+            op=0.34,
+            sw=0.9,
+            so=0.55,
+        )
+        body += text(
+            cx, dy(depth) - 6, f"{depth}", size=10.5, op=0.7, font=MONO, fill=INDIGO
+        )
 
     # Human baseline.
     body += line(L, ey(HUMAN), R, ey(HUMAN), sw=1.1, op=0.5, dash="6 4", stroke=PURPLE)
-    body += text(L + 6, ey(HUMAN) - 7, "human annotator, 5.1%", size=10.5, anchor="start", op=0.75, fill=PURPLE)
+    body += text(
+        L + 6,
+        ey(HUMAN) - 7,
+        "human annotator, 5.1%",
+        size=10.5,
+        anchor="start",
+        op=0.75,
+        fill=PURPLE,
+    )
 
     # Error line.
     pts = [(L + (i + 0.5) * step, ey(e)) for i, (_, e, _, _) in enumerate(ILSVRC)]
-    body += path("M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in pts), stroke=TEAL, sw=2.0, op=0.9)
+    body += path(
+        "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in pts),
+        stroke=TEAL,
+        sw=2.0,
+        op=0.9,
+    )
     for i, (x, y) in enumerate(pts):
         body += f'  <circle cx="{x:.1f}" cy="{y:.1f}" r="4" fill="{TEAL}"/>\n'
         err = ILSVRC[i][1]
@@ -291,11 +272,20 @@ def fig_depth_error():
 
     # The 2016 gap is real; say so on the chart rather than in the caption only.
     gap_x = L + 5.5 * step + step / 2
-    body += text(gap_x, B + 50, "2016 omitted: its winner was an ensemble", size=10, op=0.5, style="italic")
+    body += text(
+        gap_x,
+        B + 50,
+        "2016 omitted: its winner was an ensemble",
+        size=10,
+        op=0.5,
+        style="italic",
+    )
 
     # Legend and titles.
     body += text(L - 12, T - 26, "layers", size=11.5, anchor="end", op=0.75)
-    body += text(R + 10, T - 26, "top-5 error", size=11.5, anchor="start", op=0.75, fill=TEAL)
+    body += text(
+        R + 10, T - 26, "top-5 error", size=11.5, anchor="start", op=0.75, fill=TEAL
+    )
     body += text(w / 2, 26, "ILSVRC winners: error fell as depth rose", size=14, op=0.9)
 
     return wrap(
@@ -395,9 +385,29 @@ def fig_vgg_budget():
     for i, (name, mem, par) in enumerate(layers):
         cx = L + (i + 0.5) * step
         if mem:
-            body += rect(cx - bw / 2, MID - mh(mem), bw, mh(mem), fill=GREEN, stroke=GREEN, op=0.55, sw=0.8, so=0.7)
+            body += rect(
+                cx - bw / 2,
+                MID - mh(mem),
+                bw,
+                mh(mem),
+                fill=GREEN,
+                stroke=GREEN,
+                op=0.55,
+                sw=0.8,
+                so=0.7,
+            )
         if par:
-            body += rect(cx - bw / 2, MID, bw, ph(par), fill=PURPLE, stroke=PURPLE, op=0.55, sw=0.8, so=0.7)
+            body += rect(
+                cx - bw / 2,
+                MID,
+                bw,
+                ph(par),
+                fill=PURPLE,
+                stroke=PURPLE,
+                op=0.55,
+                sw=0.8,
+                so=0.7,
+            )
         body += text(cx, MID + 4, name, size=9, font=MONO, op=0.0)
 
     body += line(L, MID, R, MID, sw=1.1, op=0.7)
@@ -408,7 +418,15 @@ def fig_vgg_budget():
         cx = L + (i + 0.5) * step
         body += text(cx, BOT + 17, name, size=9.5, font=MONO, op=0.7)
 
-    body += text(L, TOP - 30, "activations per image", size=12.5, anchor="start", op=0.85, fill=GREEN)
+    body += text(
+        L,
+        TOP - 30,
+        "activations per image",
+        size=12.5,
+        anchor="start",
+        op=0.85,
+        fill=GREEN,
+    )
     body += text(
         L,
         TOP - 14,
@@ -418,7 +436,15 @@ def fig_vgg_budget():
         op=0.6,
         style="italic",
     )
-    body += text(L, BOT + 46, "learned parameters", size=12.5, anchor="start", op=0.85, fill=PURPLE)
+    body += text(
+        L,
+        BOT + 46,
+        "learned parameters",
+        size=12.5,
+        anchor="start",
+        op=0.85,
+        fill=PURPLE,
+    )
     body += text(
         L,
         BOT + 58,
@@ -428,7 +454,9 @@ def fig_vgg_budget():
         op=0.6,
         style="italic",
     )
-    body += text(w / 2, 28, "VGG-16: the two costs sit at opposite ends", size=14, op=0.9)
+    body += text(
+        w / 2, 28, "VGG-16: the two costs sit at opposite ends", size=14, op=0.9
+    )
 
     return wrap(
         w,
@@ -451,7 +479,9 @@ def fig_vgg_budget():
 
 
 def _block_box(cx, y, label, w=118.0, hh=30.0, fill=TEAL, op=0.2):
-    out = rect(cx - w / 2, y, w, hh, fill=fill, stroke=fill, op=op, sw=1.0, so=0.75, rx=4)
+    out = rect(
+        cx - w / 2, y, w, hh, fill=fill, stroke=fill, op=op, sw=1.0, so=0.75, rx=4
+    )
     out += text(cx, y + hh / 2 + 4.5, label, size=12)
     return out
 
@@ -464,7 +494,10 @@ def fig_residual_block():
     gap = 22.0
     bh = 30.0
 
-    for cx, title, residual in ((160.0, "plain block", False), (450.0, "residual block", True)):
+    for cx, title, residual in (
+        (160.0, "plain block", False),
+        (450.0, "residual block", True),
+    ):
         body += text(cx, 34, title, size=13.5, op=0.9)
         y = y0
         body += text(cx, y, "x", size=14, style="italic")
@@ -474,7 +507,11 @@ def fig_residual_block():
             body += arrow(cx, y, cx, y + gap - 2, sw=1.2, op=0.55)
             y += gap
             body += _block_box(
-                cx, y, label, fill=TEAL if "conv" in label else INDIGO, op=0.22 if "conv" in label else 0.16
+                cx,
+                y,
+                label,
+                fill=TEAL if "conv" in label else INDIGO,
+                op=0.22 if "conv" in label else 0.16,
             )
             y += bh
 
@@ -494,12 +531,41 @@ def fig_residual_block():
                 sw=1.8,
                 op=0.9,
             )
-            body += poly([(cx + 11, jy), (cx + 19, jy - 4), (cx + 19, jy + 4)], fill=GREEN, stroke="none", op=0.9)
-            body += text(sx + 8, (top_y + jy) / 2 + 4, "identity", size=11, anchor="start", fill=GREEN, op=0.95)
-            body += text(cx - 68, (top_y + jy) / 2 + 4, "F(x)", size=12.5, anchor="end", style="italic", op=0.7)
+            body += poly(
+                [(cx + 11, jy), (cx + 19, jy - 4), (cx + 19, jy + 4)],
+                fill=GREEN,
+                stroke="none",
+                op=0.9,
+            )
+            body += text(
+                sx + 8,
+                (top_y + jy) / 2 + 4,
+                "identity",
+                size=11,
+                anchor="start",
+                fill=GREEN,
+                op=0.95,
+            )
+            body += text(
+                cx - 68,
+                (top_y + jy) / 2 + 4,
+                "F(x)",
+                size=12.5,
+                anchor="end",
+                style="italic",
+                op=0.7,
+            )
             y = jy + 11
         else:
-            body += text(cx - 68, y - bh - gap + 6, "H(x)", size=12.5, anchor="end", style="italic", op=0.7)
+            body += text(
+                cx - 68,
+                y - bh - gap + 6,
+                "H(x)",
+                size=12.5,
+                anchor="end",
+                style="italic",
+                op=0.7,
+            )
 
         body += arrow(cx, y, cx, y + gap - 2, sw=1.2, op=0.55)
         y += gap
@@ -507,7 +573,9 @@ def fig_residual_block():
         y += bh
         body += arrow(cx, y, cx, y + 18, sw=1.2, op=0.55)
         y += 32
-        body += text(cx, y, "H(x)" if not residual else "F(x) + x", size=13, style="italic")
+        body += text(
+            cx, y, "H(x)" if not residual else "F(x) + x", size=13, style="italic"
+        )
 
     return wrap(
         w,
@@ -533,7 +601,12 @@ def _curve(x0, y0, pw, ph, f, stroke, sw=1.9, op=0.95, n=64):
     for i in range(n + 1):
         t = i / n
         pts.append((x0 + t * pw, y0 + ph - f(t) * ph))
-    return path("M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in pts), stroke=stroke, sw=sw, op=op)
+    return path(
+        "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in pts),
+        stroke=stroke,
+        sw=sw,
+        op=op,
+    )
 
 
 def fig_learning_curves():
@@ -589,14 +662,36 @@ def fig_learning_curves():
                 first.append(word)
             else:
                 second.append(word)
-        body += text(x + pw / 2, y0 + ph + 20, " ".join(first), size=10.5, op=0.62, style="italic")
+        body += text(
+            x + pw / 2,
+            y0 + ph + 20,
+            " ".join(first),
+            size=10.5,
+            op=0.62,
+            style="italic",
+        )
         if second:
-            body += text(x + pw / 2, y0 + ph + 34, " ".join(second), size=10.5, op=0.62, style="italic")
+            body += text(
+                x + pw / 2,
+                y0 + ph + 34,
+                " ".join(second),
+                size=10.5,
+                op=0.62,
+                style="italic",
+            )
         x += pw + 40.0
 
     body += text(46, 30, "train", size=12, anchor="start", fill=INDIGO, op=0.95)
     body += text(92, 30, "validation", size=12, anchor="start", fill=GREEN, op=0.95)
-    body += text(w - 46, 30, "accuracy against time", size=12, anchor="end", op=0.6, style="italic")
+    body += text(
+        w - 46,
+        30,
+        "accuracy against time",
+        size=12,
+        anchor="end",
+        op=0.6,
+        style="italic",
+    )
 
     return wrap(
         w,
@@ -634,6 +729,10 @@ if __name__ == "__main__":
     tot_par = sum(p for _, _, p in layers)
     first_two = sum(m for n, m, _ in layers if n[:2] in ("c1", "c2", "p1", "p2"))
     fc6 = dict((n, p) for n, _, p in layers)["fc6"]
-    print(f"VGG-16 activations {tot_mem / 1e6:.2f}M values, {tot_mem * 4 / 1e6:.1f} MB at fp32")
+    print(
+        f"VGG-16 activations {tot_mem / 1e6:.2f}M values, {tot_mem * 4 / 1e6:.1f} MB at fp32"
+    )
     print(f"  first two blocks: {first_two / tot_mem:.1%}")
-    print(f"VGG-16 parameters  {tot_par / 1e6:.1f}M, fc6 = {fc6 / 1e6:.1f}M = {fc6 / tot_par:.1%}")
+    print(
+        f"VGG-16 parameters  {tot_par / 1e6:.1f}M, fc6 = {fc6 / 1e6:.1f}M = {fc6 / tot_par:.1%}"
+    )
