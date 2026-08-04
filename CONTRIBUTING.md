@@ -344,27 +344,7 @@ Typical review time: 1-7 days depending on complexity.
 
 ## Code of Conduct
 
-### Our Standards
-
-- Be respectful and constructive in all interactions
-- Focus on the content, not the contributor
-- Assume good intentions
-- Accept feedback gracefully
-- Help others learn
-
-### Unacceptable Behavior
-
-- Personal attacks or insults
-- Dismissive or condescending responses
-- Spam or off-topic content
-
-### Enforcement
-
-Violations may result in:
-
-1. Warning
-2. Temporary ban
-3. Permanent ban
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 
 ## Questions?
 
