@@ -13,17 +13,26 @@ Run from the repository root; rewrites all seven files.
 
 import math
 import pathlib
+import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
+from _svg import (
+    GREEN,
+    INDIGO,
+    INK,
+    MONO,
+    PURPLE,
+    TEAL,
+    YELLOW,
+    arrow,
+    line,
+    poly,
+    rect,
+    text,
+    wrap,
+)  # noqa: E402
 
 OUT = pathlib.Path("figures/05-convolutional-networks")
-
-PURPLE = "#440154"
-INDIGO = "#3b528b"
-TEAL = "#21918c"
-GREEN = "#5ec962"
-YELLOW = "#fde725"
-INK = "#1b1b1b"
-FONT = "Source Serif 4, Georgia, serif"
-MONO = "JetBrains Mono, SFMono-Regular, Menlo, monospace"
 
 # The value ramp used by the filter grid. These are the viridis anchors the
 # other chapters draw from, interpolated linearly between.
@@ -34,69 +43,6 @@ VIRIDIS = [
     (0.75, (94, 201, 98)),
     (1.00, (253, 231, 37)),
 ]
-
-
-def wrap(width, height, ids, title, desc, body):
-    """Assemble a complete SVG document."""
-    return (
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}"'
-        f' width="{width}" height="{height}"\n'
-        f'     role="img" aria-labelledby="{ids}Title {ids}Desc"'
-        f' font-family="{FONT}">\n'
-        f'  <title id="{ids}Title">{title}</title>\n'
-        f'  <desc id="{ids}Desc">{desc}</desc>\n'
-        f"{body}"
-        "</svg>\n"
-    )
-
-
-def text(x, y, s, size=13, fill="currentColor", anchor="middle", font=None, style=""):
-    """One text element. Every caller passes explicit coordinates."""
-    f = f' font-family="{font}"' if font else ""
-    st = f' font-style="{style}"' if style else ""
-    return (
-        f'  <text x="{x:.1f}" y="{y:.1f}" font-size="{size}" fill="{fill}" text-anchor="{anchor}"{f}{st}>{s}</text>\n'
-    )
-
-
-def rect(x, y, w, h, fill="none", stroke="currentColor", sw=1.0, op=1.0, so=1.0):
-    """One rectangle."""
-    return (
-        f'  <rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}"'
-        f' fill="{fill}" fill-opacity="{op}" stroke="{stroke}"'
-        f' stroke-width="{sw}" stroke-opacity="{so}"/>\n'
-    )
-
-
-def line(x0, y0, x1, y1, stroke="currentColor", sw=1.0, op=1.0, dash=None):
-    """One line segment."""
-    d = f' stroke-dasharray="{dash}"' if dash else ""
-    return (
-        f'  <line x1="{x0:.1f}" y1="{y0:.1f}" x2="{x1:.1f}" y2="{y1:.1f}"'
-        f' stroke="{stroke}" stroke-width="{sw}" stroke-opacity="{op}"{d}/>\n'
-    )
-
-
-def poly(points, fill="none", stroke="currentColor", sw=1.0, op=1.0, so=1.0):
-    """One closed polygon."""
-    pts = " ".join(f"{x:.1f},{y:.1f}" for x, y in points)
-    return (
-        f'  <polygon points="{pts}" fill="{fill}" fill-opacity="{op}"'
-        f' stroke="{stroke}" stroke-width="{sw}" stroke-opacity="{so}"/>\n'
-    )
-
-
-def arrow(x0, y0, x1, y1, sw=1.4, op=0.75, head=6.0):
-    """A plain line with a solid triangular head; no markers, no defs."""
-    ang = math.atan2(y1 - y0, x1 - x0)
-    bx, by = x1 - head * math.cos(ang), y1 - head * math.sin(ang)
-    out = line(x0, y0, bx, by, sw=sw, op=op)
-    tips = [
-        (x1, y1),
-        (bx - head * 0.45 * math.sin(ang), by + head * 0.45 * math.cos(ang)),
-        (bx + head * 0.45 * math.sin(ang), by - head * 0.45 * math.cos(ang)),
-    ]
-    return out + poly(tips, fill="currentColor", stroke="none", op=op)
 
 
 def grid(x, y, cell, n, m=None, sw=0.7, op=0.5):
@@ -165,7 +111,9 @@ def fig_flatten():
                 sw=0.9,
                 so=0.55,
             )
-    body += text(gx + 2 * cell, gy + 4 * cell + 26, "a pixel and its four neighbours", size=12.5)
+    body += text(
+        gx + 2 * cell, gy + 4 * cell + 26, "a pixel and its four neighbours", size=12.5
+    )
 
     # The flattened strip: sixteen cells in row-major order.
     sx, sy = 300, gy + cell
@@ -188,7 +136,14 @@ def fig_flatten():
             sw=0.9,
             so=0.55,
         )
-        body += text(sx + k * scell + scell / 2, sy + scell + 15, str(k), size=10.5, fill=INK, font=MONO)
+        body += text(
+            sx + k * scell + scell / 2,
+            sy + scell + 15,
+            str(k),
+            size=10.5,
+            fill=INK,
+            font=MONO,
+        )
 
     # Distance braces: the two neighbours that survive, and the two that do not.
     base = sy + scell + 30
@@ -243,7 +198,9 @@ def fig_conv_layer():
     fx, fy = ix + iw * 9 / 32, iy + iw * 7 / 32
     body += cuboid(fx, fy, fw, fw, dx, dy, TEAL, op=0.9)
     body += text(ix + iw / 2, iy - 44, "input", size=14)
-    body += text(ix + iw / 2, iy + iw + 26, "3 × 32 × 32", size=12.5, font=MONO, fill=INK)
+    body += text(
+        ix + iw / 2, iy + iw + 26, "3 × 32 × 32", size=12.5, font=MONO, fill=INK
+    )
     body += text(
         ix + iw / 2,
         iy + iw + 46,
@@ -260,7 +217,9 @@ def fig_conv_layer():
     cw = aw / 7
     body += rect(ax + 2 * cw, ay + 1 * cw, cw, cw, fill=TEAL, op=0.9, sw=0.9, so=0.6)
     body += text(ax + aw / 2, ay - 34, "activation map", size=14)
-    body += text(ax + aw / 2, ay + aw + 26, "1 × 28 × 28", size=12.5, font=MONO, fill=INK)
+    body += text(
+        ax + aw / 2, ay + aw + 26, "1 × 28 × 28", size=12.5, font=MONO, fill=INK
+    )
 
     # The wire from the highlighted filter slab to the cell it produces.
     wire_x0 = ix + iw + dx + 10
@@ -298,7 +257,9 @@ def fig_conv_layer():
             so=0.55,
         )
     body += text(ox + ow / 2 + 32, oy - 84, "output volume", size=14)
-    body += text(ox + ow / 2 + 32, oy + ow + 26, "6 × 28 × 28", size=12.5, font=MONO, fill=INK)
+    body += text(
+        ox + ow / 2 + 32, oy + ow + 26, "6 × 28 × 28", size=12.5, font=MONO, fill=INK
+    )
     body += text(
         ox + ow / 2 + 32,
         oy + ow + 46,
@@ -387,7 +348,9 @@ def fig_gabor():
         for c in range(8):
             sigma = (0.65, 0.95, 1.25, 1.6)[c % 4]
             sign = 1.0 if c < 4 else -1.0
-            vals = [[blob(i, j, sigma, sign, off, -off) for i in range(n)] for j in range(n)]
+            vals = [
+                [blob(i, j, sigma, sign, off, -off) for i in range(n)] for j in range(n)
+            ]
             body += patch(vals, 1 + c * tile, 1 + r * tile, cell, n)
 
     body += text(
@@ -444,7 +407,16 @@ def conv_panel(x, y, cell, size, pad, stride, k=3):
             for i in range(total):
                 if 0 < i <= size and 0 < j <= size:
                     continue
-                body += rect(ox + i * cell, oy + j * cell, cell, cell, fill=INK, op=0.06, sw=0.5, so=0.3)
+                body += rect(
+                    ox + i * cell,
+                    oy + j * cell,
+                    cell,
+                    cell,
+                    fill=INK,
+                    op=0.06,
+                    sw=0.5,
+                    so=0.3,
+                )
     body += grid(x, y, cell, size, sw=0.8, op=0.55)
     if pad:
         body += grid(ox, oy, cell, total, sw=0.5, op=0.3)
@@ -550,7 +522,9 @@ def fig_receptive_field():
             fill = PURPLE if li == len(layers) - 1 else TEAL
             op = 0.8 if li == len(layers) - 1 else 0.20 + 0.10 * li
             body += rect(xs[li][i], y, cell, cell, fill=fill, op=op, sw=0.9, so=0.6)
-        body += text(xs[li][0] - 22, y + cell / 2 + 4, names[li], size=12.5, anchor="end")
+        body += text(
+            xs[li][0] - 22, y + cell / 2 + 4, names[li], size=12.5, anchor="end"
+        )
         body += text(
             xs[li][-1] + cell + 22,
             y + cell / 2 + 4,
@@ -564,8 +538,18 @@ def fig_receptive_field():
     y_in = top - 16
     body += line(xs[0][0], y_in, xs[0][-1] + cell, y_in, stroke=PURPLE, sw=1.4, op=0.8)
     body += line(xs[0][0], y_in - 5, xs[0][0], y_in + 5, stroke=PURPLE, sw=1.4, op=0.8)
-    body += line(xs[0][-1] + cell, y_in - 5, xs[0][-1] + cell, y_in + 5, stroke=PURPLE, sw=1.4, op=0.8)
-    body += text(w / 2, 26, "receptive field of one layer-3 unit, in the input", size=14)
+    body += line(
+        xs[0][-1] + cell,
+        y_in - 5,
+        xs[0][-1] + cell,
+        y_in + 5,
+        stroke=PURPLE,
+        sw=1.4,
+        op=0.8,
+    )
+    body += text(
+        w / 2, 26, "receptive field of one layer-3 unit, in the input", size=14
+    )
     body += text(
         w / 2,
         h - 26,
@@ -601,7 +585,11 @@ def fig_pooling():
     body = text(ix + 2 * cell, 44, "one channel plane", size=14)
     for j in range(4):
         for i in range(4):
-            tile_max = max(vals[2 * (j // 2) + a][2 * (i // 2) + b] for a in range(2) for b in range(2))
+            tile_max = max(
+                vals[2 * (j // 2) + a][2 * (i // 2) + b]
+                for a in range(2)
+                for b in range(2)
+            )
             hot = vals[j][i] == tile_max
             body += rect(
                 ix + i * cell,
@@ -622,14 +610,27 @@ def fig_pooling():
             )
     # The 2x2 tile boundaries, drawn over the cells.
     for t in range(3):
-        body += line(ix + t * 2 * cell, iy, ix + t * 2 * cell, iy + 4 * cell, sw=1.8, op=0.75)
-        body += line(ix, iy + t * 2 * cell, ix + 4 * cell, iy + t * 2 * cell, sw=1.8, op=0.75)
+        body += line(
+            ix + t * 2 * cell, iy, ix + t * 2 * cell, iy + 4 * cell, sw=1.8, op=0.75
+        )
+        body += line(
+            ix, iy + t * 2 * cell, ix + 4 * cell, iy + t * 2 * cell, sw=1.8, op=0.75
+        )
 
     ox, oy = 420, 70 + cell / 2
     out = [[6, 8], [3, 4]]
     for j in range(2):
         for i in range(2):
-            body += rect(ox + i * cell, oy + j * cell, cell, cell, fill=TEAL, op=0.55, sw=1.8, so=0.75)
+            body += rect(
+                ox + i * cell,
+                oy + j * cell,
+                cell,
+                cell,
+                fill=TEAL,
+                op=0.55,
+                sw=1.8,
+                so=0.75,
+            )
             body += text(
                 ox + i * cell + cell / 2,
                 oy + j * cell + cell / 2 + 5,
@@ -687,7 +688,11 @@ def small_scene(x, y, s, shift):
     cy = y + s * 0.42
     body += f'  <circle cx="{cx:.1f}" cy="{cy:.1f}" r="{s * 0.13:.1f}" fill="{TEAL}" fill-opacity="0.85"/>\n'
     body += poly(
-        [(cx - s * 0.13, cy + s * 0.30), (cx, cy + s * 0.12), (cx + s * 0.13, cy + s * 0.30)],
+        [
+            (cx - s * 0.13, cy + s * 0.30),
+            (cx, cy + s * 0.12),
+            (cx + s * 0.13, cy + s * 0.30),
+        ],
         fill=TEAL,
         stroke="none",
         op=0.55,
@@ -712,10 +717,28 @@ def fig_equivariance():
     body += arrow(x0 + s / 2, y0 + s + 16, x0 + s / 2, y1 - 16)
     body += arrow(x1 + s / 2, y0 + s + 16, x1 + s / 2, y1 - 16)
 
-    body += text((x0 + s + x1) / 2, y0 + s / 2 - 12, "conv or pool", size=12.5, fill=INK)
-    body += text((x0 + s + x1) / 2, y1 + s / 2 - 12, "conv or pool", size=12.5, fill=INK)
-    body += text(x0 + s / 2 - 12, (y0 + s + y1) / 2 + 4, "translate", size=12.5, anchor="end", fill=INK)
-    body += text(x1 + s / 2 + 12, (y0 + s + y1) / 2 + 4, "translate", size=12.5, anchor="start", fill=INK)
+    body += text(
+        (x0 + s + x1) / 2, y0 + s / 2 - 12, "conv or pool", size=12.5, fill=INK
+    )
+    body += text(
+        (x0 + s + x1) / 2, y1 + s / 2 - 12, "conv or pool", size=12.5, fill=INK
+    )
+    body += text(
+        x0 + s / 2 - 12,
+        (y0 + s + y1) / 2 + 4,
+        "translate",
+        size=12.5,
+        anchor="end",
+        fill=INK,
+    )
+    body += text(
+        x1 + s / 2 + 12,
+        (y0 + s + y1) / 2 + 4,
+        "translate",
+        size=12.5,
+        anchor="start",
+        fill=INK,
+    )
 
     body += text(x0 + s / 2, y0 - 22, "image", size=13.5)
     body += text(x1 + s / 2, y0 - 22, "feature map", size=13.5)

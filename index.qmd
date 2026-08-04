@@ -124,6 +124,16 @@ gradient of anything.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
+::: {.cs-card .cs-card--done}
+[Lecture 7]{.cs-card__index}
+
+[[Recurrent Neural Networks](lectures/07-recurrent-neural-networks.qmd)]{.cs-card__title}
+
+[A state carried across time, one set of weights reused at every step, and the gradient problem that reuse creates.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
 :::
 
 :::
@@ -138,6 +148,7 @@ gradient of anything.]{.cs-card__blurb}
 | 4 | [Neural Networks and Backpropagation](lectures/04-neural-networks-backpropagation.qmd) | Complete |
 | 5 | [Convolutional Networks](lectures/05-convolutional-networks.qmd) | Complete |
 | 6 | [CNN Architectures](lectures/06-cnn-architectures.qmd) | Complete |
+| 7 | [Recurrent Neural Networks](lectures/07-recurrent-neural-networks.qmd) | Complete |
 
 : Lectures published so far.
 

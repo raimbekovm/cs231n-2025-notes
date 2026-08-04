@@ -11,17 +11,14 @@ Run from the repository root; rewrites all five files.
 
 import math
 import pathlib
+import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
+from _svg import INDIGO, INK, MONO, PURPLE, TEAL, mapper, text, wrap  # noqa: E402
 
 OUT = pathlib.Path("figures/04-neural-networks-backpropagation")
 
-PURPLE = "#440154"
-INDIGO = "#3b528b"
-TEAL = "#21918c"
 JADE = "#0d7a5c"
-INK = "#1b1b1b"
-FONT = "Source Serif 4, Georgia, serif"
-MONO = "JetBrains Mono, SFMono-Regular, Menlo, monospace"
-
 # The gradient annotations on the two graph figures are all in one colour so
 # that "below the wire and teal" reads as a single signal for "backward".
 GRAD = TEAL
@@ -32,42 +29,6 @@ def path(points, fmt="{:.2f}"):
     head = "M " + fmt.format(points[0][0]) + " " + fmt.format(points[0][1])
     rest = "".join(" L " + fmt.format(x) + " " + fmt.format(y) for x, y in points[1:])
     return head + rest
-
-
-def mapper(dom, rng, px, py):
-    """Build a function mapping data coordinates into a pixel box."""
-    d0, d1 = dom
-    r0, r1 = rng
-    x0, x1 = px
-    y0, y1 = py
-
-    def to_px(x, y):
-        return (x0 + (x - d0) / (d1 - d0) * (x1 - x0), y1 - (y - r0) / (r1 - r0) * (y1 - y0))
-
-    return to_px
-
-
-def wrap(width, height, ids, title, desc, body):
-    """Assemble a complete SVG document."""
-    return (
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}"'
-        f' width="{width}" height="{height}"\n'
-        f'     role="img" aria-labelledby="{ids}Title {ids}Desc"'
-        f' font-family="{FONT}">\n'
-        f'  <title id="{ids}Title">{title}</title>\n'
-        f'  <desc id="{ids}Desc">{desc}</desc>\n'
-        f"{body}"
-        "</svg>\n"
-    )
-
-
-def text(x, y, s, size=13, fill="currentColor", anchor="middle", font=None, style=""):
-    """One text element. Every caller passes explicit coordinates."""
-    f = f' font-family="{font}"' if font else ""
-    st = f' font-style="{style}"' if style else ""
-    return (
-        f'  <text x="{x:.1f}" y="{y:.1f}" font-size="{size}" fill="{fill}" text-anchor="{anchor}"{f}{st}>{s}</text>\n'
-    )
 
 
 # ---------------------------------------------------------------------------
@@ -106,7 +67,9 @@ def net(ox, layers, labels, caption_top, caption_bottom, top=64, gap=34, col=88)
         out += text(ox + i * col, base, lab, size=12.5)
     span_mid = ox + (len(layers) - 1) * col / 2
     out += text(span_mid, 34, caption_top, size=14)
-    out += text(span_mid, base + 26, caption_bottom, size=12.5, fill=INK, style="italic")
+    out += text(
+        span_mid, base + 26, caption_bottom, size=12.5, fill=INK, style="italic"
+    )
     return out
 
 
@@ -276,7 +239,9 @@ def fig_activations():
             f'  <line x1="66" y1="{py:.1f}" x2="566" y2="{py:.1f}"'
             f' stroke="currentColor" stroke-width="0.8" opacity="{op}"/>\n'
         )
-        body += text(58, py + 4, str(gy).replace("-", "−"), size=11.5, fill=INK, anchor="end")
+        body += text(
+            58, py + 4, str(gy).replace("-", "−"), size=11.5, fill=INK, anchor="end"
+        )
     zx, _ = to_px(0.0, 0.0)
     body += (
         f'  <line x1="{zx:.1f}" y1="40" x2="{zx:.1f}" y2="326"'
@@ -384,7 +349,14 @@ def fig_backprop_graph():
     body += text(660, 201, "f", size=16, fill=PURPLE, style="italic")
     body += text(360, 34, "forward values", size=13, fill=INK)
     body += text(360, 54, "gradients of f", size=13, fill=GRAD)
-    body += text(360, 300, "backward pass runs right to left", size=12.5, fill=GRAD, style="italic")
+    body += text(
+        360,
+        300,
+        "backward pass runs right to left",
+        size=12.5,
+        fill=GRAD,
+        style="italic",
+    )
     return wrap(
         w,
         h,
@@ -418,7 +390,9 @@ def pattern(ox, oy, title, symbol, ins, outs, note):
             f' marker-end="url(#arrow)"/>\n'
         )
         out += text(ox + 34, y - 2, val, size=13, fill=INK, anchor="end", font=MONO)
-        out += text(ox + 34, y + 16, grad, size=12.5, fill=GRAD, anchor="end", font=MONO)
+        out += text(
+            ox + 34, y + 16, grad, size=12.5, fill=GRAD, anchor="end", font=MONO
+        )
     for i, (val, grad) in enumerate(outs):
         y = oy + 14 + i * 56 if len(outs) > 1 else cy
         out += (
@@ -427,7 +401,9 @@ def pattern(ox, oy, title, symbol, ins, outs, note):
             f' marker-end="url(#arrow)"/>\n'
         )
         out += text(ox + 226, y - 2, val, size=13, fill=INK, anchor="start", font=MONO)
-        out += text(ox + 226, y + 16, grad, size=12.5, fill=GRAD, anchor="start", font=MONO)
+        out += text(
+            ox + 226, y + 16, grad, size=12.5, fill=GRAD, anchor="start", font=MONO
+        )
     out += text(ox + 132, oy + 132, note, size=12, fill=INK, style="italic")
     return out
 
@@ -444,7 +420,9 @@ def fig_gradient_patterns():
         "  </defs>\n"
     )
     body = defs
-    body += pattern(26, 60, "add", "+", [("3", "2"), ("4", "2")], [("7", "2")], "sends 2 both ways")
+    body += pattern(
+        26, 60, "add", "+", [("3", "2"), ("4", "2")], [("7", "2")], "sends 2 both ways"
+    )
     body += pattern(
         386,
         60,

@@ -53,6 +53,23 @@ old Lecture 1.1 table (`hubel_wiesel_1959.png`, `pictorial_structures.png`,
 and were not carried over; where the chapter needs them, replacements must be
 sourced or drawn.
 
+## Lecture 7 — Recurrent neural networks
+
+Figures used by `lectures/07-recurrent-neural-networks.qmd`. All six are generated
+by `figures/07-recurrent-neural-networks/make_diagrams.py`, which is committed
+beside them and is the authoritative source: running it from the repository root
+rewrites all six and prints the gradient figures the chapter quotes. Nothing here
+is traced from a slide.
+
+| File | Status | Source |
+| :--- | :----- | :----- |
+| `diagram_seq_shapes.svg` | own work | Drawn for this project. Five panels showing the input/output patterns a sequence problem can take, generated from the `SS_PANELS` table (input steps, output steps, band span) rather than placed by hand. The CS231n decks carry a comparable five-panel figure in a different colour scheme; this one is laid out, coloured and captioned independently, and the aligned many-to-many panel is drawn as a distinct case rather than folded into the fourth. |
+| `diagram_unrolled.svg` | own work | Drawn for this project. The recurrence in loop notation beside the same computation unrolled over four steps, with the shared weight drawn as one node on a rail feeding every step — the detail that makes @eq-bptt-sum visible, and the reason the figure exists. |
+| `diagram_truncated_bptt.svg` | own work | Drawn for this project. Nine steps in three chunks, with the hidden state crossing every chunk boundary and the gradient stopping at each one. Chunk width, step count and the arrow pattern are generated from `TB_N` and `TB_CHUNK`. |
+| `diagram_gradient_norm.svg` | own work | **Computed** for this project. The geometric factor of @eq-jacobian-product evaluated for 150 steps at largest singular values of 1.05, 1.00 and 0.95, plus a fourth curve at 1.05 with a mean $\tanh'$ of 0.85 folded in. The script produces ×1508, ÷2195 and ÷26 million after 150 steps, and those are the numbers the figure and the chapter state. These are exact evaluations of a stated model, not measurements of a trained network, and neither the caption nor the prose claims otherwise. |
+| `diagram_lstm_cell.svg` | own work | Drawn for this project. One LSTM step: the four gates from a single weight matrix, the two elementwise multiplies and the addition, and the cell state drawn as an uninterrupted path. Structurally equivalent to figures in the CS231n decks and in much of the literature because all of them draw @eq-lstm-gates and @eq-lstm-state; the layout is ordered strictly left to right so that no signal path doubles back, and every coordinate is this project's own. |
+| `diagram_captioning.svg` | own work | Drawn for this project. A tapering convolutional stack whose penultimate vector conditions every step of a recurrence, with the previously emitted word as the input at each step. Deliberately not sourced from the deck's version, which reproduces a figure from Karpathy and Fei-Fei, CVPR 2015, copyright IEEE, under a permission granted to that course and not to this repository. |
+
 ## Staged assets — Lecture 1.1 (superseded)
 
 | File                             | Status       | Source                                                                                                                                                                                                                                                                                        |
