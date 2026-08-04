@@ -27,10 +27,9 @@ representing the project in public spaces.
 
 ## Enforcement
 
-Violations may be reported by opening an issue or contacting the maintainer
-directly at murat.raimbekov2004@gmail.com. Reports will be reviewed and may
-result in a warning, temporary ban, or permanent ban from the project, at the
-maintainer's discretion.
+Violations may be reported by opening an issue. Reports will be reviewed and
+may result in a warning, temporary ban, or permanent ban from the project, at
+the maintainer's discretion.
 
 ## Attribution
 

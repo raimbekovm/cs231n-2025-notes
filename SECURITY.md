@@ -14,10 +14,8 @@ versioned releases to patch separately.
 
 If you find a security issue — for example, a compromised dependency, a CI
 workflow that could be abused, or a way to inject content into the published
-site — please report it privately rather than opening a public issue:
-
-- Preferred: use [GitHub's private vulnerability reporting](https://github.com/raimbekovm/cs231n-2025-notes/security/advisories/new)
-- Alternative: email murat.raimbekov2004@gmail.com
+site — please report it privately rather than opening a public issue, using
+[GitHub's private vulnerability reporting](https://github.com/raimbekovm/cs231n-2025-notes/security/advisories/new).
 
 Please include steps to reproduce and the potential impact. You can expect an
 initial response within a few days.
