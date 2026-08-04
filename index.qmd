@@ -144,6 +144,16 @@ gradient of anything.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
+::: {.cs-card .cs-card--done}
+[Lecture 9]{.cs-card__index}
+
+[[Object Detection and Segmentation](lectures/09-detection-segmentation.qmd)]{.cs-card__title}
+
+[What changes when the answer is no longer a single label, and how to ask a trained network where it was looking.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
 :::
 
 :::
@@ -160,6 +170,7 @@ gradient of anything.]{.cs-card__blurb}
 | 6 | [CNN Architectures](lectures/06-cnn-architectures.qmd) | Complete |
 | 7 | [Recurrent Neural Networks](lectures/07-recurrent-neural-networks.qmd) | Complete |
 | 8 | [Attention and Transformers](lectures/08-attention-transformers.qmd) | Complete |
+| 9 | [Object Detection and Segmentation](lectures/09-detection-segmentation.qmd) | Complete |
 
 : Lectures published so far.
 

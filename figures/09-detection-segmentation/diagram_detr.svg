@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" width="900" height="340"
+     role="img" aria-labelledby="detrTitle detrDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="detrTitle">DETR: detection as set prediction</title>
+  <desc id="detrDesc">A left-to-right rail runs from the image through a convolutional backbone, a transformer encoder and a transformer decoder. A row of learned object queries enters the decoder from below and to the left. On the right, four predictions are matched one-to-one against two ground-truth objects, the two unmatched predictions being assigned the no-object class.</desc>
+  <rect x="40.0" y="128.0" width="62.0" height="50.0" fill="#3b528b" fill-opacity="0.16" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="71.0" y="157.5" font-size="12.5" fill="currentColor" text-anchor="middle">image</text>
+  <rect x="128.0" y="128.0" width="96.0" height="50.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="176.0" y="151.0" font-size="12.5" fill="currentColor" text-anchor="middle">backbone</text>
+  <text x="176.0" y="166.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">CNN</text>
+  <rect x="256.0" y="128.0" width="104.0" height="50.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="308.0" y="151.0" font-size="12.5" fill="currentColor" text-anchor="middle">encoder</text>
+  <text x="308.0" y="166.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">self-attention</text>
+  <rect x="412.0" y="128.0" width="104.0" height="50.0" fill="#5ec962" fill-opacity="0.16" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="464.0" y="151.0" font-size="12.5" fill="currentColor" text-anchor="middle">decoder</text>
+  <text x="464.0" y="166.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">cross-attention</text>
+  <line x1="106.0" y1="153.0" x2="118.0" y2="153.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="124.0,153.0 118.0,155.7 118.0,150.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="228.0" y1="153.0" x2="246.0" y2="153.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="252.0,153.0 246.0,155.7 246.0,150.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="364.0" y1="153.0" x2="402.0" y2="153.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="408.0,153.0 402.0,155.7 402.0,150.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="184.0" y="114.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">+ positional encoding</text>
+  <text x="340.0" y="226.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">N object queries</text>
+  <rect x="288.0" y="236.0" width="20.0" height="30.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.9"/>
+  <rect x="314.0" y="236.0" width="20.0" height="30.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.9"/>
+  <rect x="340.0" y="236.0" width="20.0" height="30.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.9"/>
+  <rect x="366.0" y="236.0" width="20.0" height="30.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.9"/>
+  <text x="340.0" y="284.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.66">learned parameters, not image features</text>
+  <line x1="392.0" y1="242.0" x2="421.2" y2="187.3" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.8"/>
+  <polygon points="424.0,182.0 423.6,188.6 418.8,186.0" fill="#3b528b" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="624.0" y="44.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">N predictions</text>
+  <rect x="566.0" y="62.0" width="116.0" height="38.0" fill="#5ec962" fill-opacity="0.16" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="624.0" y="79.0" font-size="12.5" fill="currentColor" text-anchor="middle">cat</text>
+  <text x="624.0" y="94.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">class + box</text>
+  <rect x="566.0" y="114.0" width="116.0" height="38.0" fill="#5ec962" fill-opacity="0.16" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="624.0" y="131.0" font-size="12.5" fill="currentColor" text-anchor="middle">dog</text>
+  <text x="624.0" y="146.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">class + box</text>
+  <rect x="566.0" y="166.0" width="116.0" height="38.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="624.0" y="183.0" font-size="12.5" fill="currentColor" text-anchor="middle">∅</text>
+  <text x="624.0" y="198.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">no object</text>
+  <rect x="566.0" y="218.0" width="116.0" height="38.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="624.0" y="235.0" font-size="12.5" fill="currentColor" text-anchor="middle">∅</text>
+  <text x="624.0" y="250.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">no object</text>
+  <line x1="520.0" y1="153.0" x2="554.0" y2="153.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="560.0,153.0 554.0,155.7 554.0,150.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="814.0" y="44.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">ground truth</text>
+  <rect x="768.0" y="62.0" width="92.0" height="38.0" fill="#5ec962" fill-opacity="0.1" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="814.0" y="85.5" font-size="12.5" fill="currentColor" text-anchor="middle">cat</text>
+  <rect x="768.0" y="114.0" width="92.0" height="38.0" fill="#5ec962" fill-opacity="0.1" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="814.0" y="137.5" font-size="12.5" fill="currentColor" text-anchor="middle">dog</text>
+  <rect x="768.0" y="192.0" width="92.0" height="38.0" fill="#440154" fill-opacity="0.1" stroke="#440154" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="814.0" y="209.0" font-size="12.5" fill="currentColor" text-anchor="middle">∅</text>
+  <text x="814.0" y="224.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">unmatched</text>
+  <line x1="684.0" y1="81.0" x2="758.0" y2="81.0" stroke="#440154" stroke-width="1.5" stroke-opacity="0.9"/>
+  <polygon points="764.0,81.0 758.0,83.7 758.0,78.3" fill="#440154" fill-opacity="0.9" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="684.0" y1="133.0" x2="758.0" y2="133.0" stroke="#440154" stroke-width="1.5" stroke-opacity="0.9"/>
+  <polygon points="764.0,133.0 758.0,135.7 758.0,130.3" fill="#440154" fill-opacity="0.9" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="684.0" y1="185.0" x2="758.3" y2="209.1" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5" stroke-dasharray="4 3"/>
+  <polygon points="764.0,211.0 757.5,211.7 759.1,206.6" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="684.0" y1="237.0" x2="758.3" y2="212.9" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5" stroke-dasharray="4 3"/>
+  <polygon points="764.0,211.0 759.1,215.4 757.5,210.3" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="450.0" y="318.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">the one-to-one match is what forbids duplicates — a second box on the same cat can only be assigned ∅</text>
+</svg>

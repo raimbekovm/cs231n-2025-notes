@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Fetch and clean the caption track for one CS231n lecture.
 #
-#   tools/fetch_lecture.sh 2            # resolve lecture 2 from transcripts/playlist.tsv
+#   tools/fetch_lecture.sh 2            # resolve lecture 2 from tools/playlist.tsv
 #   tools/fetch_lecture.sh 2 --force    # re-download even if the transcript exists
 #
 # Writes transcripts/lecture-NN.txt (one sentence per line, timecoded) and
@@ -40,7 +40,10 @@ URL="https://youtu.be/$VID"
 echo "==> $TITLE  ($URL)"
 
 mkdir -p "$REPO/transcripts/raw"
-yt-dlp --cookies-from-browser chrome --skip-download \
+# --ignore-no-formats-error: yt-dlp still runs format selection under --skip-download,
+# so when YouTube's n-challenge solver fails it finds no video streams and aborts before
+# writing the subtitles it already located. The captions are unaffected; only the abort is.
+yt-dlp --cookies-from-browser chrome --skip-download --ignore-no-formats-error \
        --write-subs --write-auto-subs --sub-langs "en.*" --sub-format "vtt/best" \
        -o "$REPO/transcripts/raw/lecture-$NN.%(ext)s" "$URL" 2>&1 | grep -vE '^(WARNING|\[download\])' || true
 
