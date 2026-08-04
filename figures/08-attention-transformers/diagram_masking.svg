@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 708.0 382.0" width="708.0" height="382.0"
+     role="img" aria-labelledby="maskTitle maskDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="maskTitle">Masked self-attention: the causal mask before the softmax and the zeros after it</title>
+  <desc id="maskDesc">Two four by four grids side by side. In the left grid, rows index the querying position and columns the position being looked at; cells on and below the diagonal hold scores and cells above it hold minus infinity. A softmax turns the left grid into the right one, where the masked cells are exactly zero and the remaining weights in each row are shaded by size and sum to one.</desc>
+  <text x="258.0" y="58.0" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.8">scores E</text>
+  <text x="177.0" y="80.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.55">attention</text>
+  <text x="231.0" y="80.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.55">is</text>
+  <text x="285.0" y="80.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.55">very</text>
+  <text x="339.0" y="80.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.55">cool</text>
+  <text x="566.0" y="58.0" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.8">weights A</text>
+  <text x="485.0" y="80.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.55">attention</text>
+  <text x="539.0" y="80.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.55">is</text>
+  <text x="593.0" y="80.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.55">very</text>
+  <text x="647.0" y="80.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.55">cool</text>
+  <text x="140.0" y="123.0" font-size="10.5" fill="currentColor" text-anchor="end" fill-opacity="0.75">attention</text>
+  <text x="140.0" y="177.0" font-size="10.5" fill="currentColor" text-anchor="end" fill-opacity="0.75">is</text>
+  <text x="140.0" y="231.0" font-size="10.5" fill="currentColor" text-anchor="end" fill-opacity="0.75">very</text>
+  <text x="140.0" y="285.0" font-size="10.5" fill="currentColor" text-anchor="end" fill-opacity="0.75">cool</text>
+  <text x="140.0" y="58.0" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.5">query ↓</text>
+  <rect x="150.0" y="92.0" width="54.0" height="54.0" fill="#3b528b" fill-opacity="0.14" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="177.0" y="123.5" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">E11</text>
+  <rect x="458.0" y="92.0" width="54.0" height="54.0" fill="#fde725" fill-opacity="1.0" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.5"/>
+  <rect x="204.0" y="92.0" width="54.0" height="54.0" fill="#1b1b1b" fill-opacity="0.04" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="231.0" y="123.5" font-size="13" fill="currentColor" text-anchor="middle" fill-opacity="0.5">−∞</text>
+  <rect x="512.0" y="92.0" width="54.0" height="54.0" fill="#1b1b1b" fill-opacity="0.04" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="539.0" y="123.5" font-size="13" fill="currentColor" text-anchor="middle" fill-opacity="0.45">0</text>
+  <rect x="258.0" y="92.0" width="54.0" height="54.0" fill="#1b1b1b" fill-opacity="0.04" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="285.0" y="123.5" font-size="13" fill="currentColor" text-anchor="middle" fill-opacity="0.5">−∞</text>
+  <rect x="566.0" y="92.0" width="54.0" height="54.0" fill="#1b1b1b" fill-opacity="0.04" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="593.0" y="123.5" font-size="13" fill="currentColor" text-anchor="middle" fill-opacity="0.45">0</text>
+  <rect x="312.0" y="92.0" width="54.0" height="54.0" fill="#1b1b1b" fill-opacity="0.04" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="339.0" y="123.5" font-size="13" fill="currentColor" text-anchor="middle" fill-opacity="0.5">−∞</text>
+  <rect x="620.0" y="92.0" width="54.0" height="54.0" fill="#1b1b1b" fill-opacity="0.04" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="647.0" y="123.5" font-size="13" fill="currentColor" text-anchor="middle" fill-opacity="0.45">0</text>
+  <rect x="150.0" y="146.0" width="54.0" height="54.0" fill="#3b528b" fill-opacity="0.14" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="177.0" y="177.5" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">E21</text>
+  <rect x="458.0" y="146.0" width="54.0" height="54.0" fill="#48b571" fill-opacity="1.0" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.5"/>
+  <rect x="204.0" y="146.0" width="54.0" height="54.0" fill="#3b528b" fill-opacity="0.14" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="231.0" y="177.5" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">E22</text>
+  <rect x="512.0" y="146.0" width="54.0" height="54.0" fill="#d6e034" fill-opacity="1.0" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.5"/>
+  <rect x="258.0" y="146.0" width="54.0" height="54.0" fill="#1b1b1b" fill-opacity="0.04" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="285.0" y="177.5" font-size="13" fill="currentColor" text-anchor="middle" fill-opacity="0.5">−∞</text>
+  <rect x="566.0" y="146.0" width="54.0" height="54.0" fill="#1b1b1b" fill-opacity="0.04" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="593.0" y="177.5" font-size="13" fill="currentColor" text-anchor="middle" fill-opacity="0.45">0</text>
+  <rect x="312.0" y="146.0" width="54.0" height="54.0" fill="#1b1b1b" fill-opacity="0.04" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="339.0" y="177.5" font-size="13" fill="currentColor" text-anchor="middle" fill-opacity="0.5">−∞</text>
+  <rect x="620.0" y="146.0" width="54.0" height="54.0" fill="#1b1b1b" fill-opacity="0.04" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="647.0" y="177.5" font-size="13" fill="currentColor" text-anchor="middle" fill-opacity="0.45">0</text>
+  <rect x="150.0" y="200.0" width="54.0" height="54.0" fill="#3b528b" fill-opacity="0.14" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="177.0" y="231.5" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">E31</text>
+  <rect x="458.0" y="200.0" width="54.0" height="54.0" fill="#2f6e8b" fill-opacity="1.0" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.5"/>
+  <rect x="204.0" y="200.0" width="54.0" height="54.0" fill="#3b528b" fill-opacity="0.14" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="231.0" y="231.5" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">E32</text>
+  <rect x="512.0" y="200.0" width="54.0" height="54.0" fill="#24948a" fill-opacity="1.0" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.5"/>
+  <rect x="258.0" y="200.0" width="54.0" height="54.0" fill="#3b528b" fill-opacity="0.14" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="285.0" y="231.5" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">E33</text>
+  <rect x="566.0" y="200.0" width="54.0" height="54.0" fill="#58c466" fill-opacity="1.0" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.5"/>
+  <rect x="312.0" y="200.0" width="54.0" height="54.0" fill="#1b1b1b" fill-opacity="0.04" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="339.0" y="231.5" font-size="13" fill="currentColor" text-anchor="middle" fill-opacity="0.5">−∞</text>
+  <rect x="620.0" y="200.0" width="54.0" height="54.0" fill="#1b1b1b" fill-opacity="0.04" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="647.0" y="231.5" font-size="13" fill="currentColor" text-anchor="middle" fill-opacity="0.45">0</text>
+  <rect x="150.0" y="254.0" width="54.0" height="54.0" fill="#3b528b" fill-opacity="0.14" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="177.0" y="285.5" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">E41</text>
+  <rect x="458.0" y="254.0" width="54.0" height="54.0" fill="#3c4884" fill-opacity="1.0" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.5"/>
+  <rect x="204.0" y="254.0" width="54.0" height="54.0" fill="#3b528b" fill-opacity="0.14" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="231.0" y="285.5" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">E42</text>
+  <rect x="512.0" y="254.0" width="54.0" height="54.0" fill="#35618b" fill-opacity="1.0" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.5"/>
+  <rect x="258.0" y="254.0" width="54.0" height="54.0" fill="#3b528b" fill-opacity="0.14" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="285.0" y="285.5" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">E43</text>
+  <rect x="566.0" y="254.0" width="54.0" height="54.0" fill="#27828c" fill-opacity="1.0" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.5"/>
+  <rect x="312.0" y="254.0" width="54.0" height="54.0" fill="#3b528b" fill-opacity="0.14" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35"/>
+  <text x="339.0" y="285.5" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">E44</text>
+  <rect x="620.0" y="254.0" width="54.0" height="54.0" fill="#40ad77" fill-opacity="1.0" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.5"/>
+  <line x1="382.0" y1="200.0" x2="436.0" y2="200.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="442.0,200.0 436.0,202.7 436.0,197.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="412.0" y="188.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">softmax</text>
+  <text x="412.0" y="226.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.5">per row</text>
+  <text x="354.0" y="342.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.6">each position blends only the values at or before it</text>
+</svg>

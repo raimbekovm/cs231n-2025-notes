@@ -134,6 +134,16 @@ gradient of anything.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
+::: {.cs-card .cs-card--done}
+[Lecture 8]{.cs-card__index}
+
+[[Attention and Transformers](lectures/08-attention-transformers.qmd)]{.cs-card__title}
+
+[Removing a bottleneck from a translation model, and the general-purpose primitive that fell out of it.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
 :::
 
 :::
@@ -149,6 +159,7 @@ gradient of anything.]{.cs-card__blurb}
 | 5 | [Convolutional Networks](lectures/05-convolutional-networks.qmd) | Complete |
 | 6 | [CNN Architectures](lectures/06-cnn-architectures.qmd) | Complete |
 | 7 | [Recurrent Neural Networks](lectures/07-recurrent-neural-networks.qmd) | Complete |
+| 8 | [Attention and Transformers](lectures/08-attention-transformers.qmd) | Complete |
 
 : Lectures published so far.
 

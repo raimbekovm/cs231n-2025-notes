@@ -54,6 +54,7 @@ book:
         - lectures/05-convolutional-networks.qmd
         - lectures/06-cnn-architectures.qmd
         - lectures/07-recurrent-neural-networks.qmd
+        - lectures/08-attention-transformers.qmd
 
 format:
   html:
