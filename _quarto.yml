@@ -53,6 +53,7 @@ book:
         - lectures/04-neural-networks-backpropagation.qmd
         - lectures/05-convolutional-networks.qmd
         - lectures/06-cnn-architectures.qmd
+        - lectures/07-recurrent-neural-networks.qmd
 
 format:
   html:

@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 208.0" width="900.0" height="208.0"
+     role="img" aria-labelledby="seqShapesTitle seqShapesDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="seqShapesTitle">The five input and output shapes a sequence problem can take</title>
+  <desc id="seqShapesDesc">Five panels. In each, indigo blocks below are inputs, teal blocks above are outputs, and a grey band between them is the network. One to one has a single input and output; one to many has one input and four outputs; many to one has four inputs and one output; many to many reads two inputs then writes two outputs; the aligned case pairs four inputs with four outputs.</desc>
+  <text x="102.0" y="18.0" font-size="12.5" fill="currentColor" text-anchor="middle" fill-opacity="0.9">one to one</text>
+  <rect x="69.0" y="76.0" width="66.0" height="30.0" fill="#1b1b1b" fill-opacity="0.09" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35" rx="3"/>
+  <text x="102.0" y="96.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.62">network</text>
+  <rect x="87.0" y="118.0" width="30.0" height="26.0" fill="#3b528b" fill-opacity="0.8" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="102.0" y1="115.0" x2="102.0" y2="114.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="102.0,109.0 104.2,114.0 99.8,114.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="87.0" y="34.0" width="30.0" height="26.0" fill="#21918c" fill-opacity="0.8" stroke="#21918c" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="102.0" y1="73.0" x2="102.0" y2="68.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="102.0,63.0 104.2,68.0 99.8,68.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="102.0" y="172.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">image</text>
+  <text x="102.0" y="190.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">→ class label</text>
+  <text x="276.0" y="18.0" font-size="12.5" fill="currentColor" text-anchor="middle" fill-opacity="0.9">one to many</text>
+  <rect x="207.0" y="76.0" width="138.0" height="30.0" fill="#1b1b1b" fill-opacity="0.09" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35" rx="3"/>
+  <text x="276.0" y="96.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.62">network</text>
+  <rect x="207.0" y="118.0" width="30.0" height="26.0" fill="#3b528b" fill-opacity="0.8" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="222.0" y1="115.0" x2="222.0" y2="114.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="222.0,109.0 224.2,114.0 219.8,114.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="207.0" y="34.0" width="30.0" height="26.0" fill="#21918c" fill-opacity="0.8" stroke="#21918c" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="222.0" y1="73.0" x2="222.0" y2="68.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="222.0,63.0 224.2,68.0 219.8,68.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="243.0" y="34.0" width="30.0" height="26.0" fill="#21918c" fill-opacity="0.8" stroke="#21918c" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="258.0" y1="73.0" x2="258.0" y2="68.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="258.0,63.0 260.2,68.0 255.8,68.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="279.0" y="34.0" width="30.0" height="26.0" fill="#21918c" fill-opacity="0.8" stroke="#21918c" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="294.0" y1="73.0" x2="294.0" y2="68.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="294.0,63.0 296.2,68.0 291.8,68.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="315.0" y="34.0" width="30.0" height="26.0" fill="#21918c" fill-opacity="0.8" stroke="#21918c" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="330.0" y1="73.0" x2="330.0" y2="68.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="330.0,63.0 332.2,68.0 327.8,68.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="276.0" y="172.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">image</text>
+  <text x="276.0" y="190.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">→ caption</text>
+  <text x="450.0" y="18.0" font-size="12.5" fill="currentColor" text-anchor="middle" fill-opacity="0.9">many to one</text>
+  <rect x="381.0" y="76.0" width="138.0" height="30.0" fill="#1b1b1b" fill-opacity="0.09" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35" rx="3"/>
+  <text x="450.0" y="96.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.62">network</text>
+  <rect x="381.0" y="118.0" width="30.0" height="26.0" fill="#3b528b" fill-opacity="0.8" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="396.0" y1="115.0" x2="396.0" y2="114.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="396.0,109.0 398.2,114.0 393.8,114.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="417.0" y="118.0" width="30.0" height="26.0" fill="#3b528b" fill-opacity="0.8" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="432.0" y1="115.0" x2="432.0" y2="114.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="432.0,109.0 434.2,114.0 429.8,114.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="453.0" y="118.0" width="30.0" height="26.0" fill="#3b528b" fill-opacity="0.8" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="468.0" y1="115.0" x2="468.0" y2="114.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="468.0,109.0 470.2,114.0 465.8,114.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="489.0" y="118.0" width="30.0" height="26.0" fill="#3b528b" fill-opacity="0.8" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="504.0" y1="115.0" x2="504.0" y2="114.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="504.0,109.0 506.2,114.0 501.8,114.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="489.0" y="34.0" width="30.0" height="26.0" fill="#21918c" fill-opacity="0.8" stroke="#21918c" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="504.0" y1="73.0" x2="504.0" y2="68.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="504.0,63.0 506.2,68.0 501.8,68.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="450.0" y="172.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">video</text>
+  <text x="450.0" y="190.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">→ action class</text>
+  <text x="624.0" y="18.0" font-size="12.5" fill="currentColor" text-anchor="middle" fill-opacity="0.9">many to many</text>
+  <rect x="555.0" y="76.0" width="138.0" height="30.0" fill="#1b1b1b" fill-opacity="0.09" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35" rx="3"/>
+  <text x="624.0" y="96.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.62">network</text>
+  <rect x="555.0" y="118.0" width="30.0" height="26.0" fill="#3b528b" fill-opacity="0.8" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="570.0" y1="115.0" x2="570.0" y2="114.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="570.0,109.0 572.2,114.0 567.8,114.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="591.0" y="118.0" width="30.0" height="26.0" fill="#3b528b" fill-opacity="0.8" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="606.0" y1="115.0" x2="606.0" y2="114.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="606.0,109.0 608.2,114.0 603.8,114.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="627.0" y="34.0" width="30.0" height="26.0" fill="#21918c" fill-opacity="0.8" stroke="#21918c" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="642.0" y1="73.0" x2="642.0" y2="68.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="642.0,63.0 644.2,68.0 639.8,68.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="663.0" y="34.0" width="30.0" height="26.0" fill="#21918c" fill-opacity="0.8" stroke="#21918c" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="678.0" y1="73.0" x2="678.0" y2="68.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="678.0,63.0 680.2,68.0 675.8,68.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="624.0" y="172.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">sentence</text>
+  <text x="624.0" y="190.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">→ translation</text>
+  <text x="798.0" y="18.0" font-size="12.5" fill="currentColor" text-anchor="middle" fill-opacity="0.9">many to many, aligned</text>
+  <rect x="729.0" y="76.0" width="138.0" height="30.0" fill="#1b1b1b" fill-opacity="0.09" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.35" rx="3"/>
+  <text x="798.0" y="96.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.62">network</text>
+  <rect x="729.0" y="118.0" width="30.0" height="26.0" fill="#3b528b" fill-opacity="0.8" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="744.0" y1="115.0" x2="744.0" y2="114.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="744.0,109.0 746.2,114.0 741.8,114.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="765.0" y="118.0" width="30.0" height="26.0" fill="#3b528b" fill-opacity="0.8" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="780.0" y1="115.0" x2="780.0" y2="114.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="780.0,109.0 782.2,114.0 777.8,114.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="801.0" y="118.0" width="30.0" height="26.0" fill="#3b528b" fill-opacity="0.8" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="816.0" y1="115.0" x2="816.0" y2="114.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="816.0,109.0 818.2,114.0 813.8,114.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="837.0" y="118.0" width="30.0" height="26.0" fill="#3b528b" fill-opacity="0.8" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="852.0" y1="115.0" x2="852.0" y2="114.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="852.0,109.0 854.2,114.0 849.8,114.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="729.0" y="34.0" width="30.0" height="26.0" fill="#21918c" fill-opacity="0.8" stroke="#21918c" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="744.0" y1="73.0" x2="744.0" y2="68.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="744.0,63.0 746.2,68.0 741.8,68.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="765.0" y="34.0" width="30.0" height="26.0" fill="#21918c" fill-opacity="0.8" stroke="#21918c" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="780.0" y1="73.0" x2="780.0" y2="68.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="780.0,63.0 782.2,68.0 777.8,68.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="801.0" y="34.0" width="30.0" height="26.0" fill="#21918c" fill-opacity="0.8" stroke="#21918c" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="816.0" y1="73.0" x2="816.0" y2="68.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="816.0,63.0 818.2,68.0 813.8,68.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="837.0" y="34.0" width="30.0" height="26.0" fill="#21918c" fill-opacity="0.8" stroke="#21918c" stroke-width="0.9" stroke-opacity="0.9" rx="3"/>
+  <line x1="852.0" y1="73.0" x2="852.0" y2="68.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="852.0,63.0 854.2,68.0 849.8,68.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="798.0" y="172.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">video</text>
+  <text x="798.0" y="190.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">→ label per frame</text>
+</svg>
