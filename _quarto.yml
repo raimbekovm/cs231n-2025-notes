@@ -55,6 +55,9 @@ book:
         - lectures/06-cnn-architectures.qmd
         - lectures/07-recurrent-neural-networks.qmd
         - lectures/08-attention-transformers.qmd
+    - part: "Vision Tasks"
+      chapters:
+        - lectures/09-detection-segmentation.qmd
 
 format:
   html:

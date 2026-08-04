@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 352" width="900" height="352"
+     role="img" aria-labelledby="roiAlignTitle roiAlignDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="roiAlignTitle">RoI pool against RoI align</title>
+  <desc id="roiAlignDesc">Two panels, each showing an eight by six feature grid with a dashed green rectangle at real-valued coordinates. In the left panel a solid purple rectangle snapped outward to whole cells sits offset from it and is divided into four subregions. In the right panel the dashed rectangle is kept and dotted sample points fill it, with one sample joined to the four surrounding grid intersections.</desc>
+  <text x="176.0" y="44.0" font-size="14" fill="currentColor" text-anchor="middle" font-weight="600">RoI pool</text>
+  <line x1="56.0" y1="92.0" x2="56.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="86.0" y1="92.0" x2="86.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="116.0" y1="92.0" x2="116.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="146.0" y1="92.0" x2="146.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="176.0" y1="92.0" x2="176.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="206.0" y1="92.0" x2="206.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="236.0" y1="92.0" x2="236.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="266.0" y1="92.0" x2="266.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="296.0" y1="92.0" x2="296.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="56.0" y1="92.0" x2="296.0" y2="92.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="56.0" y1="122.0" x2="296.0" y2="122.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="56.0" y1="152.0" x2="296.0" y2="152.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="56.0" y1="182.0" x2="296.0" y2="182.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="56.0" y1="212.0" x2="296.0" y2="212.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="56.0" y1="242.0" x2="296.0" y2="242.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="56.0" y1="272.0" x2="296.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <rect x="128.0" y="140.0" width="129.0" height="96.0" fill="none" fill-opacity="1.0" stroke="#5ec962" stroke-width="1.8" stroke-opacity="1.0" stroke-dasharray="5 3"/>
+  <rect x="116.0" y="122.0" width="150.0" height="120.0" fill="#440154" fill-opacity="0.14" stroke="#440154" stroke-width="2.0" stroke-opacity="1.0"/>
+  <line x1="191.0" y1="122.0" x2="191.0" y2="242.0" stroke="#440154" stroke-width="1.4" stroke-opacity="0.7"/>
+  <line x1="116.0" y1="182.0" x2="266.0" y2="182.0" stroke="#440154" stroke-width="1.4" stroke-opacity="0.7"/>
+  <line x1="134.0" y1="70.0" x2="120.8" y2="113.3" stroke="#440154" stroke-width="1.2" stroke-opacity="0.85"/>
+  <polygon points="119.0,119.0 118.2,112.5 123.3,114.1" fill="#440154" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="138.0" y="66.0" font-size="11" fill="#440154" text-anchor="start">snapped outward</text>
+  <text x="176.0" y="300.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">the box is snapped outward to whole cells</text>
+  <text x="620.0" y="44.0" font-size="14" fill="currentColor" text-anchor="middle" font-weight="600">RoI align</text>
+  <line x1="500.0" y1="92.0" x2="500.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="530.0" y1="92.0" x2="530.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="560.0" y1="92.0" x2="560.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="590.0" y1="92.0" x2="590.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="620.0" y1="92.0" x2="620.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="650.0" y1="92.0" x2="650.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="680.0" y1="92.0" x2="680.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="710.0" y1="92.0" x2="710.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="740.0" y1="92.0" x2="740.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="500.0" y1="92.0" x2="740.0" y2="92.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="500.0" y1="122.0" x2="740.0" y2="122.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="500.0" y1="152.0" x2="740.0" y2="152.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="500.0" y1="182.0" x2="740.0" y2="182.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="500.0" y1="212.0" x2="740.0" y2="212.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="500.0" y1="242.0" x2="740.0" y2="242.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <line x1="500.0" y1="272.0" x2="740.0" y2="272.0" stroke="currentColor" stroke-width="0.7" stroke-opacity="0.45"/>
+  <rect x="572.0" y="140.0" width="129.0" height="96.0" fill="none" fill-opacity="1.0" stroke="#5ec962" stroke-width="1.8" stroke-opacity="1.0" stroke-dasharray="5 3"/>
+  <circle cx="588.1" cy="152.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="588.1" cy="176.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="620.4" cy="152.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="620.4" cy="176.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="588.1" cy="200.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="588.1" cy="224.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="620.4" cy="200.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="620.4" cy="224.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="652.6" cy="152.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="652.6" cy="176.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="684.9" cy="152.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="684.9" cy="176.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="652.6" cy="200.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="652.6" cy="224.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="684.9" cy="200.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="684.9" cy="224.0" r="2.6" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="636.5" y1="140.0" x2="636.5" y2="236.0" stroke="#5ec962" stroke-width="1.2" stroke-opacity="0.5" stroke-dasharray="3 3"/>
+  <line x1="572.0" y1="188.0" x2="701.0" y2="188.0" stroke="#5ec962" stroke-width="1.2" stroke-opacity="0.5" stroke-dasharray="3 3"/>
+  <circle cx="560.0" cy="152.0" r="3.6" fill="none" fill-opacity="1.0" stroke="#3b528b" stroke-width="1.8" stroke-opacity="1.0"/>
+  <line x1="560.0" y1="152.0" x2="588.1" y2="152.0" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.75"/>
+  <circle cx="560.0" cy="182.0" r="3.6" fill="none" fill-opacity="1.0" stroke="#3b528b" stroke-width="1.8" stroke-opacity="1.0"/>
+  <line x1="560.0" y1="182.0" x2="588.1" y2="152.0" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.75"/>
+  <circle cx="590.0" cy="152.0" r="3.6" fill="none" fill-opacity="1.0" stroke="#3b528b" stroke-width="1.8" stroke-opacity="1.0"/>
+  <line x1="590.0" y1="152.0" x2="588.1" y2="152.0" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.75"/>
+  <circle cx="590.0" cy="182.0" r="3.6" fill="none" fill-opacity="1.0" stroke="#3b528b" stroke-width="1.8" stroke-opacity="1.0"/>
+  <line x1="590.0" y1="182.0" x2="588.1" y2="152.0" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.75"/>
+  <text x="580.1" y="142.0" font-size="11" fill="#3b528b" text-anchor="end">bilinear</text>
+  <text x="620.0" y="300.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">the box is kept; samples are interpolated</text>
+  <text x="176.0" y="328.0" font-size="11" fill="#440154" text-anchor="middle">features cropped from the wrong place</text>
+  <text x="620.0" y="328.0" font-size="11" fill="#21918c" text-anchor="middle">no displacement; differentiable in the box</text>
+</svg>
