@@ -59,6 +59,9 @@ book:
       chapters:
         - lectures/09-detection-segmentation.qmd
         - lectures/10-video-understanding.qmd
+    - part: "Systems"
+      chapters:
+        - lectures/11-distributed-training.qmd
 
 format:
   html:

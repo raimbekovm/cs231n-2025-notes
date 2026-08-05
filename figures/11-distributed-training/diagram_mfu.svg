@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="640" height="320"
+     role="img" aria-labelledby="mfuTitle mfuDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="mfuTitle">Model FLOPs utilisation for the three stages of Llama 3 405B pre-training</title>
+  <desc id="mfuDesc">Three bars on a percentage axis: 43 percent on 8192 GPUs with a sequence length of 8192, 41 percent on 16384 GPUs at the same sequence length with the data-parallel degree doubled, and 38 percent on 16384 GPUs in the long-context stage at sequence length 131072 with 16-way context parallelism. A dashed line marks the 30 percent level.</desc>
+  <text x="20.0" y="28.0" font-size="12" fill="currentColor" text-anchor="start" fill-opacity="0.75">BF16 MFU</text>
+  <line x1="86.0" y1="250.0" x2="616.0" y2="250.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="2 4"/>
+  <text x="76.0" y="254.0" font-size="10.5" fill="currentColor" text-anchor="end" fill-opacity="0.62">0%</text>
+  <line x1="86.0" y1="211.2" x2="616.0" y2="211.2" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="2 4"/>
+  <text x="76.0" y="215.2" font-size="10.5" fill="currentColor" text-anchor="end" fill-opacity="0.62">10%</text>
+  <line x1="86.0" y1="172.4" x2="616.0" y2="172.4" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="2 4"/>
+  <text x="76.0" y="176.4" font-size="10.5" fill="currentColor" text-anchor="end" fill-opacity="0.62">20%</text>
+  <line x1="86.0" y1="133.6" x2="616.0" y2="133.6" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="2 4"/>
+  <text x="76.0" y="137.6" font-size="10.5" fill="currentColor" text-anchor="end" fill-opacity="0.62">30%</text>
+  <line x1="86.0" y1="94.8" x2="616.0" y2="94.8" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="2 4"/>
+  <text x="76.0" y="98.8" font-size="10.5" fill="currentColor" text-anchor="end" fill-opacity="0.62">40%</text>
+  <line x1="86.0" y1="56.0" x2="616.0" y2="56.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="2 4"/>
+  <text x="76.0" y="60.0" font-size="10.5" fill="currentColor" text-anchor="end" fill-opacity="0.62">50%</text>
+  <rect x="110.0" y="83.2" width="96.0" height="166.8" fill="#440154" fill-opacity="0.5" stroke="#440154" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="158.0" y="73.2" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">43%</text>
+  <text x="158.0" y="270.0" font-size="11" fill="currentColor" text-anchor="middle">8,192 GPUs</text>
+  <text x="158.0" y="285.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">S = 8,192, DP = 64</text>
+  <rect x="268.0" y="90.9" width="96.0" height="159.1" fill="#3b528b" fill-opacity="0.5" stroke="#3b528b" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="316.0" y="80.9" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">41%</text>
+  <text x="316.0" y="270.0" font-size="11" fill="currentColor" text-anchor="middle">16,384 GPUs</text>
+  <text x="316.0" y="285.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">S = 8,192, DP = 128</text>
+  <rect x="426.0" y="102.6" width="96.0" height="147.4" fill="#21918c" fill-opacity="0.5" stroke="#21918c" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="474.0" y="92.6" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">38%</text>
+  <text x="474.0" y="270.0" font-size="11" fill="currentColor" text-anchor="middle">16,384 GPUs</text>
+  <text x="474.0" y="285.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">S = 131,072, CP = 16</text>
+  <line x1="86.0" y1="133.6" x2="616.0" y2="133.6" stroke="#3b528b" stroke-width="1.5" stroke-opacity="1.0" stroke-dasharray="6 4"/>
+  <text x="616.0" y="125.6" font-size="10.5" fill="#3b528b" text-anchor="end">30% — below this, something is wrong</text>
+  <text x="20.0" y="308.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.7">Two months of a 16,384-GPU cluster, spending three-fifths of its peak on something other than the model.</text>
+</svg>

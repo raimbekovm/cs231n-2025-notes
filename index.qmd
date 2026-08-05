@@ -164,6 +164,16 @@ gradient of anything.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
+::: {.cs-card .cs-card--done}
+[Lecture 11]{.cs-card__index}
+
+[[Large-Scale Distributed Training](lectures/11-distributed-training.qmd)]{.cs-card__title}
+
+[What a GPU cluster actually is, and the five ways of cutting a transformer apart so that all of it has useful work to do.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
 :::
 
 :::
@@ -182,6 +192,7 @@ gradient of anything.]{.cs-card__blurb}
 | 8 | [Attention and Transformers](lectures/08-attention-transformers.qmd) | Complete |
 | 9 | [Object Detection and Segmentation](lectures/09-detection-segmentation.qmd) | Complete |
 | 10 | [Video Understanding](lectures/10-video-understanding.qmd) | Complete |
+| 11 | [Large-Scale Distributed Training](lectures/11-distributed-training.qmd) | Complete |
 
 : Lectures published so far.
 
