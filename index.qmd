@@ -154,6 +154,16 @@ gradient of anything.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
+::: {.cs-card .cs-card--done}
+[Lecture 10]{.cs-card__index}
+
+[[Video Understanding](lectures/10-video-understanding.qmd)]{.cs-card__title}
+
+[What a fourth axis costs and what it buys, from clip training to 3D convolution and the methods that reach past a few seconds.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
 :::
 
 :::
@@ -171,6 +181,7 @@ gradient of anything.]{.cs-card__blurb}
 | 7 | [Recurrent Neural Networks](lectures/07-recurrent-neural-networks.qmd) | Complete |
 | 8 | [Attention and Transformers](lectures/08-attention-transformers.qmd) | Complete |
 | 9 | [Object Detection and Segmentation](lectures/09-detection-segmentation.qmd) | Complete |
+| 10 | [Video Understanding](lectures/10-video-understanding.qmd) | Complete |
 
 : Lectures published so far.
 

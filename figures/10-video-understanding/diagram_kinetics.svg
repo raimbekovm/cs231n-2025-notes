@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 316" width="880" height="316"
+     role="img" aria-labelledby="kineticsTitle kineticsDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="kineticsTitle">Top-1 accuracy on Kinetics-400 from 2014 to 2023</title>
+  <desc id="kineticsDesc">A bar chart of eight top-1 accuracies on Kinetics-400: per-frame CNN 62.2, CNN plus LSTM 63.3, two-stream CNN 65.6, I3D 71.1, two-stream I3D 74.2, SlowFast with non-local blocks 79.8, MViTv2-L 86.1, and VideoMAE V2-g 90.0.</desc>
+  <line x1="46.0" y1="270.0" x2="864.0" y2="270.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <text x="41.0" y="274.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.7">55</text>
+  <line x1="46.0" y1="211.0" x2="864.0" y2="211.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <text x="41.0" y="215.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.7">65</text>
+  <line x1="46.0" y1="152.0" x2="864.0" y2="152.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <text x="41.0" y="156.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.7">75</text>
+  <line x1="46.0" y1="93.0" x2="864.0" y2="93.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <text x="41.0" y="97.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.7">85</text>
+  <line x1="46.0" y1="34.0" x2="864.0" y2="34.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <text x="41.0" y="38.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.7">95</text>
+  <text transform="rotate(-90 16 152.0)" x="16.0" y="152.0" font-size="11" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.7">top-1 accuracy (%)</text>
+  <rect x="74.3" y="227.5" width="56.8" height="42.5" fill="#3b528b" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="102.8" y="220.5" font-size="12" fill="currentColor" text-anchor="middle" font-weight="600">62.2</text>
+  <text x="102.8" y="286.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">Per-frame</text>
+  <text x="102.8" y="298.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">CNN</text>
+  <rect x="175.8" y="221.0" width="56.8" height="49.0" fill="#3b528b" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="204.2" y="214.0" font-size="12" fill="currentColor" text-anchor="middle" font-weight="600">63.3</text>
+  <text x="204.2" y="286.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">CNN +</text>
+  <text x="204.2" y="298.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">LSTM</text>
+  <rect x="277.3" y="207.5" width="56.8" height="62.5" fill="#5ec962" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="305.8" y="200.5" font-size="12" fill="currentColor" text-anchor="middle" font-weight="600">65.6</text>
+  <text x="305.8" y="286.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">Two-stream</text>
+  <text x="305.8" y="298.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">CNN</text>
+  <rect x="378.8" y="175.0" width="56.8" height="95.0" fill="#5ec962" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="407.2" y="168.0" font-size="12" fill="currentColor" text-anchor="middle" font-weight="600">71.1</text>
+  <text x="407.2" y="286.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">I3D</text>
+  <text x="407.2" y="298.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">(RGB)</text>
+  <rect x="480.3" y="156.7" width="56.8" height="113.3" fill="#21918c" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="508.8" y="149.7" font-size="12" fill="currentColor" text-anchor="middle" font-weight="600">74.2</text>
+  <text x="508.8" y="286.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">Two-stream</text>
+  <text x="508.8" y="298.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">I3D</text>
+  <rect x="581.8" y="123.7" width="56.8" height="146.3" fill="#21918c" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="610.2" y="116.7" font-size="12" fill="currentColor" text-anchor="middle" font-weight="600">79.8</text>
+  <text x="610.2" y="286.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">SlowFast</text>
+  <text x="610.2" y="298.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">+ non-local</text>
+  <rect x="683.3" y="86.5" width="56.8" height="183.5" fill="#440154" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="711.8" y="79.5" font-size="12" fill="currentColor" text-anchor="middle" font-weight="600">86.1</text>
+  <text x="711.8" y="286.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">MViTv2-L</text>
+  <text x="711.8" y="298.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">(2022)</text>
+  <rect x="784.8" y="63.5" width="56.8" height="206.5" fill="#440154" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="813.2" y="56.5" font-size="12" fill="currentColor" text-anchor="middle" font-weight="600">90.0</text>
+  <text x="813.2" y="286.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">VideoMAE</text>
+  <text x="813.2" y="298.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">V2-g (2023)</text>
+  <line x1="46.0" y1="270.0" x2="864.0" y2="270.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="440.0" y="20.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">Kinetics-400, top-1 accuracy, 2014–2023</text>
+</svg>
