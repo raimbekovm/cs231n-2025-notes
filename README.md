@@ -36,10 +36,11 @@
 | 7   | [Recurrent Neural Networks](https://raimbekovm.github.io/cs231n-2025-notes/lectures/07-recurrent-neural-networks.html)                 | Recurrence, backpropagation through time, character-level language models, vanishing gradients, LSTM      |
 | 8   | [Attention and Transformers](https://raimbekovm.github.io/cs231n-2025-notes/lectures/08-attention-transformers.html)                   | Seq2seq attention, self-attention, multi-head attention, the transformer block, LLMs, Vision Transformers |
 | 9   | [Object Detection and Segmentation](https://raimbekovm.github.io/cs231n-2025-notes/lectures/09-detection-segmentation.html)            | Semantic segmentation, U-Net, R-CNN to Faster R-CNN to YOLO to DETR, Mask R-CNN, saliency maps and CAM    |
+| 10  | [Video Understanding](https://raimbekovm.github.io/cs231n-2025-notes/lectures/10-video-understanding.html)                             | Clip training, late and early fusion, 3D convolution, optical flow and two-stream nets, non-local blocks, I3D |
 
-**Coming next**, in course order: video understanding, self-supervised learning,
-generative models (VAEs, GANs, diffusion), 3D vision, vision–language models,
-and robot learning.
+**Coming next**, in course order: large-scale distributed training,
+self-supervised learning, generative models (VAEs, GANs, diffusion), 3D vision,
+vision–language models, and robot learning.
 
 Every lecture is also in the
 [single-file PDF](https://raimbekovm.github.io/cs231n-2025-notes/CS231n-2025-Lecture-Notes.pdf),

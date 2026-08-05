@@ -58,6 +58,7 @@ book:
     - part: "Vision Tasks"
       chapters:
         - lectures/09-detection-segmentation.qmd
+        - lectures/10-video-understanding.qmd
 
 format:
   html:
