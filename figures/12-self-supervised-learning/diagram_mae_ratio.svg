@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 388" width="760" height="388"
+     role="img" aria-labelledby="mrTitle mrDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="mrTitle">MAE pre-training cost against masking ratio</title>
+  <desc id="mrDesc">A line chart with masking ratio on the horizontal axis and relative pre-training cost on the vertical, showing a bending encoder curve, a flat decoder line and their sum, with the chosen seventy-five percent ratio marked and the resulting cost reduction annotated.</desc>
+  <text x="20.0" y="28.0" font-size="13.5" fill="currentColor" text-anchor="start">Pre-training cost against masking ratio</text>
+  <text x="20.0" y="46.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.6">ViT-L encoder, 8-block decoder, 196 patches; cost relative to no masking</text>
+  <line x1="108.0" y1="264.0" x2="640.0" y2="264.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="98.0" y="268.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">0.00</text>
+  <line x1="108.0" y1="218.8" x2="640.0" y2="218.8" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="98.0" y="222.8" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">0.25</text>
+  <line x1="108.0" y1="173.5" x2="640.0" y2="173.5" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="98.0" y="177.5" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">0.50</text>
+  <line x1="108.0" y1="128.3" x2="640.0" y2="128.3" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="98.0" y="132.3" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">0.75</text>
+  <line x1="108.0" y1="83.0" x2="640.0" y2="83.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="98.0" y="87.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">1.00</text>
+  <text x="108.0" y="284.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">0%</text>
+  <text x="285.3" y="284.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">30%</text>
+  <text x="462.7" y="284.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">60%</text>
+  <text x="640.0" y="284.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">90%</text>
+  <line x1="108.0" y1="74.0" x2="108.0" y2="264.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <line x1="108.0" y1="264.0" x2="640.0" y2="264.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <text x="374.0" y="306.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.75">masking ratio</text>
+  <line x1="108.0" y1="249.7" x2="640.0" y2="249.7" stroke="#5ec962" stroke-width="1.6" stroke-opacity="0.9"/>
+  <polyline points="108.00,97.36 137.56,106.11 167.11,114.84 196.67,122.67 226.22,131.34 255.78,139.99 285.33,148.61 314.89,157.20 344.44,164.91 374.00,173.45 403.56,181.97 433.11,190.46 462.67,198.92 492.22,206.51 521.78,214.92 551.33,223.31 580.89,231.66 610.44,239.99 640.00,247.47" fill="none" stroke="#21918c" stroke-width="1.8" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+  <polyline points="108.00,83.05 137.56,91.80 167.11,100.52 196.67,108.35 226.22,117.03 255.78,125.67 285.33,134.29 314.89,142.89 344.44,150.60 374.00,159.14 403.56,167.65 433.11,176.14 462.67,184.60 492.22,192.20 521.78,200.61 551.33,208.99 580.89,217.35 610.44,225.68 640.00,233.15" fill="none" stroke="#3b528b" stroke-width="2.2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="120.0" y="240.7" font-size="11.5" fill="#5ec962" text-anchor="start">decoder — flat, always all 196 positions</text>
+  <text x="300.0" y="122.3" font-size="12" fill="#3b528b" text-anchor="middle">total</text>
+  <text x="300.0" y="166.6" font-size="12" fill="#21918c" text-anchor="middle">encoder</text>
+  <line x1="551.3" y1="74.0" x2="551.3" y2="264.0" stroke="#440154" stroke-width="1.4" stroke-opacity="0.7" stroke-dasharray="5 4"/>
+  <text x="551.3" y="46.0" font-size="11.5" fill="#440154" text-anchor="middle">75% — the chosen ratio</text>
+  <text x="551.3" y="66.0" font-size="12" fill="#3b528b" text-anchor="middle">3.3× cheaper than no masking</text>
+  <text x="20.0" y="336.0" font-size="12" fill="currentColor" text-anchor="start" fill-opacity="0.8">Linear probing accuracy, from the paper's text:</text>
+  <text x="318.0" y="336.0" font-size="12" fill="#440154" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">54.6% at 10% masking</text>
+  <text x="514.0" y="336.0" font-size="12" fill="#440154" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">73.5% at 75% masking</text>
+  <text x="20.0" y="366.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">The encoder curve bends because attention is quadratic, but only slightly: at 196 tokens attention is 3% of encoder cost.</text>
+</svg>

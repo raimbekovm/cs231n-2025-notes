@@ -174,6 +174,16 @@ gradient of anything.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
+::: {.cs-card .cs-card--done}
+[Lecture 12]{.cs-card__index}
+
+[[Self-Supervised Learning](lectures/12-self-supervised-learning.qmd)]{.cs-card__title}
+
+[Inventing tasks whose answers the data already knows, and the contrastive objective that eventually replaced all of them.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
 :::
 
 :::
@@ -193,6 +203,7 @@ gradient of anything.]{.cs-card__blurb}
 | 9 | [Object Detection and Segmentation](lectures/09-detection-segmentation.qmd) | Complete |
 | 10 | [Video Understanding](lectures/10-video-understanding.qmd) | Complete |
 | 11 | [Large-Scale Distributed Training](lectures/11-distributed-training.qmd) | Complete |
+| 12 | [Self-Supervised Learning](lectures/12-self-supervised-learning.qmd) | Complete |
 
 : Lectures published so far.
 

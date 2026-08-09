@@ -62,6 +62,7 @@ book:
     - part: "Systems"
       chapters:
         - lectures/11-distributed-training.qmd
+        - lectures/12-self-supervised-learning.qmd
 
 format:
   html:
