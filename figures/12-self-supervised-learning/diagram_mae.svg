@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 336" width="760" height="336"
+     role="img" aria-labelledby="maTitle maDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="maTitle">The MAE encoder and decoder</title>
+  <desc id="maDesc">A four-by-four block of patches with three quarters greyed out, feeding rightward into a tall encoder box, then a step that inserts shared mask tokens to restore the full sequence length, then a much shorter decoder box and the reconstruction loss.</desc>
+  <text x="20.0" y="26.0" font-size="13.5" fill="currentColor" text-anchor="start">Masked autoencoder</text>
+  <rect x="28.0" y="60.0" width="30.0" height="30.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.5" rx="2"/>
+  <rect x="62.0" y="60.0" width="30.0" height="30.0" fill="#1b1b1b" fill-opacity="0.07" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.2" rx="2"/>
+  <rect x="96.0" y="60.0" width="30.0" height="30.0" fill="#1b1b1b" fill-opacity="0.07" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.2" rx="2"/>
+  <rect x="130.0" y="60.0" width="30.0" height="30.0" fill="#1b1b1b" fill-opacity="0.07" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.2" rx="2"/>
+  <rect x="28.0" y="94.0" width="30.0" height="30.0" fill="#1b1b1b" fill-opacity="0.07" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.2" rx="2"/>
+  <rect x="62.0" y="94.0" width="30.0" height="30.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.5" rx="2"/>
+  <rect x="96.0" y="94.0" width="30.0" height="30.0" fill="#1b1b1b" fill-opacity="0.07" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.2" rx="2"/>
+  <rect x="130.0" y="94.0" width="30.0" height="30.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.5" rx="2"/>
+  <rect x="28.0" y="128.0" width="30.0" height="30.0" fill="#1b1b1b" fill-opacity="0.07" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.2" rx="2"/>
+  <rect x="62.0" y="128.0" width="30.0" height="30.0" fill="#1b1b1b" fill-opacity="0.07" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.2" rx="2"/>
+  <rect x="96.0" y="128.0" width="30.0" height="30.0" fill="#1b1b1b" fill-opacity="0.07" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.2" rx="2"/>
+  <rect x="130.0" y="128.0" width="30.0" height="30.0" fill="#1b1b1b" fill-opacity="0.07" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.2" rx="2"/>
+  <rect x="28.0" y="162.0" width="30.0" height="30.0" fill="#1b1b1b" fill-opacity="0.07" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.2" rx="2"/>
+  <rect x="62.0" y="162.0" width="30.0" height="30.0" fill="#1b1b1b" fill-opacity="0.07" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.2" rx="2"/>
+  <rect x="96.0" y="162.0" width="30.0" height="30.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.5" rx="2"/>
+  <rect x="130.0" y="162.0" width="30.0" height="30.0" fill="#1b1b1b" fill-opacity="0.07" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.2" rx="2"/>
+  <text x="94.0" y="212.0" font-size="12" fill="currentColor" text-anchor="middle">patches</text>
+  <text x="94.0" y="230.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">75% removed</text>
+  <line x1="166.0" y1="126.0" x2="184.0" y2="126.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="190.0,126.0 184.0,128.7 184.0,123.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="194.0" y="64.0" width="128.0" height="124.0" fill="#3b528b" fill-opacity="0.22" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="3"/>
+  <text x="258.0" y="112.0" font-size="13" fill="currentColor" text-anchor="middle">encoder</text>
+  <text x="258.0" y="132.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.75">24 blocks, 1024-d</text>
+  <text x="258.0" y="150.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.75">49 of 196 tokens</text>
+  <line x1="326.0" y1="126.0" x2="360.0" y2="126.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="366.0,126.0 360.0,128.7 360.0,123.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="370.0" y="100.0" width="100.0" height="52.0" fill="#440154" fill-opacity="0.22" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="3"/>
+  <text x="420.0" y="120.0" font-size="11.5" fill="currentColor" text-anchor="middle">insert shared</text>
+  <text x="420.0" y="136.0" font-size="11.5" fill="currentColor" text-anchor="middle">mask token</text>
+  <text x="420.0" y="166.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">back to 196 tokens</text>
+  <line x1="474.0" y1="126.0" x2="508.0" y2="126.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="514.0,126.0 508.0,128.7 508.0,123.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="518.0" y="104.0" width="118.0" height="44.0" fill="#3b528b" fill-opacity="0.22" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="3"/>
+  <text x="577.0" y="123.0" font-size="12.5" fill="currentColor" text-anchor="middle">decoder</text>
+  <text x="577.0" y="140.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.75">8 blocks, 512-d</text>
+  <line x1="640.0" y1="126.0" x2="666.0" y2="126.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="672.0,126.0 666.0,128.7 666.0,123.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="676.0" y="92.0" width="62.0" height="68.0" fill="#5ec962" fill-opacity="0.18" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="3"/>
+  <text x="707.0" y="114.0" font-size="11.5" fill="currentColor" text-anchor="middle">MSE,</text>
+  <text x="707.0" y="130.0" font-size="11.5" fill="currentColor" text-anchor="middle">masked</text>
+  <text x="707.0" y="146.0" font-size="11.5" fill="currentColor" text-anchor="middle">patches</text>
+  <text x="20.0" y="286.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">The encoder is the tall box on the short sequence; the decoder is the short box on the full one.</text>
+  <text x="20.0" y="306.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">No mask token ever reaches the encoder, so it only ever sees real image patches — which removes</text>
+  <text x="20.0" y="326.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">the gap between pre-training and deployment as well as most of the cost.</text>
+</svg>

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 344" width="760" height="344"
+     role="img" aria-labelledby="trTitle trDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="trTitle">Three transformation pretext tasks</title>
+  <desc id="trDesc">On the left, one asymmetric glyph shown at four right-angle rotations with the class index below each. On the right, a three-by-three patch grid with the centre marked as reference and the eight neighbours numbered, and beneath it a shuffled row of nine tiles feeding a permutation index.</desc>
+  <text x="20.0" y="28.0" font-size="13" fill="currentColor" text-anchor="start">Rotation — four classes</text>
+  <text x="430.0" y="28.0" font-size="13" fill="currentColor" text-anchor="start">Patch position and permutation</text>
+  <rect x="24.0" y="54.0" width="62.0" height="62.0" fill="#3b528b" fill-opacity="0.1" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="2"/>
+  <polygon points="37.6,102.4 37.6,68.9 51.3,68.9 51.3,90.0 71.1,90.0 71.1,102.4" fill="#21918c" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="55.0" y="134.0" font-size="12" fill="currentColor" text-anchor="middle">0°</text>
+  <text x="55.0" y="151.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">y = 0</text>
+  <rect x="110.0" y="54.0" width="62.0" height="62.0" fill="#3b528b" fill-opacity="0.1" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="2"/>
+  <polygon points="123.6,67.6 157.1,67.6 157.1,81.3 136.0,81.3 136.0,101.1 123.6,101.1" fill="#21918c" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="141.0" y="134.0" font-size="12" fill="currentColor" text-anchor="middle">90°</text>
+  <text x="141.0" y="151.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">y = 1</text>
+  <rect x="196.0" y="54.0" width="62.0" height="62.0" fill="#3b528b" fill-opacity="0.1" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="2"/>
+  <polygon points="244.4,67.6 244.4,101.1 230.7,101.1 230.7,80.0 210.9,80.0 210.9,67.6" fill="#21918c" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="227.0" y="134.0" font-size="12" fill="currentColor" text-anchor="middle">180°</text>
+  <text x="227.0" y="151.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">y = 2</text>
+  <rect x="282.0" y="54.0" width="62.0" height="62.0" fill="#3b528b" fill-opacity="0.1" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="2"/>
+  <polygon points="330.4,102.4 296.9,102.4 296.9,88.7 318.0,88.7 318.0,68.9 330.4,68.9" fill="#21918c" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="313.0" y="134.0" font-size="12" fill="currentColor" text-anchor="middle">270°</text>
+  <text x="313.0" y="151.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">y = 3</text>
+  <text x="24.0" y="192.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">The label is drawn first; the image is manufactured from it.</text>
+  <text x="24.0" y="210.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">No local statistic of a photograph reveals which way is up,</text>
+  <text x="24.0" y="228.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">so the arrangement of the object's parts has to be encoded.</text>
+  <line x1="400.0" y1="40.0" x2="400.0" y2="300.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.22" stroke-dasharray="4 5"/>
+  <rect x="434.0" y="54.0" width="42.0" height="42.0" fill="#3b528b" fill-opacity="0.12" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="2"/>
+  <text x="455.0" y="79.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">1</text>
+  <rect x="480.0" y="54.0" width="42.0" height="42.0" fill="#3b528b" fill-opacity="0.12" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="2"/>
+  <text x="501.0" y="79.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">2</text>
+  <rect x="526.0" y="54.0" width="42.0" height="42.0" fill="#3b528b" fill-opacity="0.12" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="2"/>
+  <text x="547.0" y="79.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">3</text>
+  <rect x="434.0" y="100.0" width="42.0" height="42.0" fill="#3b528b" fill-opacity="0.12" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="2"/>
+  <text x="455.0" y="125.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">4</text>
+  <rect x="480.0" y="100.0" width="42.0" height="42.0" fill="#fde725" fill-opacity="0.55" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="2"/>
+  <text x="501.0" y="125.0" font-size="11" fill="currentColor" text-anchor="middle">ref</text>
+  <rect x="526.0" y="100.0" width="42.0" height="42.0" fill="#3b528b" fill-opacity="0.12" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="2"/>
+  <text x="547.0" y="125.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">5</text>
+  <rect x="434.0" y="146.0" width="42.0" height="42.0" fill="#3b528b" fill-opacity="0.12" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="2"/>
+  <text x="455.0" y="171.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">6</text>
+  <rect x="480.0" y="146.0" width="42.0" height="42.0" fill="#3b528b" fill-opacity="0.12" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="2"/>
+  <text x="501.0" y="171.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">7</text>
+  <rect x="526.0" y="146.0" width="42.0" height="42.0" fill="#3b528b" fill-opacity="0.12" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="2"/>
+  <text x="547.0" y="171.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">8</text>
+  <text x="501.0" y="208.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">8-way: where is this patch?</text>
+  <rect x="434.0" y="236.0" width="28.0" height="28.0" fill="#21918c" fill-opacity="0.16" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="2"/>
+  <text x="448.0" y="254.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.8">5</text>
+  <rect x="466.0" y="236.0" width="28.0" height="28.0" fill="#21918c" fill-opacity="0.16" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="2"/>
+  <text x="480.0" y="254.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.8">2</text>
+  <rect x="498.0" y="236.0" width="28.0" height="28.0" fill="#21918c" fill-opacity="0.16" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="2"/>
+  <text x="512.0" y="254.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.8">8</text>
+  <rect x="530.0" y="236.0" width="28.0" height="28.0" fill="#21918c" fill-opacity="0.16" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="2"/>
+  <text x="544.0" y="254.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.8">1</text>
+  <rect x="562.0" y="236.0" width="28.0" height="28.0" fill="#21918c" fill-opacity="0.16" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="2"/>
+  <text x="576.0" y="254.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.8">9</text>
+  <rect x="594.0" y="236.0" width="28.0" height="28.0" fill="#21918c" fill-opacity="0.16" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="2"/>
+  <text x="608.0" y="254.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.8">4</text>
+  <rect x="626.0" y="236.0" width="28.0" height="28.0" fill="#21918c" fill-opacity="0.16" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="2"/>
+  <text x="640.0" y="254.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.8">7</text>
+  <rect x="658.0" y="236.0" width="28.0" height="28.0" fill="#21918c" fill-opacity="0.16" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="2"/>
+  <text x="672.0" y="254.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.8">3</text>
+  <rect x="690.0" y="236.0" width="28.0" height="28.0" fill="#21918c" fill-opacity="0.16" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="2"/>
+  <text x="704.0" y="254.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.8">6</text>
+  <text x="434.0" y="284.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">predict which of a fixed set of permutations was applied;</text>
+  <text x="434.0" y="302.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">the set is chosen far apart in Hamming distance</text>
+</svg>

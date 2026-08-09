@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 366" width="760" height="366"
+     role="img" aria-labelledby="smTitle smDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="smTitle">Two sources of negative samples</title>
+  <desc id="smDesc">Two panels side by side: on the left SimCLR draws its negatives from the current batch through a single encoder, and on the right MoCo maintains a first-in-first-out queue of keys produced by a separate momentum-updated encoder whose path carries no gradient.</desc>
+  <text x="20.0" y="26.0" font-size="13" fill="currentColor" text-anchor="start">SimCLR — negatives are the batch</text>
+  <text x="404.0" y="26.0" font-size="13" fill="currentColor" text-anchor="start">MoCo — negatives are a queue</text>
+  <line x1="388.0" y1="44.0" x2="388.0" y2="336.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.22" stroke-dasharray="4 5"/>
+  <rect x="24.0" y="62.0" width="78.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.35" rx="3"/>
+  <text x="63.0" y="82.0" font-size="11.5" fill="currentColor" text-anchor="middle">batch of</text>
+  <text x="63.0" y="98.0" font-size="11.5" fill="currentColor" text-anchor="middle">N images</text>
+  <line x1="106.0" y1="84.0" x2="132.0" y2="84.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="138.0,84.0 132.0,86.7 132.0,81.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="142.0" y="54.0" width="78.0" height="30.0" fill="#21918c" fill-opacity="0.2" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="3"/>
+  <text x="181.0" y="74.0" font-size="11.5" fill="currentColor" text-anchor="middle">view A</text>
+  <rect x="142.0" y="92.0" width="78.0" height="30.0" fill="#21918c" fill-opacity="0.2" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="3"/>
+  <text x="181.0" y="112.0" font-size="11.5" fill="currentColor" text-anchor="middle">view B</text>
+  <line x1="224.0" y1="69.0" x2="250.3" y2="78.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="256.0,80.0 249.4,80.6 251.2,75.5" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="224.0" y1="107.0" x2="250.6" y2="94.5" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="256.0,92.0 251.7,97.0 249.4,92.1" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="260.0" y="62.0" width="92.0" height="44.0" fill="#3b528b" fill-opacity="0.24" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="3"/>
+  <text x="306.0" y="82.0" font-size="11.5" fill="currentColor" text-anchor="middle">one encoder</text>
+  <text x="306.0" y="98.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">gradient</text>
+  <line x1="306.0" y1="110.0" x2="306.0" y2="142.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="306.0,148.0 303.3,142.0 308.7,142.0" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="232.0" y="152.0" width="148.0" height="44.0" fill="#440154" fill-opacity="0.2" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="3"/>
+  <text x="306.0" y="172.0" font-size="12" fill="currentColor" text-anchor="middle">2N − 2 negatives</text>
+  <text x="306.0" y="188.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">from this batch only</text>
+  <text x="24.0" y="232.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">Negative count and batch size are</text>
+  <text x="24.0" y="250.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">the same number, so both are bounded</text>
+  <text x="24.0" y="268.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">by memory. The best runs used</text>
+  <text x="24.0" y="286.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">batches of 4096 and 8192.</text>
+  <rect x="408.0" y="62.0" width="74.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.35" rx="3"/>
+  <text x="445.0" y="82.0" font-size="11.5" fill="currentColor" text-anchor="middle">one image,</text>
+  <text x="445.0" y="98.0" font-size="11.5" fill="currentColor" text-anchor="middle">two views</text>
+  <line x1="486.0" y1="74.0" x2="524.1" y2="68.8" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="530.0,68.0 524.4,71.5 523.7,66.1" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="486.0" y1="94.0" x2="524.9" y2="118.8" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="530.0,122.0 523.5,121.1 526.4,116.5" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="534.0" y="48.0" width="82.0" height="40.0" fill="#3b528b" fill-opacity="0.24" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="3"/>
+  <text x="575.0" y="65.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">f_q  query</text>
+  <text x="575.0" y="81.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">gradient</text>
+  <rect x="534.0" y="102.0" width="82.0" height="40.0" fill="#21918c" fill-opacity="0.2" stroke="#21918c" stroke-width="0.9" stroke-opacity="0.4" rx="3"/>
+  <text x="575.0" y="119.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">f_k  key</text>
+  <text x="575.0" y="135.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">no gradient</text>
+  <line x1="624.0" y1="74.0" x2="624.0" y2="110.0" stroke="#3b528b" stroke-width="1.4" stroke-opacity="0.85"/>
+  <polygon points="624.0,116.0 621.3,110.0 626.7,110.0" fill="#3b528b" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="632.0" y="98.0" font-size="11" fill="#3b528b" text-anchor="start">EMA</text>
+  <text x="722.0" y="172.0" font-size="11.5" fill="currentColor" text-anchor="end" fill-opacity="0.8">FIFO queue of keys — K = 65,536</text>
+  <line x1="575.0" y1="148.0" x2="551.6" y2="179.2" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.7" stroke-dasharray="4 4"/>
+  <polygon points="548.0,184.0 549.4,177.6 553.8,180.8" fill="currentColor" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="534.0" y="186.0" width="28.0" height="30.0" fill="#440154" fill-opacity="0.25" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35" rx="2"/>
+  <rect x="566.0" y="186.0" width="28.0" height="30.0" fill="#440154" fill-opacity="0.24166666666666667" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35" rx="2"/>
+  <rect x="598.0" y="186.0" width="28.0" height="30.0" fill="#440154" fill-opacity="0.23333333333333334" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35" rx="2"/>
+  <rect x="630.0" y="186.0" width="28.0" height="30.0" fill="#440154" fill-opacity="0.225" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35" rx="2"/>
+  <rect x="662.0" y="186.0" width="28.0" height="30.0" fill="#440154" fill-opacity="0.21666666666666667" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35" rx="2"/>
+  <rect x="694.0" y="186.0" width="28.0" height="30.0" fill="#440154" fill-opacity="0.20833333333333334" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35" rx="2"/>
+  <text x="722.0" y="234.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.65">evict →</text>
+  <line x1="644.0" y1="220.0" x2="644.0" y2="240.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="644.0,246.0 641.3,240.0 646.7,240.0" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="444.0" y="250.0" width="300.0" height="40.0" fill="#440154" fill-opacity="0.2" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="3"/>
+  <text x="594.0" y="268.0" font-size="11.5" fill="currentColor" text-anchor="middle">K negatives, from many past batches</text>
+  <text x="594.0" y="284.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.75">batch size 256</text>
+  <text x="408.0" y="326.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">The queue holds keys from past encoders,</text>
+  <text x="408.0" y="344.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">which is why f_k has to move slowly.</text>
+</svg>

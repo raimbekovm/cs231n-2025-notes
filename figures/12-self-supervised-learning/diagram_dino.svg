@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 462" width="760" height="462"
+     role="img" aria-labelledby="dnTitle dnDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="dnTitle">DINO's self-distillation and collapse avoidance</title>
+  <desc id="dnDesc">Above, one image producing two views for a student and a momentum teacher whose output is centred and sharpened before a cross-entropy loss; below, three output histograms showing collapse to a single dimension, the structured output that is wanted, and collapse to uniform, with arrows marking which correction pushes away from which collapse.</desc>
+  <text x="20.0" y="26.0" font-size="13" fill="currentColor" text-anchor="start">Student and teacher, with no negatives anywhere</text>
+  <rect x="30.0" y="50.0" width="84.0" height="40.0" fill="#1b1b1b" fill-opacity="0.06" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.35" rx="3"/>
+  <text x="72.0" y="68.0" font-size="11.5" fill="currentColor" text-anchor="middle">one image,</text>
+  <text x="72.0" y="84.0" font-size="11.5" fill="currentColor" text-anchor="middle">two views</text>
+  <line x1="118.0" y1="60.0" x2="148.2" y2="51.6" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="154.0,50.0 148.9,54.2 147.5,49.0" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="118.0" y1="80.0" x2="149.4" y2="106.2" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="154.0,110.0 147.7,108.2 151.1,104.1" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="158.0" y="30.0" width="106.0" height="40.0" fill="#3b528b" fill-opacity="0.24" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="3"/>
+  <text x="211.0" y="47.0" font-size="11.5" fill="currentColor" text-anchor="middle">student gθs</text>
+  <text x="211.0" y="63.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">gradient</text>
+  <rect x="158.0" y="90.0" width="106.0" height="40.0" fill="#21918c" fill-opacity="0.2" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="3"/>
+  <text x="211.0" y="107.0" font-size="11.5" fill="currentColor" text-anchor="middle">teacher gθt</text>
+  <text x="211.0" y="123.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">stop-gradient</text>
+  <line x1="272.0" y1="62.0" x2="272.0" y2="94.0" stroke="#3b528b" stroke-width="1.4" stroke-opacity="0.85"/>
+  <polygon points="272.0,100.0 269.3,94.0 274.7,94.0" fill="#3b528b" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="280.0" y="84.0" font-size="11" fill="#3b528b" text-anchor="start">EMA</text>
+  <line x1="288.0" y1="110.0" x2="300.0" y2="110.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="306.0,110.0 300.0,112.7 300.0,107.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="310.0" y="90.0" width="108.0" height="40.0" fill="#440154" fill-opacity="0.24" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.45" rx="3"/>
+  <text x="364.0" y="107.0" font-size="11.5" fill="currentColor" text-anchor="middle">centre, then</text>
+  <text x="364.0" y="123.0" font-size="11.5" fill="currentColor" text-anchor="middle">sharpen</text>
+  <line x1="422.0" y1="110.0" x2="462.4" y2="94.2" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="468.0,92.0 463.4,96.7 461.4,91.7" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="288.0" y1="50.0" x2="462.0" y2="69.3" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="468.0,70.0 461.7,72.0 462.3,66.7" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="472.0" y="56.0" width="118.0" height="44.0" fill="#5ec962" fill-opacity="0.2" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="3"/>
+  <text x="531.0" y="76.0" font-size="11.5" fill="currentColor" text-anchor="middle">cross entropy</text>
+  <text x="531.0" y="92.0" font-size="11" fill="currentColor" text-anchor="middle">student ← teacher</text>
+  <line x1="20.0" y1="156.0" x2="740.0" y2="156.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.25" stroke-dasharray="6 5"/>
+  <text x="20.0" y="182.0" font-size="13" fill="currentColor" text-anchor="start">The two collapses, and the two corrections that oppose them</text>
+  <rect x="60.0" y="326.9" width="14.0" height="3.1" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="78.0" y="328.1" width="14.0" height="1.9" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="96.0" y="268.0" width="14.0" height="62.0" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="114.0" y="327.5" width="14.0" height="2.5" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="132.0" y="328.1" width="14.0" height="1.9" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="150.0" y="326.9" width="14.0" height="3.1" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="168.0" y="328.1" width="14.0" height="1.9" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="54.0" y1="330.0" x2="188.0" y2="330.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <text x="121.0" y="352.0" font-size="12" fill="currentColor" text-anchor="middle">one dimension wins</text>
+  <text x="121.0" y="370.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.65">collapse</text>
+  <rect x="316.0" y="316.4" width="14.0" height="13.6" fill="#5ec962" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="334.0" y="291.6" width="14.0" height="38.4" fill="#5ec962" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="352.0" y="321.3" width="14.0" height="8.7" fill="#5ec962" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="370.0" y="276.7" width="14.0" height="53.3" fill="#5ec962" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="388.0" y="318.8" width="14.0" height="11.2" fill="#5ec962" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="406.0" y="305.2" width="14.0" height="24.8" fill="#5ec962" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="424.0" y="322.6" width="14.0" height="7.4" fill="#5ec962" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="310.0" y1="330.0" x2="444.0" y2="330.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <text x="377.0" y="352.0" font-size="12" fill="currentColor" text-anchor="middle">structured output</text>
+  <text x="377.0" y="370.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.65">both together</text>
+  <rect x="572.0" y="308.9" width="14.0" height="21.1" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="590.0" y="308.9" width="14.0" height="21.1" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="608.0" y="308.9" width="14.0" height="21.1" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="626.0" y="308.9" width="14.0" height="21.1" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="644.0" y="308.9" width="14.0" height="21.1" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="662.0" y="308.9" width="14.0" height="21.1" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="680.0" y="308.9" width="14.0" height="21.1" fill="#440154" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="566.0" y1="330.0" x2="700.0" y2="330.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <text x="633.0" y="352.0" font-size="12" fill="currentColor" text-anchor="middle">uniform output</text>
+  <text x="633.0" y="370.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.65">collapse</text>
+  <line x1="126.0" y1="216.0" x2="632.0" y2="216.0" stroke="#3b528b" stroke-width="1.6" stroke-opacity="0.9"/>
+  <polygon points="638.0,216.0 632.0,218.7 632.0,213.3" fill="#3b528b" fill-opacity="0.9" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="382.0" y="208.0" font-size="11.5" fill="#3b528b" text-anchor="middle">centring alone → uniform</text>
+  <line x1="638.0" y1="396.0" x2="132.0" y2="396.0" stroke="#21918c" stroke-width="1.6" stroke-opacity="0.9"/>
+  <polygon points="126.0,396.0 132.0,393.3 132.0,398.7" fill="#21918c" fill-opacity="0.9" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="382.0" y="414.0" font-size="11.5" fill="#21918c" text-anchor="middle">sharpening alone → one dimension</text>
+  <text x="20.0" y="444.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">Neither correction is stable on its own; the structured output in the middle is where the two pushes balance.</text>
+</svg>

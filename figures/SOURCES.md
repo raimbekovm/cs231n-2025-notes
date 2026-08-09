@@ -338,3 +338,31 @@ deck under permissions granted to that course and not to this repository.
 | `diagram_mfu.svg` | own work | **Replotted** for this project from published numbers. BF16 model FLOPs utilisation of 43%, 41% and 38% for the three pre-training stages of Llama 3 405B, with their GPU counts, sequence lengths and parallelism degrees, from Table 4 of Llama Team, *The Llama 3 Herd of Models*, arXiv 2024. The values live in `MFU_STAGES`. |
 | `diagram_tensor_parallel.svg` | own work | Drawn for this project. Column-parallel feeding row-parallel, with one colour per device carried across both rows so that $W_i$ and $U_i$ are visibly co-located — which is the whole reason the second layer needs no gather. The block subdivisions follow `TP_WAYS`. |
 | `diagram_pipeline_bubble.svg` | own work | **Computed** for this project. Every cell comes from `gpipe_schedule`, which places forward work for microbatch $j$ on stage $g$ at slot $j + g$ and mirrors it for the backward sweep; the busy-cell count, the total and the 57.1% utilisation in the figure are counted from that dict rather than asserted, so the figure and @eq-bubble cannot disagree. Huang et al. (2018) contains a schedule figure of the same kind; it is not used or traced here. |
+
+## Lecture 12 — Self-supervised learning
+
+Figures used by `lectures/12-self-supervised-learning.qmd`. All ten are generated
+by `figures/12-self-supervised-learning/make_diagrams.py`, which is committed
+beside them and is the authoritative source: running it from the repository root
+rewrites all ten and prints every number the chapter quotes — the annotation
+effort per image, the MAE decoder-per-token ratio, the FLOPs reduction from
+omitting mask tokens, the separate linear and quadratic savings in the encoder,
+and the InfoNCE ceiling at N = 256. Two of them carry published numbers; the
+axes, colours and layout are this project's. Nothing here is traced from a slide,
+and no figure from any of the cited papers is reproduced — the MAE architecture
+figure, the SimCLR and MoCo pipeline figures and the DINO overview all appear in
+the CS231n deck under permissions granted to that course and not to this
+repository.
+
+| File | Status | Source |
+| :--- | :----- | :----- |
+| `diagram_label_cost.svg` | own work | **Replotted** for this project from published numbers. The three COCO values in `LABEL_COST` are derived from Lin et al., *Microsoft COCO*, ECCV 2014, section 4 — ~20k worker hours for category labelling, ~10k for instance spotting, and "over 22 worker hours per 1,000 segmentations" over 2.5M instances (~55k hours) — each divided by the dataset's 328k images, so the bars are aggregate worker-minutes per image and the caption says so. The two Cityscapes values are from Cordts et al., CVPR 2016: more than 1.5 h per image for fine annotation with quality control, and under 7 min per image for the coarse tier. |
+| `diagram_pretext_pipeline.svg` | own work | Drawn for this project. Two lanes with x assigned in strict flow order and one arrow crossing between them, so the claim that the encoder is the only shared component is geometry rather than a caption. |
+| `diagram_transformations.svg` | own work | Drawn for this project. The four rotations are one asymmetric glyph rotated by `_rot`, which computes the quarter turns rather than placing four hand-drawn shapes, so a wrong rotation is unrepresentable. The patch grid and permutation row are schematic. |
+| `diagram_split_brain.svg` | own work | Drawn for this project. Two prediction lanes plus a small reference row showing the plain autoencoder they improve on. Zhang et al. (2017) contains a figure of the same construction; it is not used or traced here. |
+| `diagram_video_color.svg` | own work | Drawn for this project. Both frames enter grayscale and colour appears only in the reference values and the final weighted sum, which is the constraint the section turns on. Vondrick et al. (2018) illustrate the same mechanism; that figure is not used or traced here. |
+| `diagram_mae.svg` | own work | Drawn for this project. The visible patches come from the index rule `(i * 7) % 16 < 4` rather than a hand-placed set, so they stay scattered rather than drifting into the column stripe that a simpler modulus produced. Box heights encode the per-token cost asymmetry. |
+| `diagram_mae_ratio.svg` | own work | **Computed** for this project. Every point on both curves is `total_flops` and `encoder_flops` evaluated from `block_flops`, the standard per-block Transformer cost, on MAE's published ViT-L configuration (24 blocks at 1024-d, an 8-block 512-d decoder, 196 patches). The model is validated against the paper rather than asserted: it reproduces the decoder's ~9% cost per token and the 3.3× FLOPs reduction from omitting mask tokens, both printed by the `__main__` block. The two linear-probing accuracies annotated below the axis — 54.6% and 73.5% — are the only two the MAE paper states in prose; the intermediate points of its Figure 5 are deliberately not transcribed, so the figure asserts no value the paper does not spell out in words. |
+| `diagram_infonce.svg` | own work | Drawn for this project. The embedding-space sketch and the softmax bar chart are the same situation twice, which is the section's argument that InfoNCE is an N-way cross entropy. |
+| `diagram_simclr_moco.svg` | own work | Drawn for this project. Two panels with x in flow order inside each, the queue placed under the encoder that fills it so nothing runs backwards, and the gradient-free key path drawn dashed. |
+| `diagram_dino.svg` | own work | Drawn for this project. The two correction arrows span the full width in opposite directions rather than stopping at the middle histogram, because the paper's claim is that each correction *alone* drives the output into the other collapse — an arrow stopping in the middle would state the opposite. |
