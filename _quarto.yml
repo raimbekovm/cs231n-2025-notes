@@ -63,6 +63,9 @@ book:
       chapters:
         - lectures/11-distributed-training.qmd
         - lectures/12-self-supervised-learning.qmd
+    - part: "Generative Models"
+      chapters:
+        - lectures/13-generative-models.qmd
 
 format:
   html:
