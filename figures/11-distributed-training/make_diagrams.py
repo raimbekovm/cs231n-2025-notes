@@ -575,7 +575,11 @@ def fig_mfu():
 
     band_lo = y0 - 30 / 50 * (y0 - y1)
     body += line(x_start - 24, band_lo, w - 24, band_lo, stroke=INDIGO, sw=1.5, dash="6 4")
-    body += text(w - 24, band_lo - 8, "30% — below this, something is wrong", size=10.5, anchor="end", fill=INDIGO)
+    # Two lines, not one. On a single line this label is wide enough to reach
+    # back over the third bar, and indigo on the bar's teal fill loses most of
+    # its contrast; split, both lines clear the bar's right edge.
+    body += text(w - 24, band_lo - 24, "30% — below this,", size=10.5, anchor="end", fill=INDIGO)
+    body += text(w - 24, band_lo - 8, "something is wrong", size=10.5, anchor="end", fill=INDIGO)
     body += text(
         20,
         h - 12,
