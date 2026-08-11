@@ -184,6 +184,16 @@ gradient of anything.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
+::: {.cs-card .cs-card--done}
+[Lecture 13]{.cs-card__index}
+
+[[Generative Models I](lectures/13-generative-models.qmd)]{.cs-card__title}
+
+[Modelling the distribution over images rather than the label given one: the chain rule, and the bound that buys a latent space.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
 :::
 
 :::
@@ -204,6 +214,7 @@ gradient of anything.]{.cs-card__blurb}
 | 10 | [Video Understanding](lectures/10-video-understanding.qmd) | Complete |
 | 11 | [Large-Scale Distributed Training](lectures/11-distributed-training.qmd) | Complete |
 | 12 | [Self-Supervised Learning](lectures/12-self-supervised-learning.qmd) | Complete |
+| 13 | [Generative Models I](lectures/13-generative-models.qmd) | Complete |
 
 : Lectures published so far.
 
