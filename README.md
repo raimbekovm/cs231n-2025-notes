@@ -40,9 +40,10 @@
 | 11  | [Large-Scale Distributed Training](https://raimbekovm.github.io/cs231n-2025-notes/lectures/11-distributed-training.html)               | GPU and cluster hardware, data parallelism and FSDP, activation checkpointing, MFU, tensor, context and pipeline parallelism                      |
 | 12  | [Self-Supervised Learning](https://raimbekovm.github.io/cs231n-2025-notes/lectures/12-self-supervised-learning.html)                   | Pretext tasks, inpainting and colourisation, masked autoencoders, InfoNCE, SimCLR and MoCo, CPC, DINO                                             |
 | 13  | [Generative Models I](https://raimbekovm.github.io/cs231n-2025-notes/lectures/13-generative-models.html)                               | Generative versus discriminative, maximum likelihood and the KL direction, autoregressive models and PixelRNN, autoencoders, the VAE and its ELBO |
+| 14  | [Generative Models II](https://raimbekovm.github.io/cs231n-2025-notes/lectures/14-generative-models-2.html)                     | GANs and the minimax game, rectified flow, classifier-free guidance, latent diffusion and DiT, the score and SDE views |
 
-**Coming next**, in course order: diffusion models and GANs, 3D vision,
-vision–language models, and robot learning.
+**Coming next**, in course order: 3D vision, vision–language models,
+robot learning, and human-centred AI.
 
 Every lecture is also in the
 [single-file PDF](https://raimbekovm.github.io/cs231n-2025-notes/CS231n-2025-Lecture-Notes.pdf),
