@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" width="760" height="380"
+     role="img" aria-labelledby="stradeTitle stradeDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="stradeTitle">Rendering speed against quality for radiance-field methods</title>
+  <desc id="stradeDesc">A scatter of five methods with rendering speed on a logarithmic axis and PSNR on a truncated linear axis, each labelled with its training time. An arrow marks the gap between the slowest and the fastest.</desc>
+  <line x1="161.7" y1="282.0" x2="161.7" y2="287.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="161.7" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.55">0.1</text>
+  <line x1="309.4" y1="282.0" x2="309.4" y2="287.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="309.4" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.55">1</text>
+  <line x1="457.2" y1="282.0" x2="457.2" y2="287.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="457.2" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.55">10</text>
+  <line x1="604.9" y1="282.0" x2="604.9" y2="287.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="604.9" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.55">100</text>
+  <line x1="110.0" y1="282.0" x2="664.0" y2="282.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <line x1="110.0" y1="247.8" x2="664.0" y2="247.8" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="98.0" y="251.8" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.55">22</text>
+  <line x1="110.0" y1="198.9" x2="664.0" y2="198.9" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="98.0" y="202.9" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.55">23</text>
+  <line x1="110.0" y1="150.0" x2="664.0" y2="150.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="98.0" y="154.0" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.55">24</text>
+  <line x1="110.0" y1="101.1" x2="664.0" y2="101.1" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="98.0" y="105.1" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.55">25</text>
+  <text x="387.0" y="326.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.65">frames per second, logarithmic</text>
+  <text x="58.0" y="172.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.55">PSNR</text>
+  <text x="58.0" y="188.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.55">(dB)</text>
+  <circle cx="139.7" cy="135.3" r="5.2" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="139.7" y="115.3" font-size="11" fill="#3b528b" text-anchor="middle">Mip-NeRF360</text>
+  <text x="139.7" y="100.3" font-size="10" fill="#3b528b" text-anchor="middle" fill-opacity="0.7">48 h</text>
+  <circle cx="444.4" cy="252.7" r="5.2" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="392.4" y="232.7" font-size="11" fill="#3b528b" text-anchor="middle">Plenoxels</text>
+  <text x="392.4" y="217.7" font-size="10" fill="#3b528b" text-anchor="middle" fill-opacity="0.7">26 min</text>
+  <circle cx="451.8" cy="242.9" r="5.2" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="495.8" y="222.9" font-size="11" fill="#3b528b" text-anchor="middle">InstantNGP</text>
+  <text x="495.8" y="207.9" font-size="10" fill="#3b528b" text-anchor="middle" fill-opacity="0.7">7 min</text>
+  <circle cx="624.2" cy="169.6" r="6.4" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="624.2" y="193.6" font-size="11" fill="#440154" text-anchor="middle" font-weight="600">3DGS, 7K</text>
+  <text x="624.2" y="208.6" font-size="10" fill="#440154" text-anchor="middle" fill-opacity="0.7">6 min</text>
+  <circle cx="600.3" cy="91.3" r="6.4" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="600.3" y="71.3" font-size="11" fill="#440154" text-anchor="middle" font-weight="600">3DGS, 30K</text>
+  <text x="600.3" y="56.3" font-size="10" fill="#440154" text-anchor="middle" fill-opacity="0.7">51 min</text>
+  <line x1="153.7" y1="133.3" x2="577.3" y2="97.9" stroke="#21918c" stroke-width="1.5" stroke-opacity="0.8"/>
+  <polygon points="584.3,97.3 577.5,101.1 577.0,94.8" fill="#21918c" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="400.0" y="99.3" font-size="12" fill="#21918c" text-anchor="middle" font-weight="600">×1,310 faster, +0.9 dB</text>
+  <text x="387.0" y="356.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.62">the quality axis does not start at zero; the speed axis spans four decades</text>
+</svg>

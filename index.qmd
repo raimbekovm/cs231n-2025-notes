@@ -204,6 +204,16 @@ gradient of anything.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
+::: {.cs-card .cs-card--done}
+[Lecture 15]{.cs-card__index}
+
+[[3D Vision](lectures/15-3d-vision.qmd)]{.cs-card__title}
+
+[Geometry has no canonical grid, so every method starts by choosing one. The map of those choices, and the decade-long tour across it.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
 :::
 
 :::
@@ -226,6 +236,7 @@ gradient of anything.]{.cs-card__blurb}
 | 12 | [Self-Supervised Learning](lectures/12-self-supervised-learning.qmd) | Complete |
 | 13 | [Generative Models I](lectures/13-generative-models.qmd) | Complete |
 | 14 | [Generative Models II](lectures/14-generative-models-2.qmd) | Complete |
+| 15 | [3D Vision](lectures/15-3d-vision.qmd) | Complete |
 
 : Lectures published so far.
 
