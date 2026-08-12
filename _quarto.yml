@@ -76,6 +76,9 @@ book:
     - part: "Embodied AI"
       chapters:
         - lectures/17-robot-learning.qmd
+    - part: "Impact"
+      chapters:
+        - lectures/18-human-centered-ai.qmd
 
 format:
   html:
