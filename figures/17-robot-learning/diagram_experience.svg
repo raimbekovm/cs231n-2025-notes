@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 372" width="840" height="372"
+     role="img" aria-labelledby="experienceTitle experienceDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="experienceTitle">Experience consumed by four robot-learning results, on a log axis</title>
+  <desc id="experienceDesc">Four horizontal bars on a logarithmic axis running from one hour to a billion hours: RoboCook at five hours on a real robot, DQN at forty-six simulated hours, pi-zero at ten thousand hours on real robots, and the Rubik's cube policy at roughly one hundred million simulated hours.</desc>
+  <text x="420.0" y="26.0" font-size="14" fill="currentColor" text-anchor="middle" font-weight="600">Experience consumed, in hours</text>
+  <text x="420.0" y="46.0" font-size="11" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.65">logarithmic axis; each value is stated by the cited paper or converted from one that is</text>
+  <line x1="210.0" y1="74.0" x2="210.0" y2="286.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="210.0" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">1</text>
+  <line x1="273.3" y1="74.0" x2="273.3" y2="286.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="273.3" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">10^1</text>
+  <line x1="336.7" y1="74.0" x2="336.7" y2="286.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="336.7" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">10^2</text>
+  <line x1="400.0" y1="74.0" x2="400.0" y2="286.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="400.0" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">10^3</text>
+  <line x1="463.3" y1="74.0" x2="463.3" y2="286.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="463.3" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">10^4</text>
+  <line x1="526.7" y1="74.0" x2="526.7" y2="286.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="526.7" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">10^5</text>
+  <line x1="590.0" y1="74.0" x2="590.0" y2="286.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="590.0" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">10^6</text>
+  <line x1="653.3" y1="74.0" x2="653.3" y2="286.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="653.3" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">10^7</text>
+  <line x1="716.7" y1="74.0" x2="716.7" y2="286.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="716.7" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">10^8</text>
+  <line x1="780.0" y1="74.0" x2="780.0" y2="286.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="780.0" y="304.0" font-size="10" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">10^9</text>
+  <text x="495.0" y="326.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">hours of interaction</text>
+  <rect x="210.0" y="88.0" width="44.3" height="24.0" fill="#21918c" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="0"/>
+  <text x="198.0" y="100.0" font-size="11.5" fill="currentColor" text-anchor="end">RoboCook</text>
+  <text x="198.0" y="115.0" font-size="9.5" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">20 min x 15 tools</text>
+  <text x="262.3" y="105.0" font-size="10" fill="currentColor" text-anchor="start" font-style="italic" fill-opacity="0.7">real robot</text>
+  <rect x="210.0" y="134.0" width="105.5" height="24.0" fill="#5ec962" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="0"/>
+  <text x="198.0" y="146.0" font-size="11.5" fill="currentColor" text-anchor="end">DQN, Atari</text>
+  <text x="198.0" y="161.0" font-size="9.5" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">10M frames at 60 Hz</text>
+  <text x="323.5" y="151.0" font-size="10" fill="currentColor" text-anchor="start" font-style="italic" fill-opacity="0.7">simulator</text>
+  <rect x="210.0" y="180.0" width="253.3" height="24.0" fill="#3b528b" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="0"/>
+  <text x="198.0" y="192.0" font-size="11.5" fill="currentColor" text-anchor="end">pi-zero</text>
+  <text x="198.0" y="207.0" font-size="9.5" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">10,000 h stated</text>
+  <text x="471.3" y="197.0" font-size="10" fill="currentColor" text-anchor="start" font-style="italic" fill-opacity="0.7">real robots</text>
+  <rect x="210.0" y="226.0" width="510.3" height="24.0" fill="#440154" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="0"/>
+  <text x="198.0" y="238.0" font-size="11.5" fill="currentColor" text-anchor="end">Rubik's cube</text>
+  <text x="198.0" y="253.0" font-size="9.5" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">~13,000 simulated years</text>
+  <text x="728.3" y="243.0" font-size="10" fill="currentColor" text-anchor="start" font-style="italic" fill-opacity="0.7">simulator</text>
+  <line x1="210.0" y1="286.0" x2="780.0" y2="286.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <line x1="210.0" y1="74.0" x2="210.0" y2="286.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <text x="420.0" y="352.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">About 7 orders of magnitude, and the cheap end is the physical manipulation.</text>
+</svg>

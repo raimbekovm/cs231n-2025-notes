@@ -43,6 +43,7 @@
 | 14  | [Generative Models II](https://raimbekovm.github.io/cs231n-2025-notes/lectures/14-generative-models-2.html)                            | GANs and the minimax game, rectified flow, classifier-free guidance, latent diffusion and DiT, the score and SDE views                                             |
 | 15  | [3D Vision](https://raimbekovm.github.io/cs231n-2025-notes/lectures/15-3d-vision.html)                                                 | Explicit and implicit geometry, signed distance functions, MVCNN, voxels and octrees, PointNet, Chamfer and EMD, DeepSDF, NeRF, Gaussian splatting                 |
 | 16  | [Vision and Language](https://raimbekovm.github.io/cs231n-2025-notes/lectures/16-vision-language.html)                                 | CLIP and zero-shot transfer, prompt ensembling, robustness under distribution shift, CoCa, bag-of-words limits, LLaVA and Flamingo, Molmo, SAM, visual programming |
+| 17  | [Robot Learning](https://raimbekovm.github.io/cs231n-2025-notes/lectures/17-robot-learning.html) | Closed-loop control against open-loop recognition, credit assignment, compounding error and DAgger, learned dynamics and particle graphs, multimodal action distributions, vision-language-action models |
 
 **Coming next**, in course order: vision–language models, robot learning,
 and human-centred AI.

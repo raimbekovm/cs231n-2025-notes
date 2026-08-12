@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 372" width="840" height="372"
+     role="img" aria-labelledby="perceptionTitle perceptionDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="perceptionTitle">The four axes separating robot perception from recognition</title>
+  <desc id="perceptionDesc">Four columns, each contrasting what computer vision supplies with what a robot needs: a metric 3D pose rather than a pixel box, active viewpoint selection rather than a fixed dataset, a hard control deadline, and a representation whose adequacy depends on the task.</desc>
+  <text x="420.0" y="26.0" font-size="14" fill="currentColor" text-anchor="middle" font-weight="600">Four things robot perception needs that a recognition benchmark does not measure</text>
+  <text x="130.5" y="62.0" font-size="12.5" fill="#21918c" text-anchor="middle" font-weight="600">3D and metric</text>
+  <rect x="40.0" y="78.0" width="181.0" height="52.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.3" rx="4"/>
+  <text x="130.5" y="98.0" font-size="10" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.55">computer vision</text>
+  <text x="130.5" y="116.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">a box in pixels</text>
+  <line x1="130.5" y1="136.0" x2="130.5" y2="152.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="130.5,158.0 127.8,152.0 133.2,152.0" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="40.0" y="164.0" width="181.0" height="92.0" fill="#21918c" fill-opacity="0.12" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="4"/>
+  <text x="130.5" y="184.0" font-size="10" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.55">robot vision</text>
+  <text x="130.5" y="204.0" font-size="10.5" fill="currentColor" text-anchor="middle">a pose in metres,</text>
+  <text x="130.5" y="220.0" font-size="10.5" fill="currentColor" text-anchor="middle">in the robot's frame,</text>
+  <text x="130.5" y="236.0" font-size="10.5" fill="currentColor" text-anchor="middle">with uncertainty</text>
+  <text x="323.5" y="62.0" font-size="12.5" fill="#5ec962" text-anchor="middle" font-weight="600">Active</text>
+  <rect x="233.0" y="78.0" width="181.0" height="52.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.3" rx="4"/>
+  <text x="323.5" y="98.0" font-size="10" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.55">computer vision</text>
+  <text x="323.5" y="116.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">a fixed dataset</text>
+  <line x1="323.5" y1="136.0" x2="323.5" y2="152.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="323.5,158.0 320.8,152.0 326.2,152.0" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="233.0" y="164.0" width="181.0" height="92.0" fill="#5ec962" fill-opacity="0.12" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="4"/>
+  <text x="323.5" y="184.0" font-size="10" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.55">robot vision</text>
+  <text x="323.5" y="204.0" font-size="10.5" fill="currentColor" text-anchor="middle">the robot chooses</text>
+  <text x="323.5" y="220.0" font-size="10.5" fill="currentColor" text-anchor="middle">its own viewpoints</text>
+  <text x="323.5" y="236.0" font-size="10.5" fill="currentColor" text-anchor="middle">and can act to see</text>
+  <text x="516.5" y="62.0" font-size="12.5" fill="#3b528b" text-anchor="middle" font-weight="600">Real-time</text>
+  <rect x="426.0" y="78.0" width="181.0" height="52.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.3" rx="4"/>
+  <text x="516.5" y="98.0" font-size="10" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.55">computer vision</text>
+  <text x="516.5" y="116.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">accuracy at any cost</text>
+  <line x1="516.5" y1="136.0" x2="516.5" y2="152.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="516.5,158.0 513.8,152.0 519.2,152.0" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="426.0" y="164.0" width="181.0" height="92.0" fill="#3b528b" fill-opacity="0.12" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="4"/>
+  <text x="516.5" y="184.0" font-size="10" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.55">robot vision</text>
+  <text x="516.5" y="204.0" font-size="10.5" fill="currentColor" text-anchor="middle">a control deadline;</text>
+  <text x="516.5" y="220.0" font-size="10.5" fill="currentColor" text-anchor="middle">an accurate model</text>
+  <text x="516.5" y="236.0" font-size="10.5" fill="currentColor" text-anchor="middle">that misses it is unusable</text>
+  <text x="709.5" y="62.0" font-size="12.5" fill="#440154" text-anchor="middle" font-weight="600">Task-driven</text>
+  <rect x="619.0" y="78.0" width="181.0" height="52.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.3" rx="4"/>
+  <text x="709.5" y="98.0" font-size="10" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.55">computer vision</text>
+  <text x="709.5" y="116.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">one general representation</text>
+  <line x1="709.5" y1="136.0" x2="709.5" y2="152.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="709.5,158.0 706.8,152.0 712.2,152.0" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="619.0" y="164.0" width="181.0" height="92.0" fill="#440154" fill-opacity="0.12" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="4"/>
+  <text x="709.5" y="184.0" font-size="10" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.55">robot vision</text>
+  <text x="709.5" y="204.0" font-size="10.5" fill="currentColor" text-anchor="middle">correctness depends</text>
+  <text x="709.5" y="220.0" font-size="10.5" fill="currentColor" text-anchor="middle">on the action next;</text>
+  <text x="709.5" y="236.0" font-size="10.5" fill="currentColor" text-anchor="middle">co-designed with control</text>
+  <line x1="40.0" y1="284.0" x2="800.0" y2="284.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.2"/>
+  <text x="420.0" y="308.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">The sensors follow: proprioception is fast and never occluded, force and torque report contact,</text>
+  <text x="420.0" y="326.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">and tactile sensing is most informative exactly when the hand is occluding what it holds.</text>
+  <text x="420.0" y="352.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.7">No general-purpose representation is correct independently of the action about to be taken.</text>
+</svg>
