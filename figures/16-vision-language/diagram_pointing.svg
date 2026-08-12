@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 350" width="840" height="350"
+     role="img" aria-labelledby="pointTitle pointDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="pointTitle">Pointing as a shared output primitive</title>
+  <desc id="pointDesc">Molmo emits a single two-dimensional coordinate, which feeds three distinct uses: grounding a referring expression to a location, counting by enumerating one point per instance rather than estimating a number, and acting, where the point serves as a navigation waypoint, a grasp target, or a prompt handed to a segmentation model.</desc>
+  <rect x="28.0" y="128.0" width="108.0" height="56.0" fill="#440154" fill-opacity="0.16" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="82.0" y="154.0" font-size="12.5" fill="#1b1b1b" text-anchor="middle">Molmo</text>
+  <text x="82.0" y="170.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.7">image + question</text>
+  <line x1="136.0" y1="156.0" x2="168.0" y2="156.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.65"/>
+  <polygon points="174.0,156.0 168.0,158.7 168.0,153.3" fill="currentColor" fill-opacity="0.65" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="174.0" y="134.0" width="118.0" height="44.0" fill="#fde725" fill-opacity="0.5" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.5" rx="4"/>
+  <text x="233.0" y="154.0" font-size="12" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">⟨point x, y⟩</text>
+  <text x="233.0" y="170.0" font-size="10" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.7">one coordinate</text>
+  <text x="233.0" y="200.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">2.3M annotations,</text>
+  <text x="233.0" y="218.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.6">cheaper than boxes or masks</text>
+  <line x1="292.0" y1="156.0" x2="367.4" y2="91.9" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="372.0,88.0 369.2,93.9 365.7,89.8" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="378.0" y="56.0" width="434.0" height="72.0" fill="#21918c" fill-opacity="0.11" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="4"/>
+  <text x="398.0" y="78.0" font-size="12.5" fill="#1b1b1b" text-anchor="start" font-weight="600">Grounding</text>
+  <text x="516.0" y="76.0" font-size="10.5" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">“the second bird from</text>
+  <text x="516.0" y="92.0" font-size="10.5" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">the left” → a location</text>
+  <text x="516.0" y="108.0" font-size="10.5" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">in the image</text>
+  <line x1="292.0" y1="156.0" x2="366.1" y2="170.8" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="372.0,172.0 365.6,173.5 366.6,168.2" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="378.0" y="140.0" width="434.0" height="72.0" fill="#5ec962" fill-opacity="0.11" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="4"/>
+  <text x="398.0" y="162.0" font-size="12.5" fill="#1b1b1b" text-anchor="start" font-weight="600">Counting</text>
+  <text x="516.0" y="160.0" font-size="10.5" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">point at each instance,</text>
+  <text x="516.0" y="176.0" font-size="10.5" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">then count the outputs —</text>
+  <text x="516.0" y="192.0" font-size="10.5" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">an enumeration, not a guess</text>
+  <line x1="292.0" y1="156.0" x2="368.3" y2="251.3" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="372.0,256.0 366.1,253.0 370.4,249.6" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="378.0" y="224.0" width="434.0" height="72.0" fill="#3b528b" fill-opacity="0.11" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="4"/>
+  <text x="398.0" y="246.0" font-size="12.5" fill="#1b1b1b" text-anchor="start" font-weight="600">Action</text>
+  <text x="516.0" y="244.0" font-size="10.5" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">a waypoint, a grasp target,</text>
+  <text x="516.0" y="260.0" font-size="10.5" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">a button to click; or a</text>
+  <text x="516.0" y="276.0" font-size="10.5" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">prompt handed to SAM</text>
+  <text x="420.0" y="332.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">Boxes ground and masks segment; the point does both jobs and is the one that also drives a robot.</text>
+</svg>

@@ -214,6 +214,16 @@ gradient of anything.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
+::: {.cs-card .cs-card--done}
+[Lecture 16]{.cs-card__index}
+
+[[Vision and Language](lectures/16-vision-language.qmd)]{.cs-card__title}
+
+[Text was the supervision signal vision had been missing. What that bought, what it quietly failed to learn, and the four ways of building on it.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
 :::
 
 :::
@@ -237,6 +247,7 @@ gradient of anything.]{.cs-card__blurb}
 | 13 | [Generative Models I](lectures/13-generative-models.qmd) | Complete |
 | 14 | [Generative Models II](lectures/14-generative-models-2.qmd) | Complete |
 | 15 | [3D Vision](lectures/15-3d-vision.qmd) | Complete |
+| 16 | [Vision and Language](lectures/16-vision-language.qmd) | Complete |
 
 : Lectures published so far.
 

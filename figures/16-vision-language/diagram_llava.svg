@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 330" width="840" height="330"
+     role="img" aria-labelledby="llavaTitle llavaDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="llavaTitle">LLaVA's fusion by concatenation</title>
+  <desc id="llavaDesc">A left-to-right pipeline. An image enters a frozen CLIP ViT-L/14, whose penultimate-layer patch features pass through a single linear projection W. The projected visual tokens are concatenated in front of the embedded text tokens to form one sequence, which a Vicuna language model consumes to produce a free-form text answer.</desc>
+  <rect x="24.0" y="96.0" width="96.0" height="52.0" fill="#5ec962" fill-opacity="0.2" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="72.0" y="126.5" font-size="12" fill="#1b1b1b" text-anchor="middle">image</text>
+  <line x1="120.0" y1="122.0" x2="142.0" y2="122.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="148.0,122.0 142.0,124.7 142.0,119.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="148.0" y="92.0" width="104.0" height="60.0" fill="#21918c" fill-opacity="0.2" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="200.0" y="126.5" font-size="11" fill="#1b1b1b" text-anchor="middle">CLIP ViT-L/14</text>
+  <line x1="194.0" y1="166.0" x2="206.0" y2="166.0" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="197.0" y1="160.8" x2="203.0" y2="171.2" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="203.0" y1="160.8" x2="197.0" y2="171.2" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <text x="200.0" y="190.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">frozen</text>
+  <text x="200.0" y="208.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.6">penultimate layer</text>
+  <line x1="252.0" y1="122.0" x2="276.0" y2="122.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="282.0,122.0 276.0,124.7 276.0,119.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="282.0" y="96.0" width="54.0" height="12.0" fill="#21918c" fill-opacity="0.45" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.3" rx="2"/>
+  <rect x="282.0" y="111.0" width="54.0" height="12.0" fill="#21918c" fill-opacity="0.45" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.3" rx="2"/>
+  <rect x="282.0" y="126.0" width="54.0" height="12.0" fill="#21918c" fill-opacity="0.45" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.3" rx="2"/>
+  <rect x="282.0" y="141.0" width="54.0" height="12.0" fill="#21918c" fill-opacity="0.45" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.3" rx="2"/>
+  <text x="309.0" y="78.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">patch features Z</text>
+  <line x1="340.0" y1="122.0" x2="364.0" y2="122.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="370.0,122.0 364.0,124.7 364.0,119.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="370.0" y="100.0" width="68.0" height="44.0" fill="#fde725" fill-opacity="0.5" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="404.0" y="126.5" font-size="13" fill="#1b1b1b" text-anchor="middle">W</text>
+  <text x="404.0" y="166.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">one linear</text>
+  <text x="404.0" y="184.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">projection —</text>
+  <text x="404.0" y="202.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.62">the whole connector</text>
+  <line x1="438.0" y1="122.0" x2="462.0" y2="122.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="468.0,122.0 462.0,124.7 462.0,119.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="596.0" y="62.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">one sequence, and self-attention cannot tell them apart</text>
+  <rect x="474.0" y="100.0" width="26.0" height="44.0" fill="#fde725" fill-opacity="0.5" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="3"/>
+  <rect x="504.0" y="100.0" width="26.0" height="44.0" fill="#fde725" fill-opacity="0.5" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="3"/>
+  <rect x="534.0" y="100.0" width="26.0" height="44.0" fill="#fde725" fill-opacity="0.5" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="3"/>
+  <rect x="564.0" y="100.0" width="26.0" height="44.0" fill="#fde725" fill-opacity="0.5" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="3"/>
+  <rect x="598.0" y="100.0" width="26.0" height="44.0" fill="#3b528b" fill-opacity="0.22" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="3"/>
+  <rect x="628.0" y="100.0" width="26.0" height="44.0" fill="#3b528b" fill-opacity="0.22" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="3"/>
+  <rect x="658.0" y="100.0" width="26.0" height="44.0" fill="#3b528b" fill-opacity="0.22" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="3"/>
+  <rect x="688.0" y="100.0" width="26.0" height="44.0" fill="#3b528b" fill-opacity="0.22" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="3"/>
+  <text x="534.0" y="164.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">visual tokens</text>
+  <text x="658.0" y="164.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">text tokens</text>
+  <line x1="596.0" y1="96.0" x2="596.0" y2="148.0" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.3" stroke-dasharray="3 3"/>
+  <line x1="724.0" y1="122.0" x2="746.0" y2="122.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="752.0,122.0 746.0,124.7 746.0,119.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="752.0" y="92.0" width="68.0" height="60.0" fill="#440154" fill-opacity="0.16" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="786.0" y="120.0" font-size="12" fill="#1b1b1b" text-anchor="middle">LLM</text>
+  <text x="786.0" y="136.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.7">Vicuna</text>
+  <line x1="786.0" y1="152.0" x2="786.0" y2="176.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="786.0,182.0 783.3,176.0 788.7,176.0" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="786.0" y="200.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">free-form</text>
+  <text x="786.0" y="218.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">text answer</text>
+  <text x="420.0" y="310.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">Stage 1 trains W alone; stage 2 trains W and the language model on GPT-4-written instruction data.</text>
+</svg>
