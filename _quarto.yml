@@ -66,6 +66,7 @@ book:
     - part: "Generative Models"
       chapters:
         - lectures/13-generative-models.qmd
+        - lectures/14-generative-models-2.qmd
 
 format:
   html:

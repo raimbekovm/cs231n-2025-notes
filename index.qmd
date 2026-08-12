@@ -194,6 +194,16 @@ gradient of anything.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
+::: {.cs-card .cs-card--done}
+[Lecture 14]{.cs-card__index}
+
+[[Generative Models II](lectures/14-generative-models-2.qmd)]{.cs-card__title}
+
+[Adversarial training and diffusion: a learned loss, a regression on noise, and the pipeline that ended up using both.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
 :::
 
 :::
@@ -215,6 +225,7 @@ gradient of anything.]{.cs-card__blurb}
 | 11 | [Large-Scale Distributed Training](lectures/11-distributed-training.qmd) | Complete |
 | 12 | [Self-Supervised Learning](lectures/12-self-supervised-learning.qmd) | Complete |
 | 13 | [Generative Models I](lectures/13-generative-models.qmd) | Complete |
+| 14 | [Generative Models II](lectures/14-generative-models-2.qmd) | Complete |
 
 : Lectures published so far.
 
