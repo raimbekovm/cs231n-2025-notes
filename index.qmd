@@ -224,6 +224,16 @@ gradient of anything.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
+::: {.cs-card .cs-card--done}
+[Lecture 17]{.cs-card__index}
+
+[[Robot Learning](lectures/17-robot-learning.qmd)]{.cs-card__title}
+
+[A robot's output changes its next input, which breaks the assumption every earlier chapter rests on. Four answers, and what each one costs.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
 :::
 
 :::
@@ -248,6 +258,7 @@ gradient of anything.]{.cs-card__blurb}
 | 14 | [Generative Models II](lectures/14-generative-models-2.qmd) | Complete |
 | 15 | [3D Vision](lectures/15-3d-vision.qmd) | Complete |
 | 16 | [Vision and Language](lectures/16-vision-language.qmd) | Complete |
+| 17 | [Robot Learning](lectures/17-robot-learning.qmd) | Complete |
 
 : Lectures published so far.
 

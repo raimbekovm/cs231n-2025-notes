@@ -73,6 +73,9 @@ book:
     - part: "Multimodal"
       chapters:
         - lectures/16-vision-language.qmd
+    - part: "Embodied AI"
+      chapters:
+        - lectures/17-robot-learning.qmd
 
 format:
   html:
