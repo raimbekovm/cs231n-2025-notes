@@ -67,6 +67,9 @@ book:
       chapters:
         - lectures/13-generative-models.qmd
         - lectures/14-generative-models-2.qmd
+    - part: "Beyond 2D"
+      chapters:
+        - lectures/15-3d-vision.qmd
 
 format:
   html:

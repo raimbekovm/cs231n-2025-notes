@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" width="760" height="360"
+     role="img" aria-labelledby="vcostTitle vcostDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="vcostTitle">Dense grid and octree cell counts against resolution</title>
+  <desc id="vcostDesc">A logarithmic plot of how many cells a dense voxel grid and a surface-following octree need for the same sphere at resolutions from 16 cubed to 256 cubed, with the occupied fraction tabulated beside it.</desc>
+  <line x1="100.0" y1="247.9" x2="470.0" y2="247.9" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="88.0" y="251.9" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.55">10³</text>
+  <line x1="100.0" y1="212.8" x2="470.0" y2="212.8" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="88.0" y="216.8" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.55">10⁴</text>
+  <line x1="100.0" y1="177.6" x2="470.0" y2="177.6" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="88.0" y="181.6" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.55">10⁵</text>
+  <line x1="100.0" y1="142.4" x2="470.0" y2="142.4" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="88.0" y="146.4" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.55">10⁶</text>
+  <line x1="100.0" y1="107.2" x2="470.0" y2="107.2" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="88.0" y="111.2" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.55">10⁷</text>
+  <line x1="100.0" y1="72.1" x2="470.0" y2="72.1" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="88.0" y="76.1" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.55">10⁸</text>
+  <line x1="125.5" y1="262.0" x2="125.5" y2="267.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="125.5" y="284.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.55">16³</text>
+  <line x1="253.1" y1="262.0" x2="253.1" y2="267.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="253.1" y="284.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.55">64³</text>
+  <line x1="380.7" y1="262.0" x2="380.7" y2="267.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="380.7" y="284.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.55">256³</text>
+  <line x1="444.5" y1="262.0" x2="444.5" y2="267.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="444.5" y="284.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.55">512³</text>
+  <line x1="100.0" y1="262.0" x2="470.0" y2="262.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="285.0" y="306.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.65">output resolution</text>
+  <text x="58.0" y="160.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.55">cells</text>
+  <polyline points="125.52,226.39 189.31,194.63 253.10,162.87 316.90,131.10 380.69,99.34 444.48,67.57" fill="none" stroke="#440154" stroke-width="2.2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+  <polyline points="125.52,233.91 189.31,211.82 253.10,190.84 316.90,169.71 380.69,148.48 444.48,127.33" fill="none" stroke="#21918c" stroke-width="2.2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="125.5" cy="226.4" r="4.0" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="189.3" cy="194.6" r="4.0" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="253.1" cy="162.9" r="4.0" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="316.9" cy="131.1" r="4.0" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="380.7" cy="99.3" r="4.0" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="444.5" cy="67.6" r="4.0" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="125.5" cy="233.9" r="4.0" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="189.3" cy="211.8" r="4.0" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="253.1" cy="190.8" r="4.0" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="316.9" cy="169.7" r="4.0" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="380.7" cy="148.5" r="4.0" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="444.5" cy="127.3" r="4.0" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="438.5" y="53.6" font-size="11" fill="#440154" text-anchor="end" font-weight="600">dense, O(n³)</text>
+  <text x="320.9" y="195.7" font-size="11" fill="#21918c" text-anchor="start" font-weight="600">octree, O(n²)</text>
+  <text x="624.0" y="58.0" font-size="11" fill="currentColor" text-anchor="middle" font-weight="600" fill-opacity="0.8">occupied fraction</text>
+  <text x="556.0" y="84.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.7">16³</text>
+  <text x="700.0" y="84.0" font-size="12" fill="#3b528b" text-anchor="end">19.34%</text>
+  <text x="556.0" y="108.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.7">32³</text>
+  <text x="700.0" y="108.0" font-size="12" fill="#3b528b" text-anchor="end">9.92%</text>
+  <text x="556.0" y="132.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.7">64³</text>
+  <text x="700.0" y="132.0" font-size="12" fill="#3b528b" text-anchor="end">5.27%</text>
+  <text x="556.0" y="156.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.7">128³</text>
+  <text x="700.0" y="156.0" font-size="12" fill="#3b528b" text-anchor="end">2.76%</text>
+  <text x="556.0" y="180.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.7">256³</text>
+  <text x="700.0" y="180.0" font-size="12" fill="#3b528b" text-anchor="end">1.41%</text>
+  <text x="556.0" y="204.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.7">512³</text>
+  <text x="700.0" y="204.0" font-size="12" fill="#3b528b" text-anchor="end">0.72%</text>
+  <text x="628.0" y="262.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.6">a surface touches ever less</text>
+  <text x="628.0" y="278.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.6">of the volume it sits in</text>
+</svg>

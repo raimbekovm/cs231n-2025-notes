@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" width="760" height="340"
+     role="img" aria-labelledby="nvsTitle nvsDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="nvsTitle">Dense ray sampling against sparse primitive projection</title>
+  <desc id="nvsDesc">Two panels with the same camera and the same object. On the left, samples are spread evenly along each ray and most fall in empty space; on the right, only the primitives themselves are projected.</desc>
+  <text x="208.0" y="42.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">NeRF: dense everywhere</text>
+  <text x="208.0" y="62.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.6">one network call per sample</text>
+  <polygon points="78.0,156.0 100.0,148.0 100.0,188.0 78.0,180.0" fill="#1b1b1b" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="88.0" y="210.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.55">camera</text>
+  <ellipse cx="270.0" cy="150.0" rx="30.0" ry="20.0" fill="#fde725" fill-opacity="0.30" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.75"/>
+  <ellipse cx="302.0" cy="186.0" rx="24.0" ry="26.0" fill="#fde725" fill-opacity="0.30" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.75"/>
+  <ellipse cx="246.0" cy="196.0" rx="20.0" ry="16.0" fill="#fde725" fill-opacity="0.30" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="102.0" y1="168.0" x2="372.0" y2="128.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.3"/>
+  <circle cx="129.0" cy="164.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="141.5" cy="162.1" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="154.0" cy="160.3" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="166.5" cy="158.4" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="179.0" cy="156.6" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="191.5" cy="154.7" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="204.0" cy="152.9" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="216.5" cy="151.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="229.0" cy="149.2" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="241.5" cy="147.3" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="254.1" cy="145.5" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="266.6" cy="143.6" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="279.1" cy="141.8" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="291.6" cy="139.9" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="304.1" cy="138.1" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="316.6" cy="136.2" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="329.1" cy="134.4" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="341.6" cy="132.5" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="354.1" cy="130.7" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="366.6" cy="128.8" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="102.0" y1="168.0" x2="372.0" y2="168.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.3"/>
+  <circle cx="129.0" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="141.5" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="154.0" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="166.5" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="179.0" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="191.5" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="204.0" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="216.5" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="229.0" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="241.5" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="254.1" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="266.6" cy="168.0" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="279.1" cy="168.0" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="291.6" cy="168.0" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="304.1" cy="168.0" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="316.6" cy="168.0" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="329.1" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="341.6" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="354.1" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="366.6" cy="168.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="102.0" y1="168.0" x2="372.0" y2="208.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.3"/>
+  <circle cx="129.0" cy="172.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="141.5" cy="173.9" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="154.0" cy="175.7" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="166.5" cy="177.6" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="179.0" cy="179.4" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="191.5" cy="181.3" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="204.0" cy="183.1" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="216.5" cy="185.0" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="229.0" cy="186.8" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="241.5" cy="188.7" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="254.1" cy="190.5" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="266.6" cy="192.4" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="279.1" cy="194.2" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="291.6" cy="196.1" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="304.1" cy="197.9" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="316.6" cy="199.8" r="2.4" fill="#440154" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="329.1" cy="201.6" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="341.6" cy="203.5" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="354.1" cy="205.3" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="366.6" cy="207.2" r="2.4" fill="#3b528b" fill-opacity="0.34" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="208.0" y="286.0" font-size="11" fill="#3b528b" text-anchor="middle" fill-opacity="0.9">empty samples: most of them</text>
+  <text x="568.0" y="42.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">Splatting: sparse where it matters</text>
+  <text x="568.0" y="62.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.6">one projection per primitive</text>
+  <polygon points="438.0,156.0 460.0,148.0 460.0,188.0 438.0,180.0" fill="#1b1b1b" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="448.0" y="210.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.55">camera</text>
+  <ellipse cx="630.0" cy="150.0" rx="30.0" ry="20.0" fill="#fde725" fill-opacity="0.30" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.75"/>
+  <ellipse cx="662.0" cy="186.0" rx="24.0" ry="26.0" fill="#fde725" fill-opacity="0.30" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.75"/>
+  <ellipse cx="606.0" cy="196.0" rx="20.0" ry="16.0" fill="#fde725" fill-opacity="0.30" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="462.0" y1="168.0" x2="732.0" y2="128.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.3"/>
+  <line x1="462.0" y1="168.0" x2="732.0" y2="168.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.3"/>
+  <line x1="462.0" y1="168.0" x2="732.0" y2="208.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.3"/>
+  <circle cx="630.0" cy="150.0" r="2.8" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="598.0" y1="150.0" x2="483.0" y2="160.0" stroke="#5ec962" stroke-width="1.1" stroke-opacity="0.55"/>
+  <polygon points="478.0,160.4 482.8,157.8 483.2,162.2" fill="#5ec962" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="662.0" cy="186.0" r="2.8" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="636.0" y1="186.0" x2="483.0" y2="175.9" stroke="#5ec962" stroke-width="1.1" stroke-opacity="0.55"/>
+  <polygon points="478.0,175.6 483.1,173.6 482.8,178.1" fill="#5ec962" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="606.0" cy="196.0" r="2.8" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="584.0" y1="196.0" x2="482.9" y2="180.5" stroke="#5ec962" stroke-width="1.1" stroke-opacity="0.55"/>
+  <polygon points="478.0,179.8 483.3,178.3 482.6,182.7" fill="#5ec962" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="568.0" y="286.0" font-size="11" fill="#5ec962" text-anchor="middle" fill-opacity="0.9">empty space costs nothing</text>
+  <line x1="380.0" y1="56.0" x2="380.0" y2="274.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.22" stroke-dasharray="5 5"/>
+  <text x="380.0" y="318.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.62">the same argument that took voxels to octrees, applied to compute</text>
+</svg>

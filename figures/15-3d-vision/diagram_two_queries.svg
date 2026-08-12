@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" width="760" height="330"
+     role="img" aria-labelledby="twoqTitle twoqDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="twoqTitle">Sampling and containment across explicit and implicit surfaces</title>
+  <desc id="twoqDesc">Two panels showing the same circular object. On the explicit side sampling points is one evaluation and testing containment needs a ray cast; on the implicit side the two costs are exchanged.</desc>
+  <text x="196.0" y="34.0" font-size="14" fill="currentColor" text-anchor="middle" font-weight="600">Explicit</text>
+  <text x="196.0" y="53.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">γ(u, v) → point</text>
+  <circle cx="196.0" cy="150.0" r="62.0" fill="none" fill-opacity="0.85" stroke="#1b1b1b" stroke-width="2.0" stroke-opacity="1.0"/>
+  <text x="564.0" y="34.0" font-size="14" fill="currentColor" text-anchor="middle" font-weight="600">Implicit</text>
+  <text x="564.0" y="53.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">f(x, y, z) = 0</text>
+  <circle cx="564.0" cy="150.0" r="62.0" fill="none" fill-opacity="0.85" stroke="#1b1b1b" stroke-width="2.0" stroke-opacity="1.0"/>
+  <circle cx="256.8" cy="162.3" r="4.2" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="234.6" cy="198.5" r="4.2" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="194.4" cy="212.0" r="4.2" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="155.0" cy="196.5" r="4.2" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="134.7" cy="159.2" r="4.2" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="143.1" cy="117.6" r="4.2" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="176.3" cy="91.2" r="4.2" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="218.7" cy="92.3" r="4.2" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="250.5" cy="120.4" r="4.2" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="106.0" y1="80.0" x2="133.1" y2="163.7" stroke="#21918c" stroke-width="1.5" stroke-opacity="0.9"/>
+  <polygon points="134.9,169.4 130.5,164.5 135.6,162.9" fill="#21918c" fill-opacity="0.9" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="84.0" y="68.0" font-size="11" fill="#21918c" text-anchor="start">sample: evaluate</text>
+  <circle cx="230.0" cy="128.0" r="4.4" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="230.0" y1="128.0" x2="320.6" y2="84.6" stroke="#440154" stroke-width="1.3" stroke-opacity="0.8" stroke-dasharray="4 3"/>
+  <polygon points="326.0,82.0 321.8,87.0 319.4,82.2" fill="#440154" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="230.0" y1="128.0" x2="320.0" y2="133.6" stroke="#440154" stroke-width="1.3" stroke-opacity="0.8" stroke-dasharray="4 3"/>
+  <polygon points="326.0,134.0 319.8,136.3 320.2,130.9" fill="#440154" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="214.0" y="268.0" font-size="11" fill="#440154" text-anchor="middle">inside? cast a ray, count crossings</text>
+  <circle cx="594.0" cy="130.0" r="4.4" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="660.0" y="118.0" font-size="11" fill="#440154" text-anchor="start">f &lt; 0 → inside</text>
+  <line x1="596.0" y1="128.0" x2="646.1" y2="117.3" stroke="#440154" stroke-width="1.5" stroke-opacity="0.9"/>
+  <polygon points="652.0,116.0 646.7,119.9 645.6,114.6" fill="#440154" fill-opacity="0.9" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="618.4" cy="179.7" r="4.2" fill="none" fill-opacity="0.8" stroke="#21918c" stroke-width="1.4" stroke-opacity="1.0"/>
+  <circle cx="574.7" cy="211.1" r="4.2" fill="none" fill-opacity="0.8" stroke="#21918c" stroke-width="1.4" stroke-opacity="1.0"/>
+  <circle cx="522.9" cy="196.4" r="4.2" fill="none" fill-opacity="0.8" stroke="#21918c" stroke-width="1.4" stroke-opacity="1.0"/>
+  <circle cx="502.1" cy="146.8" r="4.2" fill="none" fill-opacity="0.8" stroke="#21918c" stroke-width="1.4" stroke-opacity="1.0"/>
+  <circle cx="527.9" cy="99.6" r="4.2" fill="none" fill-opacity="0.8" stroke="#21918c" stroke-width="1.4" stroke-opacity="1.0"/>
+  <circle cx="580.9" cy="90.3" r="4.2" fill="none" fill-opacity="0.8" stroke="#21918c" stroke-width="1.4" stroke-opacity="1.0"/>
+  <circle cx="621.2" cy="126.0" r="4.2" fill="none" fill-opacity="0.8" stroke="#21918c" stroke-width="1.4" stroke-opacity="1.0"/>
+  <text x="564.0" y="268.0" font-size="11" fill="#21918c" text-anchor="middle">on the surface? solve f = 0</text>
+  <line x1="380.0" y1="44.0" x2="380.0" y2="292.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.25" stroke-dasharray="5 5"/>
+  <text x="380.0" y="312.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.6">each representation is the other's complement</text>
+</svg>
