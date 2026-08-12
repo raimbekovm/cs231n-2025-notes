@@ -70,6 +70,9 @@ book:
     - part: "Beyond 2D"
       chapters:
         - lectures/15-3d-vision.qmd
+    - part: "Multimodal"
+      chapters:
+        - lectures/16-vision-language.qmd
 
 format:
   html:
