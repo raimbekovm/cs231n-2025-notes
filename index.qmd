@@ -53,8 +53,8 @@ later lecture can point back at the thing it depends on.
 
 ## Lectures
 
-The course runs to 18 lectures; these are the pages written so far. See the
-[roadmap](#roadmap) for what is coming.
+The course runs to 18 lectures, and all of them are written. The
+[roadmap](#roadmap) groups them by theme.
 
 ::: {.content-visible when-format="html"}
 
@@ -234,6 +234,16 @@ gradient of anything.]{.cs-card__blurb}
 [Complete]{.cs-card__status}
 :::
 
+::: {.cs-card .cs-card--done}
+[Lecture 18]{.cs-card__index}
+
+[[Human-Centered AI](lectures/18-human-centered-ai.qmd)]{.cs-card__title}
+
+[What the field is for. Two claims the closing lecture states informally, made precise on the contingency table underneath both.]{.cs-card__blurb}
+
+[Complete]{.cs-card__status}
+:::
+
 :::
 
 :::
@@ -259,6 +269,7 @@ gradient of anything.]{.cs-card__blurb}
 | 15 | [3D Vision](lectures/15-3d-vision.qmd) | Complete |
 | 16 | [Vision and Language](lectures/16-vision-language.qmd) | Complete |
 | 17 | [Robot Learning](lectures/17-robot-learning.qmd) | Complete |
+| 18 | [Human-Centered AI](lectures/18-human-centered-ai.qmd) | Complete |
 
 : Lectures published so far.
 
