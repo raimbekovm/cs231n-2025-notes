@@ -1,7 +1,7 @@
 ---
 title: "Vision and Language"
 subtitle: "Lecture 16"
-description: "Every model in the preceding chapters was trained for one task on one dataset. This chapter follows the shift to foundation models for vision — CLIP's use of text as a supervision signal that scales, the two ways of bolting a vision encoder onto a language model, what the contrastive objective quietly fails to learn, and the point at which composing frozen models beats training a new one."
+description: "Text was the supervision signal vision had been missing — free at web scale and carrying meaning, which is how CLIP learned an open-vocabulary classifier from 400 million captions. This chapter follows what that bought, what the contrastive objective quietly failed to learn, and the four responses to it: fusing vision into a language model, collecting better data, making segmentation promptable, and composing frozen models instead of training new ones."
 ---
 
 _Based on Lecture 16 of [CS231n](https://cs231n.stanford.edu/), Stanford University,
