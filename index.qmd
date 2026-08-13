@@ -17,7 +17,7 @@ format:
 <section class="cs-hero">
   <div class="cs-hero__copy">
     <p class="cs-hero__eyebrow">CS231n lecture notes &middot; Stanford &middot; Spring 2025 &middot; Unofficial</p>
-    <h1 class="cs-hero__title">The official notes stopped in 2017.<br><em>These don&rsquo;t.</em></h1>
+    <h1 class="cs-hero__title">Eighteen lectures<br><em>of Stanford CS231n, written up.</em></h1>
     <p class="cs-hero__lede">
       Vision Transformers, contrastive pretraining, latent diffusion,
       segmentation foundation models, vision&ndash;language models &mdash; written

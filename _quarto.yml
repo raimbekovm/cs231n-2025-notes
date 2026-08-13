@@ -18,7 +18,7 @@ book:
   description: >
     Comprehensive, modern lecture notes for Stanford CS231n (Spring 2025):
     CNNs, Transformers, diffusion models, and vision-language models.
-    The official notes stopped at 2017 — these do not.
+    All eighteen lectures of the Spring 2025 course, written up in full.
   site-url: https://raimbekovm.github.io/cs231n-2025-notes/
   repo-url: https://github.com/raimbekovm/cs231n-2025-notes
   repo-branch: main
