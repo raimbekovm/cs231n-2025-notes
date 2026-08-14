@@ -276,6 +276,31 @@ a:hover {
 // Navbar
 // ---------------------------------------------------------------------------
 
+// The header is fixed, so the article has to be pushed down by exactly its
+// height. Quarto hard-codes `padding-top: 82px` for that and then corrects it
+// from JavaScript after load, by measuring the header it has just laid out.
+// 82px is right for Quarto's own navbar; this one carries a second row below
+// the collapse breakpoint, so the correction drops the whole article 38px once
+// the reader is already looking at it. Measured at 0.04 of the page's layout
+// shift — the single largest contributor on a phone.
+//
+// These are the heights the header actually takes, measured on the rendered
+// site at every width from 320 to 3440 and identical on the landing page and
+// on a lecture. Pinning them makes the correction a no-op. The JavaScript
+// still runs, so if the header ever changes height the cost is the jump coming
+// back, not a broken page.
+body.nav-fixed {
+  padding-top: 120px;
+
+  @media (min-width: 768px) {
+    padding-top: 126px;
+  }
+
+  @media (min-width: 992px) {
+    padding-top: 81px;
+  }
+}
+
 .navbar {
   background: $cs-paper;
   border-bottom: 1px solid $cs-rule;

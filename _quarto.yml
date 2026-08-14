@@ -4,9 +4,21 @@ project:
   preview:
     port: 4321
     browser: false
+  # Quarto regenerates site_libs/ on every render, so the weight it ships there
+  # can only be trimmed afterwards. Each script is a no-op on a format that did
+  # not produce the file it works on, so `quarto render --to pdf` is unaffected.
+  post-render:
+    - quarto run tools/prerender_math.ts
+    - python3 tools/icon_subset.py
+    - python3 tools/unblock_head.py
   resources:
     # Nothing links to the social card, so Quarto would not copy it otherwise.
     - figures/social-card.png
+    # The vendored KaTeX. Only these two lines are served: `katex.min.js` sits
+    # in the same directory but is a build-time input, so it is deliberately
+    # not listed and never reaches a reader.
+    - katex/katex.min.css
+    - katex/fonts/*.woff2
     # Quarto copies fonts/fonts.css because it is listed under format.html.css,
     # but not the .woff2 files that stylesheet points at.
     - fonts/*.woff2
@@ -117,6 +129,15 @@ format:
     # The trailing slash is load-bearing: pandoc concatenates this with
     # `katex.min.js` verbatim, so without it the URL comes out as
     # `.../distkatex.min.js` and the maths silently stops rendering.
+    #
+    # No reader ever fetches either URL. `tools/prerender_math.ts` typesets the
+    # formulas during the build and repoints the stylesheet at the copy of
+    # KaTeX 0.18.1 committed under katex/ — which is byte for byte what this
+    # CDN serves. The setting stays because it is what puts the TeX in the page
+    # in the form KaTeX wants, and because it is the fallback: if the
+    # prerender step is ever skipped the page still renders its maths, just the
+    # slow way. `plain` was tried and is not that fallback — pandoc rewrites
+    # the formulas into approximate Unicode and the TeX is gone.
     html-math-method:
       method: katex
       url: https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/
