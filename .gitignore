@@ -58,6 +58,7 @@ transcripts/
 outlines/
 .claude/
 .agents/
+.omc/
 
 # LaTeX build artifacts. The only LaTeX left in the repository is the standalone
 # TikZ source beside each generated diagram; only its .svg output is committed.
