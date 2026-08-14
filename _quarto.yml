@@ -91,6 +91,16 @@ format:
       light: [cosmo, theme-common.scss, theme.scss]
     # Self-hosted type; see fonts/README.md.
     css: fonts/fonts.css
+    # Paints the browser chrome around the page on Android and iOS Safari, which
+    # otherwise frames a dark site in white. A single value rather than a
+    # prefers-color-scheme pair on purpose: dark is the default scheme here for
+    # every reader, including those whose OS is set to light.
+    include-in-header:
+      text: |
+        <meta name="theme-color" content="#12151c">
+        <meta name="color-scheme" content="dark light">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     toc: true
     toc-depth: 3
     toc-expand: 1

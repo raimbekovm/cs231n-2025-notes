@@ -39,12 +39,28 @@ $cs-tx-jade: #0d7a5c;
 $cs-tx-plum: #4c1160;
 $cs-tx-citron: #7d6410;
 
-// --- Hero panel: dark in both modes ---------------------------------------
-$cs-hero-bg: #12141c;
-$cs-hero-ink: #f2f5f8;
-$cs-hero-ink-muted: #a5aebb;
-$cs-hero-accent: #22a884;
-$cs-hero-accent-2: #7ad151;
+// --- Hero panel: lights with the mode --------------------------------------
+// The panel used to stay dark in both modes so the hero could keep the bright
+// end of viridis, which is unreadable on white — lime #7ad151 comes to 1.9:1.
+// Lighting it means the type has to move to the text-safe ramp above, so the
+// gradient runs the other way along the colormap: plum into teal into jade,
+// all of them AA on this ground.
+$cs-hero-bg: #f1f4f8;
+$cs-hero-ink: #12151c;
+$cs-hero-ink-muted: #4d5763;
+$cs-hero-accent: $cs-tx-jade;
+$cs-hero-accent-2: $cs-tx-teal;
+$cs-hero-accent-3: $cs-tx-plum;
+$cs-hero-border: rgba(18, 21, 28, 0.12);
+$cs-hero-ghost-border: rgba(18, 21, 28, 0.28);
+$cs-hero-label: rgba(18, 21, 28, 0.6);
+// The accents are dark on this ground, so the button ink inverts with them.
+$cs-btn-primary-ink: #ffffff;
+$cs-btn-primary-ink-hover: #ffffff;
+// The conv figure keeps its dark plate: the activation map is viridis itself
+// and the kernel is a white stroke, neither of which survives a light ground.
+$cs-hero-field-bg: #12151c;
+$cs-hero-field-border: rgba(18, 21, 28, 0.16);
 
 $cs-figure-filter: none;
 $cs-figure-plate: #ffffff;
