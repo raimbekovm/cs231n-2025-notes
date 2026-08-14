@@ -40,12 +40,23 @@ $cs-tx-jade: #3fd3a8;
 $cs-tx-plum: #d193e0;
 $cs-tx-citron: #e0c73c;
 
-// --- Hero panel: dark in both modes ---------------------------------------
+// --- Hero panel ------------------------------------------------------------
+// On this ground the panel can carry the bright end of viridis, which is what
+// the eyebrow, the title gradient and the primary button are drawn from.
+// theme.scss runs the same ramp in reverse; see the note there.
 $cs-hero-bg: #0d1015;
 $cs-hero-ink: #f2f5f8;
 $cs-hero-ink-muted: #a5aebb;
 $cs-hero-accent: #22a884;
 $cs-hero-accent-2: #7ad151;
+$cs-hero-accent-3: #fde725;
+$cs-hero-border: rgba(255, 255, 255, 0.08);
+$cs-hero-ghost-border: rgba(255, 255, 255, 0.22);
+$cs-hero-label: rgba(255, 255, 255, 0.55);
+$cs-btn-primary-ink: #06231b;
+$cs-btn-primary-ink-hover: #10230a;
+$cs-hero-field-bg: rgba(255, 255, 255, 0.03);
+$cs-hero-field-border: rgba(255, 255, 255, 0.09);
 
 // Most figures are diagrams on white; dimming them slightly is far less
 // jarring than a full-brightness panel on a dark page.

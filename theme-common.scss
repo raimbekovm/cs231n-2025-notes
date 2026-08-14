@@ -45,6 +45,17 @@ $headings-font-weight: 600 !default;
 $border-radius: 8px !default;
 $code-font-size: 0.86em !default;
 
+// Geometry the two Bootswatch bases disagree on, and that this file is supposed
+// to own. Left to them, darkly pads the navbar 1rem and cosmo 0.5rem, and cosmo
+// strips the breadcrumb of padding and radius altogether — so switching schemes
+// moved every element on the page up by 30px and dropped the breadcrumb pill.
+// The values here are darkly's, because dark is the default scheme and is what
+// the design was drawn against.
+$navbar-padding-y: 1rem !default;
+$breadcrumb-padding-y: 0.375rem !default;
+$breadcrumb-padding-x: 0.75rem !default;
+$breadcrumb-border-radius: 0.25rem !default;
+
 // Fallbacks so this file always compiles even if a mode file forgets a token.
 $cs-paper: #ffffff !default;
 $cs-surface: #f6f7f9 !default;
@@ -77,9 +88,31 @@ $cs-figure-filter: none !default;
 // Several figures are line art on a transparent background — the own-work TikZ
 // SVGs among them. Without a plate they are black strokes on a dark page.
 $cs-figure-plate: #ffffff !default;
-// Always-bright ramp values, for the permanently dark hero panel.
+// The hero's own ramp. The defaults below are the dark-panel values, so a mode
+// file that overrides nothing gets the panel as it has always looked; theme.scss
+// overrides the set to light it with the mode.
 $cs-hero-accent: #22a884 !default;
 $cs-hero-accent-2: #7ad151 !default;
+$cs-hero-accent-3: #fde725 !default;
+// Panel chrome. Hardcoded as rgba(255, 255, 255, …) until the hero had to work
+// on a light ground too, at which point every one of them inverted.
+$cs-hero-border: rgba(255, 255, 255, 0.08) !default;
+$cs-hero-ghost-border: rgba(255, 255, 255, 0.22) !default;
+$cs-hero-label: rgba(255, 255, 255, 0.55) !default;
+$cs-btn-primary-ink: #06231b !default;
+$cs-btn-primary-ink-hover: #10230a !default;
+// The conv figure keeps its own dark plate in both modes, for the same reason
+// $cs-figure-plate stays light in both: the viridis map and the white kernel
+// are drawn for one ground and do not survive the other.
+$cs-hero-field-bg: rgba(255, 255, 255, 0.03) !default;
+$cs-hero-field-border: rgba(255, 255, 255, 0.09) !default;
+// Declared down here rather than with the other breadcrumb variables because it
+// reads $cs-surface, which the fallbacks above have to have set first. Left to
+// the bases this was darkly's #32353c against cosmo's transparent — the pill
+// existed in one scheme and not the other. It is the same surface the sidebar
+// sits on, so it should come from the same token.
+$breadcrumb-bg: $cs-surface !default;
+
 $cs-shadow:
   0 1px 2px rgba(16, 20, 28, 0.04),
   0 8px 24px -12px rgba(16, 20, 28, 0.16) !default;
@@ -233,6 +266,10 @@ a:hover {
   font-size: 0.74rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  // The pill's box belongs to this file, not to the base theme: cosmo rounds it
+  // to 0 and darkly to 0.25rem, which is the last thing that still moved when
+  // the scheme changed.
+  border-radius: $breadcrumb-border-radius;
 }
 
 // ---------------------------------------------------------------------------
@@ -1037,7 +1074,7 @@ main.content:has(.cs-hero) {
   overflow: hidden;
   background: $cs-hero-bg;
   color: $cs-hero-ink;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid $cs-hero-border;
   border-radius: 14px;
   padding: 3.4rem 2.6rem 3.1rem;
   margin: 0 0 3.5rem;
@@ -1070,7 +1107,7 @@ main.content:has(.cs-hero) {
 
 .cs-hero__title em {
   font-style: normal;
-  background: linear-gradient(to right, $cs-hero-accent, $cs-hero-accent-2, #fde725);
+  background: linear-gradient(to right, $cs-hero-accent, $cs-hero-accent-2, $cs-hero-accent-3);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -1114,16 +1151,16 @@ main.content:has(.cs-hero) {
 
 .cs-btn--primary {
   background: $cs-hero-accent;
-  color: #06231b;
+  color: $cs-btn-primary-ink;
 
   &:hover {
     background: $cs-hero-accent-2;
-    color: #10230a;
+    color: $cs-btn-primary-ink-hover;
   }
 }
 
 .cs-btn--ghost {
-  border-color: rgba(255, 255, 255, 0.22);
+  border-color: $cs-hero-ghost-border;
   color: $cs-hero-ink;
 
   &:hover {
@@ -1149,8 +1186,8 @@ main.content:has(.cs-hero) {
   aspect-ratio: 14 / 8;
   border-radius: 8px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: $cs-hero-field-bg;
+  border: 1px solid $cs-hero-field-border;
 }
 
 // The activation map: viridis, revealed column by column as the kernel passes.
@@ -1194,7 +1231,7 @@ main.content:has(.cs-hero) {
   font-size: 0.63rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: $cs-hero-label;
   border: 0;
   padding: 0;
 }
@@ -1442,6 +1479,172 @@ main.content:has(.cs-hero) {
 
   .cs-cards {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  // Once the pair wraps, two buttons sized to their own labels read as a
+  // mistake rather than a stack. Give them a shared edge.
+  .cs-hero__actions .cs-btn {
+    flex: 1 0 100%;
+    text-align: center;
+  }
+}
+
+// Past roughly 1426px the columns stop growing, but Quarto's page grid feeds
+// every surplus pixel into the single track between `page-end` and
+// `screen-end`, so the whole layout stays pinned to the left edge: measured
+// 494px of dead space on the right at 1920, 1134px at 2560, 2014px at 3440.
+// Both sidebars are grid items rather than fixed, so capping the container and
+// centring it moves the sidebar, the prose and the TOC together. The navbar is
+// `position: fixed` and full-bleed; its inner container gets the same cap so
+// the brand stays over the sidebar.
+@media (min-width: 1500px) {
+  #quarto-content.page-columns,
+  .navbar > .navbar-container {
+    max-width: 1426px;
+    margin-inline: auto;
+  }
+}
+
+// Below the collapse breakpoint Quarto swaps the search field for a 40px
+// button, but #quarto-search keeps reserving the 15rem the textbox needed.
+// That reservation does not fit beside the brand, so the navbar wraps to a
+// second row and the fixed header takes 196px at 360 and 176px at 390 — a
+// quarter of the viewport, held for the whole scroll.
+@media (max-width: 991.98px) {
+  .navbar .navbar-container {
+    flex-wrap: nowrap;
+    column-gap: 0.3rem;
+  }
+
+  .navbar #quarto-search.type-textbox {
+    width: auto;
+    min-width: 0;
+    flex: 0 0 auto;
+    margin-left: 0.35rem;
+  }
+
+  .navbar .navbar-brand-container {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .navbar .navbar-brand {
+    min-width: 0;
+  }
+
+  .navbar .quarto-navbar-tools {
+    flex: 0 0 auto;
+  }
+}
+
+// Tablet portrait keeps the margin TOC but gives it 150px, so every heading
+// wraps over two or three lines. The body column can spare 50px and still hold
+// a 55-character measure, which is what the notes are written for.
+@media (min-width: 768px) and (max-width: 991.98px) {
+  #quarto-content.page-columns {
+    grid-template-columns:
+      [screen-start] 1.5rem
+      [screen-start-inset page-start page-start-inset body-start-outset body-start body-content-start] minmax(0, 1fr)
+      [body-content-end] 1.5rem
+      [body-end body-end-outset page-end-inset] 12rem
+      [page-end screen-end-inset] 1.5rem
+      [screen-end];
+  }
+}
+
+// The breadcrumb trail and its `ol` are both flex items left at the default
+// `min-width: auto`, so neither can shrink below its content: on a phone the
+// trail wraps to a second line, and once it is held to one it runs off the
+// right edge instead of ellipsing. Only the last crumb is allowed to clip —
+// the part name ahead of it is the one piece of context the h1 underneath does
+// not already repeat.
+@media (max-width: 767.98px) {
+  .quarto-page-breadcrumbs,
+  .quarto-page-breadcrumbs .breadcrumb {
+    min-width: 0;
+  }
+
+  .quarto-page-breadcrumbs .breadcrumb {
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  .quarto-page-breadcrumbs .breadcrumb-item {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  .quarto-page-breadcrumbs .breadcrumb-item:last-child {
+    flex: 0 1 auto;
+    overflow: hidden;
+
+    > a {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: 24px;
+    }
+  }
+
+  // Five controls on one row leave the title 135px; trimming the gutters and
+  // the display size buys back enough of it to read.
+  .navbar .navbar-brand {
+    font-size: 0.95rem;
+  }
+
+  .navbar > .navbar-container,
+  .quarto-secondary-nav > .container-fluid {
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+  }
+}
+
+// The 26px grid gutters leave a 309px column at 360px, which is 35 characters
+// a line against the 65 this measure is set for. Half the gutter back is 39.
+@media (max-width: 375px) {
+  #quarto-document-content {
+    margin-inline: -0.75rem;
+  }
+}
+
+// Touch targets, keyed on the pointer rather than the width: an iPad in
+// landscape is 1024px wide and still a finger. The navbar controls measure
+// 26x24, 34x34 and 40x34, and the breadcrumb links 17px tall — all under the
+// 24px floor of WCAG 2.5.8.
+@media (pointer: coarse) {
+  .navbar .navbar-toggler,
+  .navbar .quarto-navigation-tool,
+  .navbar .aa-DetachedSearchButton,
+  .navbar .nav-link {
+    min-width: 40px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quarto-page-breadcrumbs .breadcrumb-item > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+  }
+}
+
+// 10.4px is below the size at which these read on a phone.
+.toc-actions,
+.nav-footer-center,
+.nav-footer .toc-actions a {
+  font-size: 0.8rem;
+}
+
+// At 320px the previous/next pair pushes the page 5px wider than the viewport.
+.page-navigation .nav-page {
+  min-width: 0;
+  max-width: 100%;
+
+  a {
+    overflow-wrap: anywhere;
   }
 }
 
