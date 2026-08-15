@@ -29,6 +29,7 @@ there is still a page to lay out.
 from __future__ import annotations
 
 import argparse
+import os
 import pathlib
 import re
 
@@ -50,8 +51,12 @@ PRELOAD = (("site_libs/bootstrap/bootstrap-icons-subset.woff2", "font/woff2"),)
 # in half is written back as broken HTML, so match quoted runs properly.
 SCRIPT_RE = re.compile(r"""<script\b(?:[^>"']|"[^"]*"|'[^']*')*\bsrc=(?:[^>"']|"[^"]*"|'[^']*')*>""", re.I)
 FONTS_CSS_RE = re.compile(r'<link[^>]+href="([^"]*)fonts/fonts\.css"', re.I)
-MARKER = "<!-- preload: tools/unblock_head.py -->"
-PRELOAD_RE = re.compile(r'\n<link rel="preload"[^>]*>')
+# Delimited rather than a lone marker so that re-deriving removes this pass's
+# own preloads and only those: a preload put in the head by Quarto or by
+# `include-in-header` is none of this script's business.
+OPEN = "<!-- preload: tools/unblock_head.py -->"
+CLOSE = "<!-- /preload -->"
+BLOCK_RE = re.compile(re.escape(OPEN) + r".*?" + re.escape(CLOSE), re.S)
 
 
 def defer_scripts(head: str) -> tuple[str, int]:
@@ -123,14 +128,14 @@ def process(page: pathlib.Path, site: pathlib.Path) -> bool:
     # derive it again from what is on disk now. The other two passes are already
     # idempotent: a script that has `defer` is skipped, and the lightbox tag is
     # only moved while it is still in the head.
-    head = PRELOAD_RE.sub("", head.replace(MARKER, ""))
+    head = BLOCK_RE.sub("", head)
 
     head, rest = relocate_lightbox(head, rest)
     head, _ = defer_scripts(head)
     links = preload_links(head, site)
     if links:
         opening = head.find(">", head.lower().find("<head")) + 1
-        head = head[:opening] + MARKER + links + head[opening:]
+        head = head[:opening] + OPEN + links + "\n" + CLOSE + head[opening:]
     if head + rest == html:
         return False
 
@@ -138,12 +143,23 @@ def process(page: pathlib.Path, site: pathlib.Path) -> bool:
     return True
 
 
+def rendered_html() -> bool:
+    """Report whether the render that called this actually produced HTML.
+
+    `QUARTO_PROJECT_OUTPUT_FILES` is what Quarto has just written. On `quarto render --to pdf` it holds one PDF, and the
+    HTML site left over from an earlier render is not this script's to rewrite. Outside a render the variable is unset,
+    and then the caller means it.
+    """
+    listed = os.environ.get("QUARTO_PROJECT_OUTPUT_FILES")
+    return listed is None or any(f.endswith(".html") for f in listed.split())
+
+
 def main() -> int:
     """Run the pass over every rendered page."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--site", type=pathlib.Path, default=SITE)
     args = parser.parse_args()
-    if not args.site.exists():
+    if not args.site.exists() or not rendered_html():
         return 0
     changed = sum(process(page, args.site) for page in args.site.rglob("*.html"))
     print(f"unblock_head: {changed} pages")

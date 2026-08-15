@@ -31,6 +31,7 @@ than a missing icon, and the warning says exactly how to fix it.
 from __future__ import annotations
 
 import argparse
+import os
 import pathlib
 import re
 import shutil
@@ -96,11 +97,26 @@ def quarto_dist() -> pathlib.Path:
     """Where Quarto keeps its own Bootstrap Icons.
 
     Not `_site`: by the time this has run once, the copy there is the subset, and reading the twelve-glyph stylesheet as
-    if it were the full catalogue is how a newly used icon would go unnoticed. `quarto --paths` prints the bin and share
-    directories, one per line.
+    if it were the full catalogue is how a newly used icon would go unnoticed.
+
+    During a render Quarto hands the answer over in the environment. Asking the binary is the path for `--build`, which
+    a person runs from a shell.
     """
-    share = subprocess.run(["quarto", "--paths"], capture_output=True, text=True, check=True).stdout.split()[-1]
+    share = os.environ.get("QUARTO_SHARE_PATH")
+    if not share:
+        share = subprocess.run(["quarto", "--paths"], capture_output=True, text=True, check=True).stdout.split()[-1]
     return pathlib.Path(share) / "formats/html/bootstrap/dist"
+
+
+def rendered_html() -> bool:
+    """Report whether the render that called this actually produced HTML.
+
+    `QUARTO_PROJECT_OUTPUT_FILES` is what Quarto has just written. On `quarto render --to pdf` it holds one PDF, and
+    nothing here has any business touching the HTML site left over from an earlier render. Outside a render the variable
+    is unset, and then the caller means it.
+    """
+    listed = os.environ.get("QUARTO_PROJECT_OUTPUT_FILES")
+    return listed is None or any(f.endswith(".html") for f in listed.split())
 
 
 def needed(site: pathlib.Path, table: dict[str, int]) -> dict[str, int]:
@@ -177,15 +193,23 @@ def build(site: pathlib.Path) -> int:
 
 
 def restore(site: pathlib.Path, dist: pathlib.Path) -> None:
-    """Put Quarto's own icon font back, whatever an earlier run left behind."""
+    """Put Quarto's own icon font back, whatever an earlier run left behind.
+
+    The order is the point. A stylesheet always has to be pointing at a file that is already there, so the font is
+    written first and the subset it replaces is removed last: interrupt this anywhere and the site still has a
+    stylesheet and a font that agree with each other.
+    """
     bootstrap = site / BOOTSTRAP_DIR
-    shutil.copy2(dist / "bootstrap-icons.css", bootstrap / "bootstrap-icons.css")
     shutil.copy2(dist / "bootstrap-icons.woff", bootstrap / "bootstrap-icons.woff")
+    shutil.copy2(dist / "bootstrap-icons.css", bootstrap / "bootstrap-icons.css")
     (bootstrap / SUBSET_WOFF2.name).unlink(missing_ok=True)
 
 
 def install(site: pathlib.Path) -> int:
     """Post-render: put the subset in place of Quarto's full icon font."""
+    if not rendered_html():
+        return 0  # this render produced no HTML; the site on disk is not ours to touch
+
     target_css = site / BOOTSTRAP_DIR / "bootstrap-icons.css"
     if not target_css.exists():
         return 0  # a format that does not use Bootstrap; nothing to do

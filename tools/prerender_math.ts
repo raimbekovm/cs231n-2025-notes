@@ -43,8 +43,9 @@ const MATH = /<span class="math (inline|display)">([^<]*)<\/span>/g;
 // the script Quarto injects reads `firstChild.data` with no guard, so the first
 // already-rendered formula throws and every formula after it stays raw. When
 // this finds anything the page is left exactly as Quarto made it.
-const UNRENDERED =
-  /<span\b(?:[^>"']|"[^"]*"|'[^']*')*\bclass="(?:[^"]*\s)?math(?:\s[^"]*)?"(?:[^>"']|"[^"]*"|'[^']*')*>(?!\s*<)/;
+const ATTRS = `(?:[^>"']|"[^"]*"|'[^']*')*`;
+const CLASS_MATH = `class=(?:"(?:[^"]*\\s)?math(?:\\s[^"]*)?"|'(?:[^']*\\s)?math(?:\\s[^']*)?')`;
+const UNRENDERED = new RegExp(`<span\\b${ATTRS}\\b${CLASS_MATH}${ATTRS}>(?!\\s*<)`);
 
 // The three things Quarto emits to typeset in the browser.
 const KATEX_SCRIPT = /[ \t]*<script[^>]*\ssrc="[^"]*katex\.min\.js"[^>]*><\/script>\n?/;
@@ -82,6 +83,15 @@ async function* pages(dir: string): AsyncGenerator<string> {
     if (entry.isDirectory) yield* pages(path);
     else if (entry.name.endsWith(".html")) yield path;
   }
+}
+
+// `QUARTO_PROJECT_OUTPUT_FILES` is what Quarto has just written. On
+// `quarto render --to pdf` it holds one PDF, and the HTML site left over from
+// an earlier render is not this script's to rewrite. Outside a render the
+// variable is unset, and then the caller means it.
+const listed = Deno.env.get("QUARTO_PROJECT_OUTPUT_FILES");
+if (listed !== undefined && !listed.split(/\s+/).some((f) => f.endsWith(".html"))) {
+  Deno.exit(0);
 }
 
 try {
