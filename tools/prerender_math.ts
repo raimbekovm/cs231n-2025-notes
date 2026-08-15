@@ -43,9 +43,12 @@ const MATH = /<span class="math (inline|display)">([^<]*)<\/span>/g;
 // the script Quarto injects reads `firstChild.data` with no guard, so the first
 // already-rendered formula throws and every formula after it stays raw. When
 // this finds anything the page is left exactly as Quarto made it.
+// `\s` before `class`, not `\b`: a word boundary also sits between the hyphen
+// and the c of `data-class`, which would make an unrelated attribute look like
+// unrendered maths and turn prerendering off for the whole page.
 const ATTRS = `(?:[^>"']|"[^"]*"|'[^']*')*`;
 const CLASS_MATH = `class=(?:"(?:[^"]*\\s)?math(?:\\s[^"]*)?"|'(?:[^']*\\s)?math(?:\\s[^']*)?')`;
-const UNRENDERED = new RegExp(`<span\\b${ATTRS}\\b${CLASS_MATH}${ATTRS}>(?!\\s*<)`);
+const UNRENDERED = new RegExp(`<span\\b${ATTRS}\\s${CLASS_MATH}${ATTRS}>(?!\\s*<)`);
 
 // The three things Quarto emits to typeset in the browser.
 const KATEX_SCRIPT = /[ \t]*<script[^>]*\ssrc="[^"]*katex\.min\.js"[^>]*><\/script>\n?/;
@@ -85,11 +88,24 @@ async function* pages(dir: string): AsyncGenerator<string> {
   }
 }
 
-// `QUARTO_PROJECT_OUTPUT_FILES` is what Quarto has just written. On
-// `quarto render --to pdf` it holds one PDF, and the HTML site left over from
-// an earlier render is not this script's to rewrite. Outside a render the
-// variable is unset, and then the caller means it.
-const listed = Deno.env.get("QUARTO_PROJECT_OUTPUT_FILES");
+// Quarto names what it has just written. On `quarto render --to pdf` that is
+// one PDF, and the HTML site left over from an earlier render is not this
+// script's to rewrite. The list normally arrives in the environment, but
+// `QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES` redirects it into a file — read
+// both, or setting that flag would quietly restore the behaviour this avoids.
+// Outside a render neither is set, and then the caller means it.
+function outputFiles(): string | undefined {
+  const listed = Deno.env.get("QUARTO_PROJECT_OUTPUT_FILES");
+  if (listed !== undefined) return listed;
+  const redirected = Deno.env.get("QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES");
+  try {
+    return redirected ? Deno.readTextFileSync(redirected) : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+const listed = outputFiles();
 if (listed !== undefined && !listed.split(/\s+/).some((f) => f.endsWith(".html"))) {
   Deno.exit(0);
 }

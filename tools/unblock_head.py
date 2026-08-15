@@ -51,12 +51,13 @@ PRELOAD = (("site_libs/bootstrap/bootstrap-icons-subset.woff2", "font/woff2"),)
 # in half is written back as broken HTML, so match quoted runs properly.
 SCRIPT_RE = re.compile(r"""<script\b(?:[^>"']|"[^"]*"|'[^']*')*\bsrc=(?:[^>"']|"[^"]*"|'[^']*')*>""", re.I)
 FONTS_CSS_RE = re.compile(r'<link[^>]+href="([^"]*)fonts/fonts\.css"', re.I)
-# Delimited rather than a lone marker so that re-deriving removes this pass's
-# own preloads and only those: a preload put in the head by Quarto or by
-# `include-in-header` is none of this script's business.
-OPEN = "<!-- preload: tools/unblock_head.py -->"
-CLOSE = "<!-- /preload -->"
-BLOCK_RE = re.compile(re.escape(OPEN) + r".*?" + re.escape(CLOSE), re.S)
+# Each preload carries its own mark, so re-deriving removes exactly this pass's
+# links and only those: one put in the head by Quarto or through
+# `include-in-header` is none of this script's business. A mark on the tag
+# rather than comments around the group means there is no pairing to get wrong
+# — nothing to over-match across, and nothing to leave orphaned.
+MARK = "data-unblock-head"
+MARKED_RE = re.compile(r"\n<link\b[^>]*\b" + MARK + r"\b[^>]*>")
 
 
 def defer_scripts(head: str) -> tuple[str, int]:
@@ -88,7 +89,7 @@ def preload_links(head: str, site: pathlib.Path) -> str:
         return ""
     prefix = prefix_match.group(1)
     return "".join(
-        f'\n<link rel="preload" href="{prefix}{path}" as="font" type="{mime}" crossorigin>'
+        f'\n<link rel="preload" href="{prefix}{path}" as="font" type="{mime}" crossorigin {MARK}>'
         for path, mime in PRELOAD
         if (site / path).exists()
     )
@@ -128,14 +129,14 @@ def process(page: pathlib.Path, site: pathlib.Path) -> bool:
     # derive it again from what is on disk now. The other two passes are already
     # idempotent: a script that has `defer` is skipped, and the lightbox tag is
     # only moved while it is still in the head.
-    head = BLOCK_RE.sub("", head)
+    head = MARKED_RE.sub("", head)
 
     head, rest = relocate_lightbox(head, rest)
     head, _ = defer_scripts(head)
     links = preload_links(head, site)
     if links:
         opening = head.find(">", head.lower().find("<head")) + 1
-        head = head[:opening] + OPEN + links + "\n" + CLOSE + head[opening:]
+        head = head[:opening] + links + head[opening:]
     if head + rest == html:
         return False
 
@@ -146,11 +147,19 @@ def process(page: pathlib.Path, site: pathlib.Path) -> bool:
 def rendered_html() -> bool:
     """Report whether the render that called this actually produced HTML.
 
-    `QUARTO_PROJECT_OUTPUT_FILES` is what Quarto has just written. On `quarto render --to pdf` it holds one PDF, and the
-    HTML site left over from an earlier render is not this script's to rewrite. Outside a render the variable is unset,
-    and then the caller means it.
+    Quarto names what it has just written. On `quarto render --to pdf` that is one PDF, and the HTML site left over from
+    an earlier render is not this script's to rewrite. The list normally arrives in the environment, but
+    `QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES` redirects it into a file — read both, or setting that flag would quietly
+    restore the behaviour this exists to avoid. Outside a render neither is set, and then the caller means it.
+
+    Deliberately a copy of the same predicate in `icon_subset.py`: the two run as separate processes and each has to
+    stand on its own, and a wrong answer in one of them is a site where half the passes ran.
     """
     listed = os.environ.get("QUARTO_PROJECT_OUTPUT_FILES")
+    if listed is None:
+        redirected = os.environ.get("QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES")
+        if redirected and pathlib.Path(redirected).is_file():
+            listed = pathlib.Path(redirected).read_text()
     return listed is None or any(f.endswith(".html") for f in listed.split())
 
 

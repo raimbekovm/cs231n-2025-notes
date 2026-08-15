@@ -104,18 +104,26 @@ def quarto_dist() -> pathlib.Path:
     """
     share = os.environ.get("QUARTO_SHARE_PATH")
     if not share:
-        share = subprocess.run(["quarto", "--paths"], capture_output=True, text=True, check=True).stdout.split()[-1]
+        # Two lines, bin then share. Split on lines rather than whitespace: an
+        # installation path may perfectly well contain a space.
+        printed = subprocess.run(["quarto", "--paths"], capture_output=True, text=True, check=True).stdout
+        share = [line for line in printed.splitlines() if line.strip()][-1]
     return pathlib.Path(share) / "formats/html/bootstrap/dist"
 
 
 def rendered_html() -> bool:
     """Report whether the render that called this actually produced HTML.
 
-    `QUARTO_PROJECT_OUTPUT_FILES` is what Quarto has just written. On `quarto render --to pdf` it holds one PDF, and
-    nothing here has any business touching the HTML site left over from an earlier render. Outside a render the variable
-    is unset, and then the caller means it.
+    Quarto names what it has just written. On `quarto render --to pdf` that is one PDF, and nothing here has any
+    business touching the HTML site left over from an earlier render. The list normally arrives in the environment, but
+    `QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES` redirects it into a file — read both, or setting that flag would quietly
+    restore the behaviour this exists to avoid. Outside a render neither is set, and then the caller means it.
     """
     listed = os.environ.get("QUARTO_PROJECT_OUTPUT_FILES")
+    if listed is None:
+        redirected = os.environ.get("QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES")
+        if redirected and pathlib.Path(redirected).is_file():
+            listed = pathlib.Path(redirected).read_text()
     return listed is None or any(f.endswith(".html") for f in listed.split())
 
 
