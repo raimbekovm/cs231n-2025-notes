@@ -94,21 +94,26 @@ async function* pages(dir: string): AsyncGenerator<string> {
 // `QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES` redirects it into a file — read
 // both, or setting that flag would quietly restore the behaviour this avoids.
 // Outside a render neither is set, and then the caller means it.
-function outputFiles(): string | undefined {
-  const listed = Deno.env.get("QUARTO_PROJECT_OUTPUT_FILES");
-  if (listed !== undefined) return listed;
-  const redirected = Deno.env.get("QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES");
-  try {
-    return redirected ? Deno.readTextFileSync(redirected) : undefined;
-  } catch {
-    return undefined;
+// Being told where the list is and not being able to read it is not the same as
+// not being told: it means this pass does not know what the render wrote, so it
+// says so and keeps its hands off — the same answer the two Python passes give.
+function renderedHtml(): boolean {
+  let listed = Deno.env.get("QUARTO_PROJECT_OUTPUT_FILES");
+  if (listed === undefined) {
+    const redirected = Deno.env.get("QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES");
+    if (redirected !== undefined) {
+      try {
+        listed = Deno.readTextFileSync(redirected);
+      } catch (error) {
+        console.error(`prerender_math: cannot read ${redirected} (${error}); leaving the site alone`);
+        return false;
+      }
+    }
   }
+  return listed === undefined || listed.split(/\s+/).some((f) => f.endsWith(".html"));
 }
 
-const listed = outputFiles();
-if (listed !== undefined && !listed.split(/\s+/).some((f) => f.endsWith(".html"))) {
-  Deno.exit(0);
-}
+if (!renderedHtml()) Deno.exit(0);
 
 try {
   await Deno.stat(SITE);

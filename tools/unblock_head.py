@@ -32,6 +32,7 @@ import argparse
 import os
 import pathlib
 import re
+import sys
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 SITE = REPO / "_site"
@@ -57,7 +58,11 @@ FONTS_CSS_RE = re.compile(r'<link[^>]+href="([^"]*)fonts/fonts\.css"', re.I)
 # rather than comments around the group means there is no pairing to get wrong
 # — nothing to over-match across, and nothing to leave orphaned.
 MARK = "data-unblock-head"
-MARKED_RE = re.compile(r"\n<link\b[^>]*\b" + MARK + r"\b[^>]*>")
+# Quoted runs are consumed whole, so the mark cannot be seen inside an href; it
+# must be preceded by whitespace and end at whitespace or the tag, so a longer
+# attribute name that merely starts with it is not mistaken for it.
+_ATTRS = r"""(?:[^>"']|"[^"]*"|'[^']*')*"""
+MARKED_RE = re.compile(r"\n<link\b" + _ATTRS + r"\s" + MARK + r"(?=[\s>])" + _ATTRS + ">")
 
 
 def defer_scripts(head: str) -> tuple[str, int]:
@@ -152,14 +157,21 @@ def rendered_html() -> bool:
     `QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES` redirects it into a file — read both, or setting that flag would quietly
     restore the behaviour this exists to avoid. Outside a render neither is set, and then the caller means it.
 
+    Being told where the list is and not being able to read it is not the same as not being told: it means this pass
+    does not know what the render wrote, so it says so and keeps its hands off.
+
     Deliberately a copy of the same predicate in `icon_subset.py`: the two run as separate processes and each has to
     stand on its own, and a wrong answer in one of them is a site where half the passes ran.
     """
     listed = os.environ.get("QUARTO_PROJECT_OUTPUT_FILES")
     if listed is None:
         redirected = os.environ.get("QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES")
-        if redirected and pathlib.Path(redirected).is_file():
-            listed = pathlib.Path(redirected).read_text()
+        if redirected:
+            try:
+                listed = pathlib.Path(redirected).read_text()
+            except OSError as error:
+                print(f"unblock_head: cannot read {redirected} ({error}); leaving the site alone", file=sys.stderr)
+                return False
     return listed is None or any(f.endswith(".html") for f in listed.split())
 
 

@@ -118,12 +118,19 @@ def rendered_html() -> bool:
     business touching the HTML site left over from an earlier render. The list normally arrives in the environment, but
     `QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES` redirects it into a file — read both, or setting that flag would quietly
     restore the behaviour this exists to avoid. Outside a render neither is set, and then the caller means it.
+
+    Being told where the list is and not being able to read it is not the same as not being told: it means this pass
+    does not know what the render wrote, so it says so and keeps its hands off.
     """
     listed = os.environ.get("QUARTO_PROJECT_OUTPUT_FILES")
     if listed is None:
         redirected = os.environ.get("QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES")
-        if redirected and pathlib.Path(redirected).is_file():
-            listed = pathlib.Path(redirected).read_text()
+        if redirected:
+            try:
+                listed = pathlib.Path(redirected).read_text()
+            except OSError as error:
+                print(f"icon_subset: cannot read {redirected} ({error}); leaving the site alone", file=sys.stderr)
+                return False
     return listed is None or any(f.endswith(".html") for f in listed.split())
 
 
