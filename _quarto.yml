@@ -4,9 +4,12 @@ project:
   preview:
     port: 4321
     browser: false
-  # Quarto regenerates site_libs/ on every render, so the weight it ships there
-  # can only be trimmed afterwards. Each script is a no-op on a format that did
-  # not produce the file it works on, so `quarto render --to pdf` is unaffected.
+  # Quarto writes site_libs/ itself, so the weight it ships there can only be
+  # trimmed afterwards. These run after every render of any format, including
+  # `--to pdf` and a single-chapter incremental one, and Quarto does not rewrite
+  # site_libs/ on those — so each is written to re-derive its answer from what
+  # is on disk rather than to assume a fresh site, and running any of them twice
+  # produces the same output as running it once.
   post-render:
     - quarto run tools/prerender_math.ts
     - python3 tools/icon_subset.py

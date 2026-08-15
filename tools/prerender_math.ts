@@ -23,14 +23,28 @@
 // `html-math-method` in `_quarto.yml` still names katex and still pins a URL.
 
 const REPO = new URL("..", import.meta.url).pathname;
-const SITE = `${REPO}_site`;
 const KATEX = `${REPO}katex/katex.min.js`;
+
+// `--site` only exists so the fallback paths can be exercised against a throwaway
+// copy; a render always uses the default.
+const siteFlag = Deno.args.indexOf("--site");
+const SITE = (siteFlag === -1 ? `${REPO}_site` : Deno.args[siteFlag + 1]).replace(/\/$/, "");
 
 // Pandoc puts the bare TeX in as the span's only child, with no `\(`..`\)`
 // delimiters — which is why Quarto's script could hand `firstChild.data`
 // straight to KaTeX. `[^<]*` both matches that and makes the pass idempotent:
 // once a formula holds KaTeX's markup it can no longer match.
 const MATH = /<span class="math (inline|display)">([^<]*)<\/span>/g;
+
+// A `.math` span whose content does not start with a tag is TeX nobody has
+// typeset. After the pass above there should be none — but the matcher is
+// deliberately narrow, so a shape it does not recognise would leave one behind,
+// and a page that is half typeset is worse than one that is not typeset at all:
+// the script Quarto injects reads `firstChild.data` with no guard, so the first
+// already-rendered formula throws and every formula after it stays raw. When
+// this finds anything the page is left exactly as Quarto made it.
+const UNRENDERED =
+  /<span\b(?:[^>"']|"[^"]*"|'[^']*')*\bclass="(?:[^"]*\s)?math(?:\s[^"]*)?"(?:[^>"']|"[^"]*"|'[^']*')*>(?!\s*<)/;
 
 // The three things Quarto emits to typeset in the browser.
 const KATEX_SCRIPT = /[ \t]*<script[^>]*\ssrc="[^"]*katex\.min\.js"[^>]*><\/script>\n?/;
@@ -80,6 +94,7 @@ const katex = await loadKatex();
 let files = 0;
 let formulas = 0;
 let failures = 0;
+let skipped = 0;
 
 for await (const page of pages(SITE)) {
   const html = await Deno.readTextFile(page);
@@ -106,6 +121,15 @@ for await (const page of pages(SITE)) {
 
   if (typeset === 0) continue;
 
+  if (UNRENDERED.test(out)) {
+    console.error(
+      `prerender_math: ${page} still holds maths this pass does not recognise; ` +
+        `leaving the page for the browser to typeset. Widen MATH to cover it.`,
+    );
+    skipped += 1;
+    continue;
+  }
+
   const depth = page.slice(SITE.length + 1).split("/").length - 1;
   const prefix = "../".repeat(depth);
   out = out
@@ -118,5 +142,8 @@ for await (const page of pages(SITE)) {
   formulas += typeset;
 }
 
-console.log(`prerender_math: ${formulas} formulas in ${files} pages`);
+console.log(
+  `prerender_math: ${formulas} formulas in ${files} pages` +
+    (skipped ? `, ${skipped} page(s) left for the browser` : ""),
+);
 if (failures > 0) Deno.exit(1);

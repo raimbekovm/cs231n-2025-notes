@@ -45,9 +45,13 @@ RELOCATE_BEFORE = "GLightbox("
 # anonymous CORS mode, and a preload without it is a second, wasted download.
 PRELOAD = (("site_libs/bootstrap/bootstrap-icons-subset.woff2", "font/woff2"),)
 
-SCRIPT_RE = re.compile(r"<script\b[^>]*\bsrc=[^>]*>", re.I)
+# `[^>]*` would end the tag at the first `>`, including one inside a quoted
+# attribute value. Nothing Quarto emits today contains such a URL, but a tag cut
+# in half is written back as broken HTML, so match quoted runs properly.
+SCRIPT_RE = re.compile(r"""<script\b(?:[^>"']|"[^"]*"|'[^']*')*\bsrc=(?:[^>"']|"[^"]*"|'[^']*')*>""", re.I)
 FONTS_CSS_RE = re.compile(r'<link[^>]+href="([^"]*)fonts/fonts\.css"', re.I)
 MARKER = "<!-- preload: tools/unblock_head.py -->"
+PRELOAD_RE = re.compile(r'\n<link rel="preload"[^>]*>')
 
 
 def defer_scripts(head: str) -> tuple[str, int]:
@@ -109,9 +113,17 @@ def process(page: pathlib.Path, site: pathlib.Path) -> bool:
     """Rewrite one page. Returns whether anything changed."""
     html = page.read_text()
     end = html.find("</head>")
-    if end == -1 or MARKER in html:
+    if end == -1:
         return False
     head, rest = html[:end], html[end:]
+
+    # Quarto leaves site_libs alone on an incremental render, so a page can
+    # arrive here already carrying a previous run's preload — for a file that
+    # `icon_subset.py` may since have removed. Drop what the last run added and
+    # derive it again from what is on disk now. The other two passes are already
+    # idempotent: a script that has `defer` is skipped, and the lightbox tag is
+    # only moved while it is still in the head.
+    head = PRELOAD_RE.sub("", head.replace(MARKER, ""))
 
     head, rest = relocate_lightbox(head, rest)
     head, _ = defer_scripts(head)

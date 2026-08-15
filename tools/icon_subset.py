@@ -176,38 +176,51 @@ def build(site: pathlib.Path) -> int:
     return 0
 
 
+def restore(site: pathlib.Path, dist: pathlib.Path) -> None:
+    """Put Quarto's own icon font back, whatever an earlier run left behind."""
+    bootstrap = site / BOOTSTRAP_DIR
+    shutil.copy2(dist / "bootstrap-icons.css", bootstrap / "bootstrap-icons.css")
+    shutil.copy2(dist / "bootstrap-icons.woff", bootstrap / "bootstrap-icons.woff")
+    (bootstrap / SUBSET_WOFF2.name).unlink(missing_ok=True)
+
+
 def install(site: pathlib.Path) -> int:
     """Post-render: put the subset in place of Quarto's full icon font."""
     target_css = site / BOOTSTRAP_DIR / "bootstrap-icons.css"
-    target_font = site / BOOTSTRAP_DIR / "bootstrap-icons.woff"
     if not target_css.exists():
         return 0  # a format that does not use Bootstrap; nothing to do
 
+    dist = quarto_dist()
     if not (SUBSET_WOFF2.exists() and SUBSET_CSS.exists()):
-        print("icon_subset: no subset committed; leaving Quarto's font in place", file=sys.stderr)
+        print("icon_subset: no subset committed; restoring Quarto's own icon font", file=sys.stderr)
+        restore(site, dist)
         return 0
 
     # The catalogue comes from Quarto rather than from `target_css`, which on
     # any render after the first is already the subset — reading the short list
     # as if it were the whole set is exactly how a newly used icon would slip
     # through the check below.
-    table = glyph_table(read(quarto_dist() / "bootstrap-icons.css"))
-    wanted = needed(site, table)
+    wanted = needed(site, glyph_table(read(dist / "bootstrap-icons.css")))
     available = set(glyph_table(read(SUBSET_CSS)))
     missing = sorted(set(wanted) - available)
     if missing:
+        # Not just "leave it alone": Quarto does not rewrite site_libs on an
+        # incremental render, so what is sitting there may well be a previous
+        # run's subset, and walking away would ship the page without the glyph.
+        # Put the full font back and let the page be heavy but complete.
         print(
-            "icon_subset: the subset is missing "
+            "icon_subset: the subset has no glyph for "
             + ", ".join(f"bi-{name}" for name in missing)
-            + "\n            keeping Quarto's full icon font (the page just gets heavier)."
+            + "\n            restoring Quarto's full icon font — the page gets heavier, not wrong."
             + "\n            Regenerate with: python3 tools/icon_subset.py --build",
             file=sys.stderr,
         )
+        restore(site, dist)
         return 0
 
     shutil.copy2(SUBSET_WOFF2, target_css.with_name(SUBSET_WOFF2.name))
     target_css.write_text(read(SUBSET_CSS))
-    target_font.unlink(missing_ok=True)
+    (site / BOOTSTRAP_DIR / "bootstrap-icons.woff").unlink(missing_ok=True)
     return 0
 
 
