@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 300" width="880" height="300"
+     role="img" aria-labelledby="nonlocalTitle nonlocalDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="nonlocalTitle">The wiring of a non-local block</title>
+  <desc id="nonlocalDesc">A left-to-right diagram. The input feature map feeds three parallel one-by-one-by-one convolutions producing queries, keys and values. Queries and keys form a THW by THW affinity matrix, softmaxed over positions; this weights a sum of the values. A final one-by-one-by-one convolution restores the channel count and its output is added to the input through a residual connection drawn above the block.</desc>
+  <rect x="20.0" y="134.0" width="90.0" height="68.0" fill="#3b528b" fill-opacity="0.16" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.8" rx="5"/>
+  <text x="65.0" y="163.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-weight="600">features</text>
+  <text x="65.0" y="180.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">C×T×H×W</text>
+  <rect x="132.0" y="54.0" width="96.0" height="44.0" fill="#3b528b" fill-opacity="0.16" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.8" rx="5"/>
+  <text x="180.0" y="71.0" font-size="11" fill="currentColor" text-anchor="middle" font-weight="600">queries</text>
+  <text x="180.0" y="88.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">1×1×1 conv</text>
+  <line x1="110.0" y1="168.0" x2="126.8" y2="81.9" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.45"/>
+  <polygon points="128.0,76.0 129.5,82.4 124.2,81.4" fill="currentColor" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="132.0" y="126.0" width="96.0" height="44.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.1" stroke-opacity="0.8" rx="5"/>
+  <text x="180.0" y="143.0" font-size="11" fill="currentColor" text-anchor="middle" font-weight="600">keys</text>
+  <text x="180.0" y="160.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">1×1×1 conv</text>
+  <line x1="110.0" y1="168.0" x2="124.0" y2="152.5" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.45"/>
+  <polygon points="128.0,148.0 126.0,154.3 122.0,150.7" fill="currentColor" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="132.0" y="198.0" width="96.0" height="44.0" fill="#5ec962" fill-opacity="0.16" stroke="#5ec962" stroke-width="1.1" stroke-opacity="0.8" rx="5"/>
+  <text x="180.0" y="215.0" font-size="11" fill="currentColor" text-anchor="middle" font-weight="600">values</text>
+  <text x="180.0" y="232.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">1×1×1 conv</text>
+  <line x1="110.0" y1="168.0" x2="126.0" y2="214.3" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.45"/>
+  <polygon points="128.0,220.0 123.5,215.2 128.6,213.4" fill="currentColor" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="300.0" y="76.0" width="118.0" height="68.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.1" stroke-opacity="0.8" rx="5"/>
+  <text x="359.0" y="105.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-weight="600">affinities</text>
+  <text x="359.0" y="122.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">THW × THW</text>
+  <line x1="228.0" y1="76.0" x2="290.2" y2="94.3" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <polygon points="296.0,96.0 289.5,96.9 291.0,91.7" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="228.0" y1="148.0" x2="290.3" y2="126.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <polygon points="296.0,124.0 291.2,128.5 289.4,123.5" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="359.0" y="62.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.68">softmax over positions</text>
+  <rect x="452.0" y="134.0" width="116.0" height="68.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.1" stroke-opacity="0.8" rx="5"/>
+  <text x="510.0" y="163.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-weight="600">weighted</text>
+  <text x="510.0" y="180.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">sum of values</text>
+  <line x1="418.0" y1="110.0" x2="444.7" y2="151.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <polygon points="448.0,156.0 442.5,152.4 447.0,149.5" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="228.0" y1="220.0" x2="442.1" y2="183.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <polygon points="448.0,182.0 442.5,185.7 441.6,180.4" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="604.0" y="134.0" width="96.0" height="68.0" fill="#fde725" fill-opacity="0.16" stroke="#fde725" stroke-width="1.1" stroke-opacity="0.8" rx="5"/>
+  <text x="652.0" y="163.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-weight="600">1×1×1</text>
+  <text x="652.0" y="180.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">back to C</text>
+  <line x1="568.0" y1="168.0" x2="594.0" y2="168.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <polygon points="600.0,168.0 594.0,170.7 594.0,165.3" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="652.0" y="222.0" font-size="10" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.68">zero-initialised</text>
+  <rect x="736.0" y="151.0" width="34.0" height="34.0" fill="none" fill-opacity="1.0" stroke="#1b1b1b" stroke-width="1.1" stroke-opacity="0.55" rx="17"/>
+  <text x="753.0" y="173.0" font-size="17" fill="currentColor" text-anchor="middle" fill-opacity="0.75">+</text>
+  <line x1="700.0" y1="168.0" x2="726.0" y2="168.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <polygon points="732.0,168.0 726.0,170.7 726.0,165.3" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="770.0" y1="168.0" x2="852.0" y2="168.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <polygon points="858.0,168.0 852.0,170.7 852.0,165.3" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="854.0" y="156.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.8">out</text>
+  <line x1="65.0" y1="134.0" x2="65.0" y2="44.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.5" stroke-dasharray="5 4"/>
+  <line x1="65.0" y1="44.0" x2="753.0" y2="44.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.5" stroke-dasharray="5 4"/>
+  <line x1="753.0" y1="44.0" x2="753.0" y2="141.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.5" stroke-dasharray="5 4"/>
+  <polygon points="753.0,147.0 750.3,141.0 755.7,141.0" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="400.5" y="35.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.68">residual: identity at initialisation</text>
+</svg>

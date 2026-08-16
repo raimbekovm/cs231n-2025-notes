@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<link rel="preload" href="../site_libs/bootstrap/bootstrap-icons-subset.woff2" as="font" type="font/woff2" crossorigin data-unblock-head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="The closing lecture asks what computer vision is for, and organises the answer around three questions: build machines that see what people see, that see what people cannot, and that see what people want seen. This chapter makes precise the two claims the lecture states informally — that a biased model is unfair, and that an accurate detector helps in the clinic — by writing down the contingency table underneath both, where fairness criteria turn out to be mutually exclusive and rare-event detection turns out to be alarm-dominated.">
+
+<title>19&nbsp; Human-Centered AI – CS231n 2025 Lecture Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js" defer></script>
+<script src="../site_libs/quarto-nav/headroom.min.js" defer></script>
+<script src="../site_libs/clipboard/clipboard.min.js" defer></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js" defer></script>
+<script src="../site_libs/quarto-search/fuse.min.js" defer></script>
+<script src="../site_libs/quarto-search/quarto-search.js" defer></script>
+<meta name="quarto:offset" content="../">
+<link href="../lectures/17-robot-learning.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js" defer></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js" defer></script>
+<script src="../site_libs/quarto-html/anchor.min.js" defer></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a277fc7c0b5572c02727048f32503fbf.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0b627ad7bf503adecabbfce8127bba6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js" defer></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-44035a36485c75a47acc2861fd8100e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d504b0152fceac813948731d0d567431.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Nothing matches that",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "Search the notes…",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<meta name="theme-color" content="#12151c">
+<meta name="color-scheme" content="dark light">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="canonical" href="https://raimbekovm.github.io/cs231n-2025-notes/lectures/18-human-centered-ai.html">
+<meta property="og:url" content="https://raimbekovm.github.io/cs231n-2025-notes/lectures/18-human-centered-ai.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","@id":"https://raimbekovm.github.io/cs231n-2025-notes/lectures/18-human-centered-ai.html#article","url":"https://raimbekovm.github.io/cs231n-2025-notes/lectures/18-human-centered-ai.html","headline":"Human-Centered AI","alternativeHeadline":"Lecture 18","name":"Human-Centered AI","description":"The closing lecture asks what computer vision is for, and organises the answer around three questions: build machines that see what people see, that see what people cannot, and that see what people want seen. This chapter makes precise the two claims the lecture states informally — that a biased model is unfair, and that an accurate detector helps in the clinic — by writing down the contingency table underneath both, where fairness criteria turn out to be mutually exclusive and rare-event detection turns out to be alarm-dominated.","author":{"@type":"Person","name":"Murat Raimbekov","url":"https://github.com/raimbekovm"},"inLanguage":"en","isAccessibleForFree":true,"license":"https://opensource.org/licenses/MIT","isPartOf":{"@type":"Book","@id":"https://raimbekovm.github.io/cs231n-2025-notes/#book","name":"CS231n 2025 Lecture Notes","url":"https://raimbekovm.github.io/cs231n-2025-notes/"},"about":[{"@type":"Thing","name":"computer vision"},{"@type":"Thing","name":"deep learning"},{"@type":"Thing","name":"convolutional neural networks"},{"@type":"Thing","name":"vision transformers"},{"@type":"Thing","name":"diffusion models"},{"@type":"Thing","name":"vision-language models"},{"@type":"Thing","name":"CS231n"}],"keywords":"computer vision, deep learning, convolutional neural networks, vision transformers, diffusion models, vision-language models, CS231n"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CS231n 2025 Lecture Notes","item":"https://raimbekovm.github.io/cs231n-2025-notes/"},{"@type":"ListItem","position":2,"name":"Human-Centered AI","item":"https://raimbekovm.github.io/cs231n-2025-notes/lectures/18-human-centered-ai.html"}]}]}</script>
+
+  <link rel="stylesheet" href="../katex/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../fonts/fonts.css">
+<meta property="og:title" content="19&nbsp; Human-Centered AI – CS231n 2025 Lecture Notes">
+<meta property="og:description" content="Comprehensive, modern lecture notes for Stanford CS231n (Spring 2025): CNNs, Transformers, diffusion models, and vision-language models. All eighteen lectures of the Spring 2025 course, written up in full.">
+<meta property="og:image" content="https://raimbekovm.github.io/cs231n-2025-notes/figures/social-card.png">
+<meta property="og:site_name" content="CS231n 2025 Lecture Notes">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="19&nbsp; Human-Centered AI – CS231n 2025 Lecture Notes">
+<meta name="twitter:description" content="Comprehensive, modern lecture notes for Stanford CS231n (Spring 2025): CNNs, Transformers, diffusion models, and vision-language models. All eighteen lectures of the Spring 2025 course, written up in full.">
+<meta name="twitter:image" content="https://raimbekovm.github.io/cs231n-2025-notes/figures/social-card.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const darkModeDefault = authorPrefersDark;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CS231n 2025 Lecture Notes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://raimbekovm.github.io/cs231n-2025-notes/CS231n-2025-Lecture-Notes.pdf"> 
+<span class="menu-text">PDF</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/raimbekovm/cs231n-2025-notes" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Switch between the dark and light theme"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/18-human-centered-ai.html">Impact</a></li><li class="breadcrumb-item"><a href="../lectures/18-human-centered-ai.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Human-Centered AI</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">CS231n 2025 Lecture Notes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Fundamentals</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/02-image-classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Image Classification with Linear Classifiers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/03-regularization-optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regularization and Optimization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/04-neural-networks-backpropagation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Neural Networks and Backpropagation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/05-convolutional-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Convolutional Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/06-cnn-architectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">CNN Architectures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/07-recurrent-neural-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/08-attention-transformers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Attention and Transformers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Vision Tasks</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/09-detection-segmentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Object Detection and Segmentation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/10-video-understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Video Understanding</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Systems</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/11-distributed-training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Large-Scale Distributed Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/12-self-supervised-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Self-Supervised Learning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Generative Models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/13-generative-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Generative Models I</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/14-generative-models-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Generative Models II</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Beyond 2D</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/15-3d-vision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">3D Vision</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Multimodal</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/16-vision-language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Vision and Language</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Embodied AI</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/17-robot-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Robot Learning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Impact</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/18-human-centered-ai.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Human-Centered AI</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-matching-human-vision" id="toc-sec-matching-human-vision" class="nav-link active" data-scroll-target="#sec-matching-human-vision"><span class="header-section-number">19.1</span> What the field was trying to match</a></li>
+  <li><a href="#sec-beyond-human" id="toc-sec-beyond-human" class="nav-link" data-scroll-target="#sec-beyond-human"><span class="header-section-number">19.2</span> Seeing what no person could</a></li>
+  <li><a href="#sec-human-limits" id="toc-sec-human-limits" class="nav-link" data-scroll-target="#sec-human-limits"><span class="header-section-number">19.3</span> Where human vision fails</a></li>
+  <li><a href="#sec-fairness" id="toc-sec-fairness" class="nav-link" data-scroll-target="#sec-fairness"><span class="header-section-number">19.4</span> What “unfair” would have to mean</a></li>
+  <li><a href="#sec-privacy" id="toc-sec-privacy" class="nav-link" data-scroll-target="#sec-privacy"><span class="header-section-number">19.5</span> Designing for what must not be seen</a></li>
+  <li><a href="#sec-ambient-clinical" id="toc-sec-ambient-clinical" class="nav-link" data-scroll-target="#sec-ambient-clinical"><span class="header-section-number">19.6</span> The clinic and the base rate</a></li>
+  <li><a href="#sec-what-people-want" id="toc-sec-what-people-want" class="nav-link" data-scroll-target="#sec-what-people-want"><span class="header-section-number">19.7</span> Letting people choose the task</a></li>
+  <li><a href="#sec-augmentation" id="toc-sec-augmentation" class="nav-link" data-scroll-target="#sec-augmentation"><span class="header-section-number">19.8</span> Augmentation</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/raimbekovm/cs231n-2025-notes/edit/main/lectures/18-human-centered-ai.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/raimbekovm/cs231n-2025-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/18-human-centered-ai.html">Impact</a></li><li class="breadcrumb-item"><a href="../lectures/18-human-centered-ai.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Human-Centered AI</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Human-Centered AI</span></h1>
+<p class="subtitle lead">Lecture 18</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Based on Lecture 18 of <a href="https://cs231n.stanford.edu/">CS231n</a>, Stanford University, Spring 2025, given by <a href="https://profiles.stanford.edu/fei-fei-li">Fei-Fei Li</a>.</em></p>
+<section id="sec-matching-human-vision" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="sec-matching-human-vision"><span class="header-section-number">19.1</span> What the field was trying to match</h2>
+<p>The course ends where it began, with the human visual system, but asking a different question about it. <a href="01-introduction.html#sec-why-vision" class="quarto-xref"><span>Section 2.1</span></a> used human vision as evidence that the problem is hard: a person watching a rapid sequence of never-before-seen images can still spot a target in one of them, and can separate an animal from a non-animal within about 150 milliseconds of the image appearing (<a href="https://doi.org/10.1038/381520a0">Thorpe, Fize and Marlot, 1996</a>). That was offered as a benchmark to be reached. The closing lecture treats the same fact as a <em>specification</em> that has now largely been met, and asks what the specification was for.</p>
+<p>Two things converged to meet it, and they are worth separating because only one of them is usually named. The first is the familiar triple of data, compute and learned representations, which arrived together around 2012 and which <a href="01-introduction.html#sec-alexnet" class="quarto-xref"><span>Section 2.9</span></a> covers. The second is the source of the problems themselves. Categorisation, attention, scene understanding, the distinction between recognising an object and understanding a situation — none of these were posed by engineers looking for tractable benchmarks. They came from psychology and neuroscience, which had spent a century establishing that these are separable capacities in the first place. The traffic still runs both ways: vision models are now used as instruments for studying biological vision, and the questions that biological vision raises continue to supply the field with problems it would not otherwise have thought to pose.</p>
+<p>That framing sets up the rest of the lecture, which is organised as three questions rather than three techniques. Can we build machines that see what people see? Can we build machines that see what people <em>cannot</em>? And — the question that turns out to carry the weight — can we build machines that see what people <em>want</em> seen? The first is a matter of capability, and it is substantially answered. The second and third are not questions about capability at all, and most of this chapter is about why.</p>
+</section>
+<section id="sec-beyond-human" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="sec-beyond-human"><span class="header-section-number">19.2</span> Seeing what no person could</h2>
+<p>Human visual competence is uneven in a specific way: it is excellent at the level of categories that mattered for survival and social life, and poor below that level. Almost anyone can identify a bird; almost nobody can name the species. There are on the order of ten thousand bird species and, since the 1970s, thousands of distinguishable car models once make, model and year are all counted. This is the regime of fine-grained categorisation, and it is one of the few places where a vision model can be straightforwardly superhuman, because the human baseline is close to untrained.</p>
+<p>The lecture is candid that the problem is not solved. Error rates on fine-grained bird classification climb steadily as the label becomes more specific — coarse taxonomic levels are easy and the species level is where the errors concentrate — and the problem has drifted out of fashion during the shift of attention towards multimodal language models without having been finished.</p>
+<p>What makes it worth more than a note about accuracy is what fine-grained recognition becomes when it is pointed at a large enough collection of images. A classifier for car make, model and year, run over some 50 million Google Street View images from 200 American cities, recovers the demographic composition of neighbourhoods: income, education level, race, and voting patterns all correlate strongly with what is parked on the street (<a href="https://doi.org/10.1073/pnas.1700035114">Gebru et al., 2017</a>). No person and no feasible team of people could conduct that survey. The census does it every ten years at enormous expense; this does it from imagery already collected for another purpose.</p>
+<p>The pivot buried in that result is the one the rest of the chapter turns on. A model used this way is no longer a component inside a product — it is a <strong>measuring instrument</strong>, and the standards that apply to instruments are not the standards that apply to products. When a classifier that is 92 % accurate sits behind a photo-tagging feature, the remaining 8 % is an annoyance distributed across users. When the same classifier is an instrument, its errors are not noise: they are <em>measurement bias</em>, they are structured, they correlate with exactly the demographic variables being measured, and they propagate into whatever conclusion the measurement supports. The question stops being how often the model is right and becomes what its being wrong is systematically a function of.</p>
+</section>
+<section id="sec-human-limits" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="sec-human-limits"><span class="header-section-number">19.3</span> Where human vision fails</h2>
+<p>Before the lecture turns to what machines get wrong, it spends time on what people get wrong, and the two failures it picks are of genuinely different kinds.</p>
+<p>The first is capacity. Reading the word <em>red</em> is automatic, and naming the ink colour it is printed in is not, so a list of colour words printed in mismatched inks is slow and effortful to work through — the Stroop effect. In the same family, two versions of a photograph alternating with a brief blank between them can differ in something as large as a vehicle’s engine, and observers hunt for many seconds before finding it. Change blindness of this kind is not a defect of the eye; it is a consequence of attention being a scarce resource that has to be pointed somewhere, so that what is not attended to is substantially not represented.</p>
+<p>The second is systematic misperception. In Adelson’s checkerboard, two squares printed at identical luminance appear obviously different, and — this is the part that matters — they continue to appear different after the illusion has been demonstrated, with the proof sitting in front of you. The visual system is not reporting the light arriving at the retina. It is reporting its best inference about surface reflectance given assumptions about illumination, shadow and the physics of the scene, and those assumptions are wired deep enough that knowing about them changes nothing.</p>
+<p>These two failures point in opposite directions, and the lecture’s remaining sections follow one each. Limited attention is a <em>capacity</em> problem, and a machine that does not tire is a genuine remedy for it — that thread runs into the clinic in <a href="#sec-ambient-clinical" class="quarto-xref"><span>Section 19.6</span></a>. Systematic misperception is not a capacity problem, and no amount of additional machine attention fixes it, because the bias is in the inference rather than in the sampling. Bias of that second kind is what the lecture means when it says that human bias — inherited from evolution, from social experience, and from whatever data a person happens to have encountered — becomes harmful at the point where it makes a system unfair to some group of people.</p>
+<p>That sentence is where this chapter has to slow down, because it is the load-bearing claim of the lecture and it is left undefined.</p>
+</section>
+<section id="sec-fairness" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="sec-fairness"><span class="header-section-number">19.4</span> What “unfair” would have to mean</h2>
+<p>The lecture’s concrete example is face analysis, and the canonical measurement behind it is <a href="https://proceedings.mlr.press/v81/buolamwini18a.html">Gender Shades</a>, which evaluated three commercial gender classifiers on a benchmark constructed to be balanced across skin tone and gender. The headline is a disparity rather than an average: error rates reached 34.7 % on darker-skinned women, against a worst case of 0.8 % on lighter-skinned men. The lecture’s reading is that the field went from not noticing this to taking it seriously, which is true and is a real achievement of the last decade.</p>
+<p>But suppose you accept the finding and set out to fix it. What, precisely, is the target? “Make the system fair” is not yet a specification, and the moment it is made into one, a difficulty appears that no amount of attention or engineering effort removes.</p>
+<p>Everything follows from one object. Fix a group of people and a binary decision — flag or do not flag — made about each of them, and record the outcome against the truth in a two-by-two table.</p>
+<div id="fig-confusion" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-confusion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/18-human-centered-ai/confusion_table.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;19.1: The contingency table underneath every claim in this chapter. Three quantities are read from it, and each conditions on a different margin: the predictive value looks down the column of people the system flagged, the false negative rate looks across the row of people who were genuinely positive, and the false positive rate looks across the row of people who were not. Because all three are ratios of the same four cells, they are not independent — fixing two of them determines the third."><img src="../figures/18-human-centered-ai/confusion_table.svg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-confusion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.1: The contingency table underneath every claim in this chapter. Three quantities are read from it, and each conditions on a different margin: the predictive value looks down the column of people the system flagged, the false negative rate looks across the row of people who were genuinely positive, and the false positive rate looks across the row of people who were not. Because all three are ratios of the same four cells, they are not independent — fixing two of them determines the third.
+</figcaption>
+</figure>
+</div>
+<p>Write <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span></span> for the prevalence of the condition in the group, that is, the fraction of its members for whom the truth is positive. Three quantities can be read off the table, and each corresponds to something a reasonable person means by fairness.</p>
+<p>The first is the <strong>positive predictive value</strong>, <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">V</mi></mrow><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mi>Y</mi><mo>=</mo><mn>1</mn><mo>∣</mo><mover accent="true"><mi>Y</mi><mo>^</mo></mover><mo>=</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{PPV} = P(Y = 1 \mid \hat{Y} = 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathrm" style="margin-right:0.0139em;">PPV</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.9468em;"></span><span class="mord katex-accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9468em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">^</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span>: among the people the system flagged, the fraction who genuinely were positive. Requiring it to be equal across groups is the demand that a flag <em>mean the same thing</em> whoever it is attached to. A decision-maker who cannot assume this has an explicit incentive to discount the score for members of one group, which is discrimination reintroduced at the point of use. In the fairness literature this is the coarse form of calibration, sometimes called test fairness.</p>
+<p>The second is the <strong>false negative rate</strong>, <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">N</mi><mi mathvariant="normal">R</mi></mrow><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mover accent="true"><mi>Y</mi><mo>^</mo></mover><mo>=</mo><mn>0</mn><mo>∣</mo><mi>Y</mi><mo>=</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{FNR} = P(\hat{Y} = 0 \mid Y = 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathrm">FNR</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1968em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mopen">(</span><span class="mord katex-accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9468em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">^</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span>: among people who genuinely were positive, the fraction the system missed. Equalising it across groups is balance for the positive class.</p>
+<p>The third is the <strong>false positive rate</strong>, <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">R</mi></mrow><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mover accent="true"><mi>Y</mi><mo>^</mo></mover><mo>=</mo><mn>1</mn><mo>∣</mo><mi>Y</mi><mo>=</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{FPR} = P(\hat{Y} = 1 \mid Y = 0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathrm">FPR</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1968em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mopen">(</span><span class="mord katex-accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9468em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">^</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span></span>: among people who genuinely were not, the fraction wrongly flagged. Equalising it is balance for the negative class, and it is the criterion the Gender Shades style of audit is closest to, since it asks whether the burden of the system’s mistakes falls evenly.</p>
+<p>Each is defensible. Each is what somebody means. The difficulty is that they are three ratios built from the same four cells, so they cannot be set independently. Writing the predictive value out in terms of the other quantities,</p>
+<p><span id="eq-ppv-def"><span class="math display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">V</mi></mrow><mo>=</mo><mfrac><mrow><mi>p</mi><mtext> </mtext><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">N</mi><mi mathvariant="normal">R</mi></mrow><mo stretchy="false">)</mo></mrow><mrow><mi>p</mi><mtext> </mtext><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">N</mi><mi mathvariant="normal">R</mi></mrow><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false">)</mo><mtext> </mtext><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">R</mi></mrow></mrow></mfrac></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(19.1)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\mathrm{PPV} = \frac{p\,(1 - \mathrm{FNR})}{p\,(1 - \mathrm{FNR}) + (1 - p)\,\mathrm{FPR}}
+\tag{19.1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathrm" style="margin-right:0.0139em;">PPV</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathrm">FNR</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">p</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathrm">FPR</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathrm">FNR</span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="katex-tag"><span class="katex-strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">19.1</span></span><span class="mord">)</span></span></span></span></span></span></span></span></p>
+<p>and solving for the false positive rate gives a relation due to <a href="https://arxiv.org/abs/1610.07524">Chouldechova (2017)</a>:</p>
+<p><span id="eq-chouldechova"><span class="math display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">R</mi></mrow><mo>=</mo><mfrac><mi>p</mi><mrow><mn>1</mn><mo>−</mo><mi>p</mi></mrow></mfrac><mo>⋅</mo><mfrac><mrow><mn>1</mn><mo>−</mo><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">V</mi></mrow></mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">V</mi></mrow></mfrac><mo>⋅</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">N</mi><mi mathvariant="normal">R</mi></mrow><mo stretchy="false">)</mo></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(19.2)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\mathrm{FPR} = \frac{p}{1 - p} \cdot \frac{1 - \mathrm{PPV}}{\mathrm{PPV}} \cdot (1 - \mathrm{FNR})
+\tag{19.2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathrm">FPR</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.988em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">p</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathrm" style="margin-right:0.0139em;">PPV</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathrm" style="margin-right:0.0139em;">PPV</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">FNR</span></span><span class="mclose">)</span></span><span class="katex-tag"><span class="katex-strut" style="height:2.2408em;vertical-align:-0.8804em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">19.2</span></span><span class="mord">)</span></span></span></span></span></span></span></span></p>
+<p>This is worth being clear about: <a href="#eq-chouldechova" class="quarto-xref">Equation&nbsp;<span>19.2</span></a> is not a statistical result, an approximation, or a claim about any particular model. It is an algebraic identity on the four cells, and it holds for every two-by-two table whatever produced it. The generator for this chapter checks it against direct cell ratios over 28,561 integer tables and finds the worst disagreement to be <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.4</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>15</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1.4 \times 10^{-15}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">15</span></span></span></span></span></span></span></span></span></span></span></span></span>, which is floating-point noise.</p>
+<p>Now take two groups that differ in prevalence and ask for all three criteria at once. Equal predictive value and equal false negative rate mean the last two factors of <a href="#eq-chouldechova" class="quarto-xref">Equation&nbsp;<span>19.2</span></a> are shared, so the false positive rates stand in the ratio of the <em>odds</em> of the two prevalences:</p>
+<p><span id="eq-fpr-ratio"><span class="math display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><mfrac><msub><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">R</mi></mrow><mn>1</mn></msub><msub><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">R</mi></mrow><mn>2</mn></msub></mfrac><mo>=</mo><mfrac><mrow><msub><mi>p</mi><mn>1</mn></msub><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mrow><msub><mi>p</mi><mn>2</mn></msub><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mfrac></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(19.3)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\frac{\mathrm{FPR}_1}{\mathrm{FPR}_2} = \frac{p_1 / (1 - p_1)}{p_2 / (1 - p_2)}
+\tag{19.3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.1963em;vertical-align:-0.836em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathrm">FPR</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathrm">FPR</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="katex-tag"><span class="katex-strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">19.3</span></span><span class="mord">)</span></span></span></span></span></span></span></span></p>
+<p>The third criterion is therefore not available to be chosen. It has already been determined by the first two together with facts about the world that the model does not control, and it takes the value the model wanted only when <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mn>1</mn></msub><mo>=</mo><msub><mi>p</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">p_1 = p_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>.</p>
+<div id="fig-fairness-curve" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fairness-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/18-human-centered-ai/fairness_impossible.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;19.2: The false positive rate implied by Equation&nbsp;eq-chouldechova as prevalence varies, with predictive value and false negative rate held fixed at the same values in both groups. Nothing about the classifier differs between the two marked points — only the base rate of the population it is applied to — and the gap between them is what equalising the third criterion would have to erase. Beyond a prevalence of about 0.68 the implied rate exceeds one, which is to say no classifier with these properties exists there at all."><img src="../figures/18-human-centered-ai/fairness_impossible.svg" class="fig-ar-1 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fairness-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.2: The false positive rate implied by <a href="#eq-chouldechova" class="quarto-xref">Equation&nbsp;<span>19.2</span></a> as prevalence varies, with predictive value and false negative rate held fixed at the same values in both groups. Nothing about the classifier differs between the two marked points — only the base rate of the population it is applied to — and the gap between them is what equalising the third criterion would have to erase. Beyond a prevalence of about 0.68 the implied rate exceeds one, which is to say no classifier with these properties exists there at all.
+</figcaption>
+</figure>
+</div>
+<p>The general statement, for real-valued risk scores rather than binary flags, is due to <a href="https://arxiv.org/abs/1609.05807">Kleinberg, Mullainathan and Raghavan (2016)</a>. In their formulation the three conditions are calibration within groups, balance for the negative class, and balance for the positive class, with the balance conditions stated as equality of the <em>average score</em> assigned to the negative and positive members of each group. Their Theorem 1.1 is that any instance admitting all three must either allow perfect prediction — every individual’s outcome known with certainty in advance — or have equal base rates across groups. They also prove an approximate version, which closes the obvious escape route: satisfying the three conditions even approximately forces the instance to be approximately one of those two degenerate cases. There is no useful middle ground where a little unfairness on each axis buys a solution.</p>
+<p>Sweeping the residual across pairs of base rates shows the shape of that result directly.</p>
+<div id="fig-residual" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-residual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/18-human-centered-ai/impossibility_residual.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;19.3: The gap in false positive rate forced between two groups that share predictive value and false negative rate, as their two base rates vary. The zero set is exactly the diagonal. This is not a hard optimisation landscape with a narrow optimum — away from the diagonal there is no solution at all, and the smallest non-zero gap found anywhere off it in the swept grid is 0.005."><img src="../figures/18-human-centered-ai/impossibility_residual.svg" class="fig-ar-2 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-residual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.3: The gap in false positive rate forced between two groups that share predictive value and false negative rate, as their two base rates vary. The zero set is exactly the diagonal. This is not a hard optimisation landscape with a narrow optimum — away from the diagonal there is no solution at all, and the smallest non-zero gap found anywhere off it in the swept grid is 0.005.
+</figcaption>
+</figure>
+</div>
+<p>The clearest illustration is not synthetic. Chouldechova analyses the COMPAS recidivism score using the Broward County data released by ProPublica, where the two-year recidivism rate is 51 % among Black defendants against 39 % among White defendants. ProPublica’s finding was that the score’s error rates diverged sharply by race — a false positive rate of 45 % against 23 %, and a false negative rate running the other way at 28 % against 48 %. The instrument’s developers replied that the score was calibrated. Both parties were correct, and <a href="#eq-chouldechova" class="quarto-xref">Equation&nbsp;<span>19.2</span></a> is why.</p>
+<p>Taking each group’s published prevalence and false negative rate and computing the predictive value that must follow gives 0.625 and 0.591 — near enough equal to substantiate the developers’ claim. Running the relation in the other direction is the more interesting check: assume the score is <em>exactly</em> calibrated at the average of those two values, use nothing but each group’s prevalence and false negative rate, and predict what the false positive rates have to be. The answer is 48 % and 21 %, against published values of 45 % and 23 %. The error-rate gap that the dispute was about is recovered to within about three points from the base rates alone, without any access to the model, its training data, or the error rates themselves.</p>
+<div id="fig-compas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-compas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/18-human-centered-ai/compas.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;19.4: The published COMPAS figures. The predictive values differ by 0.034 — the score means close to the same thing whoever it is attached to — while the error rates differ by roughly a factor of two in opposite directions. Both facts are consequences of the same table, given base rates of 51 % and 39 %."><img src="../figures/18-human-centered-ai/compas.svg" class="fig-ar-3 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-compas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.4: The published COMPAS figures. The predictive values differ by 0.034 — the score means close to the same thing whoever it is attached to — while the error rates differ by roughly a factor of two in opposite directions. Both facts are consequences of the same table, given base rates of 51 % and 39 %.
+</figcaption>
+</figure>
+</div>
+<p>One caveat belongs here rather than in a footnote, because it is easy to overstate this result. <a href="#eq-fpr-ratio" class="quarto-xref">Equation&nbsp;<span>19.3</span></a> predicts a false positive ratio equal to the odds ratio of the base rates, which is 1.63, whereas the published ratio is 1.96. The two do not have to agree, because <a href="#eq-fpr-ratio" class="quarto-xref">Equation&nbsp;<span>19.3</span></a> assumes the false negative rates are equal across groups and in COMPAS they are conspicuously not — 28 % against 48 %. The prediction quoted above uses each group’s own false negative rate and is the honest version; the odds ratio alone would be the answer to a different question.</p>
+<p>Two conclusions follow, and they pull in opposite directions, which is why both need stating.</p>
+<p>The first is that a substantial part of what gets reported as algorithmic bias is not a defect that better engineering removes. When two populations differ in the base rate of the thing being predicted, and the predictor is anything short of perfect, the disparities are forced. Demanding that a vendor eliminate all of them at once is demanding something that provably does not exist, and a system audited against one criterion can be made to look scandalous by an audit against another without anything about it having changed.</p>
+<p>The second is that this is not a defence of the Gender Shades numbers, and reading it as one inverts the argument. The theorem constrains how <em>near</em> to equality the three criteria can jointly be pushed; it says nothing that would license a forty-fold gap in error rate between demographic groups on a task where the label is a property of the image alone. That gap came from training and evaluation sets in which darker-skinned women were scarce, and it narrowed once it was measured, which is precisely the improvement the lecture is pointing at. The impossibility result and the audit are addressed to different failures: the audit catches the disparities that were nobody’s necessity, and the theorem tells you where to stop expecting the audit to be satisfiable.</p>
+<p>What survives is that “fair” is not a property a model can be certified to have. It resolves into several incompatible properties, and choosing which of them a given deployment owes the people it is applied to is a question about consequences — whether a false flag or a missed case does more harm here, and to whom — which no amount of accuracy answers. The lecture is right that attention to the problem has grown. Attention produced the measurements; it cannot produce a joint solution that does not exist.</p>
+</section>
+<section id="sec-privacy" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="sec-privacy"><span class="header-section-number">19.5</span> Designing for what must not be seen</h2>
+<p>There is a second sense in which a system can fail to see something, and here failure is the goal. A camera placed in a hospital room or a private home to watch for a fall, a missed medication or a hand not washed is, by construction, a camera pointed at people in the least guarded parts of their lives. The requirement is not to see less. It is to see one specific thing and nothing else.</p>
+<p>The obvious responses treat this as a post-processing problem: blur the image, mask out faces and bodies, reduce the dimensionality of what is stored, keep the data on the device through federated learning, or encrypt it. Some of these are genuinely useful, and the ones that operate on the <em>transmission</em> of data rather than its content — keeping it local, encrypting it in flight — are the least compromised, because they do not degrade the signal at all.</p>
+<p>The ones that degrade the image, though, run into a structural obstacle that the lecture states plainly and that deserves to be taken seriously as a design constraint. What identifies a person and what reveals their activity are not separable channels in a photograph. Blur an image until the face is unrecoverable and you have usually blurred it past the point where the difference between reaching for a glass and reaching for a pill bottle survives. The privacy dial and the utility dial are, for naive degradations, the same dial.</p>
+<p>The work the lecture singles out attacks that by moving the degradation upstream of the sensor. In <a href="https://arxiv.org/abs/2206.03891">PrivHAR</a>, the optics themselves are a learned component: the lens is parameterised, and its parameters are optimised jointly with the recognition network, against an adversary trying to recover identity from whatever the lens produces. The optimisation is pushed towards a lens whose images support action recognition while defeating face recognition, and because the distortion is physical, it happens before anything is digitised.</p>
+<div id="fig-privacy" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-privacy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/18-human-centered-ai/privacy_optics.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;19.5: Privacy placed in the optics rather than applied afterwards. The lens parameters are optimised jointly with the recognition head and against an identity adversary, so gradients reach the glass itself. Because the degradation is physical, the only image that ever exists in the system is the already-degraded one."><img src="../figures/18-human-centered-ai/privacy_optics.svg" class="fig-ar-4 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-privacy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.5: Privacy placed in the optics rather than applied afterwards. The lens parameters are optimised jointly with the recognition head and against an identity adversary, so gradients reach the glass itself. Because the degradation is physical, the only image that ever exists in the system is the already-degraded one.
+</figcaption>
+</figure>
+</div>
+<p>The consequence is a different kind of guarantee from the usual one. Software that blurs faces is a promise about what a system does with the sensitive image it holds, and that promise can be broken by a configuration error, a software update, a subpoena, or a breach. A lens that never forms the sharp image makes the sensitive recording <em>not exist</em>, which is not a policy that can be revoked. That is what makes the approach interesting well beyond the specific accuracy numbers it reports: it converts a promise into a physical fact, and it is a rare instance of a privacy property being enforced by the hardware budget rather than by an audit.</p>
+<p>The general lesson the lecture draws from this half of the talk is that the same capability cuts both ways. A model that extends perception can extend it past the point people would consent to; a model trained on human judgements inherits human biases and, applied at scale, amplifies them rather than averaging them out. Neither is a reason to stop building. Both are reasons that the design question — what should this system be able to see, and what should it be constitutionally unable to see — has to be asked while the system is being specified, because it is very difficult to retrofit.</p>
+</section>
+<section id="sec-ambient-clinical" class="level2" data-number="19.6">
+<h2 data-number="19.6" class="anchored" data-anchor-id="sec-ambient-clinical"><span class="header-section-number">19.6</span> The clinic and the base rate</h2>
+<p>The strongest case in the lecture for machine perception is the one where the human failure being remedied is the capacity failure from <a href="#sec-human-limits" class="quarto-xref"><span>Section 19.3</span></a> rather than the bias failure. Attention is finite and shifts; a sensor’s does not.</p>
+<p>The setting is what the lecture calls the dark spaces of healthcare — operating rooms, patient rooms, homes — where consequential things happen continuously and are observed only intermittently, and where the shortfall is not expertise but coverage (<a href="https://doi.org/10.1038/s41586-020-2669-y">Haque, Milstein and Fei-Fei, 2020</a>). The pressure is demographic and will intensify: as life expectancy rises the population needing sustained care grows, while the working-age population available to provide it does not, and health systems already report chronic shortages of nurses. The argument for automation here is unusually clean, because the labour it would substitute for does not exist to be displaced.</p>
+<p>The applications follow the same pattern. Hand hygiene compliance matters because hospital-acquired infections are a leading cause of inpatient death — the widely cited estimate is around 99,000 deaths a year in the United States, several times the toll of road accidents (<a href="https://doi.org/10.1177/003335490712200205">Klevens et al., 2007</a>) — and germs move between rooms on hands. Auditing compliance by having humans watch is unaffordable and, given the fatigue and attention limits already discussed, unreliable; proximity badges answer a different question, since standing near a dispenser is not using it. Depth sensors that resolve people as silhouettes rather than images, feeding an action classifier, answer the actual question while capturing much less than a camera would — the same instinct as <a href="#sec-privacy" class="quarto-xref"><span>Section 19.5</span></a>, implemented more cheaply (<a href="https://doi.org/10.1093/jamia/ocaa115">Singh et al., 2020</a>). In intensive care, where getting patients mobilised on schedule is a determinant of how quickly they leave, similar sensors track transfers between bed and chair (<a href="https://doi.org/10.1038/s41746-019-0087-z">Yeung et al., 2019</a>). In homes, the same apparatus is aimed at fall detection, sleep and mobility patterns, and early signs of infection.</p>
+<p>The lecture also opens this section with a striking claim: that medical error is the third leading cause of death in the United States. That figure comes from an <a href="https://doi.org/10.1136/bmj.i2139">analysis by Makary and Daniel (2016)</a>, which extrapolated death rates from four earlier studies covering 2000 to 2008 across all US hospitalisations in 2013 to reach 251,454 deaths a year. It is worth reporting accurately, because the estimate has been substantially criticised — the source studies were not designed to be generalised to the whole hospitalised population, several covered only Medicare patients, and the extrapolation applied their rates to every admission including uncomplicated childbirth. The direction of the claim is not seriously disputed: preventable harm in hospitals is common and badly measured. The specific ranking is an artefact of a rough calculation, and repeating it as an established statistic overstates what is known.</p>
+<p>That distinction matters more than it looks, because measurement is exactly where these systems either earn their place or fail, and the arithmetic that decides it is the same table as <a href="#sec-fairness" class="quarto-xref"><span>Section 19.4</span></a> — now read inside one group rather than across two.</p>
+<p>Take the lecture’s own operating-room example. Instruments, sponges and needles are counted by hand against a checklist, and a discrepancy stops the operation while the item is searched for, with the pause averaging close to an hour of additional anaesthesia, exposure and bleeding. An automatic count is an obviously attractive target. But retained surgical items are, thankfully, extremely rare — the largest series put the rate at roughly one per 5,500 operations. Write <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span></span></span></span></span> for that prevalence. Then the probability that a raised alarm is real is</p>
+<p><span id="eq-ppv-prevalence"><span class="math display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">V</mi></mrow><mo>=</mo><mfrac><mrow><mtext>sens</mtext><mo>⋅</mo><mi>π</mi></mrow><mrow><mtext>sens</mtext><mo>⋅</mo><mi>π</mi><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mtext>spec</mtext><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>π</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(19.4)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\mathrm{PPV} = \frac{\text{sens} \cdot \pi}{\text{sens} \cdot \pi + (1 - \text{spec})(1 - \pi)}
+\tag{19.4}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathrm" style="margin-right:0.0139em;">PPV</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0575em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1215em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">sens</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord text"><span class="mord">spec</span></span><span class="mclose">)</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">sens</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="katex-tag"><span class="katex-strut" style="height:2.0575em;vertical-align:-0.936em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">19.4</span></span><span class="mord">)</span></span></span></span></span></span></span></span></p>
+<p>where sensitivity is the fraction of genuine retentions caught and specificity the fraction of clean operations correctly left alone. The behaviour of <a href="#eq-ppv-prevalence" class="quarto-xref">Equation&nbsp;<span>19.4</span></a> at small <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span></span></span></span></span> is the whole problem. A detector at 99 % sensitivity and 99 % specificity — figures that would be reported as excellent — yields a predictive value of 0.018 at this prevalence: about 57 stoppages for every genuine retained item. At 99.9 % specificity it is 0.15, still roughly seven false stoppages per real one. Reaching an even chance that an alarm is real requires specificity above 99.98 %, and reaching 90 % requires 99.998 %.</p>
+<div id="fig-base-rate" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-base-rate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/18-human-centered-ai/base_rate.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;19.6: Predictive value against the prevalence of the event, for two detectors whose sensitivity and specificity are held excellent throughout. Only the rarity of what is being detected changes. The shaded band covers the rates at which many clinical events of interest actually occur, and the collapse through it is why deployment is decided by specificity rather than by headline accuracy."><img src="../figures/18-human-centered-ai/base_rate.svg" class="fig-ar-5 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-base-rate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19.6: Predictive value against the prevalence of the event, for two detectors whose sensitivity and specificity are held excellent throughout. Only the rarity of what is being detected changes. The shaded band covers the rates at which many clinical events of interest actually occur, and the collapse through it is why deployment is decided by specificity rather than by headline accuracy.
+</figcaption>
+</figure>
+</div>
+<p>None of this is an argument against the application, and it is not a claim that these systems do not work. It is a statement about which number decides whether they work. Sensitivity is what a demonstration shows off and what a benchmark rewards; at low prevalence it is nearly irrelevant to whether the system is usable, because the denominator of <a href="#eq-ppv-prevalence" class="quarto-xref">Equation&nbsp;<span>19.4</span></a> is dominated by false positives drawn from the overwhelming majority of cases where nothing is wrong. A system that stops one operation in a hundred to look for an item that is present once in 5,500 will be switched off within a month, and it will be switched off by people who are behaving entirely rationally. This is the same phenomenon that makes screening programmes for rare diseases difficult, and it sorts the applications in this section into two groups rather than condemning all of them. Falls, infection onset and retained instruments are rare relative to the number of opportunities to alarm about them, and all inherit the problem. Hand hygiene does not, and the contrast is instructive: the event being classified is whether a dispenser was used on a room entry, which happens on a large fraction of entries rather than once in thousands, so the reported operating point of 92.1 % sensitivity at 98.3 % specificity lands in the flat left-hand region of <a href="#eq-ppv-prevalence" class="quarto-xref">Equation&nbsp;<span>19.4</span></a> rather than the collapsing one. The system works partly because the question was posed at a favourable base rate — a design decision, and one that is easier to make deliberately than to recover from later.</p>
+<p>The connection to <a href="#sec-fairness" class="quarto-xref"><span>Section 19.4</span></a> is not an analogy. It is the same four cells. Read across two groups they force a choice between incompatible notions of fairness; read against a low base rate they force attention onto the metric that a benchmark is least likely to be reporting. In both cases the failure mode is the same: a number that summarises the model gets mistaken for a number that describes the deployment.</p>
+</section>
+<section id="sec-what-people-want" class="level2" data-number="19.7">
+<h2 data-number="19.7" class="anchored" data-anchor-id="sec-what-people-want"><span class="header-section-number">19.7</span> Letting people choose the task</h2>
+<p>Sensors gather information and cannot act on it, which is where the lecture turns to embodied systems — and where it poses the question that gives the chapter its title, in its sharpest form. How such systems are trained is the subject of the previous chapter. The question here is prior to that: who decides what they should be trained to do?</p>
+<p>The default answer is that researchers decide, and the default has a recognisable signature. Benchmark tasks tend to be the ones that are convenient to simulate, easy to score, and salient to graduate students, which is why so much of the field converges on laundry and dishes. This is not obviously wrong, but it is unexamined, and it quietly determines what the technology will be good at years before anyone outside the field is consulted.</p>
+<p><a href="https://arxiv.org/abs/2403.09227">BEHAVIOR-1K</a> inverts the order of operations. Its task list was assembled by starting from government labour and time-use surveys to enumerate thousands of everyday activities, then asking around 1,400 people which of them they would actually want a robot’s help with, and ranking by the answers. The resulting thousand tasks are the ones people said they wanted done, and they are supported by fifty scanned real environments — homes, offices, restaurants, shops — and thousands of object assets annotated with the physical properties the activities depend on, such as articulation, deformability and temperature.</p>
+<p>What makes the survey interesting is not the top of the ranking, which is unsurprising: cleaning, in most of its forms, is work people are glad to hand over. It is the bottom. People did not want a robot to buy a wedding ring, to play a sport on their behalf, to open a gift, or to prepare an infant’s food — and in several of these cases the task is well within reach technically. The refusal is not about feasibility. Some activities carry their meaning in the fact that a person did them, and automating them destroys the thing they were for.</p>
+<p>That is a finding no amount of capability research would have produced, because it is not a fact about robots. It is the same structural point as <a href="#sec-fairness" class="quarto-xref"><span>Section 19.4</span></a> and <a href="#sec-ambient-clinical" class="quarto-xref"><span>Section 19.6</span></a> arriving from a third direction: the objective is not derivable from the system. What to optimise, which errors to tolerate, what must remain unseen, and now which tasks are wanted at all — each is a question whose answer has to come from the people affected, and each is a question a benchmark will silently answer by default if nobody asks it.</p>
+</section>
+<section id="sec-augmentation" class="level2" data-number="19.8">
+<h2 data-number="19.8" class="anchored" data-anchor-id="sec-augmentation"><span class="header-section-number">19.8</span> Augmentation</h2>
+<p>The lecture closes on labour, and refuses both of the available slogans. Denying that these systems will change what work looks like is not credible; every general-purpose technology has reorganised labour markets, sometimes with severe and unevenly distributed costs. But the specific prediction that has dominated public discussion — that physical work goes first — has not been how the past few years have run. The measurable disruption so far has landed on white-collar work: software, analysis, writing, the office tasks that were assumed to be furthest from automation.</p>
+<p>Against that, the sectors this lecture spends most of its time on are ones where the shortage is real and structural. Elder care, nursing and chronic disease management are short of people now, and demographic arithmetic makes them shorter every year. Machine perception aimed at those settings is not competing with a workforce; it is compensating for one that does not exist and cannot be conjured, and the honest framing of the surgical count, the hygiene monitor and the mobility tracker is that each returns some attention to people who have too little of it.</p>
+<p>That is the argument for augmentation over replacement, and the reason it is more than a comforting phrase is that every section of this chapter has run into the same wall from a different side. The fairness criteria could not all be satisfied, so someone has to choose which one the decision owes its subjects. The rare-event detector could not be evaluated by accuracy, so someone has to decide what rate of false alarm a ward will tolerate and for what benefit. The privacy-preserving camera could not be specified without deciding what it must be unable to see. The task benchmark could not be assembled without asking which tasks people want performed. In none of these cases was the missing ingredient a better model, and in every one of them the missing ingredient was a human judgement about consequences that the metric could not supply.</p>
+<p>That is what the phrase is pointing at. Not that machines should be kept subordinate for reassurance, but that the systems in this chapter are all incomplete in the same specific way: each computes something, and none of them can tell you what it should have been computing. Which is where a course on how to build them has to stop, and where the responsibility for pointing them somewhere begins.</p>
+
+
+<style>img.fig-ar-1{aspect-ratio:660/420}img.fig-ar-2{aspect-ratio:620/440}img.fig-ar-3{aspect-ratio:660/400}img.fig-ar-4{aspect-ratio:700/330}img.fig-ar-5{aspect-ratio:660/420}</style>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/raimbekovm\.github\.io\/cs231n-2025-notes\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lectures/17-robot-learning.html" class="pagination-link" aria-label="Robot Learning">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Robot Learning</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/raimbekovm/cs231n-2025-notes/edit/main/lectures/18-human-centered-ai.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/raimbekovm/cs231n-2025-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 428.0 408.0" width="428.0" height="408.0"
+     role="img" aria-labelledby="alignTitle alignDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="alignTitle">A schematic soft alignment between an English sentence and its French translation</title>
+  <desc id="alignDesc">A five by five grid of viridis-shaded cells. Source words run across the top and generated words down the left. The bright cells follow the diagonal except where the adjective and the noun exchange places, where the bright band crosses over itself. Neighbouring cells carry a little weight rather than none, so the alignment is soft rather than a hard matching.</desc>
+  <text x="146.0" y="62.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">the</text>
+  <text x="202.0" y="62.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">black</text>
+  <text x="258.0" y="62.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">cat</text>
+  <text x="314.0" y="62.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">sleeps</text>
+  <text x="370.0" y="62.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">here</text>
+  <text x="106.0" y="108.5" font-size="12" fill="currentColor" text-anchor="end" fill-opacity="0.8">le</text>
+  <text x="106.0" y="164.5" font-size="12" fill="currentColor" text-anchor="end" fill-opacity="0.8">chat</text>
+  <text x="106.0" y="220.5" font-size="12" fill="currentColor" text-anchor="end" fill-opacity="0.8">noir</text>
+  <text x="106.0" y="276.5" font-size="12" fill="currentColor" text-anchor="end" fill-opacity="0.8">dort</text>
+  <text x="106.0" y="332.5" font-size="12" fill="currentColor" text-anchor="end" fill-opacity="0.8">ici</text>
+  <rect x="118.0" y="76.0" width="56.0" height="56.0" fill="#73cd5a" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="174.0" y="76.0" width="56.0" height="56.0" fill="#3c4683" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="230.0" y="76.0" width="56.0" height="56.0" fill="#440255" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="286.0" y="76.0" width="56.0" height="56.0" fill="#440154" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="342.0" y="76.0" width="56.0" height="56.0" fill="#440154" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="118.0" y="132.0" width="56.0" height="56.0" fill="#440255" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="174.0" y="132.0" width="56.0" height="56.0" fill="#3e3a7b" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="230.0" y="132.0" width="56.0" height="56.0" fill="#44b174" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="286.0" y="132.0" width="56.0" height="56.0" fill="#3e3a7b" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="342.0" y="132.0" width="56.0" height="56.0" fill="#440255" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="118.0" y="188.0" width="56.0" height="56.0" fill="#3e3a7b" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="174.0" y="188.0" width="56.0" height="56.0" fill="#44b174" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="230.0" y="188.0" width="56.0" height="56.0" fill="#3e3a7b" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="286.0" y="188.0" width="56.0" height="56.0" fill="#440255" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="342.0" y="188.0" width="56.0" height="56.0" fill="#440154" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="118.0" y="244.0" width="56.0" height="56.0" fill="#440154" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="174.0" y="244.0" width="56.0" height="56.0" fill="#440255" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="230.0" y="244.0" width="56.0" height="56.0" fill="#3e3a7b" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="286.0" y="244.0" width="56.0" height="56.0" fill="#44b174" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="342.0" y="244.0" width="56.0" height="56.0" fill="#3e3a7b" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="118.0" y="300.0" width="56.0" height="56.0" fill="#440154" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="174.0" y="300.0" width="56.0" height="56.0" fill="#440154" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="230.0" y="300.0" width="56.0" height="56.0" fill="#440255" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="286.0" y="300.0" width="56.0" height="56.0" fill="#3c4683" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <rect x="342.0" y="300.0" width="56.0" height="56.0" fill="#73cd5a" fill-opacity="1.0" stroke="#ffffff" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="258.0" y="40.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.5">source</text>
+  <text x="106.0" y="62.0" font-size="10.5" fill="currentColor" text-anchor="end" fill-opacity="0.5">generated</text>
+  <text x="214.0" y="382.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.55">brighter = more weight; every row sums to one</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 310" width="760" height="310"
+     role="img" aria-labelledby="scTitle scDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="scTitle">Sampling cost against image resolution</title>
+  <desc id="scDesc">A straight line on log-log axes showing sequential decoder evaluations per sample rising quadratically with image side length, from about three thousand passes at thirty-two pixels square to over three million at one thousand and twenty-four pixels square.</desc>
+  <text x="20.0" y="28.0" font-size="14" fill="currentColor" text-anchor="start">Sequential decoder passes for one sample</text>
+  <text x="20.0" y="48.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.6">three channels, one pass per subpixel; both axes logarithmic</text>
+  <line x1="90.0" y1="80.0" x2="90.0" y2="250.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="90.0" y="268.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">16</text>
+  <line x1="264.3" y1="80.0" x2="264.3" y2="250.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="264.3" y="268.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">64</text>
+  <line x1="438.6" y1="80.0" x2="438.6" y2="250.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="438.6" y="268.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">256</text>
+  <line x1="612.9" y1="80.0" x2="612.9" y2="250.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="612.9" y="268.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">1024</text>
+  <line x1="90.0" y1="233.0" x2="700.0" y2="233.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.1" stroke-dasharray="3 4"/>
+  <text x="80.0" y="237.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">1,000</text>
+  <line x1="90.0" y1="199.0" x2="700.0" y2="199.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.1" stroke-dasharray="3 4"/>
+  <text x="80.0" y="203.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">10,000</text>
+  <line x1="90.0" y1="165.0" x2="700.0" y2="165.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.1" stroke-dasharray="3 4"/>
+  <text x="80.0" y="169.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">100,000</text>
+  <line x1="90.0" y1="131.0" x2="700.0" y2="131.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.1" stroke-dasharray="3 4"/>
+  <text x="80.0" y="135.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">1M</text>
+  <line x1="90.0" y1="97.0" x2="700.0" y2="97.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.1" stroke-dasharray="3 4"/>
+  <text x="80.0" y="101.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">10M</text>
+  <polyline points="90.00,236.90 95.08,235.70 100.17,234.51 105.25,233.32 110.33,232.12 115.42,230.93 120.50,229.73 125.58,228.54 130.67,227.35 135.75,226.15 140.83,224.96 145.92,223.76 151.00,222.57 156.08,221.37 161.17,220.18 166.25,218.99 171.33,217.79 176.42,216.60 181.50,215.40 186.58,214.21 191.67,213.02 196.75,211.82 201.83,210.63 206.92,209.43 212.00,208.24 217.08,207.05 222.17,205.85 227.25,204.66 232.33,203.46 237.42,202.27 242.50,201.08 247.58,199.88 252.67,198.69 257.75,197.49 262.83,196.30 267.92,195.10 273.00,193.91 278.08,192.72 283.17,191.52 288.25,190.33 293.33,189.13 298.42,187.94 303.50,186.75 308.58,185.55 313.67,184.36 318.75,183.16 323.83,181.97 328.92,180.78 334.00,179.58 339.08,178.39 344.17,177.19 349.25,176.00 354.33,174.81 359.42,173.61 364.50,172.42 369.58,171.22 374.67,170.03 379.75,168.83 384.83,167.64 389.92,166.45 395.00,165.25 400.08,164.06 405.17,162.86 410.25,161.67 415.33,160.48 420.42,159.28 425.50,158.09 430.58,156.89 435.67,155.70 440.75,154.51 445.83,153.31 450.92,152.12 456.00,150.92 461.08,149.73 466.17,148.54 471.25,147.34 476.33,146.15 481.42,144.95 486.50,143.76 491.58,142.56 496.67,141.37 501.75,140.18 506.83,138.98 511.92,137.79 517.00,136.59 522.08,135.40 527.17,134.21 532.25,133.01 537.33,131.82 542.42,130.62 547.50,129.43 552.58,128.24 557.67,127.04 562.75,125.85 567.83,124.65 572.92,123.46 578.00,122.27 583.08,121.07 588.17,119.88 593.25,118.68 598.33,117.49 603.42,116.30 608.50,115.10 613.58,113.91 618.67,112.71 623.75,111.52 628.83,110.32 633.92,109.13 639.00,107.94 644.08,106.74 649.17,105.55 654.25,104.35 659.33,103.16 664.42,101.97 669.50,100.77 674.58,99.58 679.67,98.38 684.75,97.19 689.83,96.00 694.92,94.80 700.00,93.61" fill="none" stroke="#3b528b" stroke-width="2.2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="90.0" y1="250.0" x2="700.0" y2="250.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <line x1="90.0" y1="80.0" x2="90.0" y2="250.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <circle cx="177.1" cy="216.4" r="4.5" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="188.1" y="236.4" font-size="11.5" fill="#3b528b" text-anchor="start">32&#215;32 — 3,072 passes</text>
+  <circle cx="264.3" cy="196.0" r="4.5" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="275.3" y="208.0" font-size="11.5" fill="#3b528b" text-anchor="start">64&#215;64 — 12,288</text>
+  <circle cx="612.9" cy="114.1" r="4.5" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="600.9" y="98.1" font-size="11.5" fill="#440154" text-anchor="end">1024&#215;1024 — 3,145,728 passes</text>
+  <text x="395.0" y="290.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.6">image side length in pixels</text>
+</svg>

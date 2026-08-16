@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300"
+     role="img" aria-labelledby="ganGameTitle ganGameDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="ganGameTitle">The generative adversarial game</title>
+  <desc id="ganGameDesc">A generator turns a prior sample into a fake image; a discriminator scores both that image and a real one; the generator's only gradient runs backwards from the discriminator through the generated image.</desc>
+  <text x="350.0" y="22.0" font-size="13.5" fill="currentColor" text-anchor="middle" font-weight="600">The two streams a discriminator sees</text>
+  <text x="50.0" y="118.0" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">z ~ p(z)</text>
+  <rect x="95.0" y="96.0" width="74.0" height="42.0" fill="#3b528b" fill-opacity="0.16" stroke="#3b528b" stroke-width="1.3" stroke-opacity="1.0" rx="4"/>
+  <text x="132.0" y="122.0" font-size="15" fill="#3b528b" text-anchor="middle" font-weight="600">G</text>
+  <line x1="169.0" y1="117.0" x2="203.0" y2="117.0" stroke="currentColor" stroke-width="1.3" stroke-opacity="0.85"/>
+  <polygon points="209.0,117.0 203.0,119.7 203.0,114.3" fill="currentColor" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="210.0" y="96.0" width="96.0" height="42.0" fill="#21918c" fill-opacity="0.1" stroke="#21918c" stroke-width="1.2" stroke-opacity="1.0" rx="4"/>
+  <text x="258.0" y="114.0" font-size="12" fill="#21918c" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">G(z)</text>
+  <text x="258.0" y="130.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">fake</text>
+  <rect x="210.0" y="190.0" width="96.0" height="42.0" fill="#440154" fill-opacity="0.1" stroke="#440154" stroke-width="1.2" stroke-opacity="1.0" rx="4"/>
+  <text x="258.0" y="208.0" font-size="11" fill="#440154" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">x ~ p_data</text>
+  <text x="258.0" y="224.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">real</text>
+  <line x1="306.0" y1="117.0" x2="380.2" y2="138.3" stroke="currentColor" stroke-width="1.3" stroke-opacity="0.85"/>
+  <polygon points="386.0,140.0 379.5,140.9 381.0,135.7" fill="currentColor" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="306.0" y1="211.0" x2="380.2" y2="189.7" stroke="currentColor" stroke-width="1.3" stroke-opacity="0.85"/>
+  <polygon points="386.0,188.0 381.0,192.3 379.5,187.1" fill="currentColor" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="388.0" y="130.0" width="66.0" height="68.0" fill="none" fill-opacity="1.0" stroke="#1b1b1b" stroke-width="1.5" stroke-opacity="1.0" rx="4"/>
+  <text x="421.0" y="160.0" font-size="15" fill="currentColor" text-anchor="middle" font-weight="600">D</text>
+  <text x="421.0" y="176.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.65">0 to 1</text>
+  <line x1="454.0" y1="164.0" x2="490.0" y2="164.0" stroke="currentColor" stroke-width="1.3" stroke-opacity="0.85"/>
+  <polygon points="496.0,164.0 490.0,166.7 490.0,161.3" fill="currentColor" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="600.0" y="152.0" font-size="11.5" fill="#440154" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">E[ log D(x) ]</text>
+  <text x="600.0" y="172.0" font-size="11.5" fill="#21918c" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">E[ log(1 - D(G(z))) ]</text>
+  <text x="600.0" y="194.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">D maximises both</text>
+  <polyline points="421.00,130.00 421.00,62.00 132.00,62.00 132.00,96.00" fill="none" stroke="currentColor" stroke-width="1.3" stroke-opacity="0.7" stroke-dasharray="5 4" stroke-linejoin="round" stroke-linecap="round"/>
+  <polygon points="132.0,96.0 128.4,88.0 135.6,88.0" fill="currentColor" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="276.0" y="55.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">gradient to G, through the generated image</text>
+  <text x="350.0" y="272.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">The generator is trained by this path and by nothing else.</text>
+</svg>

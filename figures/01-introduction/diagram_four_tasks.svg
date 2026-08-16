@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 250" width="700" height="250"
+     role="img" aria-labelledby="tasksTitle tasksDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="tasksTitle">Four visual recognition tasks on the same scene</title>
+  <desc id="tasksDesc">Classification returns one label for the whole image. Semantic
+  segmentation labels every pixel but merges the two cats into one region. Object
+  detection returns a box per instance. Instance segmentation returns a pixel mask per
+  instance, distinguishing the two cats.</desc>
+
+  <defs>
+    <!-- one cat silhouette, reused at different positions and fills -->
+    <g id="cat">
+      <path d="M 0 34 q 0 -16 13 -16 l 22 0 q 13 0 13 16 l 0 18 -48 0 z"/>
+      <circle cx="24" cy="14" r="12"/>
+      <path d="M 14 6 l -2 -11 9 5 z"/>
+      <path d="M 34 6 l 2 -11 -9 5 z"/>
+      <path d="M 46 50 q 12 -2 10 -18"  fill="none" stroke-width="3.5"/>
+    </g>
+    <clipPath id="panelClip"><rect x="0" y="0" width="150" height="110" rx="3"/></clipPath>
+  </defs>
+
+  <!-- ══ Panel 1 · Classification ══ -->
+  <g transform="translate(6 34)">
+    <g clip-path="url(#panelClip)">
+      <rect width="150" height="110" fill="#dfe7ea"/>
+      <rect y="66" width="150" height="44" fill="#c3d3c8"/>
+      <g transform="translate(50 40)" fill="#5d6a72"><use href="#cat" stroke="#5d6a72"/></g>
+    </g>
+    <rect width="150" height="110" rx="3" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+  </g>
+
+  <!-- ══ Panel 2 · Semantic segmentation ══ -->
+  <g transform="translate(180 34)">
+    <g clip-path="url(#panelClip)">
+      <rect width="150" height="110" fill="#414487"/>
+      <rect y="66" width="150" height="44" fill="#7ad151"/>
+      <g transform="translate(24 40)" fill="#fde725"><use href="#cat" stroke="#fde725"/></g>
+      <g transform="translate(80 40)" fill="#fde725"><use href="#cat" stroke="#fde725"/></g>
+    </g>
+    <rect width="150" height="110" rx="3" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+  </g>
+
+  <!-- ══ Panel 3 · Object detection ══ -->
+  <g transform="translate(354 34)">
+    <g clip-path="url(#panelClip)">
+      <rect width="150" height="110" fill="#dfe7ea"/>
+      <rect y="66" width="150" height="44" fill="#c3d3c8"/>
+      <g transform="translate(24 40)" fill="#5d6a72"><use href="#cat" stroke="#5d6a72"/></g>
+      <g transform="translate(80 40)" fill="#5d6a72"><use href="#cat" stroke="#5d6a72"/></g>
+      <rect x="18" y="30" width="62" height="66" fill="none" stroke="#440154" stroke-width="2.6"/>
+      <rect x="74" y="30" width="62" height="66" fill="none" stroke="#2a788e" stroke-width="2.6"/>
+    </g>
+    <rect width="150" height="110" rx="3" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+  </g>
+
+  <!-- ══ Panel 4 · Instance segmentation ══ -->
+  <g transform="translate(528 34)">
+    <g clip-path="url(#panelClip)">
+      <rect width="150" height="110" fill="#dfe7ea"/>
+      <rect y="66" width="150" height="44" fill="#c3d3c8"/>
+      <g transform="translate(24 40)" fill="#440154"><use href="#cat" stroke="#440154"/></g>
+      <g transform="translate(80 40)" fill="#2a788e"><use href="#cat" stroke="#2a788e"/></g>
+    </g>
+    <rect width="150" height="110" rx="3" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+  </g>
+
+  <!-- headings -->
+  <g fill="currentColor" font-size="14.5" text-anchor="middle" font-weight="600">
+    <text x="81"  y="22">Classification</text>
+    <text x="255" y="22">Semantic segmentation</text>
+    <text x="429" y="22">Object detection</text>
+    <text x="603" y="22">Instance segmentation</text>
+  </g>
+
+  <!-- outputs -->
+  <g font-size="13" text-anchor="middle">
+    <text x="81"  y="166" fill="currentColor">CAT</text>
+    <text x="255" y="166" fill="currentColor">SKY, GRASS, CAT</text>
+    <text x="429" y="166" fill="currentColor">CAT, CAT</text>
+    <text x="603" y="166" fill="currentColor">CAT, CAT</text>
+  </g>
+
+  <!-- what each output is -->
+  <g font-size="12.5" text-anchor="middle" fill="currentColor" opacity="0.72">
+    <text x="81"  y="190">one label for</text><text x="81"  y="206">the whole image</text>
+    <text x="255" y="190">a label for every pixel,</text><text x="255" y="206">instances merged</text>
+    <text x="429" y="190">a box and a label</text><text x="429" y="206">per instance</text>
+    <text x="603" y="190">a pixel mask</text><text x="603" y="206">per instance</text>
+  </g>
+
+  <g font-size="12.5" text-anchor="middle" fill="currentColor" opacity="0.6">
+    <text x="168" y="238">what is here?</text>
+    <text x="516" y="238">what is here, and where, and how many?</text>
+  </g>
+</svg>

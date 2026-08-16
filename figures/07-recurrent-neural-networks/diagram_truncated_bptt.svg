@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 246.0" width="900.0" height="246.0"
+     role="img" aria-labelledby="truncBpttTitle truncBpttDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="truncBpttTitle">Truncated backpropagation through time</title>
+  <desc id="truncBpttDesc">Nine hidden states in a row, grouped into three chunks. Green arrows run left to right through all nine, crossing the chunk boundaries. Blue dashed gradient arrows run right to left but stop at the first state of each chunk, never crossing a boundary.</desc>
+  <line x1="67.0" y1="58.0" x2="289.0" y2="58.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <line x1="67.0" y1="58.0" x2="67.0" y2="64.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <line x1="289.0" y1="58.0" x2="289.0" y2="64.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <text x="178.0" y="50.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.85">chunk 1</text>
+  <text x="178.0" y="30.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.55">forward, backward, one update</text>
+  <line x1="337.0" y1="58.0" x2="559.0" y2="58.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <line x1="337.0" y1="58.0" x2="337.0" y2="64.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <line x1="559.0" y1="58.0" x2="559.0" y2="64.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <text x="448.0" y="50.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.85">chunk 2</text>
+  <text x="448.0" y="30.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.55">forward, backward, one update</text>
+  <line x1="313.0" y1="66.0" x2="313.0" y2="194.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.45" stroke-dasharray="5 4"/>
+  <line x1="607.0" y1="58.0" x2="829.0" y2="58.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <line x1="607.0" y1="58.0" x2="607.0" y2="64.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <line x1="829.0" y1="58.0" x2="829.0" y2="64.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.5"/>
+  <text x="718.0" y="50.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.85">chunk 3</text>
+  <text x="718.0" y="30.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.55">forward, backward, one update</text>
+  <line x1="583.0" y1="66.0" x2="583.0" y2="194.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.45" stroke-dasharray="5 4"/>
+  <rect x="67.0" y="96.0" width="42.0" height="34.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.1" stroke-opacity="0.8" rx="3"/>
+  <text x="84.0" y="118.0" font-size="12.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.95">h</text>
+  <text x="92.0" y="121.0" font-size="9" fill="currentColor" text-anchor="middle" fill-opacity="0.95">1</text>
+  <line x1="111.0" y1="113.0" x2="149.0" y2="113.0" stroke="#5ec962" stroke-width="1.6" stroke-opacity="0.95"/>
+  <polygon points="155.0,113.0 149.0,115.7 149.0,110.3" fill="#5ec962" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="88.0" y1="132.0" x2="88.0" y2="164.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.2" stroke-dasharray="3 3"/>
+  <rect x="157.0" y="96.0" width="42.0" height="34.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.1" stroke-opacity="0.8" rx="3"/>
+  <text x="174.0" y="118.0" font-size="12.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.95">h</text>
+  <text x="182.0" y="121.0" font-size="9" fill="currentColor" text-anchor="middle" fill-opacity="0.95">2</text>
+  <line x1="201.0" y1="113.0" x2="239.0" y2="113.0" stroke="#5ec962" stroke-width="1.6" stroke-opacity="0.95"/>
+  <polygon points="245.0,113.0 239.0,115.7 239.0,110.3" fill="#5ec962" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="175.0" y1="172.0" x2="97.0" y2="172.0" stroke="#3b528b" stroke-width="1.5" stroke-opacity="0.95" stroke-dasharray="5 3"/>
+  <polygon points="91.0,172.0 97.0,169.3 97.0,174.7" fill="#3b528b" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="178.0" y1="132.0" x2="178.0" y2="164.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35" stroke-dasharray="3 3"/>
+  <rect x="247.0" y="96.0" width="42.0" height="34.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.1" stroke-opacity="0.8" rx="3"/>
+  <text x="264.0" y="118.0" font-size="12.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.95">h</text>
+  <text x="272.0" y="121.0" font-size="9" fill="currentColor" text-anchor="middle" fill-opacity="0.95">3</text>
+  <line x1="291.0" y1="113.0" x2="329.0" y2="113.0" stroke="#5ec962" stroke-width="1.6" stroke-opacity="0.95"/>
+  <polygon points="335.0,113.0 329.0,115.7 329.0,110.3" fill="#5ec962" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="265.0" y1="172.0" x2="187.0" y2="172.0" stroke="#3b528b" stroke-width="1.5" stroke-opacity="0.95" stroke-dasharray="5 3"/>
+  <polygon points="181.0,172.0 187.0,169.3 187.0,174.7" fill="#3b528b" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="268.0" y1="132.0" x2="268.0" y2="164.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35" stroke-dasharray="3 3"/>
+  <rect x="337.0" y="96.0" width="42.0" height="34.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.1" stroke-opacity="0.8" rx="3"/>
+  <text x="354.0" y="118.0" font-size="12.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.95">h</text>
+  <text x="362.0" y="121.0" font-size="9" fill="currentColor" text-anchor="middle" fill-opacity="0.95">4</text>
+  <line x1="381.0" y1="113.0" x2="419.0" y2="113.0" stroke="#5ec962" stroke-width="1.6" stroke-opacity="0.95"/>
+  <polygon points="425.0,113.0 419.0,115.7 419.0,110.3" fill="#5ec962" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="358.0" y1="132.0" x2="358.0" y2="164.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.2" stroke-dasharray="3 3"/>
+  <rect x="427.0" y="96.0" width="42.0" height="34.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.1" stroke-opacity="0.8" rx="3"/>
+  <text x="444.0" y="118.0" font-size="12.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.95">h</text>
+  <text x="452.0" y="121.0" font-size="9" fill="currentColor" text-anchor="middle" fill-opacity="0.95">5</text>
+  <line x1="471.0" y1="113.0" x2="509.0" y2="113.0" stroke="#5ec962" stroke-width="1.6" stroke-opacity="0.95"/>
+  <polygon points="515.0,113.0 509.0,115.7 509.0,110.3" fill="#5ec962" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="445.0" y1="172.0" x2="367.0" y2="172.0" stroke="#3b528b" stroke-width="1.5" stroke-opacity="0.95" stroke-dasharray="5 3"/>
+  <polygon points="361.0,172.0 367.0,169.3 367.0,174.7" fill="#3b528b" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="448.0" y1="132.0" x2="448.0" y2="164.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35" stroke-dasharray="3 3"/>
+  <rect x="517.0" y="96.0" width="42.0" height="34.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.1" stroke-opacity="0.8" rx="3"/>
+  <text x="534.0" y="118.0" font-size="12.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.95">h</text>
+  <text x="542.0" y="121.0" font-size="9" fill="currentColor" text-anchor="middle" fill-opacity="0.95">6</text>
+  <line x1="561.0" y1="113.0" x2="599.0" y2="113.0" stroke="#5ec962" stroke-width="1.6" stroke-opacity="0.95"/>
+  <polygon points="605.0,113.0 599.0,115.7 599.0,110.3" fill="#5ec962" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="535.0" y1="172.0" x2="457.0" y2="172.0" stroke="#3b528b" stroke-width="1.5" stroke-opacity="0.95" stroke-dasharray="5 3"/>
+  <polygon points="451.0,172.0 457.0,169.3 457.0,174.7" fill="#3b528b" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="538.0" y1="132.0" x2="538.0" y2="164.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35" stroke-dasharray="3 3"/>
+  <rect x="607.0" y="96.0" width="42.0" height="34.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.1" stroke-opacity="0.8" rx="3"/>
+  <text x="624.0" y="118.0" font-size="12.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.95">h</text>
+  <text x="632.0" y="121.0" font-size="9" fill="currentColor" text-anchor="middle" fill-opacity="0.95">7</text>
+  <line x1="651.0" y1="113.0" x2="689.0" y2="113.0" stroke="#5ec962" stroke-width="1.6" stroke-opacity="0.95"/>
+  <polygon points="695.0,113.0 689.0,115.7 689.0,110.3" fill="#5ec962" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="628.0" y1="132.0" x2="628.0" y2="164.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.2" stroke-dasharray="3 3"/>
+  <rect x="697.0" y="96.0" width="42.0" height="34.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.1" stroke-opacity="0.8" rx="3"/>
+  <text x="714.0" y="118.0" font-size="12.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.95">h</text>
+  <text x="722.0" y="121.0" font-size="9" fill="currentColor" text-anchor="middle" fill-opacity="0.95">8</text>
+  <line x1="741.0" y1="113.0" x2="779.0" y2="113.0" stroke="#5ec962" stroke-width="1.6" stroke-opacity="0.95"/>
+  <polygon points="785.0,113.0 779.0,115.7 779.0,110.3" fill="#5ec962" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="715.0" y1="172.0" x2="637.0" y2="172.0" stroke="#3b528b" stroke-width="1.5" stroke-opacity="0.95" stroke-dasharray="5 3"/>
+  <polygon points="631.0,172.0 637.0,169.3 637.0,174.7" fill="#3b528b" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="718.0" y1="132.0" x2="718.0" y2="164.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35" stroke-dasharray="3 3"/>
+  <rect x="787.0" y="96.0" width="42.0" height="34.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.1" stroke-opacity="0.8" rx="3"/>
+  <text x="804.0" y="118.0" font-size="12.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.95">h</text>
+  <text x="812.0" y="121.0" font-size="9" fill="currentColor" text-anchor="middle" fill-opacity="0.95">9</text>
+  <line x1="805.0" y1="172.0" x2="727.0" y2="172.0" stroke="#3b528b" stroke-width="1.5" stroke-opacity="0.95" stroke-dasharray="5 3"/>
+  <polygon points="721.0,172.0 727.0,169.3 727.0,174.7" fill="#3b528b" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="808.0" y1="132.0" x2="808.0" y2="164.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35" stroke-dasharray="3 3"/>
+  <text x="55.0" y="118.0" font-size="14" fill="currentColor" text-anchor="end" fill-opacity="0.4">…</text>
+  <text x="841.0" y="118.0" font-size="14" fill="currentColor" text-anchor="start" fill-opacity="0.4">…</text>
+  <line x1="112.0" y1="218.0" x2="140.0" y2="218.0" stroke="#5ec962" stroke-width="1.8" stroke-opacity="0.95"/>
+  <text x="148.0" y="222.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.72">hidden state, carried across every boundary</text>
+  <line x1="500.0" y1="218.0" x2="528.0" y2="218.0" stroke="#3b528b" stroke-width="1.6" stroke-opacity="0.95" stroke-dasharray="5 3"/>
+  <text x="536.0" y="222.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.72">gradient, stopped at the boundary</text>
+</svg>

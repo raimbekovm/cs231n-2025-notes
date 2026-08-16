@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<link rel="preload" href="../site_libs/bootstrap/bootstrap-icons-subset.woff2" as="font" type="font/woff2" crossorigin data-unblock-head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Why vision is the hard part of intelligence, how thirty years of geometry stalled on it, and what changed in 2012.">
+
+<title>2&nbsp; Introduction – CS231n 2025 Lecture Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js" defer></script>
+<script src="../site_libs/quarto-nav/headroom.min.js" defer></script>
+<script src="../site_libs/clipboard/clipboard.min.js" defer></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js" defer></script>
+<script src="../site_libs/quarto-search/fuse.min.js" defer></script>
+<script src="../site_libs/quarto-search/quarto-search.js" defer></script>
+<meta name="quarto:offset" content="../">
+<link href="../lectures/02-image-classification.html" rel="next">
+<link href="../index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js" defer></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js" defer></script>
+<script src="../site_libs/quarto-html/anchor.min.js" defer></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a277fc7c0b5572c02727048f32503fbf.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0b627ad7bf503adecabbfce8127bba6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js" defer></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-44035a36485c75a47acc2861fd8100e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d504b0152fceac813948731d0d567431.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Nothing matches that",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "Search the notes…",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<meta name="theme-color" content="#12151c">
+<meta name="color-scheme" content="dark light">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="canonical" href="https://raimbekovm.github.io/cs231n-2025-notes/lectures/01-introduction.html">
+<meta property="og:url" content="https://raimbekovm.github.io/cs231n-2025-notes/lectures/01-introduction.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","@id":"https://raimbekovm.github.io/cs231n-2025-notes/lectures/01-introduction.html#article","url":"https://raimbekovm.github.io/cs231n-2025-notes/lectures/01-introduction.html","headline":"Introduction","alternativeHeadline":"Lecture 1","name":"Introduction","description":"Why vision is the hard part of intelligence, how thirty years of geometry stalled on it, and what changed in 2012.","author":{"@type":"Person","name":"Murat Raimbekov","url":"https://github.com/raimbekovm"},"inLanguage":"en","isAccessibleForFree":true,"license":"https://opensource.org/licenses/MIT","isPartOf":{"@type":"Book","@id":"https://raimbekovm.github.io/cs231n-2025-notes/#book","name":"CS231n 2025 Lecture Notes","url":"https://raimbekovm.github.io/cs231n-2025-notes/"},"about":[{"@type":"Thing","name":"computer vision"},{"@type":"Thing","name":"deep learning"},{"@type":"Thing","name":"convolutional neural networks"},{"@type":"Thing","name":"vision transformers"},{"@type":"Thing","name":"diffusion models"},{"@type":"Thing","name":"vision-language models"},{"@type":"Thing","name":"CS231n"}],"keywords":"computer vision, deep learning, convolutional neural networks, vision transformers, diffusion models, vision-language models, CS231n"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CS231n 2025 Lecture Notes","item":"https://raimbekovm.github.io/cs231n-2025-notes/"},{"@type":"ListItem","position":2,"name":"Introduction","item":"https://raimbekovm.github.io/cs231n-2025-notes/lectures/01-introduction.html"}]}]}</script>
+
+  <link rel="stylesheet" href="../katex/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../fonts/fonts.css">
+<meta property="og:title" content="2&nbsp; Introduction – CS231n 2025 Lecture Notes">
+<meta property="og:description" content="Comprehensive, modern lecture notes for Stanford CS231n (Spring 2025): CNNs, Transformers, diffusion models, and vision-language models. All eighteen lectures of the Spring 2025 course, written up in full.">
+<meta property="og:image" content="https://raimbekovm.github.io/cs231n-2025-notes/figures/social-card.png">
+<meta property="og:site_name" content="CS231n 2025 Lecture Notes">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="2&nbsp; Introduction – CS231n 2025 Lecture Notes">
+<meta name="twitter:description" content="Comprehensive, modern lecture notes for Stanford CS231n (Spring 2025): CNNs, Transformers, diffusion models, and vision-language models. All eighteen lectures of the Spring 2025 course, written up in full.">
+<meta name="twitter:image" content="https://raimbekovm.github.io/cs231n-2025-notes/figures/social-card.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const darkModeDefault = authorPrefersDark;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CS231n 2025 Lecture Notes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://raimbekovm.github.io/cs231n-2025-notes/CS231n-2025-Lecture-Notes.pdf"> 
+<span class="menu-text">PDF</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/raimbekovm/cs231n-2025-notes" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Switch between the dark and light theme"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/01-introduction.html">Fundamentals</a></li><li class="breadcrumb-item"><a href="../lectures/01-introduction.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">CS231n 2025 Lecture Notes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Fundamentals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/01-introduction.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/02-image-classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Image Classification with Linear Classifiers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/03-regularization-optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regularization and Optimization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/04-neural-networks-backpropagation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Neural Networks and Backpropagation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/05-convolutional-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Convolutional Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/06-cnn-architectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">CNN Architectures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/07-recurrent-neural-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/08-attention-transformers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Attention and Transformers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Vision Tasks</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/09-detection-segmentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Object Detection and Segmentation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/10-video-understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Video Understanding</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Systems</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/11-distributed-training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Large-Scale Distributed Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/12-self-supervised-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Self-Supervised Learning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Generative Models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/13-generative-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Generative Models I</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/14-generative-models-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Generative Models II</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Beyond 2D</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/15-3d-vision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">3D Vision</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Multimodal</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/16-vision-language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Vision and Language</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Embodied AI</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/17-robot-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Robot Learning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Impact</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/18-human-centered-ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Human-Centered AI</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-why-vision" id="toc-sec-why-vision" class="nav-link active" data-scroll-target="#sec-why-vision"><span class="header-section-number">2.1</span> Vision as the hard part of intelligence</a></li>
+  <li><a href="#sec-evolution" id="toc-sec-evolution" class="nav-link" data-scroll-target="#sec-evolution"><span class="header-section-number">2.2</span> Eyes before brains</a></li>
+  <li><a href="#sec-hubel-wiesel" id="toc-sec-hubel-wiesel" class="nav-link" data-scroll-target="#sec-hubel-wiesel"><span class="header-section-number">2.3</span> What neuroscience handed over</a></li>
+  <li><a href="#sec-early-cv" id="toc-sec-early-cv" class="nav-link" data-scroll-target="#sec-early-cv"><span class="header-section-number">2.4</span> Thirty years of geometry</a></li>
+  <li><a href="#sec-ill-posed" id="toc-sec-ill-posed" class="nav-link" data-scroll-target="#sec-ill-posed"><span class="header-section-number">2.5</span> Why vision is ill-posed</a></li>
+  <li><a href="#sec-psychophysics" id="toc-sec-psychophysics" class="nav-link" data-scroll-target="#sec-psychophysics"><span class="header-section-number">2.6</span> What the human system tells us about the target</a></li>
+  <li><a href="#sec-features-data" id="toc-sec-features-data" class="nav-link" data-scroll-target="#sec-features-data"><span class="header-section-number">2.7</span> Features, benchmarks, and the turn to learning</a></li>
+  <li><a href="#sec-neural-nets" id="toc-sec-neural-nets" class="nav-link" data-scroll-target="#sec-neural-nets"><span class="header-section-number">2.8</span> The neural network thread</a></li>
+  <li><a href="#sec-alexnet" id="toc-sec-alexnet" class="nav-link" data-scroll-target="#sec-alexnet"><span class="header-section-number">2.9</span> 2012</a></li>
+  <li><a href="#sec-after-2012" id="toc-sec-after-2012" class="nav-link" data-scroll-target="#sec-after-2012"><span class="header-section-number">2.10</span> What followed, and what did not</a></li>
+  <li><a href="#sec-course-arc" id="toc-sec-course-arc" class="nav-link" data-scroll-target="#sec-course-arc"><span class="header-section-number">2.11</span> The shape of this course</a></li>
+  <li><a href="#references-01-introduction" id="toc-references-01-introduction" class="nav-link" data-scroll-target="#references-01-introduction">References</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/raimbekovm/cs231n-2025-notes/edit/main/lectures/01-introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/raimbekovm/cs231n-2025-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/01-introduction.html">Fundamentals</a></li><li class="breadcrumb-item"><a href="../lectures/01-introduction.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<p class="subtitle lead">Lecture 1</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Based on the lecture by Fei-Fei Li and Ehsan Adeli — <a href="https://cs231n.stanford.edu/">CS231n</a>, Stanford University, Spring 2025.</em></p>
+<section id="sec-why-vision" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-why-vision"><span class="header-section-number">2.1</span> Vision as the hard part of intelligence</h2>
+<p>Artificial intelligence is usually introduced as a single field with a single goal, and computer vision as one application among many that sit downstream of it. The ordering is convenient and slightly misleading. For most of the history of life, vision is what made intelligence necessary in the first place, and in the history of this particular field it is the problem on which our best learning methods were first shown to work at all.</p>
+<p>The course sits at a specific intersection, and it is worth being precise about which one. Machine learning supplies the mathematics: the idea that a system’s behaviour can be fitted to data rather than specified by hand. Within machine learning, the last decade or so belongs to deep learning, a family of methods built around neural networks, which we will define properly once we have the machinery to do so. Computer vision supplies the problems — what is in this image, where is it, what is it doing, and what is about to happen. Neither field is covered here in its entirety, and neither could be in ten weeks. What is covered is the overlap, which is also where both fields have moved fastest.</p>
+<div id="fig-scope" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/01-introduction/diagram_scope.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;2.1: The scope of this course. Machine learning supplies the methods, computer vision supplies the problems, and deep learning is the part of machine learning where the two have most productively met. Drawn for these notes, after the CS231n 2025 Lecture 1 slides."><img src="../figures/01-introduction/diagram_scope.svg" class="img-fluid figure-img" style="width:88.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: The scope of this course. Machine learning supplies the methods, computer vision supplies the problems, and deep learning is the part of machine learning where the two have most productively met. <em>Drawn for these notes, after the CS231n 2025 Lecture 1 slides.</em>
+</figcaption>
+</figure>
+</div>
+<p>That overlap has turned out to be unusually portable. The convolutional networks, attention mechanisms and generative models developed to solve vision problems now underpin systems that never touch an image, and the techniques travel in the other direction too. A student who leaves this course with a working understanding of how these models are built and trained is not confined to vision, which is the main reason it is worth learning them properly rather than as recipes.</p>
+<p>The claim that vision is central rather than peripheral has an anatomical version. The primate visual system is not a module but a substantial fraction of the cortex, and the most-cited mapping of it identifies thirty-two distinct cortical areas that are visual or visual-association in function, connected by several hundred pathways arranged in a rough hierarchy (<a href="https://doi.org/10.1093/cercor/1.1.1">Felleman and Van Essen, 1991</a>). Whatever else the brain is doing, a large part of it is looking. This is the sense in which understanding visual intelligence is not a subproblem of understanding intelligence: it is most of the territory.</p>
+</section>
+<section id="sec-evolution" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-evolution"><span class="header-section-number">2.2</span> Eyes before brains</h2>
+<p>The history of vision is considerably older than the history of anything that could be called a brain. For roughly three billion years, life on Earth was aquatic, sparse and passive. Animals drifted, absorbed what came to them, and did not do much else. Then, over a window of perhaps ten million years — an eyeblink on the evolutionary clock — the fossil record shows an abrupt proliferation of animal body plans that palaeontologists call the Cambrian explosion, dated to around 540 million years ago.</p>
+<p>Several explanations have been offered for what triggered it, from ocean chemistry to climate. The one that matters here is the hypothesis that the trigger was the eye. The first light-sensitive structures were not lenses and retinas but something closer to a pinhole: a patch of photosensitive cells that could register the direction light was coming from. That is a modest piece of biological engineering with an immodest consequence. An animal that cannot sense at a distance is confined to metabolism; it takes what arrives and it is taken in turn. An animal that can see becomes a participant in its environment. It can pursue, and it can be pursued.</p>
+<p>The evolutionary pressure this creates is the point. Once one animal can see, every other animal is in an arms race — to detect, to hide, to move faster, to predict. Vision does not merely benefit from a nervous system; it is one of the forces that made an elaborate nervous system worth paying for. The five hundred million years that follow are, on this reading, not the evolution of vision alongside intelligence but the evolution of vision as intelligence.</p>
+<p>Humans sit at an extreme of that lineage. We are overwhelmingly visual animals, and the elaborate cortical machinery described in <a href="#sec-why-vision" class="quarto-xref"><span>Section 2.1</span></a> is what that specialisation looks like from the inside.</p>
+<p>Building machines that see is a much more recent ambition, though not as recent as one might assume. The optical principle arrived long before the technology: thinkers in ancient China and Greece described the projection of an image through a small aperture, and by the sixteenth century the camera obscura was well enough understood for Leonardo to sketch it. Photography made the image permanent, and the intervening two centuries have made cameras so cheap and so numerous that most of the images now produced on Earth are never seen by a human being at all.</p>
+<div id="fig-camera-obscura" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-camera-obscura-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/01-introduction/camera_obscura_1545.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2.2: The camera obscura as illustrated by Gemma Frisius in 1545, showing a solar eclipse projected through a small aperture onto the wall of a darkened room. The optical principle is the same one Equation&nbsp;eq-projection describes. Public domain."><img src="../figures/01-introduction/camera_obscura_1545.jpg" class="fig-ar-1 img-fluid figure-img" style="width:70.0%" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-camera-obscura-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: The camera obscura as illustrated by Gemma Frisius in 1545, showing a solar eclipse projected through a small aperture onto the wall of a darkened room. The optical principle is the same one <a href="#eq-projection" class="quarto-xref">Equation&nbsp;<span>2.1</span></a> describes. <em>Public domain.</em>
+</figcaption>
+</figure>
+</div>
+<p>None of which solves the problem. A camera is an apparatus for capturing light, in the same way that an eye is an apparatus for capturing light, and neither one sees. Evolution needed hundreds of millions of years of nervous system on top of the pinhole before anything was recognised. The gap between capturing an image and understanding it is the entire subject of this course, and the first thirty years of trying to close it are instructive mostly for the ways they failed.</p>
+</section>
+<section id="sec-hubel-wiesel" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-hubel-wiesel"><span class="header-section-number">2.3</span> What neuroscience handed over</h2>
+<p>The most consequential experiment in the prehistory of computer vision was not a computing experiment. In the late 1950s, David Hubel and Torsten Wiesel set out to characterise how the mammalian visual pathway represents what falls on the retina. They recorded from single neurons in the primary visual cortex of anaesthetised cats while presenting visual stimuli, looking for the pattern that would make a given cell fire (<a href="https://doi.org/10.1113/jphysiol.1959.sp006308">Hubel and Wiesel, 1959</a>).</p>
+<p>The result that mattered was partly an accident of apparatus. The stimuli were slides, and the cells were largely uninterested in them; what reliably provoked a response was the edge of the slide sweeping across the projector as it was changed. Neurons in the primary visual cortex were not responding to objects, or to complex patterns, or to anything a person would name. They were responding to oriented bars of light at particular positions, and each one had a preferred orientation it responded to far more strongly than any other.</p>
+<p>Two properties of that population turned out to be foundational. The cells Hubel and Wiesel called <em>simple</em> respond to an edge at a specific orientation in a specific location, and stop responding when the stimulus is moved or rotated away from that preference. The cells they called <em>complex</em> respond to the same oriented structure but tolerate some displacement, firing across a range of positions rather than a single one. Between them, these two populations do something a designer would recognise: they detect a local feature, and then they build a slightly more forgiving version of the same detection that no longer depends on exactly where the feature fell.</p>
+<p>The architectural claim implicit in this is that visual representation is hierarchical and that it starts small. The cortex does not attempt to match an incoming image against a stored template of a cat. It extracts oriented edges, combines them into configurations that tolerate small changes in position, and repeats — with each stage responding to something more specific and less tied to the retinal coordinates it came from than the stage below.</p>
+<p>Every convolutional network in this course is a restatement of that idea. The convolution operator is a bank of local feature detectors applied at every position; pooling is the tolerance to displacement that distinguishes complex cells from simple ones; depth is the hierarchy. When we come to look at what the early layers of a trained network have learned, they will turn out to be oriented edge detectors, <strong>which nobody put there</strong>. It took thirty years and a great deal of intervening failure for the field to arrive at an architecture that took Hubel and Wiesel seriously, and the failure is worth understanding before the success.</p>
+</section>
+<section id="sec-early-cv" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="sec-early-cv"><span class="header-section-number">2.4</span> Thirty years of geometry</h2>
+<p>Computer vision as an academic field is conventionally dated to the early 1960s, and to a doctoral thesis. Larry Roberts, working at MIT, asked whether a program could take a photograph of a scene built from wooden blocks and recover the three-dimensional shapes that produced it (<a href="https://dspace.mit.edu/handle/1721.1/6125">Roberts, 1963</a>). The pipeline extracted intensity discontinuities, selected feature points, and fitted polyhedra to them. It worked, on blocks, under controlled lighting, which is a considerably narrower claim than it sounds like but was a genuine result at the time.</p>
+<div id="fig-roberts" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-roberts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/01-introduction/roberts_1963_blocks.avif" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2.3: Stages from Roberts’ 1963 thesis: the original photograph, its differentiated form, and the feature points selected from it. The pipeline recovers polyhedral structure — reliably, for scenes made of blocks. After L. G. Roberts, MIT, 1963."><img src="../figures/01-introduction/roberts_1963_blocks.avif" class="fig-ar-2 img-fluid figure-img" style="width:85.0%" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-roberts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Stages from Roberts’ 1963 thesis: the original photograph, its differentiated form, and the feature points selected from it. The pipeline recovers polyhedral structure — reliably, for scenes made of blocks. <em>After L. G. Roberts, MIT, 1963.</em>
+</figcaption>
+</figure>
+</div>
+<p>The ambition of the period is captured better by what happened three years later, when a summer project was set up at MIT with the intention of using a handful of undergraduates over a single vacation to construct a substantial part of a vision system. Vision was not solved that summer. The episode is usually told as a joke about optimism, and it is one, but the more useful reading is that the problem’s difficulty was <em>invisible from the outside</em>. Nothing about looking at a photograph tells you that recovering its contents is hard, because your own visual system does it without reporting any effort. Sixty years later the annual computer vision conferences draw over ten thousand people, and the summer project has become a field.</p>
+<p>The intellectual centre of the following decade was David Marr, whose account of vision proposed that the problem be decomposed into stages of increasingly abstract representation. An input image is first reduced to a <em>primal sketch</em> — zero crossings, blobs, bars, edges and their groupings, which is very nearly the vocabulary Hubel and Wiesel had found in the cortex. The primal sketch is then elaborated into a <strong>2½-D sketch</strong>, which assigns local surface orientation and marks discontinuities in depth: enough to say that the ball is in front and the ground is behind, but still tied to the viewer’s position. Only at the final stage does the system arrive at a full three-dimensional model, organised hierarchically in terms of surfaces and volumetric primitives and independent of where the observer happens to be standing.</p>
+<p>Marr’s framework was principled, neurally motivated, and it set the direction for a generation. It also placed the hardest thing in vision at the end of the pipeline as the definition of success. Recovering the complete three-dimensional structure of a scene is the <em>holy grail</em> on this account, and everything before it is preparation.</p>
+<p>The recognition work of the period inherited that geometric commitment. If objects are three-dimensional shapes, then an object category should be describable as an arrangement of simpler shapes, and recognition becomes the problem of fitting that arrangement to an image. Generalized cylinders, developed at Stanford by Brooks and Binford, modelled objects as assemblies of tubular primitives; pictorial structures, from Fischler and Elschlager, modelled them as parts connected by spring-like constraints on their relative positions. Both ideas are genuinely good — the second one, in particular, keeps reappearing in the literature for the next forty years — and neither one scaled beyond the handful of categories it was demonstrated on.</p>
+<p>By the 1980s, with images becoming digital, a great deal of effort went into the front end of the pipeline instead. Edge detection was formalised and made robust, most durably by Canny, whose detector is still in use. But it is worth being blunt about how this looked from outside the field: after two decades of work, the visible output of computer vision was a picture with its outlines traced. The disappointment was reasonable, the funding reflected it, and the field entered the period known as the <strong>AI winter</strong> alongside expert systems and robotics, all of which had promised more than they delivered.</p>
+</section>
+<section id="sec-ill-posed" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="sec-ill-posed"><span class="header-section-number">2.5</span> Why vision is ill-posed</h2>
+<p>The reason the geometric programme stalled is not that its practitioners were insufficiently clever. It is that the problem they had defined as the goal is, in the strict sense, <em>ill-posed</em> — the data do not determine the answer.</p>
+<p>Consider what a camera or an eye actually does. A point <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">,</mo><mi>Y</mi><mo separator="true">,</mo><mi>Z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X, Y, Z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">Z</span><span class="mclose">)</span></span></span></span></span> in the world, expressed in coordinates centred on the sensor, lands on the image plane at</p>
+<p><span id="eq-projection"><span class="math display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><mo stretchy="false">(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">(</mo><mi>f</mi><mtext> </mtext><mfrac><mi>X</mi><mi>Z</mi></mfrac><mo separator="true">,</mo><mtext> </mtext><mi>f</mi><mtext> </mtext><mfrac><mi>Y</mi><mi>Z</mi></mfrac><mo fence="true">)</mo></mrow></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(2.1)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">
+(u, v) = \left( f\,\frac{X}{Z},\ f\,\frac{Y}{Z} \right)
+\tag{2.1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">Z</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace"> </span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">Z</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span><span class="katex-tag"><span class="katex-strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">2.1</span></span><span class="mord">)</span></span></span></span></span></span></span></span></p>
+<p>where <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span></span> is the focal length and <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(u, v)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mclose">)</span></span></span></span></span> are image coordinates. The projection <a href="#eq-projection" class="quarto-xref">Equation&nbsp;<span>2.1</span></a> throws away one number per point, and it throws it away in a specific and unrecoverable way: for any <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">t &gt; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6542em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>, the point <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>t</mi><mi>X</mi><mo separator="true">,</mo><mi>t</mi><mi>Y</mi><mo separator="true">,</mo><mi>t</mi><mi>Z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(tX, tY, tZ)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0785em;">tX</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">tZ</span><span class="mclose">)</span></span></span></span></span> maps to exactly the same <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(u, v)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mclose">)</span></span></span></span></span>. Every point along a ray through the optical centre produces an identical measurement. <strong>A single image is consistent with infinitely many three-dimensional scenes</strong>, and no amount of processing applied to that image can distinguish between them, because the information was destroyed at the sensor rather than lost somewhere downstream.</p>
+<div id="fig-projection" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-projection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/01-introduction/diagram_projection.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;2.4: Why a single image cannot determine the scene that produced it. Every world point along one ray through the optical centre maps to the same image coordinates, so the depth of P_1, P_2 and P_3 is not merely difficult to recover — it is absent from the measurement. Drawn for these notes."><img src="../figures/01-introduction/diagram_projection.svg" class="fig-ar-3 img-fluid figure-img" style="width:92.0%" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-projection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: Why a single image cannot determine the scene that produced it. Every world point along one ray through the optical centre maps to the same image coordinates, so the depth of <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">P_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>, <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">P_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> and <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">P_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> is not merely difficult to recover — it is absent from the measurement. <em>Drawn for these notes.</em>
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-projection" class="quarto-xref">Figure&nbsp;<span>2.4</span></a> is the whole difficulty in one picture. This is the fundamental problem nature had to solve, and it solved it partly by refusing to solve it exactly. Two eyes give two projections from slightly different centres, and depth can be triangulated from the disparity between them — but only once the correspondence problem is settled, that is, only once you know which point in the left image is the same world point as which point in the right. Correspondence is itself hard, and stereo does not recover geometry to anything like the precision the Marr pipeline assumes as its goal. Human three-dimensional perception is approximate, and it is approximate in ways that are easy to demonstrate. We know roughly what shape things are, which turns out to be sufficient for catching, grasping and not walking into walls.</p>
+<p>There is a second difference, more philosophical than mathematical, that is worth carrying through the course. Language does not exist in nature; it is generated by brains, it is one-dimensional, and it is sequential. That structure is precisely what makes it tractable to model as a probability distribution over the next symbol, which is the whole basis of the current generation of language models. Vision is not generated. There is a physical world, obeying the laws of physics and optics and material science, and an image is a measurement of it. The consequence is that visual problems do not decompose the way linguistic ones do, and methods that transfer between the two — as attention has — do so on the strength of their generality rather than because the domains are alike.</p>
+<p>The lesson the field eventually took from all this is that reconstructing the world in full is the wrong target. Most useful visual tasks do not require it. Knowing that there is a pedestrian ahead is worth more than a precise depth map of the pedestrian, and it is a far better-posed question.</p>
+</section>
+<section id="sec-psychophysics" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="sec-psychophysics"><span class="header-section-number">2.6</span> What the human system tells us about the target</h2>
+<p>While computer vision was working through geometry, cognitive science and neuroscience were producing results that suggested a different set of problems worth attacking, and gave some indication of what a solution would have to look like.</p>
+<p>The first is that recognition is <em>contextual</em>. Biederman showed that identifying a cued object in a briefly presented photograph is measurably harder when the scene has been jumbled, even though the target object itself is unchanged and the subject knows both what to look for and where it will appear (<a href="https://doi.org/10.1126/science.177.4043.77">Biederman, 1972</a>). From the sensor’s point of view nothing has changed — the same photons land in the same place — so whatever is degraded must belong to the interpretation rather than the measurement. Objects are not recognised in isolation; the scene they sit in is part of the evidence.</p>
+<p>The second is that recognition is <em>fast</em>. Rapid serial visual presentation experiments flash a sequence of unrelated images at around ten per second and ask the subject to detect a target that was never described to them in advance — not its appearance, not its position, not which frame it will occur in. Subjects do this reliably at a hundred milliseconds per frame. Thorpe and colleagues pinned the timing down directly by recording EEG while subjects decided whether a previously unseen photograph contained an animal, and found a differential signal in the brain roughly 150 ms after the image appeared (<a href="https://doi.org/10.1038/381520a0">Thorpe, Fize and Marlot, 1996</a>).</p>
+<p>That number is worth sitting with, because its significance is easy to miss. Compared with a modern processor 150 ms is enormous. Compared with the hardware actually doing the work it is almost nothing: neurons are slow, and 150 ms buys only a small number of successive processing stages. Whatever the visual system is doing to categorise a novel natural image, <strong>it is doing it in a few steps, largely in one direction, without time for extended iterative refinement</strong>. A pipeline that reconstructs three-dimensional structure before it will commit to naming anything is not a plausible model of that.</p>
+<p>The third result is that the system is specialised. Work in the 1990s identified cortical regions responding selectively to particular categories — faces, places, body parts — which says that the mature visual system is not a uniform mechanism applied to everything but has developed dedicated machinery for the categories that matter.</p>
+<p>Taken together these findings redirected the field’s attention. If human vision is fast, context-sensitive and organised around categories, then the problem to work on is not sketching the outline of a wooden block. It is <strong>recognising objects in natural scenes</strong>, at the scale and variety at which they actually occur, and that reframing is what the following two decades of computer vision are largely about.</p>
+</section>
+<section id="sec-features-data" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="sec-features-data"><span class="header-section-number">2.7</span> Features, benchmarks, and the turn to learning</h2>
+<p>Through the 1990s — nominally still the AI winter, though the research did not stop — computer vision reorganised itself around problems it could actually make progress on. Rather than reconstructing scenes, the field asked how an image could be partitioned into coherent regions, treating segmentation as a graph problem and separating foreground from background by cutting the graph where the affinities are weakest. Rather than matching whole objects, it asked what could be computed at a point in an image that would survive the object being moved, rotated, rescaled or relit. The answer, in the form of local descriptors of which SIFT is the best known, made it possible to match parts of one image to parts of another with some robustness, and matching turned out to support a great deal.</p>
+<p>The result that convinced people outside the field arrived in 2001, when Viola and Jones demonstrated face detection that ran in real time on the hardware of the day. It matters here for two reasons beyond the application. It was one of the first genuinely successful uses of machine learning in vision — the detector’s cascade of weak classifiers was <em>trained</em>, not designed — and within a few years it was shipping inside consumer digital cameras as autofocus that found faces. The gap between a research result and a product in a shop had become short.</p>
+<p>The other thing that changed in this period was that the field acquired data. Digital cameras and the internet arrived together, and images stopped being scarce. Caltech 101 and the PASCAL Visual Object Classes challenge assembled labelled collections in the thousands to tens of thousands of images and, more importantly, established the practice of evaluating competing methods on a common held-out set. A benchmark converts a matter of opinion into a number, and once the number exists, progress on it can be demanded.</p>
+<p>This is where the story pauses, because the thing that resolved it was not developing inside computer vision at all.</p>
+</section>
+<section id="sec-neural-nets" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="sec-neural-nets"><span class="header-section-number">2.8</span> The neural network thread</h2>
+<p>Running in parallel with everything described so far, and largely ignored by it, was a line of work on learning systems built from simple interconnected units.</p>
+<p>It begins with the perceptron, Rosenblatt’s late-1950s model of a single artificial neuron that computes a weighted sum of its inputs and thresholds it. The perceptron could be trained, which was the striking part, and the enthusiasm it generated ran well ahead of what it could do. In 1969 Minsky and Papert established the limits precisely: a single-layer perceptron computes only linearly separable functions, and <em>XOR</em> — true when exactly one of two binary inputs is true — is not one of them. Their analysis was correct. The reception of it, which took the result as an indictment of neural networks generally rather than of one-layer networks specifically, set the area back by years.</p>
+<p>Work continued regardless. In 1980 Fukushima described the <strong>Neocognitron</strong>, a computational model of the visual system built directly on Hubel and Wiesel’s hierarchy: layers of simple cells performing what we would now call convolution, interleaved with layers of complex cells pooling their outputs, stacked five or six deep. Architecturally this is a convolutional network, and it is worth registering how early that is. What it lacked was any way to learn its parameters. Every one of its several hundred weights was set by hand, which is an engineering achievement and a dead end — the approach cannot be scaled by anyone, including its author.</p>
+<p>The missing piece arrived in 1986, when Rumelhart, Hinton and Williams described <strong>backpropagation</strong> as a practical method for training networks with multiple layers. The idea is to define an objective measuring the discrepancy between what the network output and what it should have output, then propagate that error backwards through the network to obtain the gradient of the objective with respect to every parameter. Mechanically it is the chain rule of calculus applied systematically to a composition of functions, and we will derive it properly in a later lecture. Conceptually it replaced hand-tuning with optimisation, and that is what made networks of any depth trainable at all.</p>
+<p>The two ideas were combined by LeCun and colleagues through the 1990s, culminating in a convolutional network of around seven layers trained by backpropagation to read handwritten digits. It worked, and it was deployed commercially to process cheques. Compared with a modern architecture the differences are matters of detail.</p>
+<p>And then, for over a decade, the approach did not go much further. Networks that read digits did not generalise to photographs of cats, chairs and flowers. Deeper networks were attempted through the 2000s without becoming a mainstream research topic. <strong>The reason was not architectural, and this is the point of the whole section.</strong> These models have very high capacity — many parameters, and correspondingly many functions they can represent — and a high-capacity model fitted to a small dataset will reproduce that dataset without learning anything that transfers to new examples. The relationship between capacity, data and generalisation is a mathematical one, which we will treat properly when we get to overfitting and regularisation. In the 1990s it was largely invisible, because the field’s attention was on architectures, and data was regarded as a practical inconvenience rather than a component of the method.</p>
+</section>
+<section id="sec-alexnet" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="sec-alexnet"><span class="header-section-number">2.9</span> 2012</h2>
+<p>The response to that diagnosis was ImageNet: an attempt to build a dataset at a scale nobody had previously thought necessary. The collection eventually held roughly fourteen million images labelled across some twenty-two thousand categories, a number chosen with reference to the psychological literature on how many object categories a child acquires in early life. Building it required organising annotation on an industrial scale, and its authors’ bet was explicit — that the constraint on visual recognition was not the model but the data.</p>
+<p>The dataset alone would not have settled anything. What made it decisive was the competition built on top of it. The ImageNet Large Scale Visual Recognition Challenge distributed a curated subset of roughly 1.4 million images across 1,000 object classes and invited anyone to submit a system, evaluated on a held-out set by a single number, with no constraint whatsoever on method (<a href="https://doi.org/10.1007/s11263-015-0816-y">Russakovsky et al., 2015</a>). In the first years the best systems produced top-5 error rates near 30%, and progress between one year and the next was incremental.</p>
+<p>In 2012 an entry from Krizhevsky, Sutskever and Hinton, a convolutional network trained on GPUs with about 60 million parameters, recorded a top-5 error of 15.3% against 26.2% for the next-best submission (<a href="https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html">Krizhevsky, Sutskever and Hinton, 2012</a>). <strong>The error rate was cut nearly in half in a single year</strong>, by a method the rest of the field was not using.</p>
+<div id="fig-neocognitron-lenet" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-neocognitron-lenet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/01-introduction/neocognitron_lenet.avif" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;2.5: The Neocognitron of 1980 beside a LeNet-style convolutional network of 1998. Alternating convolution and pooling, stacked with depth, is present in both; what separates them is that one was trained and the other was tuned by hand. After Fukushima (1980) and LeCun et al.&nbsp;(1998)."><img src="../figures/01-introduction/neocognitron_lenet.avif" class="fig-ar-4 img-fluid figure-img" style="width:90.0%" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-neocognitron-lenet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.5: The Neocognitron of 1980 beside a LeNet-style convolutional network of 1998. Alternating convolution and pooling, stacked with depth, is present in both; what separates them is that one was trained and the other was tuned by hand. <em>After Fukushima (1980) and LeCun et al.&nbsp;(1998).</em>
+</figcaption>
+</figure>
+</div>
+<div id="fig-ilsvrc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ilsvrc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/01-introduction/diagram_ilsvrc_error.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;2.6: Winning top-5 error on the ImageNet challenge. The 2010 and 2011 winners used hand-designed features and improved by about two points between them; the best 2012 entry that did not use a neural network scored 26.2%, essentially where the field had been the year before. Plotted from the official ILSVRC results; the 5.1% human figure is from Russakovsky et al., 2015."><img src="../figures/01-introduction/diagram_ilsvrc_error.svg" class="fig-ar-5 img-fluid figure-img" style="width:100.0%" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ilsvrc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.6: Winning top-5 error on the ImageNet challenge. The 2010 and 2011 winners used hand-designed features and improved by about two points between them; the best 2012 entry that did not use a neural network scored 26.2%, essentially where the field had been the year before. <em>Plotted from the official ILSVRC results; the 5.1% human figure is from Russakovsky et al., 2015.</em>
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-ilsvrc" class="quarto-xref">Figure&nbsp;<span>2.6</span></a> shows why the year is remembered. The gap between the two 2012 points matters more than the drop from 2011: both were produced under identical conditions on identical data, and the difference between them is the method.</p>
+<p>The comparison that makes the result legible is with Fukushima’s Neocognitron, thirty-two years earlier. The architectures are recognisably the same idea — convolution and pooling, stacked. Almost everything that separates them lies outside the architecture. Backpropagation supplied a principled way to fit the parameters instead of setting them by hand. ImageNet supplied enough data for a model of that capacity to generalise rather than memorise. Graphics hardware supplied enough arithmetic to train it in a feasible amount of time.</p>
+<p>The honest summary of 2012 is therefore not that someone invented a better network. It is that <strong>three independent curves — algorithms, data, and compute — reached the point where a thirty-year-old idea started working</strong>, and the field noticed simultaneously. That is why the date is treated as the beginning of the modern era, and why the rest of this course spends comparatively little time on architecture as such and a great deal on training, data and optimisation.</p>
+</section>
+<section id="sec-after-2012" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="sec-after-2012"><span class="header-section-number">2.10</span> What followed, and what did not</h2>
+<p>The decade after 2012 is easiest to characterise by what stopped being difficult. Classifying an image into one of a thousand categories went from a research problem to a solved component, and attention moved to questions that assume it: locating every object in a scene rather than naming the dominant one, assigning a category to every pixel rather than to the image, and doing either of these on video, where the temporal dimension carries most of the information about what is actually happening. Each of these is a lecture later in the course.</p>
+<p>Some of what followed was less predictable. Networks were trained to produce a sentence describing a photograph, which requires a representation shared between vision and language rather than either separately. Others were trained to describe the <em>relationships</em> between the objects they found — that a person is riding a horse rather than merely that both are present — which is a step from perception towards something more like understanding. Style transfer showed that the intermediate representations of a network trained for classification implicitly separate content from appearance, which nobody had asked it to do. Generative models progressed from producing recognisable faces to producing plausible images from a text description.</p>
+<p>The compute curve underneath all of this is worth looking at directly, because it explains the pace.</p>
+<div id="fig-compute" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-compute-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/01-introduction/diagram_compute_cost.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;2.7: Single-precision arithmetic per dollar across successive generations of consumer NVIDIA hardware. The trend is not smooth — the 2018 generation was worse value in FP32 terms than the one before it — but the direction after 2012 is unmistakable. Computed from vendor FP32 specifications and launch prices in nominal dollars; not adjusted for inflation."><img src="../figures/01-introduction/diagram_compute_cost.svg" class="fig-ar-6 img-fluid figure-img" style="width:100.0%" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-compute-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.7: Single-precision arithmetic per dollar across successive generations of consumer NVIDIA hardware. The trend is not smooth — the 2018 generation was worse value in FP32 terms than the one before it — but the direction after 2012 is unmistakable. <em>Computed from vendor FP32 specifications and launch prices in nominal dollars; not adjusted for inflation.</em>
+</figcaption>
+</figure>
+</div>
+<p>The two curves are connected. The GPU marked in <a href="#fig-compute" class="quarto-xref">Figure&nbsp;<span>2.7</span></a> is the one AlexNet was trained on, a pair of them, in 2012; by 2020 the same money bought more than seven times the arithmetic. Once deep learning became the thing these chips were bought for, the hardware began to be designed for the workload, with dedicated units for the matrix operations that dominate training. The relationship runs in both directions: better hardware made larger models trainable, and the demand for larger models redirected hardware design.</p>
+<p>By the end of the decade the field’s standing had changed outside it as well. The 2018 Turing Award went jointly to Bengio, Hinton and LeCun for the work on deep learning, and in 2024 Hinton shared the Nobel Prize in Physics with Hopfield for the foundational discoveries enabling machine learning with neural networks. It is unusual for a computing result to be recognised by a physics committee, and the fact that it was says something about how far outside its origins the technique has travelled.</p>
+<p>None of which means vision is solved, and the failures are not evenly distributed. Because these systems are fitted to data, and the data is a record of human activity, they reproduce the patterns in that record including the ones we would not endorse. Face analysis systems have been shown to perform unequally across demographic groups, and the same techniques are deployed in settings — hiring, lending — where an error is not an inconvenience but a decision about someone’s life. This is not a separate ethical appendix to the technical material; it is a direct consequence of the fact that the model’s behaviour comes from the data and that nobody wrote down what it learned.</p>
+<p>The same properties that make this technology risky also make it useful, and medical imaging is the clearest case: radiology and pathology are deeply visual disciplines where a system that reliably attends to the whole image extends what a clinician can do.</p>
+<p>The last thing worth saying about the state of the art is how much of ordinary human vision remains out of reach. We do not have systems that read a scene the way a person does — that see the joke in a photograph, or infer what someone is about to do from their posture, or notice that a situation is unusual without having been told what unusual means. <strong>Recognition is largely solved; understanding is not</strong>, and the gap between them is most of what makes the field still worth working in.</p>
+</section>
+<section id="sec-course-arc" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="sec-course-arc"><span class="header-section-number">2.11</span> The shape of this course</h2>
+<p>What follows is organised as a sequence of increasing capability, and it is worth seeing the whole arc now so that each piece arrives as an answer to a difficulty raised by the one before it.</p>
+<p>Everything starts from <strong>image classification</strong>: given an image, produce a label. The task is deliberately impoverished, and it is the right place to begin because it isolates the difficulty. Whatever makes vision hard is already present in deciding whether a photograph contains a cat, and none of it is hidden behind the complexity of a richer output.</p>
+<p>The simplest thing that could work is a <em>linear classifier</em>. If an image is flattened into a vector <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mi>d</mi></msup></mrow><annotation encoding="application/x-tex">x \in \mathbb{R}^d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span></span> — for a <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>32</mn><mo>×</mo><mn>32</mn></mrow><annotation encoding="application/x-tex">32\times32</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">32</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">32</span></span></span></span></span> colour image, <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>3072</mn></mrow><annotation encoding="application/x-tex">d = 3072</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">3072</span></span></span></span></span> — then a score for each of <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span></span> candidate classes can be computed as</p>
+<p><span id="eq-linear-classifier"><span class="math display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>W</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(2.2)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">
+f(x, W) = Wx + b
+\tag{2.2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span><span class="katex-tag"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">2.2</span></span><span class="mord">)</span></span></span></span></span></span></span></span></p>
+<p>with a weight matrix <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>C</mi><mo>×</mo><mi>d</mi></mrow></msup></mrow><annotation encoding="application/x-tex">W \in \mathbb{R}^{C \times d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span><span class="mbin mtight">×</span><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span></span></span> and a bias vector <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mi>C</mi></msup></mrow><annotation encoding="application/x-tex">b \in \mathbb{R}^{C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span></span></span></span></span></span></span></span></span></span>. The predicted class is the one with the highest score. Geometrically, each row of <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span></span> defines a hyperplane in <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="double-struck">R</mi><mi>d</mi></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span></span>, and the classifier carves the input space into regions with flat boundaries, as in <a href="#fig-linear-classifier" class="quarto-xref">Figure&nbsp;<span>2.8</span></a>.</p>
+<div id="fig-linear-classifier" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linear-classifier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/01-introduction/diagram_linear_classifier.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;2.8: A linear classifier in a two-dimensional feature space. The decision boundary is a straight line, which is sufficient when the classes separate cleanly and is the source of the difficulty when they do not. Drawn for these notes."><img src="../figures/01-introduction/diagram_linear_classifier.svg" class="fig-ar-7 img-fluid figure-img" style="width:80.0%" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linear-classifier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.8: A linear classifier in a two-dimensional feature space. The decision boundary is a straight line, which is sufficient when the classes separate cleanly and is the source of the difficulty when they do not. <em>Drawn for these notes.</em>
+</figcaption>
+</figure>
+</div>
+<p>This immediately raises the two questions the next several lectures answer: how do we measure how wrong a particular <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span></span> is, which is the subject of <em>loss functions</em>, and how do we search for a better one, which is <em>optimisation</em>. Alongside them sits the tension introduced in <a href="#sec-neural-nets" class="quarto-xref"><span>Section 2.8</span></a> — a model flexible enough to fit the training data can fit it too well, and <em>regularisation</em> is how that is controlled.</p>
+<p>Flat decision boundaries are not enough, because the classes we care about are not linearly separable in pixel space. Stacking layers of linear maps separated by non-linear functions produces a <em>neural network</em>, which can represent far richer decision boundaries, and backpropagation makes such a network trainable. Applying the same idea with weights shared across spatial positions gives the <strong>convolutional neural network</strong>, and the reason to share weights is the observation from <a href="#sec-hubel-wiesel" class="quarto-xref"><span>Section 2.3</span></a>: a feature worth detecting in one part of an image is worth detecting everywhere.</p>
+<p>With classification established, the course widens the definition of the task. <em>Semantic segmentation</em> asks for a label at every pixel — grass here, cat there, sky above — without distinguishing one cat from another. <em>Object detection</em> asks for the location as well as the identity, drawing a box around each instance. <em>Instance segmentation</em> combines them, producing a separate pixel mask for each individual object, and is the most demanding of the three.</p>
+<div id="fig-four-tasks" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-four-tasks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/01-introduction/diagram_four_tasks.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;2.9: The same scene under four recognition tasks. The distinction that matters most is between the second panel and the fourth: semantic segmentation labels every pixel but has no notion of how many cats there are, while instance segmentation separates them. Drawn for these notes."><img src="../figures/01-introduction/diagram_four_tasks.svg" class="fig-ar-8 img-fluid figure-img" style="width:100.0%" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-four-tasks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.9: The same scene under four recognition tasks. The distinction that matters most is between the second panel and the fourth: semantic segmentation labels every pixel but has no notion of how many cats there are, while instance segmentation separates them. <em>Drawn for these notes.</em>
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-four-tasks" class="quarto-xref">Figure&nbsp;<span>2.9</span></a> makes the progression concrete. Each task asks more of the same input, and each requires the representation to preserve something the previous one could discard — position, extent, and finally the identity of individual objects. Video adds time, which introduces both the tasks of recognising actions rather than objects and the problem of combining modalities, since what is happening in a video is often carried as much by its audio as by its frames. Running alongside these is the question of <em>visualisation and interpretability</em>: what has a trained network actually learned, and what in an image is it responding to when it makes a decision.</p>
+<p>The models then broaden in the same way. Recurrent networks handle sequential data; attention mechanisms and <strong>transformers</strong> replace recurrence with a mechanism that relates every element of a sequence to every other, and have since become the dominant architecture in vision as well as language. As models and datasets grow, training stops fitting on one device, and distributed training becomes a topic in its own right — splitting the data across workers that each hold a copy of the model, or splitting the model itself across devices, and paying the coordination costs that either choice implies.</p>
+<p>The final part of the course leaves supervised recognition behind. <em>Self-supervised learning</em> derives a training signal from the structure of unlabelled data itself, which is what makes it possible to use the enormous quantity of images that nobody has annotated. <em>Generative models</em> invert the problem: rather than mapping an image to a label, they produce images, whether by recombining the content of one image with the appearance of another, or — in the case of <em>diffusion models</em>, which learn to reverse a gradual noising process — by generating a novel image from a text description. <em>Vision–language models</em> place images and text in a shared representation space, so that either can be used to retrieve or generate the other. <em>3D vision</em> returns to the problem of <a href="#sec-ill-posed" class="quarto-xref"><span>Section 2.5</span></a> with modern tools, and <em>embodied intelligence</em> connects perception to action, which is where vision started in <a href="#sec-evolution" class="quarto-xref"><span>Section 2.2</span></a> and is arguably where it belongs.</p>
+<p>The through-line is that each of these is a different answer to the same question: what representation of an image supports the thing we want to do with it. Keeping that question in view is more useful than memorising any particular architecture, because the architectures will change and the question will not.</p>
+</section>
+<section id="references-01-introduction" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references-01-introduction">References</h2>
+<p>Works referred to above, in the order they arise. Where no link is given, the citation is complete enough to locate the paper directly.</p>
+<ul>
+<li>L. G. Roberts, <em>Machine Perception of Three-Dimensional Solids</em>, PhD thesis, MIT, 1963. <a href="https://dspace.mit.edu/handle/1721.1/6125">MIT DSpace</a></li>
+<li>D. H. Hubel and T. N. Wiesel, “Receptive fields of single neurones in the cat’s striate cortex”, <em>Journal of Physiology</em> 148:574–591, 1959. <a href="https://doi.org/10.1113/jphysiol.1959.sp006308">doi:10.1113/jphysiol.1959.sp006308</a></li>
+<li>D. J. Felleman and D. C. Van Essen, “Distributed hierarchical processing in the primate cerebral cortex”, <em>Cerebral Cortex</em> 1(1):1–47, 1991. <a href="https://doi.org/10.1093/cercor/1.1.1">doi:10.1093/cercor/1.1.1</a></li>
+<li>I. Biederman, “Perceiving real-world scenes”, <em>Science</em> 177(4043):77–80, 1972. <a href="https://doi.org/10.1126/science.177.4043.77">doi:10.1126/science.177.4043.77</a></li>
+<li>S. Thorpe, D. Fize and C. Marlot, “Speed of processing in the human visual system”, <em>Nature</em> 381:520–522, 1996. <a href="https://doi.org/10.1038/381520a0">doi:10.1038/381520a0</a></li>
+<li>D. Marr, <em>Vision: A Computational Investigation into the Human Representation and Processing of Visual Information</em>, W. H. Freeman, 1982.</li>
+<li>J. Canny, “A computational approach to edge detection”, <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em> 8(6):679–698, 1986.</li>
+<li>J. Shi and J. Malik, “Normalized cuts and image segmentation”, <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em> 22(8):888–905, 2000.</li>
+<li>D. G. Lowe, “Distinctive image features from scale-invariant keypoints”, <em>International Journal of Computer Vision</em> 60(2):91–110, 2004.</li>
+<li>P. Viola and M. Jones, “Rapid object detection using a boosted cascade of simple features”, <em>CVPR</em>, 2001.</li>
+<li>F. Rosenblatt, “The perceptron: a probabilistic model for information storage and organization in the brain”, <em>Psychological Review</em> 65(6):386–408, 1958.</li>
+<li>M. Minsky and S. Papert, <em>Perceptrons: An Introduction to Computational Geometry</em>, MIT Press, 1969.</li>
+<li>K. Fukushima, “Neocognitron: a self-organizing neural network model for a mechanism of pattern recognition unaffected by shift in position”, <em>Biological Cybernetics</em> 36:193–202, 1980.</li>
+<li>D. E. Rumelhart, G. E. Hinton and R. J. Williams, “Learning representations by back-propagating errors”, <em>Nature</em> 323:533–536, 1986. <a href="https://doi.org/10.1038/323533a0">doi:10.1038/323533a0</a></li>
+<li>Y. LeCun, L. Bottou, Y. Bengio and P. Haffner, “Gradient-based learning applied to document recognition”, <em>Proceedings of the IEEE</em> 86(11):2278–2324, 1998.</li>
+<li>J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li and L. Fei-Fei, “ImageNet: a large-scale hierarchical image database”, <em>CVPR</em>, 2009.</li>
+<li>A. Krizhevsky, I. Sutskever and G. E. Hinton, “ImageNet classification with deep convolutional neural networks”, <em>NeurIPS</em>, 2012. <a href="https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html">Proceedings</a></li>
+<li>O. Russakovsky et al., “ImageNet Large Scale Visual Recognition Challenge”, <em>International Journal of Computer Vision</em> 115:211–252, 2015. <a href="https://doi.org/10.1007/s11263-015-0816-y">doi:10.1007/s11263-015-0816-y</a></li>
+</ul>
+
+
+<style>img.fig-ar-1{aspect-ratio:650/337}img.fig-ar-2{aspect-ratio:688/890}img.fig-ar-3{aspect-ratio:620/300}img.fig-ar-4{aspect-ratio:874/246}img.fig-ar-5{aspect-ratio:700/330}img.fig-ar-6{aspect-ratio:700/330}img.fig-ar-7{aspect-ratio:233/206}img.fig-ar-8{aspect-ratio:700/250}</style>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/raimbekovm\.github\.io\/cs231n-2025-notes\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../index.html" class="pagination-link" aria-label="CS231n 2025 Lecture Notes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">CS231n 2025 Lecture Notes</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lectures/02-image-classification.html" class="pagination-link" aria-label="Image Classification with Linear Classifiers">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Image Classification with Linear Classifiers</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/raimbekovm/cs231n-2025-notes/edit/main/lectures/01-introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/raimbekovm/cs231n-2025-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

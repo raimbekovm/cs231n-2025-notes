@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 372" width="760" height="372"
+     role="img" aria-labelledby="ppTitle ppDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="ppTitle">The pretext and downstream stages</title>
+  <desc id="ppDesc">A two-lane diagram: the upper lane runs unlabelled images through a transformation, an encoder and a pretext head to a manufactured target, with the head crossed out; the lower lane runs labelled images through the same encoder and a new linear head, with an arrow marking the encoder as the only shared component.</desc>
+  <text x="20.0" y="28.0" font-size="13" fill="currentColor" text-anchor="start">Stage 1 — pretext, on unlabelled data</text>
+  <rect x="10.0" y="66.0" width="100.0" height="52.0" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="3"/>
+  <text x="60.0" y="89.0" font-size="12" fill="currentColor" text-anchor="middle">unlabelled</text>
+  <text x="60.0" y="103.0" font-size="12" fill="currentColor" text-anchor="middle">images</text>
+  <rect x="138.0" y="66.0" width="100.0" height="52.0" fill="#21918c" fill-opacity="0.16" stroke="currentColor" stroke-width="1.0" stroke-opacity="1.0" rx="3"/>
+  <text x="188.0" y="89.0" font-size="12" fill="currentColor" text-anchor="middle">corrupt or</text>
+  <text x="188.0" y="103.0" font-size="12" fill="currentColor" text-anchor="middle">transform</text>
+  <rect x="266.0" y="66.0" width="100.0" height="52.0" fill="#3b528b" fill-opacity="0.16" stroke="currentColor" stroke-width="1.0" stroke-opacity="1.0" rx="3"/>
+  <text x="316.0" y="96.0" font-size="12" fill="currentColor" text-anchor="middle">encoder</text>
+  <rect x="394.0" y="66.0" width="100.0" height="52.0" fill="#440154" fill-opacity="0.16" stroke="currentColor" stroke-width="1.0" stroke-opacity="1.0" rx="3"/>
+  <text x="444.0" y="89.0" font-size="12" fill="currentColor" text-anchor="middle">pretext</text>
+  <text x="444.0" y="103.0" font-size="12" fill="currentColor" text-anchor="middle">head</text>
+  <rect x="522.0" y="66.0" width="100.0" height="52.0" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="3"/>
+  <text x="572.0" y="89.0" font-size="12" fill="currentColor" text-anchor="middle">manufactured</text>
+  <text x="572.0" y="103.0" font-size="12" fill="currentColor" text-anchor="middle">target</text>
+  <line x1="114.0" y1="92.0" x2="128.0" y2="92.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="134.0,92.0 128.0,94.7 128.0,89.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="242.0" y1="92.0" x2="256.0" y2="92.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="262.0,92.0 256.0,94.7 256.0,89.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="370.0" y1="92.0" x2="384.0" y2="92.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="390.0,92.0 384.0,94.7 384.0,89.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="498.0" y1="92.0" x2="512.0" y2="92.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="518.0,92.0 512.0,94.7 512.0,89.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="672.0" y1="92.0" x2="694.0" y2="92.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="700.0,92.0 694.0,94.7 694.0,89.3" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="706.0" y="86.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">loss</text>
+  <text x="706.0" y="102.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">here</text>
+  <line x1="400.0" y1="58.0" x2="488.0" y2="126.0" stroke="#440154" stroke-width="1.6" stroke-opacity="0.45"/>
+  <line x1="488.0" y1="58.0" x2="400.0" y2="126.0" stroke="#440154" stroke-width="1.6" stroke-opacity="0.45"/>
+  <text x="444.0" y="144.0" font-size="11.5" fill="#440154" text-anchor="middle" fill-opacity="0.9">discarded</text>
+  <line x1="20.0" y1="176.0" x2="740.0" y2="176.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.3" stroke-dasharray="6 5"/>
+  <text x="20.0" y="200.0" font-size="13" fill="currentColor" text-anchor="start">Stage 2 — downstream, on a small labelled set</text>
+  <rect x="10.0" y="242.0" width="100.0" height="52.0" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="3"/>
+  <text x="60.0" y="265.0" font-size="12" fill="currentColor" text-anchor="middle">labelled</text>
+  <text x="60.0" y="279.0" font-size="12" fill="currentColor" text-anchor="middle">images</text>
+  <rect x="138.0" y="242.0" width="100.0" height="52.0" fill="#3b528b" fill-opacity="0.16" stroke="currentColor" stroke-width="1.0" stroke-opacity="1.0" rx="3"/>
+  <text x="188.0" y="265.0" font-size="12" fill="currentColor" text-anchor="middle">same</text>
+  <text x="188.0" y="279.0" font-size="12" fill="currentColor" text-anchor="middle">encoder</text>
+  <rect x="266.0" y="242.0" width="100.0" height="52.0" fill="#5ec962" fill-opacity="0.16" stroke="currentColor" stroke-width="1.0" stroke-opacity="1.0" rx="3"/>
+  <text x="316.0" y="265.0" font-size="12" fill="currentColor" text-anchor="middle">new linear</text>
+  <text x="316.0" y="279.0" font-size="12" fill="currentColor" text-anchor="middle">head</text>
+  <rect x="394.0" y="242.0" width="100.0" height="52.0" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.4" rx="3"/>
+  <text x="444.0" y="265.0" font-size="12" fill="currentColor" text-anchor="middle">class</text>
+  <text x="444.0" y="279.0" font-size="12" fill="currentColor" text-anchor="middle">labels</text>
+  <line x1="114.0" y1="268.0" x2="128.0" y2="268.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="134.0,268.0 128.0,270.7 128.0,265.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="242.0" y1="268.0" x2="256.0" y2="268.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="262.0,268.0 256.0,270.7 256.0,265.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="370.0" y1="268.0" x2="384.0" y2="268.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="390.0,268.0 384.0,270.7 384.0,265.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="316.0" y1="122.0" x2="192.4" y2="234.0" stroke="#3b528b" stroke-width="1.6" stroke-opacity="0.85"/>
+  <polygon points="188.0,238.0 190.6,232.0 194.3,236.0" fill="#3b528b" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="268.0" y="186.0" font-size="11.5" fill="#3b528b" text-anchor="start" fill-opacity="0.95">the only thing that crosses</text>
+  <text x="20.0" y="344.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">The pretext head exists only to make a gradient; what survives is the encoder.</text>
+</svg>

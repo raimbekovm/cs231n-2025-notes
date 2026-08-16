@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 384" width="840" height="384"
+     role="img" aria-labelledby="flmaskTitle flmaskDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="flmaskTitle">Flamingo's per-image attention mask</title>
+  <desc id="flmaskDesc">An interleaved sequence of three images each followed by a short text span. Arrows show that each text span cross-attends only to the image immediately preceding it, never to earlier images. A separate double-headed arrow spanning the whole sequence shows that the frozen language model's own self-attention is unmasked, which is what carries the few-shot pattern across the examples.</desc>
+  <text x="20.0" y="28.0" font-size="13.5" fill="#1b1b1b" text-anchor="start">A web page, in its original order</text>
+  <rect x="40.0" y="58.0" width="92.0" height="40.0" fill="#5ec962" fill-opacity="0.28" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.45" rx="3"/>
+  <text x="86.0" y="82.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle">image 1</text>
+  <rect x="144.0" y="58.0" width="116.0" height="40.0" fill="#3b528b" fill-opacity="0.12" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.45" rx="3"/>
+  <text x="202.0" y="82.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">“a puffin”</text>
+  <rect x="272.0" y="58.0" width="92.0" height="40.0" fill="#5ec962" fill-opacity="0.28" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.45" rx="3"/>
+  <text x="318.0" y="82.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle">image 2</text>
+  <rect x="376.0" y="58.0" width="116.0" height="40.0" fill="#3b528b" fill-opacity="0.12" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.45" rx="3"/>
+  <text x="434.0" y="82.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">“a heron”</text>
+  <rect x="504.0" y="58.0" width="92.0" height="40.0" fill="#5ec962" fill-opacity="0.28" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.45" rx="3"/>
+  <text x="550.0" y="82.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle">image 3</text>
+  <rect x="608.0" y="58.0" width="116.0" height="40.0" fill="#3b528b" fill-opacity="0.12" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.45" rx="3"/>
+  <text x="666.0" y="82.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">“a ?”</text>
+  <line x1="202.0" y1="116.0" x2="92.0" y2="116.0" stroke="#440154" stroke-width="1.5" stroke-opacity="0.8"/>
+  <polygon points="86.0,116.0 92.0,113.3 92.0,118.7" fill="#440154" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="434.0" y1="116.0" x2="324.0" y2="116.0" stroke="#440154" stroke-width="1.5" stroke-opacity="0.8"/>
+  <polygon points="318.0,116.0 324.0,113.3 324.0,118.7" fill="#440154" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="666.0" y1="116.0" x2="556.0" y2="116.0" stroke="#440154" stroke-width="1.5" stroke-opacity="0.8"/>
+  <polygon points="550.0,116.0 556.0,113.3 556.0,118.7" fill="#440154" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="40.0" y="152.0" font-size="11.5" fill="#440154" text-anchor="start">cross-attention: masked to the single most recent image</text>
+  <line x1="40.0" y1="196.0" x2="724.0" y2="196.0" stroke="#21918c" stroke-width="1.6" stroke-opacity="0.85"/>
+  <line x1="724.0" y1="196.0" x2="46.0" y2="196.0" stroke="#21918c" stroke-width="1.6" stroke-opacity="0.85"/>
+  <polygon points="40.0,196.0 46.0,193.3 46.0,198.7" fill="#21918c" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="40.0" y1="196.0" x2="718.0" y2="196.0" stroke="#21918c" stroke-width="1.6" stroke-opacity="0.85"/>
+  <polygon points="724.0,196.0 718.0,198.7 718.0,193.3" fill="#21918c" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="40.0" y="220.0" font-size="11.5" fill="#21918c" text-anchor="start">self-attention in the frozen LM: unmasked, spans everything</text>
+  <rect x="40.0" y="246.0" width="356.0" height="92.0" fill="#440154" fill-opacity="0.09" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="4"/>
+  <text x="60.0" y="270.0" font-size="12" fill="#1b1b1b" text-anchor="start" font-weight="600">Why mask at all</text>
+  <text x="60.0" y="292.0" font-size="11" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">Letting every token see every image blurs</text>
+  <text x="60.0" y="308.0" font-size="11" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">which caption belongs to which picture. The</text>
+  <text x="60.0" y="324.0" font-size="11" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">pairing stays crisp under the mask.</text>
+  <rect x="444.0" y="246.0" width="356.0" height="92.0" fill="#21918c" fill-opacity="0.09" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="4"/>
+  <text x="464.0" y="270.0" font-size="12" fill="#1b1b1b" text-anchor="start" font-weight="600">Why it still learns in context</text>
+  <text x="464.0" y="292.0" font-size="11" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">The unmasked text pathway carries the</text>
+  <text x="464.0" y="308.0" font-size="11" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">pattern across examples, so the sequence</text>
+  <text x="464.0" y="324.0" font-size="11" fill="#1b1b1b" text-anchor="start" fill-opacity="0.78">reads as a few-shot prompt.</text>
+</svg>

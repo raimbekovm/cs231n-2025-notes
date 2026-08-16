@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 350" width="760" height="350"
+     role="img" aria-labelledby="txTitle txDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="txTitle">Taxonomy of generative models</title>
+  <desc id="txDesc">A tree rooted at generative model, splitting into explicit density (models that can return p of x) and implicit density (models that cannot but can sample). Explicit splits into tractable, holding autoregressive models, and approximate, holding the variational autoencoder. Implicit splits into direct, holding generative adversarial networks, and iterative, holding diffusion models. Brackets mark the first two leaves as this chapter and the last two as the next.</desc>
+  <text x="20.0" y="28.0" font-size="14" fill="currentColor" text-anchor="start">Generative models, by what they will compute</text>
+  <rect x="290.0" y="51.0" width="180.0" height="38.0" fill="#1b1b1b" fill-opacity="0.13" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.65" rx="4"/>
+  <text x="380.0" y="71.0" font-size="13" fill="currentColor" text-anchor="middle">generative model</text>
+  <rect x="111.0" y="149.0" width="168.0" height="38.0" fill="#3b528b" fill-opacity="0.13" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.65" rx="4"/>
+  <text x="195.0" y="169.0" font-size="13" fill="currentColor" text-anchor="middle">explicit density</text>
+  <rect x="481.0" y="149.0" width="168.0" height="38.0" fill="#440154" fill-opacity="0.13" stroke="#440154" stroke-width="1.0" stroke-opacity="0.65" rx="4"/>
+  <text x="565.0" y="169.0" font-size="13" fill="currentColor" text-anchor="middle">implicit density</text>
+  <line x1="380.0" y1="89.0" x2="210.7" y2="145.1" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="205.0,147.0 209.8,142.5 211.5,147.7" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="380.0" y1="89.0" x2="549.3" y2="145.1" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="555.0,147.0 548.5,147.7 550.2,142.5" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="258.0" y="112.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.6">can compute p(x)</text>
+  <text x="502.0" y="112.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.6">cannot, but can sample</text>
+  <rect x="20.0" y="244.0" width="170.0" height="56.0" fill="#21918c" fill-opacity="0.13" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.65" rx="4"/>
+  <text x="105.0" y="264.0" font-size="12" fill="currentColor" text-anchor="middle">tractable density</text>
+  <text x="105.0" y="283.0" font-size="12.5" fill="currentColor" text-anchor="middle">autoregressive</text>
+  <rect x="200.0" y="244.0" width="170.0" height="56.0" fill="#3b528b" fill-opacity="0.13" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.65" rx="4"/>
+  <text x="285.0" y="264.0" font-size="12" fill="currentColor" text-anchor="middle">approximate density</text>
+  <text x="285.0" y="283.0" font-size="12.5" fill="currentColor" text-anchor="middle">VAE</text>
+  <rect x="390.0" y="244.0" width="170.0" height="56.0" fill="#440154" fill-opacity="0.13" stroke="#440154" stroke-width="1.0" stroke-opacity="0.65" rx="4"/>
+  <text x="475.0" y="264.0" font-size="12" fill="currentColor" text-anchor="middle">direct</text>
+  <text x="475.0" y="283.0" font-size="12.5" fill="currentColor" text-anchor="middle">GAN</text>
+  <rect x="570.0" y="244.0" width="170.0" height="56.0" fill="#5ec962" fill-opacity="0.13" stroke="#5ec962" stroke-width="1.0" stroke-opacity="0.65" rx="4"/>
+  <text x="655.0" y="264.0" font-size="12" fill="currentColor" text-anchor="middle">iterative</text>
+  <text x="655.0" y="283.0" font-size="12.5" fill="currentColor" text-anchor="middle">diffusion</text>
+  <line x1="195.0" y1="187.0" x2="119.9" y2="238.6" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="115.0,242.0 118.4,236.4 121.5,240.8" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="195.0" y1="187.0" x2="270.1" y2="238.6" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="275.0,242.0 268.5,240.8 271.6,236.4" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="565.0" y1="187.0" x2="489.9" y2="238.6" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="485.0,242.0 488.4,236.4 491.5,240.8" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="565.0" y1="187.0" x2="640.1" y2="238.6" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="645.0,242.0 638.5,240.8 641.6,236.4" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <polyline points="20.00,312.00 20.00,320.00 370.00,320.00 370.00,312.00" fill="none" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.3" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="195.0" y="340.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.6">this chapter</text>
+  <polyline points="390.00,312.00 390.00,320.00 740.00,320.00 740.00,312.00" fill="none" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.3" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="565.0" y="340.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.6">next chapter</text>
+</svg>

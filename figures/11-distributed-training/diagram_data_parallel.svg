@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 300" width="820" height="300"
+     role="img" aria-labelledby="dpTitle dpDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="dpTitle">Data parallelism across three GPUs</title>
+  <desc id="dpDesc">Three rows, one per GPU. Each row runs left to right: its own minibatch, a forward pass, a backward pass, and its own local gradient. All three rows then pass through a single shaded all-reduce column, after which each row holds the same averaged gradient and applies the same weight update.</desc>
+  <text x="70.0" y="34.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.68">data</text>
+  <text x="171.0" y="34.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.68">forward</text>
+  <text x="301.0" y="34.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.68">backward</text>
+  <text x="418.0" y="34.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.68">local ∂L/∂W</text>
+  <text x="507.0" y="34.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.68">all-reduce</text>
+  <text x="604.0" y="34.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.68">averaged</text>
+  <text x="731.0" y="34.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.68">update</text>
+  <text x="24.0" y="88.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.8">GPU 1</text>
+  <rect x="56.0" y="70.0" width="30.0" height="30.0" fill="#440154" fill-opacity="0.34" stroke="#440154" stroke-width="1.1" stroke-opacity="1.0" rx="3"/>
+  <text x="71.0" y="90.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">x1</text>
+  <line x1="90.0" y1="85.0" x2="104.0" y2="85.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="110.0,85.0 104.0,87.7 104.0,82.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="116.0" y="66.0" width="110.0" height="38.0" fill="#440154" fill-opacity="0.14" stroke="#440154" stroke-width="1.2" stroke-opacity="1.0" rx="4"/>
+  <text x="171.0" y="89.5" font-size="13" fill="currentColor" text-anchor="middle">forward</text>
+  <line x1="230.0" y1="85.0" x2="234.0" y2="85.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="240.0,85.0 234.0,87.7 234.0,82.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="246.0" y="66.0" width="110.0" height="38.0" fill="#440154" fill-opacity="0.14" stroke="#440154" stroke-width="1.2" stroke-opacity="1.0" rx="4"/>
+  <text x="301.0" y="89.5" font-size="13" fill="currentColor" text-anchor="middle">backward</text>
+  <line x1="360.0" y1="85.0" x2="368.0" y2="85.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="374.0,85.0 368.0,87.7 368.0,82.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="380.0" y="70.0" width="76.0" height="30.0" fill="#440154" fill-opacity="0.34" stroke="#440154" stroke-width="1.1" stroke-opacity="1.0" rx="3"/>
+  <text x="418.0" y="90.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">∂L/∂W</text>
+  <line x1="460.0" y1="85.0" x2="466.0" y2="85.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="472.0,85.0 466.0,87.7 466.0,82.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="542.0" y1="85.0" x2="554.0" y2="85.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="560.0,85.0 554.0,87.7 554.0,82.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="566.0" y="70.0" width="76.0" height="30.0" fill="#1b1b1b" fill-opacity="0.12" stroke="#1b1b1b" stroke-width="1.1" stroke-opacity="1.0" rx="3"/>
+  <text x="604.0" y="90.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">∂L/∂W</text>
+  <line x1="646.0" y1="85.0" x2="664.0" y2="85.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="670.0,85.0 664.0,87.7 664.0,82.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="676.0" y="66.0" width="110.0" height="38.0" fill="#1b1b1b" fill-opacity="0.08" stroke="#1b1b1b" stroke-width="1.2" stroke-opacity="1.0" rx="4"/>
+  <text x="731.0" y="89.5" font-size="10.5" fill="currentColor" text-anchor="middle">W ← W − η∂L/∂W</text>
+  <text x="24.0" y="156.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.8">GPU 2</text>
+  <rect x="56.0" y="138.0" width="30.0" height="30.0" fill="#3b528b" fill-opacity="0.34" stroke="#3b528b" stroke-width="1.1" stroke-opacity="1.0" rx="3"/>
+  <text x="71.0" y="158.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">x2</text>
+  <line x1="90.0" y1="153.0" x2="104.0" y2="153.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="110.0,153.0 104.0,155.7 104.0,150.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="116.0" y="134.0" width="110.0" height="38.0" fill="#3b528b" fill-opacity="0.14" stroke="#3b528b" stroke-width="1.2" stroke-opacity="1.0" rx="4"/>
+  <text x="171.0" y="157.5" font-size="13" fill="currentColor" text-anchor="middle">forward</text>
+  <line x1="230.0" y1="153.0" x2="234.0" y2="153.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="240.0,153.0 234.0,155.7 234.0,150.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="246.0" y="134.0" width="110.0" height="38.0" fill="#3b528b" fill-opacity="0.14" stroke="#3b528b" stroke-width="1.2" stroke-opacity="1.0" rx="4"/>
+  <text x="301.0" y="157.5" font-size="13" fill="currentColor" text-anchor="middle">backward</text>
+  <line x1="360.0" y1="153.0" x2="368.0" y2="153.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="374.0,153.0 368.0,155.7 368.0,150.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="380.0" y="138.0" width="76.0" height="30.0" fill="#3b528b" fill-opacity="0.34" stroke="#3b528b" stroke-width="1.1" stroke-opacity="1.0" rx="3"/>
+  <text x="418.0" y="158.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">∂L/∂W</text>
+  <line x1="460.0" y1="153.0" x2="466.0" y2="153.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="472.0,153.0 466.0,155.7 466.0,150.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="542.0" y1="153.0" x2="554.0" y2="153.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="560.0,153.0 554.0,155.7 554.0,150.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="566.0" y="138.0" width="76.0" height="30.0" fill="#1b1b1b" fill-opacity="0.12" stroke="#1b1b1b" stroke-width="1.1" stroke-opacity="1.0" rx="3"/>
+  <text x="604.0" y="158.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">∂L/∂W</text>
+  <line x1="646.0" y1="153.0" x2="664.0" y2="153.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="670.0,153.0 664.0,155.7 664.0,150.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="676.0" y="134.0" width="110.0" height="38.0" fill="#1b1b1b" fill-opacity="0.08" stroke="#1b1b1b" stroke-width="1.2" stroke-opacity="1.0" rx="4"/>
+  <text x="731.0" y="157.5" font-size="10.5" fill="currentColor" text-anchor="middle">W ← W − η∂L/∂W</text>
+  <text x="24.0" y="224.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.8">GPU 3</text>
+  <rect x="56.0" y="206.0" width="30.0" height="30.0" fill="#21918c" fill-opacity="0.34" stroke="#21918c" stroke-width="1.1" stroke-opacity="1.0" rx="3"/>
+  <text x="71.0" y="226.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">x3</text>
+  <line x1="90.0" y1="221.0" x2="104.0" y2="221.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="110.0,221.0 104.0,223.7 104.0,218.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="116.0" y="202.0" width="110.0" height="38.0" fill="#21918c" fill-opacity="0.14" stroke="#21918c" stroke-width="1.2" stroke-opacity="1.0" rx="4"/>
+  <text x="171.0" y="225.5" font-size="13" fill="currentColor" text-anchor="middle">forward</text>
+  <line x1="230.0" y1="221.0" x2="234.0" y2="221.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="240.0,221.0 234.0,223.7 234.0,218.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="246.0" y="202.0" width="110.0" height="38.0" fill="#21918c" fill-opacity="0.14" stroke="#21918c" stroke-width="1.2" stroke-opacity="1.0" rx="4"/>
+  <text x="301.0" y="225.5" font-size="13" fill="currentColor" text-anchor="middle">backward</text>
+  <line x1="360.0" y1="221.0" x2="368.0" y2="221.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="374.0,221.0 368.0,223.7 368.0,218.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="380.0" y="206.0" width="76.0" height="30.0" fill="#21918c" fill-opacity="0.34" stroke="#21918c" stroke-width="1.1" stroke-opacity="1.0" rx="3"/>
+  <text x="418.0" y="226.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">∂L/∂W</text>
+  <line x1="460.0" y1="221.0" x2="466.0" y2="221.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="472.0,221.0 466.0,223.7 466.0,218.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="542.0" y1="221.0" x2="554.0" y2="221.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="560.0,221.0 554.0,223.7 554.0,218.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="566.0" y="206.0" width="76.0" height="30.0" fill="#1b1b1b" fill-opacity="0.12" stroke="#1b1b1b" stroke-width="1.1" stroke-opacity="1.0" rx="3"/>
+  <text x="604.0" y="226.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">∂L/∂W</text>
+  <line x1="646.0" y1="221.0" x2="664.0" y2="221.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="670.0,221.0 664.0,223.7 664.0,218.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="676.0" y="202.0" width="110.0" height="38.0" fill="#1b1b1b" fill-opacity="0.08" stroke="#1b1b1b" stroke-width="1.2" stroke-opacity="1.0" rx="4"/>
+  <text x="731.0" y="225.5" font-size="10.5" fill="currentColor" text-anchor="middle">W ← W − η∂L/∂W</text>
+  <rect x="476.0" y="60.0" width="62.0" height="186.0" fill="#fde725" fill-opacity="0.28" stroke="#3b528b" stroke-width="1.4" stroke-opacity="1.0" rx="5"/>
+  <text x="507.0" y="264.0" font-size="10.5" fill="#3b528b" text-anchor="middle">the only</text>
+  <text x="507.0" y="278.0" font-size="10.5" fill="#3b528b" text-anchor="middle">communication</text>
+  <text x="24.0" y="288.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.7">Every replica ends the step with identical weights, so no drift accumulates.</text>
+</svg>

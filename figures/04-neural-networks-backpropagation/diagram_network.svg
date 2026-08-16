@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 300" width="780" height="300"
+     role="img" aria-labelledby="netFigTitle netFigDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="netFigTitle">Fully connected networks with one and two hidden layers</title>
+  <desc id="netFigDesc">Left: four inputs feeding five hidden units feeding three outputs, every unit connected to every unit in the next layer, giving two weight matrices. Right: the same with a second hidden layer and three weight matrices. A network is counted by its weight matrices.</desc>
+  <line x1="106.0" y1="81.0" x2="194.0" y2="64.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="81.0" x2="194.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="81.0" x2="194.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="81.0" x2="194.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="81.0" x2="194.0" y2="200.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="115.0" x2="194.0" y2="64.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="115.0" x2="194.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="115.0" x2="194.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="115.0" x2="194.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="115.0" x2="194.0" y2="200.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="149.0" x2="194.0" y2="64.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="149.0" x2="194.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="149.0" x2="194.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="149.0" x2="194.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="149.0" x2="194.0" y2="200.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="183.0" x2="194.0" y2="64.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="183.0" x2="194.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="183.0" x2="194.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="183.0" x2="194.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="106.0" y1="183.0" x2="194.0" y2="200.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="64.0" x2="282.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="64.0" x2="282.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="64.0" x2="282.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="98.0" x2="282.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="98.0" x2="282.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="98.0" x2="282.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="132.0" x2="282.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="132.0" x2="282.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="132.0" x2="282.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="166.0" x2="282.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="166.0" x2="282.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="166.0" x2="282.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="200.0" x2="282.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="200.0" x2="282.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="194.0" y1="200.0" x2="282.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <circle cx="106.0" cy="81.0" r="7" fill="#3b528b"/>
+  <circle cx="106.0" cy="115.0" r="7" fill="#3b528b"/>
+  <circle cx="106.0" cy="149.0" r="7" fill="#3b528b"/>
+  <circle cx="106.0" cy="183.0" r="7" fill="#3b528b"/>
+  <circle cx="194.0" cy="64.0" r="7" fill="#21918c"/>
+  <circle cx="194.0" cy="98.0" r="7" fill="#21918c"/>
+  <circle cx="194.0" cy="132.0" r="7" fill="#21918c"/>
+  <circle cx="194.0" cy="166.0" r="7" fill="#21918c"/>
+  <circle cx="194.0" cy="200.0" r="7" fill="#21918c"/>
+  <circle cx="282.0" cy="98.0" r="7" fill="#440154"/>
+  <circle cx="282.0" cy="132.0" r="7" fill="#440154"/>
+  <circle cx="282.0" cy="166.0" r="7" fill="#440154"/>
+  <text x="106.0" y="230.0" font-size="12.5" fill="currentColor" text-anchor="middle">x</text>
+  <text x="194.0" y="230.0" font-size="12.5" fill="currentColor" text-anchor="middle">h</text>
+  <text x="282.0" y="230.0" font-size="12.5" fill="currentColor" text-anchor="middle">s</text>
+  <text x="194.0" y="34.0" font-size="14" fill="currentColor" text-anchor="middle">two layers, one hidden</text>
+  <text x="194.0" y="256.0" font-size="12.5" fill="#1b1b1b" text-anchor="middle" font-style="italic">W₁, W₂</text>
+  <line x1="390" y1="46" x2="390" y2="256" stroke="currentColor" stroke-width="1" opacity="0.22"/>
+  <line x1="454.0" y1="81.0" x2="542.0" y2="64.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="81.0" x2="542.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="81.0" x2="542.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="81.0" x2="542.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="81.0" x2="542.0" y2="200.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="115.0" x2="542.0" y2="64.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="115.0" x2="542.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="115.0" x2="542.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="115.0" x2="542.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="115.0" x2="542.0" y2="200.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="149.0" x2="542.0" y2="64.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="149.0" x2="542.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="149.0" x2="542.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="149.0" x2="542.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="149.0" x2="542.0" y2="200.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="183.0" x2="542.0" y2="64.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="183.0" x2="542.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="183.0" x2="542.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="183.0" x2="542.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="454.0" y1="183.0" x2="542.0" y2="200.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="64.0" x2="630.0" y2="64.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="64.0" x2="630.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="64.0" x2="630.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="64.0" x2="630.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="64.0" x2="630.0" y2="200.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="98.0" x2="630.0" y2="64.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="98.0" x2="630.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="98.0" x2="630.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="98.0" x2="630.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="98.0" x2="630.0" y2="200.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="132.0" x2="630.0" y2="64.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="132.0" x2="630.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="132.0" x2="630.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="132.0" x2="630.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="132.0" x2="630.0" y2="200.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="166.0" x2="630.0" y2="64.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="166.0" x2="630.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="166.0" x2="630.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="166.0" x2="630.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="166.0" x2="630.0" y2="200.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="200.0" x2="630.0" y2="64.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="200.0" x2="630.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="200.0" x2="630.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="200.0" x2="630.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="542.0" y1="200.0" x2="630.0" y2="200.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="64.0" x2="718.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="64.0" x2="718.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="64.0" x2="718.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="98.0" x2="718.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="98.0" x2="718.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="98.0" x2="718.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="132.0" x2="718.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="132.0" x2="718.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="132.0" x2="718.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="166.0" x2="718.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="166.0" x2="718.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="166.0" x2="718.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="200.0" x2="718.0" y2="98.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="200.0" x2="718.0" y2="132.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <line x1="630.0" y1="200.0" x2="718.0" y2="166.0" stroke="currentColor" stroke-width="0.6" opacity="0.28"/>
+  <circle cx="454.0" cy="81.0" r="7" fill="#3b528b"/>
+  <circle cx="454.0" cy="115.0" r="7" fill="#3b528b"/>
+  <circle cx="454.0" cy="149.0" r="7" fill="#3b528b"/>
+  <circle cx="454.0" cy="183.0" r="7" fill="#3b528b"/>
+  <circle cx="542.0" cy="64.0" r="7" fill="#21918c"/>
+  <circle cx="542.0" cy="98.0" r="7" fill="#21918c"/>
+  <circle cx="542.0" cy="132.0" r="7" fill="#21918c"/>
+  <circle cx="542.0" cy="166.0" r="7" fill="#21918c"/>
+  <circle cx="542.0" cy="200.0" r="7" fill="#21918c"/>
+  <circle cx="630.0" cy="64.0" r="7" fill="#21918c"/>
+  <circle cx="630.0" cy="98.0" r="7" fill="#21918c"/>
+  <circle cx="630.0" cy="132.0" r="7" fill="#21918c"/>
+  <circle cx="630.0" cy="166.0" r="7" fill="#21918c"/>
+  <circle cx="630.0" cy="200.0" r="7" fill="#21918c"/>
+  <circle cx="718.0" cy="98.0" r="7" fill="#440154"/>
+  <circle cx="718.0" cy="132.0" r="7" fill="#440154"/>
+  <circle cx="718.0" cy="166.0" r="7" fill="#440154"/>
+  <text x="454.0" y="230.0" font-size="12.5" fill="currentColor" text-anchor="middle">x</text>
+  <text x="542.0" y="230.0" font-size="12.5" fill="currentColor" text-anchor="middle">h₁</text>
+  <text x="630.0" y="230.0" font-size="12.5" fill="currentColor" text-anchor="middle">h₂</text>
+  <text x="718.0" y="230.0" font-size="12.5" fill="currentColor" text-anchor="middle">s</text>
+  <text x="586.0" y="34.0" font-size="14" fill="currentColor" text-anchor="middle">three layers, two hidden</text>
+  <text x="586.0" y="256.0" font-size="12.5" fill="#1b1b1b" text-anchor="middle" font-style="italic">W₁, W₂, W₃</text>
+</svg>

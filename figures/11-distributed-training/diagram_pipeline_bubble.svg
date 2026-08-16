@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 326" width="820" height="326"
+     role="img" aria-labelledby="ppTitle ppDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="ppTitle">A four-stage GPipe pipeline with four microbatches</title>
+  <desc id="ppDesc">A grid of four GPU rows against fourteen time slots. Coloured cells mark forward and backward work on each of four microbatches, arranged as a descending diagonal during the forward sweep and an ascending one during the backward sweep. The pale cells at the start and end are the bubble; 32 of the 56 cells are busy, a utilisation of 57.1 percent.</desc>
+  <text x="20.0" y="32.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">time</text>
+  <line x1="56.0" y1="28.0" x2="134.0" y2="28.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.5"/>
+  <polygon points="140.0,28.0 134.0,30.7 134.0,25.3" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="446.0" y="32.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">forward sweep, then backward sweep</text>
+  <text x="84.0" y="100.0" font-size="11" fill="currentColor" text-anchor="end">GPU 1</text>
+  <rect x="96.0" y="74.0" width="50.0" height="44.0" fill="#440154" fill-opacity="0.44" stroke="#440154" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="121.0" y="100.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F1</text>
+  <rect x="146.0" y="74.0" width="50.0" height="44.0" fill="#3b528b" fill-opacity="0.44" stroke="#3b528b" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="171.0" y="100.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F2</text>
+  <rect x="196.0" y="74.0" width="50.0" height="44.0" fill="#21918c" fill-opacity="0.44" stroke="#21918c" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="221.0" y="100.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F3</text>
+  <rect x="246.0" y="74.0" width="50.0" height="44.0" fill="#5ec962" fill-opacity="0.44" stroke="#5ec962" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="271.0" y="100.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F4</text>
+  <rect x="296.0" y="74.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="346.0" y="74.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="396.0" y="74.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="446.0" y="74.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="496.0" y="74.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="546.0" y="74.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="596.0" y="74.0" width="50.0" height="44.0" fill="#440154" fill-opacity="0.24" stroke="#440154" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="621.0" y="100.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B1</text>
+  <rect x="646.0" y="74.0" width="50.0" height="44.0" fill="#3b528b" fill-opacity="0.24" stroke="#3b528b" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="671.0" y="100.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B2</text>
+  <rect x="696.0" y="74.0" width="50.0" height="44.0" fill="#21918c" fill-opacity="0.24" stroke="#21918c" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="721.0" y="100.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B3</text>
+  <rect x="746.0" y="74.0" width="50.0" height="44.0" fill="#5ec962" fill-opacity="0.24" stroke="#5ec962" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="771.0" y="100.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B4</text>
+  <text x="84.0" y="144.0" font-size="11" fill="currentColor" text-anchor="end">GPU 2</text>
+  <rect x="96.0" y="118.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="146.0" y="118.0" width="50.0" height="44.0" fill="#440154" fill-opacity="0.44" stroke="#440154" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="171.0" y="144.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F1</text>
+  <rect x="196.0" y="118.0" width="50.0" height="44.0" fill="#3b528b" fill-opacity="0.44" stroke="#3b528b" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="221.0" y="144.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F2</text>
+  <rect x="246.0" y="118.0" width="50.0" height="44.0" fill="#21918c" fill-opacity="0.44" stroke="#21918c" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="271.0" y="144.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F3</text>
+  <rect x="296.0" y="118.0" width="50.0" height="44.0" fill="#5ec962" fill-opacity="0.44" stroke="#5ec962" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="321.0" y="144.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F4</text>
+  <rect x="346.0" y="118.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="396.0" y="118.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="446.0" y="118.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="496.0" y="118.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="546.0" y="118.0" width="50.0" height="44.0" fill="#440154" fill-opacity="0.24" stroke="#440154" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="571.0" y="144.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B1</text>
+  <rect x="596.0" y="118.0" width="50.0" height="44.0" fill="#3b528b" fill-opacity="0.24" stroke="#3b528b" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="621.0" y="144.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B2</text>
+  <rect x="646.0" y="118.0" width="50.0" height="44.0" fill="#21918c" fill-opacity="0.24" stroke="#21918c" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="671.0" y="144.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B3</text>
+  <rect x="696.0" y="118.0" width="50.0" height="44.0" fill="#5ec962" fill-opacity="0.24" stroke="#5ec962" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="721.0" y="144.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B4</text>
+  <rect x="746.0" y="118.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <text x="84.0" y="188.0" font-size="11" fill="currentColor" text-anchor="end">GPU 3</text>
+  <rect x="96.0" y="162.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="146.0" y="162.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="196.0" y="162.0" width="50.0" height="44.0" fill="#440154" fill-opacity="0.44" stroke="#440154" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="221.0" y="188.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F1</text>
+  <rect x="246.0" y="162.0" width="50.0" height="44.0" fill="#3b528b" fill-opacity="0.44" stroke="#3b528b" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="271.0" y="188.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F2</text>
+  <rect x="296.0" y="162.0" width="50.0" height="44.0" fill="#21918c" fill-opacity="0.44" stroke="#21918c" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="321.0" y="188.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F3</text>
+  <rect x="346.0" y="162.0" width="50.0" height="44.0" fill="#5ec962" fill-opacity="0.44" stroke="#5ec962" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="371.0" y="188.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F4</text>
+  <rect x="396.0" y="162.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="446.0" y="162.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="496.0" y="162.0" width="50.0" height="44.0" fill="#440154" fill-opacity="0.24" stroke="#440154" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="521.0" y="188.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B1</text>
+  <rect x="546.0" y="162.0" width="50.0" height="44.0" fill="#3b528b" fill-opacity="0.24" stroke="#3b528b" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="571.0" y="188.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B2</text>
+  <rect x="596.0" y="162.0" width="50.0" height="44.0" fill="#21918c" fill-opacity="0.24" stroke="#21918c" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="621.0" y="188.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B3</text>
+  <rect x="646.0" y="162.0" width="50.0" height="44.0" fill="#5ec962" fill-opacity="0.24" stroke="#5ec962" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="671.0" y="188.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B4</text>
+  <rect x="696.0" y="162.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="746.0" y="162.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <text x="84.0" y="232.0" font-size="11" fill="currentColor" text-anchor="end">GPU 4</text>
+  <rect x="96.0" y="206.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="146.0" y="206.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="196.0" y="206.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="246.0" y="206.0" width="50.0" height="44.0" fill="#440154" fill-opacity="0.44" stroke="#440154" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="271.0" y="232.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F1</text>
+  <rect x="296.0" y="206.0" width="50.0" height="44.0" fill="#3b528b" fill-opacity="0.44" stroke="#3b528b" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="321.0" y="232.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F2</text>
+  <rect x="346.0" y="206.0" width="50.0" height="44.0" fill="#21918c" fill-opacity="0.44" stroke="#21918c" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="371.0" y="232.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F3</text>
+  <rect x="396.0" y="206.0" width="50.0" height="44.0" fill="#5ec962" fill-opacity="0.44" stroke="#5ec962" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="421.0" y="232.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">F4</text>
+  <rect x="446.0" y="206.0" width="50.0" height="44.0" fill="#440154" fill-opacity="0.24" stroke="#440154" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="471.0" y="232.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B1</text>
+  <rect x="496.0" y="206.0" width="50.0" height="44.0" fill="#3b528b" fill-opacity="0.24" stroke="#3b528b" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="521.0" y="232.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B2</text>
+  <rect x="546.0" y="206.0" width="50.0" height="44.0" fill="#21918c" fill-opacity="0.24" stroke="#21918c" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="571.0" y="232.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B3</text>
+  <rect x="596.0" y="206.0" width="50.0" height="44.0" fill="#5ec962" fill-opacity="0.24" stroke="#5ec962" stroke-width="1.1" stroke-opacity="1.0"/>
+  <text x="621.0" y="232.5" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">B4</text>
+  <rect x="646.0" y="206.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="696.0" y="206.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <rect x="746.0" y="206.0" width="50.0" height="44.0" fill="#1b1b1b" fill-opacity="0.06" stroke="#1b1b1b" stroke-width="0.8" stroke-opacity="0.25"/>
+  <text x="96.0" y="276.0" font-size="12" fill="currentColor" text-anchor="start" font-weight="600">32 busy cells of 56 — utilisation 57.1%</text>
+  <text x="96.0" y="294.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.7">m / (m + P − 1) = 4 / 7;  the pale cells are the bubble</text>
+  <text x="20.0" y="314.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.7">Raising the microbatch count shrinks the bubble and raises the activation memory that must be held.</text>
+</svg>

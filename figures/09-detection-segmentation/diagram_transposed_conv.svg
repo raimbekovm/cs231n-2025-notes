@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 330" width="860" height="330"
+     role="img" aria-labelledby="transConvTitle transConvDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="transConvTitle">A stride-2 transposed convolution in one dimension</title>
+  <desc id="transConvDesc">An input of two values and a filter of three weights on the left. On the right, two scaled copies of the filter are laid out two cells apart, and beneath them the summed output of five terms, in which the middle term is the sum of contributions from both copies.</desc>
+  <text x="60.0" y="40.0" font-size="13" fill="currentColor" text-anchor="start" font-weight="600">Input</text>
+  <rect x="60.0" y="54.0" width="58.0" height="58.0" fill="#3b528b" fill-opacity="0.4" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="89.0" y="88.4" font-size="15" fill="currentColor" text-anchor="middle">a</text>
+  <rect x="118.0" y="54.0" width="58.0" height="58.0" fill="#3b528b" fill-opacity="0.4" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="147.0" y="88.4" font-size="15" fill="currentColor" text-anchor="middle">b</text>
+  <text x="118.0" y="130.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">2 values</text>
+  <text x="228.0" y="40.0" font-size="13" fill="currentColor" text-anchor="start" font-weight="600">Filter</text>
+  <rect x="228.0" y="54.0" width="58.0" height="58.0" fill="#21918c" fill-opacity="0.35" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="257.0" y="88.4" font-size="15" fill="currentColor" text-anchor="middle">x</text>
+  <rect x="286.0" y="54.0" width="58.0" height="58.0" fill="#21918c" fill-opacity="0.35" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="315.0" y="88.4" font-size="15" fill="currentColor" text-anchor="middle">y</text>
+  <rect x="344.0" y="54.0" width="58.0" height="58.0" fill="#21918c" fill-opacity="0.35" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="373.0" y="88.4" font-size="15" fill="currentColor" text-anchor="middle">z</text>
+  <text x="315.0" y="130.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">learned, width 3</text>
+  <text x="494.0" y="40.0" font-size="13" fill="currentColor" text-anchor="start" font-weight="600">Output</text>
+  <rect x="494.0" y="54.0" width="58.0" height="58.0" fill="#3b528b" fill-opacity="0.28" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="523.0" y="88.0" font-size="14" fill="currentColor" text-anchor="middle">ax</text>
+  <rect x="552.0" y="54.0" width="58.0" height="58.0" fill="#3b528b" fill-opacity="0.28" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="581.0" y="88.0" font-size="14" fill="currentColor" text-anchor="middle">ay</text>
+  <rect x="610.0" y="54.0" width="58.0" height="58.0" fill="#3b528b" fill-opacity="0.28" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="639.0" y="88.0" font-size="14" fill="currentColor" text-anchor="middle">az</text>
+  <text x="480.0" y="88.0" font-size="11.5" fill="currentColor" text-anchor="end" fill-opacity="0.8">a · filter</text>
+  <rect x="610.0" y="118.0" width="58.0" height="58.0" fill="#5ec962" fill-opacity="0.28" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="639.0" y="152.0" font-size="14" fill="currentColor" text-anchor="middle">bx</text>
+  <rect x="668.0" y="118.0" width="58.0" height="58.0" fill="#5ec962" fill-opacity="0.28" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="697.0" y="152.0" font-size="14" fill="currentColor" text-anchor="middle">by</text>
+  <rect x="726.0" y="118.0" width="58.0" height="58.0" fill="#5ec962" fill-opacity="0.28" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="755.0" y="152.0" font-size="14" fill="currentColor" text-anchor="middle">bz</text>
+  <text x="480.0" y="152.0" font-size="11.5" fill="currentColor" text-anchor="end" fill-opacity="0.8">b · filter</text>
+  <rect x="494.0" y="206.0" width="58.0" height="58.0" fill="none" fill-opacity="0.22" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+  <text x="523.0" y="240.0" font-size="14" fill="currentColor" text-anchor="middle">ax</text>
+  <line x1="523.0" y1="116.0" x2="523.0" y2="196.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <polygon points="523.0,202.0 520.3,196.0 525.7,196.0" fill="currentColor" fill-opacity="0.4" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="552.0" y="206.0" width="58.0" height="58.0" fill="none" fill-opacity="0.22" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+  <text x="581.0" y="240.0" font-size="14" fill="currentColor" text-anchor="middle">ay</text>
+  <line x1="581.0" y1="116.0" x2="581.0" y2="196.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <polygon points="581.0,202.0 578.3,196.0 583.7,196.0" fill="currentColor" fill-opacity="0.4" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="610.0" y="206.0" width="58.0" height="58.0" fill="#440154" fill-opacity="0.22" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+  <text x="639.0" y="240.0" font-size="12.5" fill="currentColor" text-anchor="middle">az + bx</text>
+  <line x1="639.0" y1="180.0" x2="639.0" y2="196.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <polygon points="639.0,202.0 636.3,196.0 641.7,196.0" fill="currentColor" fill-opacity="0.4" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="668.0" y="206.0" width="58.0" height="58.0" fill="none" fill-opacity="0.22" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+  <text x="697.0" y="240.0" font-size="14" fill="currentColor" text-anchor="middle">by</text>
+  <line x1="697.0" y1="180.0" x2="697.0" y2="196.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <polygon points="697.0,202.0 694.3,196.0 699.7,196.0" fill="currentColor" fill-opacity="0.4" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="726.0" y="206.0" width="58.0" height="58.0" fill="none" fill-opacity="0.22" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+  <text x="755.0" y="240.0" font-size="14" fill="currentColor" text-anchor="middle">bz</text>
+  <line x1="755.0" y1="180.0" x2="755.0" y2="196.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <polygon points="755.0,202.0 752.3,196.0 757.7,196.0" fill="currentColor" fill-opacity="0.4" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="480.0" y="240.0" font-size="11.5" fill="currentColor" text-anchor="end" fill-opacity="0.8">sum</text>
+  <text x="639.0" y="288.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">5 values — the filter moves 2 output cells per input cell</text>
+  <text x="639.0" y="308.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.6">only the shaded cell was reached by both copies</text>
+</svg>

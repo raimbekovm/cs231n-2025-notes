@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 452" width="840" height="452"
+     role="img" aria-labelledby="flamTitle flamDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="flamTitle">Flamingo's architecture</title>
+  <desc id="flamDesc">On the left, a frozen vision encoder produces a feature grid whose size varies with resolution and duration; a Perceiver Resampler with learned latent queries compresses it to exactly 64 visual tokens. On the right, gated cross-attention blocks are interleaved between the layers of a frozen language model, each scaling its output by the hyperbolic tangent of a learnable scalar initialised to zero, so that at initialisation the composite model reproduces the frozen model exactly.</desc>
+  <line x1="392.0" y1="52.0" x2="392.0" y2="396.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.22" stroke-dasharray="4 4"/>
+  <text x="20.0" y="30.0" font-size="13.5" fill="#1b1b1b" text-anchor="start">Variable input, fixed output</text>
+  <text x="416.0" y="30.0" font-size="13.5" fill="#1b1b1b" text-anchor="start">Inserted without disturbing the frozen model</text>
+  <rect x="28.0" y="74.0" width="96.0" height="48.0" fill="#5ec962" fill-opacity="0.2" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="76.0" y="96.0" font-size="12" fill="#1b1b1b" text-anchor="middle">image</text>
+  <text x="76.0" y="112.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.7">or video</text>
+  <line x1="76.0" y1="122.0" x2="76.0" y2="146.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="76.0,152.0 73.3,146.0 78.7,146.0" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="28.0" y="152.0" width="96.0" height="44.0" fill="#21918c" fill-opacity="0.2" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="76.0" y="178.5" font-size="10.5" fill="#1b1b1b" text-anchor="middle">vision encoder</text>
+  <line x1="70.0" y1="210.0" x2="82.0" y2="210.0" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="73.0" y1="204.8" x2="79.0" y2="215.2" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="79.0" y1="204.8" x2="73.0" y2="215.2" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="76.0" y1="196.0" x2="76.0" y2="224.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="76.0,230.0 73.3,224.0 78.7,224.0" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="46.0" y="236.0" width="62.0" height="10.0" fill="#21918c" fill-opacity="0.4" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.25" rx="2"/>
+  <rect x="46.0" y="249.0" width="82.0" height="10.0" fill="#21918c" fill-opacity="0.4" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.25" rx="2"/>
+  <rect x="46.0" y="262.0" width="102.0" height="10.0" fill="#21918c" fill-opacity="0.4" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.25" rx="2"/>
+  <rect x="46.0" y="275.0" width="62.0" height="10.0" fill="#21918c" fill-opacity="0.4" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.25" rx="2"/>
+  <rect x="46.0" y="288.0" width="82.0" height="10.0" fill="#21918c" fill-opacity="0.4" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.25" rx="2"/>
+  <rect x="46.0" y="301.0" width="102.0" height="10.0" fill="#21918c" fill-opacity="0.4" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.25" rx="2"/>
+  <text x="76.0" y="336.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">features: size varies with</text>
+  <text x="76.0" y="354.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.6">resolution and duration</text>
+  <line x1="150.0" y1="286.0" x2="180.0" y2="286.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.65"/>
+  <polygon points="186.0,286.0 180.0,288.7 180.0,283.3" fill="currentColor" fill-opacity="0.65" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="186.0" y="246.0" width="108.0" height="80.0" fill="#fde725" fill-opacity="0.42" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="240.0" y="284.0" font-size="12" fill="#1b1b1b" text-anchor="middle">Perceiver</text>
+  <text x="240.0" y="300.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.7">Resampler</text>
+  <text x="240.0" y="348.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">learned latent queries</text>
+  <text x="240.0" y="366.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.6">cross-attend to the features</text>
+  <line x1="294.0" y1="286.0" x2="324.0" y2="286.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.65"/>
+  <polygon points="330.0,286.0 324.0,288.7 324.0,283.3" fill="currentColor" fill-opacity="0.65" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="332.0" y="258.0" width="46.0" height="12.0" fill="#fde725" fill-opacity="0.6" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="2"/>
+  <rect x="332.0" y="274.0" width="46.0" height="12.0" fill="#fde725" fill-opacity="0.6" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="2"/>
+  <rect x="332.0" y="290.0" width="46.0" height="12.0" fill="#fde725" fill-opacity="0.6" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="2"/>
+  <rect x="332.0" y="306.0" width="46.0" height="12.0" fill="#fde725" fill-opacity="0.6" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="2"/>
+  <text x="355.0" y="240.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">exactly 64</text>
+  <text x="355.0" y="340.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.6">however much</text>
+  <text x="355.0" y="358.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.6">came in</text>
+  <text x="530.0" y="58.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">residual stream, bottom to top</text>
+  <rect x="452.0" y="330.0" width="156.0" height="40.0" fill="#3b528b" fill-opacity="0.2" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="530.0" y="354.5" font-size="11" fill="#1b1b1b" text-anchor="middle">frozen LM layer</text>
+  <line x1="430.0" y1="350.0" x2="442.0" y2="350.0" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="433.0" y1="344.8" x2="439.0" y2="355.2" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="439.0" y1="344.8" x2="433.0" y2="355.2" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <rect x="452.0" y="272.0" width="156.0" height="40.0" fill="#440154" fill-opacity="0.16" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="530.0" y="296.5" font-size="11" fill="#1b1b1b" text-anchor="middle">gated xattn-dense</text>
+  <line x1="530.0" y1="324.0" x2="530.0" y2="320.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.55"/>
+  <polygon points="530.0,314.0 532.7,320.0 527.3,320.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="452.0" y="214.0" width="156.0" height="40.0" fill="#3b528b" fill-opacity="0.2" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="530.0" y="238.5" font-size="11" fill="#1b1b1b" text-anchor="middle">frozen LM layer</text>
+  <line x1="430.0" y1="234.0" x2="442.0" y2="234.0" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="433.0" y1="228.8" x2="439.0" y2="239.2" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="439.0" y1="228.8" x2="433.0" y2="239.2" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="530.0" y1="266.0" x2="530.0" y2="262.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.55"/>
+  <polygon points="530.0,256.0 532.7,262.0 527.3,262.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="452.0" y="156.0" width="156.0" height="40.0" fill="#440154" fill-opacity="0.16" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="530.0" y="180.5" font-size="11" fill="#1b1b1b" text-anchor="middle">gated xattn-dense</text>
+  <line x1="530.0" y1="208.0" x2="530.0" y2="204.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.55"/>
+  <polygon points="530.0,198.0 532.7,204.0 527.3,204.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="452.0" y="98.0" width="156.0" height="40.0" fill="#3b528b" fill-opacity="0.2" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="530.0" y="122.5" font-size="11" fill="#1b1b1b" text-anchor="middle">frozen LM layer</text>
+  <line x1="430.0" y1="118.0" x2="442.0" y2="118.0" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="433.0" y1="112.8" x2="439.0" y2="123.2" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="439.0" y1="112.8" x2="433.0" y2="123.2" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.75"/>
+  <line x1="530.0" y1="150.0" x2="530.0" y2="146.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.55"/>
+  <polygon points="530.0,140.0 532.7,146.0 527.3,146.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="608.0" y1="292.0" x2="648.0" y2="292.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4" stroke-dasharray="3 3"/>
+  <rect x="648.0" y="268.0" width="152.0" height="48.0" fill="#fde725" fill-opacity="0.34" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.5" rx="4"/>
+  <text x="724.0" y="288.0" font-size="13" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">× tanh(α)</text>
+  <text x="724.0" y="306.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">α initialised to 0</text>
+  <rect x="648.0" y="326.0" width="152.0" height="72.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="4"/>
+  <text x="724.0" y="348.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" font-weight="600">at step zero</text>
+  <text x="724.0" y="368.0" font-size="11" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.78">tanh(0) = 0, so the block</text>
+  <text x="724.0" y="384.0" font-size="11" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.78">contributes exactly nothing</text>
+  <text x="530.0" y="414.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">every gated block cross-attends to the 64 tokens from the left</text>
+  <text x="420.0" y="434.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">Removing the zero-initialised gate costs 4.2 points on Flamingo's aggregate score and destabilises training.</text>
+</svg>

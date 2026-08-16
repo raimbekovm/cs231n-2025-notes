@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 340" width="840" height="340"
+     role="img" aria-labelledby="loopTitle loopDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="loopTitle">Open-loop recognition against the closed perception-action loop</title>
+  <desc id="loopDesc">On the left an image enters a model and an output leaves, with nothing returning. On the right an agent emits an action into the world and the world returns the next state and a reward, so the data the agent is trained on is produced by the policy being trained.</desc>
+  <text x="420.0" y="26.0" font-size="14" fill="currentColor" text-anchor="middle" font-weight="600">The assumption every earlier chapter rests on, and what breaks it</text>
+  <text x="210.0" y="58.0" font-size="13" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.75">Recognition: a function</text>
+  <rect x="44.0" y="88.0" width="104.0" height="40.0" fill="none" fill-opacity="0.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.6" rx="5"/>
+  <text x="96.0" y="113.0" font-size="11.5" fill="currentColor" text-anchor="middle">image</text>
+  <rect x="158.0" y="88.0" width="104.0" height="40.0" fill="#3b528b" fill-opacity="0.16" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.6" rx="5"/>
+  <text x="210.0" y="113.0" font-size="11.5" fill="currentColor" text-anchor="middle">model</text>
+  <rect x="272.0" y="88.0" width="104.0" height="40.0" fill="none" fill-opacity="0.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.6" rx="5"/>
+  <text x="324.0" y="113.0" font-size="11.5" fill="currentColor" text-anchor="middle">label / box / caption</text>
+  <line x1="148.0" y1="108.0" x2="152.0" y2="108.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="158.0,108.0 152.0,110.7 152.0,105.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="262.0" y1="108.0" x2="266.0" y2="108.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="272.0,108.0 266.0,110.7 266.0,105.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="210.0" y="160.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">nothing returns; the next input is</text>
+  <text x="210.0" y="176.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">drawn from a fixed dataset</text>
+  <text x="210.0" y="206.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">train / test split is meaningful</text>
+  <line x1="430.0" y1="60.0" x2="430.0" y2="300.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.22" stroke-dasharray="4 4"/>
+  <text x="650.0" y="58.0" font-size="13" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.75">Robot learning: a loop</text>
+  <rect x="510.0" y="88.0" width="104.0" height="40.0" fill="#21918c" fill-opacity="0.16" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.6" rx="5"/>
+  <text x="562.0" y="113.0" font-size="11.5" fill="currentColor" text-anchor="middle">agent</text>
+  <rect x="686.0" y="88.0" width="104.0" height="40.0" fill="#fde725" fill-opacity="0.3" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.6" rx="5"/>
+  <text x="738.0" y="113.0" font-size="11.5" fill="currentColor" text-anchor="middle">world</text>
+  <line x1="614.0" y1="108.0" x2="680.0" y2="108.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="686.0,108.0 680.0,110.7 680.0,105.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="650.0" y="99.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.8">action a</text>
+  <line x1="738.0" y1="128.0" x2="738.0" y2="170.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.55"/>
+  <line x1="738.0" y1="170.0" x2="562.0" y2="170.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.55"/>
+  <line x1="562.0" y1="170.0" x2="562.0" y2="136.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.55"/>
+  <polygon points="562.0,130.0 564.7,136.0 559.3,136.0" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="650.0" y="186.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.8">state s', reward r</text>
+  <text x="650.0" y="216.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">the world the agent sees next is the world</text>
+  <text x="650.0" y="232.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">its own last action produced</text>
+  <text x="650.0" y="262.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">the training distribution moves with the policy</text>
+  <text x="420.0" y="314.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.7">Everything difficult in this chapter follows from the return path on the right.</text>
+</svg>

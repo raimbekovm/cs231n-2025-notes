@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 320.0" width="900.0" height="320.0"
+     role="img" aria-labelledby="threewaysTitle threewaysDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="threewaysTitle">How information reaches a distant position under recurrence, convolution and attention</title>
+  <desc id="threewaysDesc">Three panels, each with a row of five indigo input nodes below a row of five yellow output nodes. In the first the inputs feed a horizontal chain of teal state nodes, so reaching the last output from the first input takes four steps. In the second each output connects only to its three nearest inputs. In the third every output connects to every input, twenty-five edges in one layer.</desc>
+  <text x="148.0" y="40.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">Recurrent</text>
+  <line x1="44.0" y1="188.0" x2="44.0" y2="162.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.45"/>
+  <line x1="44.0" y1="146.0" x2="44.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.45"/>
+  <circle cx="44.0" cy="154.0" r="8.0" fill="#21918c" fill-opacity="0.25" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.7"/>
+  <line x1="96.0" y1="188.0" x2="96.0" y2="162.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.45"/>
+  <line x1="96.0" y1="146.0" x2="96.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.45"/>
+  <line x1="52.0" y1="154.0" x2="82.0" y2="154.0" stroke="#21918c" stroke-width="1.5" stroke-opacity="0.85"/>
+  <polygon points="88.0,154.0 82.0,156.7 82.0,151.3" fill="#21918c" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="96.0" cy="154.0" r="8.0" fill="#21918c" fill-opacity="0.25" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.7"/>
+  <line x1="148.0" y1="188.0" x2="148.0" y2="162.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.45"/>
+  <line x1="148.0" y1="146.0" x2="148.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.45"/>
+  <line x1="104.0" y1="154.0" x2="134.0" y2="154.0" stroke="#21918c" stroke-width="1.5" stroke-opacity="0.85"/>
+  <polygon points="140.0,154.0 134.0,156.7 134.0,151.3" fill="#21918c" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="148.0" cy="154.0" r="8.0" fill="#21918c" fill-opacity="0.25" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.7"/>
+  <line x1="200.0" y1="188.0" x2="200.0" y2="162.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.45"/>
+  <line x1="200.0" y1="146.0" x2="200.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.45"/>
+  <line x1="156.0" y1="154.0" x2="186.0" y2="154.0" stroke="#21918c" stroke-width="1.5" stroke-opacity="0.85"/>
+  <polygon points="192.0,154.0 186.0,156.7 186.0,151.3" fill="#21918c" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="200.0" cy="154.0" r="8.0" fill="#21918c" fill-opacity="0.25" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.7"/>
+  <line x1="252.0" y1="188.0" x2="252.0" y2="162.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.45"/>
+  <line x1="252.0" y1="146.0" x2="252.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.45"/>
+  <line x1="208.0" y1="154.0" x2="238.0" y2="154.0" stroke="#21918c" stroke-width="1.5" stroke-opacity="0.85"/>
+  <polygon points="244.0,154.0 238.0,156.7 238.0,151.3" fill="#21918c" fill-opacity="0.85" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="252.0" cy="154.0" r="8.0" fill="#21918c" fill-opacity="0.25" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="148.0" y="124.0" font-size="10" fill="#21918c" text-anchor="middle" fill-opacity="0.9">four steps from first to last</text>
+  <circle cx="44.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="44.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <circle cx="96.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="96.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <circle cx="148.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="148.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <circle cx="200.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="200.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <circle cx="252.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="252.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="26.0" y="108.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.6">y</text>
+  <text x="26.0" y="200.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.6">x</text>
+  <text x="32.0" y="250.0" font-size="10.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">state passed along a chain</text>
+  <text x="32.0" y="268.0" font-size="10.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">O(N) compute, O(N) memory</text>
+  <text x="32.0" y="286.0" font-size="10.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">N sequential steps: not parallel</text>
+  <text x="444.0" y="40.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">Convolution</text>
+  <line x1="340.0" y1="188.0" x2="340.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="392.0" y1="188.0" x2="340.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="340.0" y1="188.0" x2="392.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="392.0" y1="188.0" x2="392.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="444.0" y1="188.0" x2="392.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="392.0" y1="188.0" x2="444.0" y2="112.0" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="444.0" y1="188.0" x2="444.0" y2="112.0" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="496.0" y1="188.0" x2="444.0" y2="112.0" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="444.0" y1="188.0" x2="496.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="496.0" y1="188.0" x2="496.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="548.0" y1="188.0" x2="496.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="496.0" y1="188.0" x2="548.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="548.0" y1="188.0" x2="548.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <circle cx="340.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="340.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <circle cx="392.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="392.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <circle cx="444.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="444.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <circle cx="496.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="496.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <circle cx="548.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="548.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="322.0" y="108.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.6">y</text>
+  <text x="322.0" y="200.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.6">x</text>
+  <text x="328.0" y="250.0" font-size="10.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">mixes a local neighbourhood</text>
+  <text x="328.0" y="268.0" font-size="10.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">parallel across positions</text>
+  <text x="328.0" y="286.0" font-size="10.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">distance costs depth</text>
+  <line x1="302.0" y1="56.0" x2="302.0" y2="290.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.15"/>
+  <text x="740.0" y="40.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">Self-attention</text>
+  <line x1="636.0" y1="188.0" x2="636.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="688.0" y1="188.0" x2="636.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="740.0" y1="188.0" x2="636.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="792.0" y1="188.0" x2="636.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="844.0" y1="188.0" x2="636.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="636.0" y1="188.0" x2="688.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="688.0" y1="188.0" x2="688.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="740.0" y1="188.0" x2="688.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="792.0" y1="188.0" x2="688.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="844.0" y1="188.0" x2="688.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="636.0" y1="188.0" x2="740.0" y2="112.0" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.55"/>
+  <line x1="688.0" y1="188.0" x2="740.0" y2="112.0" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.55"/>
+  <line x1="740.0" y1="188.0" x2="740.0" y2="112.0" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.55"/>
+  <line x1="792.0" y1="188.0" x2="740.0" y2="112.0" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.55"/>
+  <line x1="844.0" y1="188.0" x2="740.0" y2="112.0" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.55"/>
+  <line x1="636.0" y1="188.0" x2="792.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="688.0" y1="188.0" x2="792.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="740.0" y1="188.0" x2="792.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="792.0" y1="188.0" x2="792.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="844.0" y1="188.0" x2="792.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="636.0" y1="188.0" x2="844.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="688.0" y1="188.0" x2="844.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="740.0" y1="188.0" x2="844.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="792.0" y1="188.0" x2="844.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <line x1="844.0" y1="188.0" x2="844.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <circle cx="636.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="636.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <circle cx="688.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="688.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <circle cx="740.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="740.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <circle cx="792.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="792.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <circle cx="844.0" cy="196.0" r="8.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6"/>
+  <circle cx="844.0" cy="104.0" r="8.0" fill="#fde725" fill-opacity="0.55" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="618.0" y="108.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.6">y</text>
+  <text x="618.0" y="200.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.6">x</text>
+  <text x="624.0" y="250.0" font-size="10.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">every output sees every input</text>
+  <text x="624.0" y="268.0" font-size="10.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">parallel: four matrix multiplies</text>
+  <text x="624.0" y="286.0" font-size="10.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">O(N²) compute</text>
+  <line x1="598.0" y1="56.0" x2="598.0" y2="290.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.15"/>
+</svg>

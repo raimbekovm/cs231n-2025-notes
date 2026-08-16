@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<link rel="preload" href="../site_libs/bootstrap/bootstrap-icons-subset.woff2" as="font" type="font/woff2" crossorigin data-unblock-head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Text was the supervision signal vision had been missing — free at web scale and carrying meaning, which is how CLIP learned an open-vocabulary classifier from 400 million captions. This chapter follows what that bought, what the contrastive objective quietly failed to learn, and the four responses to it: fusing vision into a language model, collecting better data, making segmentation promptable, and composing frozen models instead of training new ones.">
+
+<title>17&nbsp; Vision and Language – CS231n 2025 Lecture Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js" defer></script>
+<script src="../site_libs/quarto-nav/headroom.min.js" defer></script>
+<script src="../site_libs/clipboard/clipboard.min.js" defer></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js" defer></script>
+<script src="../site_libs/quarto-search/fuse.min.js" defer></script>
+<script src="../site_libs/quarto-search/quarto-search.js" defer></script>
+<meta name="quarto:offset" content="../">
+<link href="../lectures/17-robot-learning.html" rel="next">
+<link href="../lectures/15-3d-vision.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js" defer></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js" defer></script>
+<script src="../site_libs/quarto-html/anchor.min.js" defer></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a277fc7c0b5572c02727048f32503fbf.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0b627ad7bf503adecabbfce8127bba6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js" defer></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-44035a36485c75a47acc2861fd8100e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d504b0152fceac813948731d0d567431.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Nothing matches that",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "Search the notes…",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<meta name="theme-color" content="#12151c">
+<meta name="color-scheme" content="dark light">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="canonical" href="https://raimbekovm.github.io/cs231n-2025-notes/lectures/16-vision-language.html">
+<meta property="og:url" content="https://raimbekovm.github.io/cs231n-2025-notes/lectures/16-vision-language.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","@id":"https://raimbekovm.github.io/cs231n-2025-notes/lectures/16-vision-language.html#article","url":"https://raimbekovm.github.io/cs231n-2025-notes/lectures/16-vision-language.html","headline":"Vision and Language","alternativeHeadline":"Lecture 16","name":"Vision and Language","description":"Text was the supervision signal vision had been missing — free at web scale and carrying meaning, which is how CLIP learned an open-vocabulary classifier from 400 million captions. This chapter follows what that bought, what the contrastive objective quietly failed to learn, and the four responses to it: fusing vision into a language model, collecting better data, making segmentation promptable, and composing frozen models instead of training new ones.","author":{"@type":"Person","name":"Murat Raimbekov","url":"https://github.com/raimbekovm"},"inLanguage":"en","isAccessibleForFree":true,"license":"https://opensource.org/licenses/MIT","isPartOf":{"@type":"Book","@id":"https://raimbekovm.github.io/cs231n-2025-notes/#book","name":"CS231n 2025 Lecture Notes","url":"https://raimbekovm.github.io/cs231n-2025-notes/"},"about":[{"@type":"Thing","name":"computer vision"},{"@type":"Thing","name":"deep learning"},{"@type":"Thing","name":"convolutional neural networks"},{"@type":"Thing","name":"vision transformers"},{"@type":"Thing","name":"diffusion models"},{"@type":"Thing","name":"vision-language models"},{"@type":"Thing","name":"CS231n"}],"keywords":"computer vision, deep learning, convolutional neural networks, vision transformers, diffusion models, vision-language models, CS231n"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CS231n 2025 Lecture Notes","item":"https://raimbekovm.github.io/cs231n-2025-notes/"},{"@type":"ListItem","position":2,"name":"Vision and Language","item":"https://raimbekovm.github.io/cs231n-2025-notes/lectures/16-vision-language.html"}]}]}</script>
+
+  <link rel="stylesheet" href="../katex/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../fonts/fonts.css">
+<meta property="og:title" content="17&nbsp; Vision and Language – CS231n 2025 Lecture Notes">
+<meta property="og:description" content="Comprehensive, modern lecture notes for Stanford CS231n (Spring 2025): CNNs, Transformers, diffusion models, and vision-language models. All eighteen lectures of the Spring 2025 course, written up in full.">
+<meta property="og:image" content="https://raimbekovm.github.io/cs231n-2025-notes/figures/social-card.png">
+<meta property="og:site_name" content="CS231n 2025 Lecture Notes">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="17&nbsp; Vision and Language – CS231n 2025 Lecture Notes">
+<meta name="twitter:description" content="Comprehensive, modern lecture notes for Stanford CS231n (Spring 2025): CNNs, Transformers, diffusion models, and vision-language models. All eighteen lectures of the Spring 2025 course, written up in full.">
+<meta name="twitter:image" content="https://raimbekovm.github.io/cs231n-2025-notes/figures/social-card.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const darkModeDefault = authorPrefersDark;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CS231n 2025 Lecture Notes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://raimbekovm.github.io/cs231n-2025-notes/CS231n-2025-Lecture-Notes.pdf"> 
+<span class="menu-text">PDF</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/raimbekovm/cs231n-2025-notes" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Switch between the dark and light theme"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/16-vision-language.html">Multimodal</a></li><li class="breadcrumb-item"><a href="../lectures/16-vision-language.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Vision and Language</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">CS231n 2025 Lecture Notes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Fundamentals</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/02-image-classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Image Classification with Linear Classifiers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/03-regularization-optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regularization and Optimization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/04-neural-networks-backpropagation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Neural Networks and Backpropagation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/05-convolutional-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Convolutional Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/06-cnn-architectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">CNN Architectures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/07-recurrent-neural-networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/08-attention-transformers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Attention and Transformers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Vision Tasks</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/09-detection-segmentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Object Detection and Segmentation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/10-video-understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Video Understanding</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Systems</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/11-distributed-training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Large-Scale Distributed Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/12-self-supervised-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Self-Supervised Learning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Generative Models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/13-generative-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Generative Models I</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/14-generative-models-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Generative Models II</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Beyond 2D</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/15-3d-vision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">3D Vision</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Multimodal</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/16-vision-language.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Vision and Language</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Embodied AI</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/17-robot-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Robot Learning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Impact</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/18-human-centered-ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Human-Centered AI</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-vl-foundation" id="toc-sec-vl-foundation" class="nav-link active" data-scroll-target="#sec-vl-foundation"><span class="header-section-number">17.1</span> One model, or one model per task</a></li>
+  <li><a href="#sec-clip" id="toc-sec-clip" class="nav-link" data-scroll-target="#sec-clip"><span class="header-section-number">17.2</span> Text as the label that already exists</a></li>
+  <li><a href="#sec-clip-zero-shot" id="toc-sec-clip-zero-shot" class="nav-link" data-scroll-target="#sec-clip-zero-shot"><span class="header-section-number">17.3</span> A similarity model is already a classifier</a></li>
+  <li><a href="#sec-clip-robustness" id="toc-sec-clip-robustness" class="nav-link" data-scroll-target="#sec-clip-robustness"><span class="header-section-number">17.4</span> What the zero-shot number was hiding</a></li>
+  <li><a href="#sec-clip-limits" id="toc-sec-clip-limits" class="nav-link" data-scroll-target="#sec-clip-limits"><span class="header-section-number">17.5</span> The failure the objective permits</a></li>
+  <li><a href="#sec-llava" id="toc-sec-llava" class="nav-link" data-scroll-target="#sec-llava"><span class="header-section-number">17.6</span> Fusion by concatenation</a></li>
+  <li><a href="#sec-flamingo" id="toc-sec-flamingo" class="nav-link" data-scroll-target="#sec-flamingo"><span class="header-section-number">17.7</span> Fusion by cross-attention</a></li>
+  <li><a href="#sec-molmo" id="toc-sec-molmo" class="nav-link" data-scroll-target="#sec-molmo"><span class="header-section-number">17.8</span> Open weights are not open data</a></li>
+  <li><a href="#sec-sam" id="toc-sec-sam" class="nav-link" data-scroll-target="#sec-sam"><span class="header-section-number">17.9</span> Promptability as the pretraining task</a></li>
+  <li><a href="#sec-chaining" id="toc-sec-chaining" class="nav-link" data-scroll-target="#sec-chaining"><span class="header-section-number">17.10</span> Chaining, and the case for not training</a></li>
+  <li><a href="#sec-vl-summary" id="toc-sec-vl-summary" class="nav-link" data-scroll-target="#sec-vl-summary"><span class="header-section-number">17.11</span> What the chapter adds up to</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/raimbekovm/cs231n-2025-notes/edit/main/lectures/16-vision-language.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/raimbekovm/cs231n-2025-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/16-vision-language.html">Multimodal</a></li><li class="breadcrumb-item"><a href="../lectures/16-vision-language.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Vision and Language</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Vision and Language</span></h1>
+<p class="subtitle lead">Lecture 16</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Based on Lecture 16 of <a href="https://cs231n.stanford.edu/">CS231n</a>, Stanford University, Spring 2025, given by <a href="https://www.ranjaykrishna.com/">Ranjay Krishna</a>.</em></p>
+<section id="sec-vl-foundation" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="sec-vl-foundation"><span class="header-section-number">17.1</span> One model, or one model per task</h2>
+<p>Every chapter so far has described the same loop, and described it so consistently that the loop stopped looking like a choice. Collect a dataset with a training split and a test split. Train a model on the training split for the one task the dataset was built to measure. Report a number on the test split. Detection, segmentation, captioning, video classification — each got its own dataset, its own architecture, its own training run, and its own leaderboard, and a model that was excellent at one of them was, in the strict sense, useless at any other. The weights encoded a task as much as they encoded the world.</p>
+<p>What changed is not that anyone found a better architecture for image classification. What changed is the observation, arriving from language first, that the expensive part of training is learning what things <em>are</em>, and the cheap part is learning what to <em>do</em> with them. If the expensive part can be paid once, on data that is not organised around any particular task, then the cheap part can be paid many times over, in some cases with a handful of examples and in some cases with none at all. A model trained that way is called a foundation model, and the name is doing real work: it is a claim about position in a pipeline rather than about architecture.</p>
+<p>The definition is contested at the edges, and the lecture is honest about this. The one property everyone agrees on is generality — the same weights serve many downstream tasks without being retrained for each. The properties that usually accompany it but do not define it are the familiar three: a large parameter count, a large and diverse pretraining corpus, and a self-supervised objective. Those three are means rather than ends. A model can have all of them and remain a specialist, and the interesting question about any candidate foundation model is not how large it is but how little you have to do to it before it is useful for something its authors did not anticipate.</p>
+<p>Language got there first, and got there for a reason worth stating plainly, because it is the constraint that everything in this chapter is working around. Text is <em>self-labelling</em>. The next word in a sentence is both the input to the model and the supervision for it, and there is no annotation step between a web crawl and a training corpus. That single property is what let language models scale to corpora nobody could have labelled, and it is exactly what vision lacked. Pixels do not come with their next pixel in any semantically useful sense, and the self-supervised objectives of <a href="12-self-supervised-learning.html#sec-simclr" class="quarto-xref"><span>Section 13.9</span></a> — asking two augmentations of one image to agree — produce representations without producing an <em>interface</em>. A SimCLR encoder maps a photograph to a good vector. Nothing about that vector tells you what the photograph is of, and recovering that still needs a labelled dataset and a supervised head.</p>
+<p>So the vision story of the last five years is best read as a search for something that plays the role that next-word prediction plays in language: a supervision signal that already exists at web scale, that nobody has to pay for, and that carries semantics rather than just invariance. The answer turned out to be text — not as the output of the vision model but as its <em>supervisor</em>.</p>
+</section>
+<section id="sec-clip" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="sec-clip"><span class="header-section-number">17.2</span> Text as the label that already exists</h2>
+<p>Recall the shape of the SimCLR objective. Take an image, produce two augmentations of it, push their representations together, and push them away from the representations of every other image in the batch. The positive pair is manufactured — it exists because the augmentation pipeline made it — and the negatives are whatever else happened to be in the minibatch. The model learns to be invariant to crops, colour jitter and blur, which is a real and useful thing to learn, but the semantics come in only by implication: two crops of a cat share a label because they share an origin, not because anything in the loss knows the word <em>cat</em>.</p>
+<p><a href="https://arxiv.org/abs/2103.00020">CLIP</a> changes exactly one thing about that picture, and the change is small enough to state in a sentence and consequential enough to have reorganised the field. Keep the image encoder on the left. Replace the second image encoder on the right with a <em>text</em> encoder. The positive pair is no longer two augmentations of one photograph; it is a photograph and the caption that was published alongside it. Everything else — the contrastive form, the in-batch negatives, the temperature — carries over unchanged.</p>
+<div id="fig-simclr-to-clip" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simclr-to-clip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/16-vision-language/diagram_simclr_to_clip.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;17.1: The move from SimCLR to CLIP. Both objectives pull a positive pair together and push everything else in the batch apart; they differ only in where the positive pair comes from. SimCLR manufactures it with augmentation, so the model learns invariance. CLIP takes it from the web, so the model learns to associate an image with a description — and inherits an interface it can be queried through."><img src="../figures/16-vision-language/diagram_simclr_to_clip.svg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simclr-to-clip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.1: The move from SimCLR to CLIP. Both objectives pull a positive pair together and push everything else in the batch apart; they differ only in where the positive pair comes from. SimCLR manufactures it with augmentation, so the model learns invariance. CLIP takes it from the web, so the model learns to associate an image with a description — and inherits an interface it can be queried through.
+</figcaption>
+</figure>
+</div>
+<p>Write the batch as <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span> pairs <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x_i, y_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span> of image and caption, and let <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mi>i</mi></msub><mo>=</mo><msub><mi>g</mi><mtext>img</mtext></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">u_i = g_{\text{img}}(x_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">img</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span> and <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>i</mi></msub><mo>=</mo><msub><mi>g</mi><mtext>txt</mtext></msub><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">v_i = g_{\text{txt}}(y_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">txt</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span> be the two encoders’ outputs after projection to a shared space and normalisation to unit length, so that <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><msub><mi>u</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>v</mi><mi>j</mi></msub><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\langle u_i, v_j \rangle</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mopen">⟨</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">⟩</span></span></span></span></span> is a cosine similarity in <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-1, 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span></span>. The batch defines an <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>×</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">N \times N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span> matrix of these similarities, and the entire training signal is the claim that its diagonal should dominate. Reading the matrix along its rows gives the image-to-text loss,</p>
+<p><span id="eq-clip-i2t"><span class="math display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><msub><mi mathvariant="script">L</mi><mrow><mtext>I</mtext><mo>→</mo><mtext>T</mtext></mrow></msub><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mi>log</mi><mo>⁡</mo><mfrac><mrow><mi>exp</mi><mo>⁡</mo><mtext> ⁣</mtext><mrow><mo fence="true">(</mo><mo stretchy="false">⟨</mo><msub><mi>u</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>v</mi><mi>i</mi></msub><mo stretchy="false">⟩</mo><mi mathvariant="normal">/</mi><mi>τ</mi><mo fence="true">)</mo></mrow></mrow><mrow><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mi>exp</mi><mo>⁡</mo><mtext> ⁣</mtext><mrow><mo fence="true">(</mo><mo stretchy="false">⟨</mo><msub><mi>u</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>v</mi><mi>j</mi></msub><mo stretchy="false">⟩</mo><mi mathvariant="normal">/</mi><mi>τ</mi><mo fence="true">)</mo></mrow></mrow></mfrac><mo separator="true">,</mo></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(17.1)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\mathcal{L}_{\text{I}\to\text{T}} = -\frac{1}{N}\sum_{i=1}^{N}
+\log \frac{\exp\!\left(\langle u_i, v_i \rangle / \tau\right)}
+          {\sum_{j=1}^{N} \exp\!\left(\langle u_i, v_j \rangle / \tau\right)},
+\tag{17.1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathcal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">I</span></span><span class="mrel mtight">→</span><span class="mord text mtight"><span class="mord mtight">T</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:3.1354em;vertical-align:-1.307em;"></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.1288em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9812em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4358em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">exp</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mopen">⟨</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">⟩</span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop">exp</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mopen">⟨</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">⟩</span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.307em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span></span><span class="katex-tag"><span class="katex-strut" style="height:3.1354em;vertical-align:-1.307em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">17.1</span></span><span class="mord">)</span></span></span></span></span></span></span></span></p>
+<p>which asks each image to select its own caption out of the <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span> on offer. Here <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span></span></span></span></span> is a learned temperature that sets how sharply the softmax discriminates: small <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span></span></span></span></span> makes the loss care intensely about the single closest competitor, large <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span></span></span></span></span> spreads the pressure across all of them. Reading the same matrix along its columns gives the complementary constraint, that each caption should select its own image,</p>
+<p><span id="eq-clip-t2i"><span class="math display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><msub><mi mathvariant="script">L</mi><mrow><mtext>T</mtext><mo>→</mo><mtext>I</mtext></mrow></msub><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mi>log</mi><mo>⁡</mo><mfrac><mrow><mi>exp</mi><mo>⁡</mo><mtext> ⁣</mtext><mrow><mo fence="true">(</mo><mo stretchy="false">⟨</mo><msub><mi>u</mi><mi>j</mi></msub><mo separator="true">,</mo><msub><mi>v</mi><mi>j</mi></msub><mo stretchy="false">⟩</mo><mi mathvariant="normal">/</mi><mi>τ</mi><mo fence="true">)</mo></mrow></mrow><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mi>exp</mi><mo>⁡</mo><mtext> ⁣</mtext><mrow><mo fence="true">(</mo><mo stretchy="false">⟨</mo><msub><mi>u</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>v</mi><mi>j</mi></msub><mo stretchy="false">⟩</mo><mi mathvariant="normal">/</mi><mi>τ</mi><mo fence="true">)</mo></mrow></mrow></mfrac><mo separator="true">,</mo></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(17.2)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\mathcal{L}_{\text{T}\to\text{I}} = -\frac{1}{N}\sum_{j=1}^{N}
+\log \frac{\exp\!\left(\langle u_j, v_j \rangle / \tau\right)}
+          {\sum_{i=1}^{N} \exp\!\left(\langle u_i, v_j \rangle / \tau\right)},
+\tag{17.2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathcal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">T</span></span><span class="mrel mtight">→</span><span class="mord text mtight"><span class="mord mtight">I</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:3.2421em;vertical-align:-1.4138em;"></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4138em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.1288em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9812em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">exp</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mopen">⟨</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">⟩</span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop">exp</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mopen">⟨</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">⟩</span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1709em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span></span><span class="katex-tag"><span class="katex-strut" style="height:3.2421em;vertical-align:-1.4138em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">17.2</span></span><span class="mord">)</span></span></span></span></span></span></span></span></p>
+<p>and the objective actually optimised is the average of the two. The symmetry is not decoration. A one-sided loss can be driven down by an encoder that spreads images out and collapses text, or the reverse; requiring both directions to work forces both spaces to be informative.</p>
+<div id="fig-clip-objective" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-clip-objective-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/16-vision-language/diagram_clip_objective.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;17.2: CLIP’s training step in full. A batch of N image–caption pairs produces an N \times N matrix of cosine similarities; the N diagonal entries are the positives and every off-diagonal entry is a negative. Cross-entropy along the rows is Equation&nbsp;eq-clip-i2t, along the columns Equation&nbsp;eq-clip-t2i, and the loss is their average. Every negative is free — it is another example’s positive, reused."><img src="../figures/16-vision-language/diagram_clip_objective.svg" class="fig-ar-1 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clip-objective-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.2: CLIP’s training step in full. A batch of <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span> image–caption pairs produces an <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>×</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">N \times N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span> matrix of cosine similarities; the <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span> diagonal entries are the positives and every off-diagonal entry is a negative. Cross-entropy along the rows is <a href="#eq-clip-i2t" class="quarto-xref">Equation&nbsp;<span>17.1</span></a>, along the columns <a href="#eq-clip-t2i" class="quarto-xref">Equation&nbsp;<span>17.2</span></a>, and the loss is their average. Every negative is free — it is another example’s positive, reused.
+</figcaption>
+</figure>
+</div>
+<p>Two things about <a href="#fig-clip-objective" class="quarto-xref">Figure&nbsp;<span>17.2</span></a> are worth dwelling on, because they explain why this objective and not a more obvious one. The first is that the negatives cost nothing. A batch of <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span> pairs yields <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span> positives and <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>N</mi><mn>2</mn></msup><mo>−</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">N^2 - N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span> negatives, all of them assembled by matrix multiplication from encodings that had to be computed anyway. This is why batch size is a first-class hyperparameter rather than a memory-management detail: CLIP trains at a minibatch of 32,768, and the difficulty of the discrimination problem — how many wrong captions each image has to beat — grows with it. The second is that the loss never asks either encoder to <em>reconstruct</em> anything. It only asks them to agree on an ordering. That is a far weaker requirement than generation, it is what makes the objective cheap, and in <a href="#sec-clip-limits" class="quarto-xref"><span>Section 17.5</span></a> it turns out to be exactly what the model exploits.</p>
+<p>The payoff is the data. Alt-text is attached to images across the web for reasons that have nothing to do with machine learning, and it was already there. CLIP’s corpus is 400 million image–text pairs collected from public sources, and no one annotated any of it. This is the property that self-supervised vision objectives were reaching for and could not get: not merely unlabelled data, but data whose labels are <em>semantic</em> and <em>free</em>. The augmentation-based objectives could scale, but everything they scaled was invariance. Adding text to the same machinery scales meaning.</p>
+</section>
+<section id="sec-clip-zero-shot" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="sec-clip-zero-shot"><span class="header-section-number">17.3</span> A similarity model is already a classifier</h2>
+<p>What comes out of training is not a classifier. It is a function that scores how well an image and a piece of text go together, which is an odd artefact if what you wanted was ImageNet accuracy. The move that turns one into the other is simple enough to feel like a trick and is, in a way that matters, not a trick at all.</p>
+<p>Suppose you want to classify images into <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span></span> categories. Write each category name into a short phrase — <code>a photo of a {label}</code> — and push all <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span></span> phrases through the text encoder. That gives <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span></span> unit vectors <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>v</mi><mi>C</mi></msub></mrow><annotation encoding="application/x-tex">v_1, \dots, v_C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>, one per class, computed once and cached. To classify a new image, encode it to <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">u</span></span></span></span></span> and take the class whose vector it is closest to:</p>
+<p><span id="eq-zero-shot"><span class="math display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><mover accent="true"><mi>y</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>arg</mi><mo>⁡</mo><munder><mrow><mi>max</mi><mo>⁡</mo></mrow><mrow><mi>c</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><mi>C</mi><mo stretchy="false">}</mo></mrow></munder><mtext>  </mtext><mo stretchy="false">⟨</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mtext> </mtext><msub><mi>v</mi><mi>c</mi></msub><mo stretchy="false">⟩</mo><mi mathvariant="normal">.</mi></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(17.3)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\hat{y}(x) = \arg\max_{c \in \{1, \dots, C\}} \; \langle u(x),\, v_c \rangle .
+\tag{17.3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord katex-accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.716em;vertical-align:-0.966em;"></span><span class="mop">ar<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4306em;"><span style="top:-2.309em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mrel mtight">∈</span><span class="mopen mtight">{</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="minner mtight">…</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span><span class="mclose mtight">}</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">max</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.966em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mopen">⟨</span><span class="mord mathnormal">u</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">⟩</span><span class="mord">.</span></span><span class="katex-tag"><span class="katex-strut" style="height:1.716em;vertical-align:-0.966em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">17.3</span></span><span class="mord">)</span></span></span></span></span></span></span></span></p>
+<p>The lecture describes this as nearest-neighbour classification with one exemplar per class, where the exemplars happen to have been written rather than photographed, and that is a good way to hold it. But it is worth noticing what <a href="#eq-zero-shot" class="quarto-xref">Equation&nbsp;<span>17.3</span></a> is in more familiar terms. Stack the <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">v_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> as the rows of a matrix <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>C</mi><mo>×</mo><mi>d</mi></mrow></msup></mrow><annotation encoding="application/x-tex">W \in \mathbb{R}^{C \times d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span><span class="mbin mtight">×</span><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span></span></span>; then <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mi>u</mi><mo separator="true">,</mo><msub><mi>v</mi><mi>c</mi></msub><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\langle u, v_c \rangle</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⟨</span><span class="mord mathnormal">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">⟩</span></span></span></span></span> is the <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span></span>-th component of <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mi>u</mi></mrow><annotation encoding="application/x-tex">Wu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mord mathnormal">u</span></span></span></span></span>, and the prediction is <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>arg</mi><mo>⁡</mo><msub><mrow><mi>max</mi><mo>⁡</mo></mrow><mi>c</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mi>u</mi><msub><mo stretchy="false">)</mo><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">\arg\max_c (Wu)_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">ar<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop">max</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mord mathnormal">u</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>. This is <em>exactly</em> a linear classification head with no bias term, of the kind every chapter since <a href="02-image-classification.html#sec-linear-classifier" class="quarto-xref"><span>Section 3.4</span></a> has been training with labelled data and gradient descent. CLIP does not avoid the linear head. It synthesises the weights from language instead of fitting them to examples, and the figure below makes the equivalence explicit because it is the cleanest statement of what zero-shot transfer actually is.</p>
+<div id="fig-zero-shot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zero-shot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/16-vision-language/diagram_zero_shot.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;17.3: Constructing a zero-shot classifier. The class names are written into prompts, encoded once, and cached; classifying an image is a single matrix–vector product against them. The right-hand panel is the same computation drawn as the bias-free linear layer it is — the weights were written rather than trained, and the classifier can be rebuilt for a new label set in the time it takes to encode C short strings."><img src="../figures/16-vision-language/diagram_zero_shot.svg" class="fig-ar-2 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zero-shot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.3: Constructing a zero-shot classifier. The class names are written into prompts, encoded once, and cached; classifying an image is a single matrix–vector product against them. The right-hand panel is the same computation drawn as the bias-free linear layer it is — the weights were written rather than trained, and the classifier can be rebuilt for a new label set in the time it takes to encode <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span></span> short strings.
+</figcaption>
+</figure>
+</div>
+<p>Reading it that way also explains the property that makes it useful. A trained linear head is welded to the label set it was fitted on; changing the classes means collecting examples and refitting. A <em>written</em> head can be rebuilt for any label set at all, including categories that appeared nowhere in training and including label sets invented at inference time. The vocabulary of the classifier is open, and its cost is a forward pass over a few short strings.</p>
+<p>The phrasing of those strings turns out to matter more than it should, and the reasons are instructive. The text encoder was trained on captions, which are sentences, so feeding it a bare token like <code>boxer</code> puts it well outside the distribution it learned on — and lands it on a genuine ambiguity, since the word is a dog breed and an athlete and CLIP has seen both. Wrapping the label in <code>a photo of a {label}</code> recovers the caption-like form and disambiguates by context, and adding a domain hint — <code>a satellite photo of a {label}</code>, <code>a sketch of a {label}</code> — helps further on datasets where the images are not ordinary photographs.</p>
+<p>Any single template also bakes in a bias, and the fix generalises the trick rather than tuning it. Encode the class through many templates and average the resulting vectors, renormalising the result to unit length:</p>
+<p><span id="eq-prompt-ensemble"><span class="math display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><msub><mover accent="true"><mi>v</mi><mo>ˉ</mo></mover><mi>c</mi></msub><mo>=</mo><mfrac><mrow><mfrac><mn>1</mn><mi>K</mi></mfrac><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover><mi>t</mi><mtext> ⁣</mtext><mrow><mo fence="true">(</mo><msub><mtext>prompt</mtext><mi>k</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo fence="true">)</mo></mrow></mrow><mrow><mo fence="true">∥</mo><mfrac><mn>1</mn><mi>K</mi></mfrac><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover><mi>t</mi><mtext> ⁣</mtext><mrow><mo fence="true">(</mo><msub><mtext>prompt</mtext><mi>k</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo fence="true">)</mo></mrow><mo fence="true">∥</mo></mrow></mfrac><mi mathvariant="normal">.</mi></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(17.4)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\bar{v}_c = \frac{\frac{1}{K}\sum_{k=1}^{K} t\!\left(\text{prompt}_k(c)\right)}
+                 {\left\lVert \frac{1}{K}\sum_{k=1}^{K} t\!\left(\text{prompt}_k(c)\right) \right\rVert} .
+\tag{17.4}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7178em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord katex-accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:3.4062em;vertical-align:-1.69em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7162em;"><span style="top:-2.11em;"><span class="pstrut" style="height:3.15em;"></span><span class="mord"><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.15em;"><span style="top:-3.15em;"><span class="pstrut" style="height:3.8em;"></span><span style="width:0.556em;height:1.8em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.556em" height="1.8em" viewBox="0 0 556 1800"><path d="M145 15 v585 v600 v585 c2.667,10,9.667,15,21,15
+c10,0,16.667,-5,20,-15 v-585 v-600 v-585 c-2.667,-10,-9.667,-15,-21,-15
+c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v600 v585 h43z
+M367 15 v585 v600 v585 c2.667,10,9.667,15,21,15
+c10,0,16.667,-5,20,-15 v-585 v-600 v-585 c-2.667,-10,-9.667,-15,-21,-15
+c-10,0,-16.667,5,-20,15z M410 15 H367 v585 v600 v585 h43z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.65em;"><span></span></span></span></span></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">K</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9812em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">K</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord text"><span class="mord">prompt</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.242em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.15em;"><span style="top:-3.15em;"><span class="pstrut" style="height:3.8em;"></span><span style="width:0.556em;height:1.8em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.556em" height="1.8em" viewBox="0 0 556 1800"><path d="M145 15 v585 v600 v585 c2.667,10,9.667,15,21,15
+c10,0,16.667,-5,20,-15 v-585 v-600 v-585 c-2.667,-10,-9.667,-15,-21,-15
+c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v600 v585 h43z
+M367 15 v585 v600 v585 c2.667,10,9.667,15,21,15
+c10,0,16.667,-5,20,-15 v-585 v-600 v-585 c-2.667,-10,-9.667,-15,-21,-15
+c-10,0,-16.667,5,-20,15z M410 15 H367 v585 v600 v585 h43z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.65em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.38em;"><span class="pstrut" style="height:3.15em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.885em;"><span class="pstrut" style="height:3.15em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">K</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9812em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">K</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord text"><span class="mord">prompt</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.242em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord">.</span></span><span class="katex-tag"><span class="katex-strut" style="height:3.4062em;vertical-align:-1.69em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">17.4</span></span><span class="mord">)</span></span></span></span></span></span></span></span></p>
+<p>CLIP ensembles 80 context prompts on ImageNet this way, worth 3.5 percentage points over the single default template, with prompt engineering and ensembling together contributing almost five points. The detail that makes it practical is <em>where</em> the averaging happens. Ensembling in probability space would mean running <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">K</span></span></span></span></span> classifiers per image and averaging their outputs, so inference cost would scale with <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">K</span></span></span></span></span>. Averaging in embedding space collapses the <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">K</span></span></span></span></span> templates into one cached vector per class before any image arrives, so the ensemble costs <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">K</span></span></span></span></span> text encodings once and nothing at all per image thereafter. The two are not the same computation and do not give the same answer — <a href="#eq-prompt-ensemble" class="quarto-xref">Equation&nbsp;<span>17.4</span></a> commits to a single direction per class rather than to a mixture — but the one that is free is also the one that works.</p>
+</section>
+<section id="sec-clip-robustness" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="sec-clip-robustness"><span class="header-section-number">17.4</span> What the zero-shot number was hiding</h2>
+<p>Trained on 400 million pairs, CLIP reaches 76.2% zero-shot top-1 on ImageNet, matching the original ResNet-50 while using none of ImageNet’s 1.28 million labelled training images. That is a striking sentence and, taken alone, a slightly boring result: a great deal of machinery to arrive where supervised training arrived years earlier. The interesting part is what happens when a supervised model matched to the same 76.2% — the paper’s comparison uses a ResNet-101 — is asked about anything else.</p>
+<p>The benchmark suite for this measures <em>distribution shift</em>: datasets built from the same thousand ImageNet categories, rendered in ways the original photographs were not. ImageNetV2 is a fresh collection following the original protocol, ImageNet Sketch replaces photographs with line drawings, ImageNet-R with artistic renditions, ObjectNet photographs household objects at unusual angles and in unusual settings, and ImageNet-A collects natural photographs that standard classifiers get wrong. Nothing in any of them requires a concept the model has not been asked about. Only the pixel statistics move.</p>
+<div id="fig-robustness" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-robustness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/16-vision-language/diagram_robustness.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;17.4: Two models matched exactly on ImageNet and separated by up to 74 points everywhere else. Bars are top-1 accuracy for a supervised ResNet-101 and for zero-shot CLIP on the six evaluations; the annotation on each pair is the gap. The supervised model’s accuracy tracks how closely a dataset resembles ImageNet’s photographs, which is the definition of having learned the dataset rather than the categories."><img src="../figures/16-vision-language/diagram_robustness.svg" class="fig-ar-3 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-robustness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.4: Two models matched exactly on ImageNet and separated by up to 74 points everywhere else. Bars are top-1 accuracy for a supervised ResNet-101 and for zero-shot CLIP on the six evaluations; the annotation on each pair is the gap. The supervised model’s accuracy tracks how closely a dataset resembles ImageNet’s photographs, which is the definition of having learned the dataset rather than the categories.
+</figcaption>
+</figure>
+</div>
+<p>The gaps in <a href="#fig-robustness" class="quarto-xref">Figure&nbsp;<span>17.4</span></a> are not the usual few points of benchmark noise. On ImageNet-R the supervised model scores 37.7% and CLIP 88.9%. On ObjectNet, 32.6% against 72.3%. On ImageNet-A, 2.7% against 77.1% — a supervised classifier performing several times <em>worse</em> than random guessing among a thousand classes would, because the images were selected adversarially against exactly that kind of model. The supervised network’s accuracy degrades in near-perfect proportion to how far a dataset drifts from ImageNet’s particular photographic conventions, which is the operational definition of having fitted the dataset rather than the categories. Its 76.2% was never a measurement of whether it knows what a teapot is; it was a measurement of whether it knows what an ImageNet teapot looks like. CLIP, having never seen ImageNet’s training distribution, has nothing of that kind to overfit.</p>
+<p>This is the result that ended the argument, and it did so by reframing what the argument was about. The case for supervised pretraining had always been that labels are the most informative signal available per example, which is true. The case against is that a fixed label set caps what can be learned per example at <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mn>1000</mn><mo>≈</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">\log_2 1000 \approx 10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.9386em;vertical-align:-0.2441em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1000</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span></span> bits, and worse, that it teaches the model the <em>photographer’s</em> conventions along with the category. Captions are noisier per example and unbounded in what they can express, and there are three orders of magnitude more of them.</p>
+<p>The scaling evidence points the same way. CLIP’s zero-shot ImageNet accuracy rises steadily with both model size and data volume across the range they trained, with no sign of the saturation that supervised ImageNet training hits once the labels are exhausted — the ceiling in the supervised case is a property of the dataset, not of the method.</p>
+<p><a href="https://arxiv.org/abs/2205.01917">CoCa</a> then showed that the contrastive objective, for all its efficiency, is leaving something on the table. Its architecture keeps CLIP’s two towers and splits the text side in two: the first block of decoder layers has no cross-attention and produces a unimodal text embedding, which is contrasted against the image embedding exactly as before, and the remaining layers cross-attend to the image features and are trained to <em>generate</em> the caption. One forward pass, two losses. The captioning term is a strictly harder requirement — predicting each word given the image and the preceding words demands that the image features retain the information a description needs, not merely enough to be ranked above the other images in a batch. CoCa reaches 86.3% zero-shot top-1 on ImageNet, 90.6% with a frozen encoder and a learned head, and 91.0% after fine-tuning. Contrastive pretraining is cheap and generative pretraining is informative, and the two compose.</p>
+</section>
+<section id="sec-clip-limits" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="sec-clip-limits"><span class="header-section-number">17.5</span> The failure the objective permits</h2>
+<p>It would be easy to read the previous section as a straightforward win, and the lecture is careful not to let it stand that way. CLIP-style models are cheap to train relative to what they can do, trivial to retarget at a new label set, and robust in a way that supervised classifiers are not. They are also, in a specific and well-documented sense, not doing what their zero-shot numbers suggest.</p>
+<p>Start from what <a href="#eq-clip-i2t" class="quarto-xref">Equation&nbsp;<span>17.1</span></a> actually demands. To drive the loss down, the image encoding of a photograph must score higher against its own caption than against the <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">N-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span> other captions <em>in that batch</em> — and those captions are drawn at random from the web. A batch containing a golden retriever, a plate of sushi and a suspension bridge poses a problem that is completely solved by detecting which nouns are present. Nothing about word order, nothing about which adjective attaches to which noun, and nothing about the relation between two objects is ever load-bearing, because no random negative ever differs from the positive on those axes alone. The gradient has no reason to encode structure it is never tested on, and it does not.</p>
+<div id="fig-bag-of-words" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bag-of-words-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/16-vision-language/diagram_bag_of_words.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;17.5: Why random negatives never force compositional structure. Against the batch on the left, matching nouns is a complete solution and every gradient step rewards it. The hard negatives on the right — same words, different structure — are the ones that would require more, and the probability of drawing one from a web-scale corpus at random is effectively zero."><img src="../figures/16-vision-language/diagram_bag_of_words.svg" class="fig-ar-4 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bag-of-words-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.5: Why random negatives never force compositional structure. Against the batch on the left, matching nouns is a complete solution and every gradient step rewards it. The hard negatives on the right — same words, different structure — are the ones that would require more, and the probability of drawing one from a web-scale corpus at random is effectively zero.
+</figcaption>
+</figure>
+</div>
+<p>The <a href="https://arxiv.org/abs/2210.01936">ARO benchmark</a> makes this precise by constructing the negatives the training distribution never supplies. Its cases are built from Visual Genome and COCO by perturbing a true caption in exactly one structural way — swapping the arguments of a relation, reassigning an attribute to the wrong object, or shuffling word order — so that the correct and incorrect captions contain the same words and differ only in how those words compose. Across more than fifty thousand such cases, state-of-the-art vision–language models behave like bags of words: relational understanding is poor, attribute-to-object binding blunders, and order sensitivity is close to absent. The authors’ diagnosis is the same as the one above, and their fix follows from it — mine hard negatives that differ compositionally, so that the objective finally has to represent what it was never asked about.</p>
+<p>The related <a href="https://arxiv.org/abs/2204.03162">Winoground</a> probe is smaller and sharper: two images and two captions built from <em>identical</em> words in different orders, where the task is to match them correctly. Models that score respectably on ImageNet perform at or below chance on it.</p>
+<p>The other limitation is structural rather than statistical, and it constrains everything the rest of the chapter builds. CLIP emits one vector per image. Whatever grounding the model has — which pixels correspond to which word — is destroyed by the pooling that produces that vector, and there is no output head through which it could be recovered. The model can tell you a photograph is consistent with <code>two dogs on a sofa</code>. It cannot tell you where either dog is, and it is unreliable about whether there are two, because counting requires exactly the compositional structure the objective declined to learn. A single similarity score is a narrow interface, and the next three sections are each a different answer to the question of what to attach to a vision encoder so that something richer can come out.</p>
+</section>
+<section id="sec-llava" class="level2" data-number="17.6">
+<h2 data-number="17.6" class="anchored" data-anchor-id="sec-llava"><span class="header-section-number">17.6</span> Fusion by concatenation</h2>
+<p>If a single vector is too narrow an interface, the obvious thing to want is a model that takes an image and a question and answers in free text. By 2023 one half of that was solved — instruction-tuned language models could hold a conversation, follow directions, and reason in text — and the other half, a vision encoder producing semantically rich features, had been solved by CLIP. The question was how to join them, and there are two good answers. <a href="https://arxiv.org/abs/2304.08485">LLaVA</a> takes the simpler one.</p>
+<p>Recall that a transformer language model does not consume words. It consumes a sequence of vectors in <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="double-struck">R</mi><mi>d</mi></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span></span></span>, produced by looking each token up in an embedding table, and self-attention is indifferent to where in the sequence any particular vector came from. That indifference is the opening. If image content can be written as a handful of vectors in that same <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span></span>-dimensional space, it can be <em>concatenated into the prompt</em> and the language model will attend to it exactly as it attends to words — with no architectural change whatsoever.</p>
+<p>LLaVA does precisely that. A frozen CLIP ViT-L/14 encodes the image into patch features <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">Z</span></span></span></span></span>; a single trainable projection <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span></span> maps each patch feature into the language model’s embedding dimension, giving visual tokens <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>v</mi></msub><mo>=</mo><mi>W</mi><mi>Z</mi></mrow><annotation encoding="application/x-tex">H_v = W Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mord mathnormal" style="margin-right:0.0715em;">Z</span></span></span></span></span>; those tokens are prepended to the embedded text tokens; and the whole sequence goes into Vicuna, which generates the response autoregressively. The connector is one matrix.</p>
+<div id="fig-llava" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-llava-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/16-vision-language/diagram_llava.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;17.6: LLaVA’s fusion. Patch features from a frozen CLIP encoder are mapped by a single linear projection into the language model’s embedding space and concatenated with the text tokens, so self-attention mixes the two modalities with no change to the language model’s architecture. The connector is the only new parameter block in stage one."><img src="../figures/16-vision-language/diagram_llava.svg" class="fig-ar-5 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-llava-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.6: LLaVA’s fusion. Patch features from a frozen CLIP encoder are mapped by a single linear projection into the language model’s embedding space and concatenated with the text tokens, so self-attention mixes the two modalities with no change to the language model’s architecture. The connector is the only new parameter block in stage one.
+</figcaption>
+</figure>
+</div>
+<p>Two choices inside that simplicity carry weight. The first is which layer of the vision encoder to read. The final layer of a CLIP image encoder is trained to produce the single pooled vector that enters <a href="#eq-clip-i2t" class="quarto-xref">Equation&nbsp;<span>17.1</span></a>, which means it has been optimised to discard everything not needed for that ranking — precisely the spatial detail a question-answering model wants. The penultimate layer’s patch features have not yet been through that bottleneck, and LLaVA uses them. It is the same instinct as taking features from before the classifier in transfer learning, applied to a bottleneck that is contrastive rather than categorical.</p>
+<p>The second is where the training data comes from, and it is the part that generalised. There was no corpus of multimodal instruction-following conversations, and collecting one by hand is expensive. So LLaVA manufactured it: take images from COCO with their existing captions and bounding boxes, feed <em>those text annotations</em> — not the images — to a language-only GPT-4, and ask it to write conversations, detailed descriptions, and reasoning questions about the scene it can infer from them. The teacher never sees a pixel; the symbolic annotations stand in for the image, and the student learns to produce the same responses from the image itself. Training then runs in two stages, first aligning the projection with the language model frozen, then fine-tuning the projection and the language model together on the generated instruction data. The result reaches 85.1% of GPT-4’s score on a synthetic multimodal instruction benchmark and, ensembled with GPT-4, 92.53% on ScienceQA.</p>
+<p>The honest caveat is that this is distillation. The ceiling of a model trained this way is set by the teacher that wrote its training data, which is the specific problem <a href="#sec-molmo" class="quarto-xref"><span>Section 17.8</span></a> exists to solve.</p>
+</section>
+<section id="sec-flamingo" class="level2" data-number="17.7">
+<h2 data-number="17.7" class="anchored" data-anchor-id="sec-flamingo"><span class="header-section-number">17.7</span> Fusion by cross-attention</h2>
+<p><a href="https://arxiv.org/abs/2204.14198">Flamingo</a> answers the same question differently, and the differences are motivated by a goal LLaVA does not pursue: keeping the language model <em>exactly</em> intact while teaching it to see, so that its in-context learning ability survives the operation.</p>
+<p>The first problem is quantity. A vision encoder’s output grid varies with resolution, and video makes it worse — frames sampled at one per second turn a clip into a spatio-temporal grid whose size depends on duration. Cross-attention over that is expensive and its cost is unpredictable. Flamingo inserts a <strong>Perceiver Resampler</strong>, which holds a fixed set of learned latent queries that cross-attend to the visual features and emit a fixed 64 visual tokens no matter how many features came in. Variable-size input, constant-size output, with the compression learned rather than imposed by pooling — and in ablation it beats both a plain transformer and an MLP in that position.</p>
+<p>The second problem is the one that dictates the architecture. Flamingo’s language model is a frozen Chinchilla, and freezing it is the point: its few-shot ability is what Flamingo is trying to inherit, and fine-tuning would put that at risk. But new layers initialised at random, inserted between pretrained blocks, corrupt the residual stream immediately — the first forward pass injects noise into representations the frozen model spent its entire training run learning to rely on.</p>
+<p>The fix is a gate. Each inserted <code>GATED XATTN-DENSE</code> block multiplies its output by <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>tanh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\tanh(\alpha)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">tanh</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span></span> before adding it to the residual stream, where <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></span> is a learnable scalar <em>initialised to zero</em>:</p>
+<p><span id="eq-flamingo-gate"><span class="math display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><mi>y</mi><mo>←</mo><mi>y</mi><mo>+</mo><mi>tanh</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>α</mi><mtext>xattn</mtext></msub><mo stretchy="false">)</mo><mo>⋅</mo><mtext>attn</mtext><mo stretchy="false">(</mo><mi>q</mi><mo>=</mo><mi>y</mi><mo separator="true">,</mo><mtext>  </mtext><mi>k</mi><mi>v</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mspace width="2em"/><mi>y</mi><mo>←</mo><mi>y</mi><mo>+</mo><mi>tanh</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>α</mi><mtext>dense</mtext></msub><mo stretchy="false">)</mo><mo>⋅</mo><mtext>ffw</mtext><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(17.5)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">
+y \leftarrow y + \tanh(\alpha_{\text{xattn}}) \cdot \text{attn}(q = y,\; kv = x), \qquad
+y \leftarrow y + \tanh(\alpha_{\text{dense}}) \cdot \text{ffw}(y).
+\tag{17.5}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">tanh</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">xattn</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">attn</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:2em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">tanh</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">dense</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">ffw</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mclose">)</span><span class="mord">.</span></span><span class="katex-tag"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">17.5</span></span><span class="mord">)</span></span></span></span></span></span></span></span></p>
+<p>Since <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>tanh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\tanh(0) = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">tanh</span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>, the new block contributes nothing at step zero and the conditioned model’s output is <em>identical</em> to the frozen language model’s. Vision does not intrude; it is admitted, gradually, as far as the gradient finds it useful, and each layer sets its own <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></span> independently. Removing the zero-initialised gate costs 4.2 points on the aggregate score and destabilises training — this is a load-bearing detail, not a flourish, and the same idea recurs wherever a pretrained network has to be extended without being disturbed.</p>
+<div id="fig-flamingo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-flamingo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/16-vision-language/diagram_flamingo.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;17.7: Flamingo’s architecture. The Perceiver Resampler turns a variable-size feature grid into exactly 64 visual tokens; gated cross-attention blocks are interleaved between the frozen language model’s layers, each scaling its contribution by \tanh(\alpha) with \alpha initialised to zero. At initialisation the composite model computes exactly what the frozen language model computes."><img src="../figures/16-vision-language/diagram_flamingo.svg" class="fig-ar-6 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flamingo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.7: Flamingo’s architecture. The Perceiver Resampler turns a variable-size feature grid into exactly 64 visual tokens; gated cross-attention blocks are interleaved between the frozen language model’s layers, each scaling its contribution by <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>tanh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\tanh(\alpha)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">tanh</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span></span> with <span class="math inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></span> initialised to zero. At initialisation the composite model computes exactly what the frozen language model computes.
+</figcaption>
+</figure>
+</div>
+<p>The third piece is the training data, and it is what produces the capability the model is remembered for. Flamingo trains on web pages with images and text <em>interleaved</em> in their original order, rather than on isolated image–caption pairs. A sequence therefore looks like several images, each with surrounding prose — which is structurally identical to a few-shot prompt. The attention mask then does something deliberately severe: each text token may attend to the visual tokens of only the single most recent preceding image, not to all images in the sequence. Cross-attention is strictly local; the frozen language model’s own self-attention, which sees the whole sequence, is what carries information across examples.</p>
+<div id="fig-flamingo-masking" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-flamingo-masking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/16-vision-language/diagram_flamingo_masking.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;17.8: Flamingo’s per-image masking on an interleaved sequence. Each text token cross-attends only to the visual tokens of the image immediately preceding it, so the association between an image and its own text is never diluted. Longer-range structure — the pattern that makes a sequence of examples a few-shot prompt — is carried by the language model’s self-attention, which is unmasked."><img src="../figures/16-vision-language/diagram_flamingo_masking.svg" class="fig-ar-7 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flamingo-masking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.8: Flamingo’s per-image masking on an interleaved sequence. Each text token cross-attends only to the visual tokens of the image immediately preceding it, so the association between an image and its own text is never diluted. Longer-range structure — the pattern that makes a sequence of examples a few-shot prompt — is carried by the language model’s self-attention, which is unmasked.
+</figcaption>
+</figure>
+</div>
+<p>The constraint is what makes the arrangement work. Letting every token attend to every image would blur the image–text correspondence the model needs; forbidding it keeps each pairing crisp while the unmasked text pathway still lets the model recognise that the earlier pairs demonstrate a pattern. Trained this way, Flamingo does in-context learning across modalities: shown three image–answer pairs in a novel format and then a fourth image, it continues the pattern, with no gradient step and no task-specific head. It sets a new few-shot state of the art on 16 benchmarks, and on six of them a few-shot Flamingo surpasses models that were fine-tuned on the full training set — orders of magnitude more task-specific data.</p>
+</section>
+<section id="sec-molmo" class="level2" data-number="17.8">
+<h2 data-number="17.8" class="anchored" data-anchor-id="sec-molmo"><span class="header-section-number">17.8</span> Open weights are not open data</h2>
+<p>By 2024 the frontier multimodal models were proprietary, and the open replications shared a dependency that limited how good they could get. Their instruction data came from GPT-4V — the pipeline of <a href="#sec-llava" class="quarto-xref"><span>Section 17.6</span></a>, run against a stronger teacher — which is distillation, and a distilled student is bounded by its teacher. It also means the open community’s models improve only when a closed model does, which is a strange position for open research to occupy.</p>
+<p><a href="https://arxiv.org/abs/2409.17146">Molmo</a> argues that the gap was never architectural. Its model is deliberately unremarkable: a vision encoder, a connector, a language model, assembled the way <a href="#sec-llava" class="quarto-xref"><span>Section 17.6</span></a> describes. The claim is that the difference between the open models and the closed ones is <em>data</em>, and that the right response is to collect it rather than to distill it.</p>
+<p>The difficulty is that the data you want is dense description — long, detailed, exhaustive text about what is in an image — and internet alt-text is the opposite. Alt-text is incidental: it exists to serve some other purpose, it is short, it is often a filename or an SEO fragment, and it describes almost nothing about the image’s actual contents. Asking crowdworkers to type dense captions instead runs into a plain human fact, which is that people will not type for very long, and the captions come back short no matter how the task is worded.</p>
+<p>The workaround is the part of Molmo most worth remembering, because it solves an annotation problem by changing the <em>modality of annotation</em> rather than the incentive. Annotators are asked to <strong>describe the image out loud for 60 to 90 seconds</strong>, and the speech is transcribed. Speaking is fast and low-effort where typing is slow and effortful, and a person who will type twelve words will happily produce two hundred. Prompts direct attention to what a caption normally omits — spatial relationships, counts, text appearing in the image, background detail — and the resulting PixMo-Cap dataset holds 712,000 images with captions far longer than anything scraped. No VLM was involved at any point, so the ceiling is human rather than GPT-4V.</p>
+<p>The second dataset is a genuine addition to what these models can do. Grounding — saying <em>where</em> something is — has historically meant bounding boxes or segmentation masks, both slow and awkward to annotate. Molmo asks annotators to <strong>point</strong>, emitting 2D coordinates, and collects 2.3 million pointing annotations. A point is much cheaper than a box and turns out to be the more useful primitive.</p>
+<div id="fig-pointing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pointing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/16-vision-language/diagram_pointing.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;17.9: Pointing as a single output primitive. The same coordinate output grounds a referring expression, answers a counting question by enumerating instances rather than estimating a number, and hands a target to a downstream system — a segmentation model that turns the point into a mask, or a robot that turns it into a waypoint. Boxes and masks each serve one of these; a point serves all three and is the cheapest of the three to annotate."><img src="../figures/16-vision-language/diagram_pointing.svg" class="fig-ar-8 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pointing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.9: Pointing as a single output primitive. The same coordinate output grounds a referring expression, answers a counting question by enumerating instances rather than estimating a number, and hands a target to a downstream system — a segmentation model that turns the point into a mask, or a robot that turns it into a waypoint. Boxes and masks each serve one of these; a point serves all three and is the cheapest of the three to annotate.
+</figcaption>
+</figure>
+</div>
+<p>Pointing unifies three things that were separate. It grounds language, by attaching a phrase to a location. It fixes counting: a model asked <em>how many</em> now answers by pointing at each instance and counting its own outputs, which converts a perceptual estimate into an enumeration and is measurably more accurate. And it is an action interface — a point is a navigation waypoint, a grasp target, or a UI element to click, so the same output that answers a question can drive a robot or an agent. A point is also composable with a model that turns points into regions, which is exactly what <a href="#sec-sam" class="quarto-xref"><span>Section 17.9</span></a> provides; chaining the two gives segmentation masks for anything Molmo can name, with neither model trained for the combination.</p>
+<p>Molmo’s 72B model ranks second on human-preference evaluation among all models tested, open and closed, and achieves the highest academic benchmark score in its comparison — from a conventional architecture and better data. The lecture’s summary is the correct one: quality over quantity, and intentional collection over incidental scraping, even for pretraining.</p>
+</section>
+<section id="sec-sam" class="level2" data-number="17.9">
+<h2 data-number="17.9" class="anchored" data-anchor-id="sec-sam"><span class="header-section-number">17.9</span> Promptability as the pretraining task</h2>
+<p>Every model so far outputs text. Segmentation asks for something else — a mask, per pixel — and the question of what a <em>foundation model</em> for segmentation would even be is not obvious, because segmentation has no equivalent of a caption to supervise it at scale.</p>
+<p><a href="https://arxiv.org/abs/2304.02643">SAM</a> resolves this by choosing the task first. Rather than segmenting a fixed set of categories, it defines <strong>promptable segmentation</strong>: given an image and a prompt indicating what to segment — a point, a box, a rough mask, or text — return a valid mask. The prompt vocabulary is open, and the task is general enough to serve both as a pretraining objective and as the interface downstream users get.</p>
+<p>Making it work requires confronting a problem that supervised segmentation datasets define away by fiat. A prompt is frequently ambiguous, and irreducibly so. A single point on a person’s shirt might mean the shirt, the person, or the group the person is standing in. All three are correct segmentations of that point, and no amount of additional training data settles which one was intended, because the intent is not in the image. A model forced to emit one mask learns to average the three, which is the worst answer available — a mask that is nobody’s intended object.</p>
+<p>SAM’s response is to predict <strong>three masks per prompt</strong> with a confidence score each, corresponding roughly to the part, the whole, and the containing group. During training the loss is computed against the best-matching of the three only, so the three heads specialise rather than converging; at inference the caller picks. Ambiguity is represented rather than resolved.</p>
+<div id="fig-sam" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/16-vision-language/diagram_sam.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Figure&nbsp;17.10: SAM’s architecture, drawn along the axis that its runtime behaviour depends on. The heavy ViT encoder runs once per image and its embedding is reused; each prompt then costs only the lightweight decoder, which is why interactive use with many prompts stays real-time. The decoder emits three masks with confidence scores, so an ambiguous point returns the part, the whole and the group rather than an average of them."><img src="../figures/16-vision-language/diagram_sam.svg" class="fig-ar-9 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.10: SAM’s architecture, drawn along the axis that its runtime behaviour depends on. The heavy ViT encoder runs once per image and its embedding is reused; each prompt then costs only the lightweight decoder, which is why interactive use with many prompts stays real-time. The decoder emits three masks with confidence scores, so an ambiguous point returns the part, the whole and the group rather than an average of them.
+</figcaption>
+</figure>
+</div>
+<p>The cost structure in <a href="#fig-sam" class="quarto-xref">Figure&nbsp;<span>17.10</span></a> is a design decision, not a consequence. Interactive segmentation means many prompts against one image — a user clicking repeatedly, or a downstream model probing a grid of points — and the asymmetry between a heavy encoder run once and a tiny decoder run per prompt is what makes that affordable. Encode once, decode cheaply, many times.</p>
+<p>That leaves the data, and here the promptable task pays for itself in a way worth following, because the model and the dataset are built by the same process. There is no web-scale source of segmentation masks the way there is for image–text pairs, so SAM’s authors ran a <strong>data engine</strong> in three stages. First, annotators segment interactively with model assistance, and the model retrains on what they produce. Then the model proposes confident masks itself and annotators only fill in what it missed, which shifts human effort towards the model’s blind spots. Finally, the model annotates fully automatically: prompted with a dense grid of points across each image, filtered for confidence and stability, it generates masks with no human in the loop. The result, SA-1B, holds over 1 billion masks across 11 million images — roughly 400 times more masks than any prior segmentation dataset — and the great majority were produced by the model the dataset was collected to train. Each stage’s model makes the next stage’s annotation cheaper, and the loop is only possible because the task was defined to be promptable in the first place.</p>
+<p>What SAM does not do is name anything. It segments what you point at and has no notion of what the region is, which is precisely why it composes so well with the models of the previous sections: CLIP or Molmo supplies the semantics and the location, SAM turns the location into a boundary. Neither was trained for the pairing.</p>
+</section>
+<section id="sec-chaining" class="level2" data-number="17.10">
+<h2 data-number="17.10" class="anchored" data-anchor-id="sec-chaining"><span class="header-section-number">17.10</span> Chaining, and the case for not training</h2>
+<p>Everything above answers a new demand by training something. There is a fourth move, and by the end of the lecture it is the one that looks most like where the field went: leave the models frozen and <em>compose</em> them.</p>
+<p>The small version of the idea is <a href="https://arxiv.org/abs/2209.03320">CuPL</a>, which revisits the prompts of <a href="#sec-clip-zero-shot" class="quarto-xref"><span>Section 17.3</span></a>. Those templates are hand-written, generic, and identical for every class — <code>a photo of a {label}</code> says nothing about what distinguishes the label from anything else. But a language model has read a great deal about these categories and knows what they look like. So CuPL asks one: <em>what does a platypus look like?</em> The answers come back as descriptive sentences naming the discriminating features — the bill, the flat tail, the fur — and those sentences become the prompts. The classifier’s weights are now written by a model that knows something about the class, rather than by a template that knows only its name. It gains over a percentage point on ImageNet, requires no training and no hand-written templates, and its ingredients are two frozen models and a prompt.</p>
+<p><a href="https://arxiv.org/abs/2211.11559">VisProg</a> generalises the move as far as it goes. Given a natural-language instruction — something compositional, of the kind a single model handles poorly, like <em>tag the seven dwarfs in this image</em> or <em>hide the face of the person on the left</em> — it uses a language model’s in-context learning to emit a short Python-like <strong>program</strong>. Each line calls a module: an object detector, CLIP, a segmentation model, an inpainting model, an image-processing routine, or plain arithmetic. An interpreter then executes the program line by line, feeding each module’s output to the next.</p>
+<div id="fig-visprog" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-visprog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/16-vision-language/diagram_visprog.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Figure&nbsp;17.11: VisProg’s execution. A language model, given a few examples of instruction-and-program pairs, compiles a new instruction into a short program over frozen modules; an interpreter runs it, threading intermediate results through. Nothing is trained — extending the system to a new capability means registering a module and adding an example to the prompt — and the program itself is the explanation of how the answer was produced."><img src="../figures/16-vision-language/diagram_visprog.svg" class="fig-ar-10 img-fluid figure-img" loading="lazy" decoding="async"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-visprog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.11: VisProg’s execution. A language model, given a few examples of instruction-and-program pairs, compiles a new instruction into a short program over frozen modules; an interpreter runs it, threading intermediate results through. Nothing is trained — extending the system to a new capability means registering a module and adding an example to the prompt — and the program itself is the explanation of how the answer was produced.
+</figcaption>
+</figure>
+</div>
+<p>Nothing is trained. The language model has never been fine-tuned for this; it is shown a handful of instruction-and-program pairs in context and generalises to new instructions from there. Adding a capability means registering a module and adding one example to the prompt, which is a considerably shorter path than collecting a dataset. And the interpretability is genuine rather than post-hoc: the program <em>is</em> the reasoning, the intermediate outputs can be inspected at every line, and when the answer is wrong you can see which step produced the wrong thing.</p>
+<p>The costs are real and the lecture states them. Every module invocation is a full forward pass, so latency compounds down the program; if any module is a hosted API, each line is a paid call and a network round trip. Errors compound too, since a mistake early in the program is faithfully propagated by every step after it, and the system has no way to notice. Composition buys flexibility and interpretability at the price of speed and reliability.</p>
+</section>
+<section id="sec-vl-summary" class="level2" data-number="17.11">
+<h2 data-number="17.11" class="anchored" data-anchor-id="sec-vl-summary"><span class="header-section-number">17.11</span> What the chapter adds up to</h2>
+<p>The trajectory here has a shape, and it is worth naming because it is not the shape one would guess from the architectures alone. Nothing in this chapter turned on a new layer type. CLIP is a contrastive loss the field already had, pointed at a supervision signal that was already lying on the internet. LLaVA is a matrix. Flamingo’s one real invention is a scalar initialised to zero. Molmo’s architecture is conventional by design, and its contribution is a microphone. SAM’s is a task definition that makes its own dataset collectable. VisProg trains nothing at all.</p>
+<p>What each of them changed instead was the <em>interface</em>. CLIP replaced a fixed label set with an open vocabulary, at the cost of a representation too coarse to say where anything is or how many there are. LLaVA and Flamingo replaced a similarity score with free-form text, by two different routes — concatenate into the prompt, or cross-attend through a gate — and the choice between them comes down to whether the language model may be modified. Molmo replaced the caption with the point, which grounds, counts, and acts through one output. SAM replaced the category with the prompt. And chaining replaced the model with a program over models.</p>
+<p>The limitation from <a href="#sec-clip-limits" class="quarto-xref"><span>Section 17.5</span></a> survives all of it, which is the note to end on rather than a summary. A model trained to rank captions against random negatives learns which words are present and not how they compose, and every downstream system in this chapter inherits some of that. Better data narrows it, generative objectives narrow it, explicit programs route around it — but the compositional structure of a visual scene is still the thing these models represent least well, and it is the thing the next chapter’s robots cannot do without.</p>
+
+
+<style>img.fig-ar-1{aspect-ratio:840/430}img.fig-ar-2{aspect-ratio:840/400}img.fig-ar-3{aspect-ratio:840/430}img.fig-ar-4{aspect-ratio:840/372}img.fig-ar-5{aspect-ratio:840/330}img.fig-ar-6{aspect-ratio:840/452}img.fig-ar-7{aspect-ratio:840/384}img.fig-ar-8{aspect-ratio:840/350}img.fig-ar-9{aspect-ratio:840/400}img.fig-ar-10{aspect-ratio:840/430}</style>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/raimbekovm\.github\.io\/cs231n-2025-notes\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lectures/15-3d-vision.html" class="pagination-link" aria-label="3D Vision">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">3D Vision</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lectures/17-robot-learning.html" class="pagination-link" aria-label="Robot Learning">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Robot Learning</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/raimbekovm/cs231n-2025-notes/edit/main/lectures/16-vision-language.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/raimbekovm/cs231n-2025-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

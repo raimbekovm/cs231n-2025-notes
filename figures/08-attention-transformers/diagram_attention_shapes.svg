@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 380.0" width="900.0" height="380.0"
+     role="img" aria-labelledby="attnshapesTitle attnshapesDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="attnshapesTitle">The attention layer with the shape of every intermediate marked</title>
+  <desc id="attnshapesDesc">Query inputs at top left and data inputs below them. Learned projections produce Q, K and V. Q and K meet in a grid of scores of shape NQ by NX, a softmax normalizes each row of that grid into a distribution over inputs, and multiplying by V, carried along a green rail across the bottom, gives one output vector per query.</desc>
+  <rect x="30.0" y="56.0" width="76.0" height="62.0" fill="#21918c" fill-opacity="0.12" stroke="#21918c" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="68.0" y="85.0" font-size="13" fill="#1b1b1b" text-anchor="middle">X</text>
+  <text x="68.0" y="101.0" font-size="10" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">NQ × D</text>
+  <text x="77.0" y="89.0" font-size="9" fill="currentColor" text-anchor="middle" fill-opacity="0.75">Q</text>
+  <rect x="30.0" y="214.0" width="76.0" height="88.0" fill="#3b528b" fill-opacity="0.12" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="68.0" y="256.0" font-size="13" fill="#1b1b1b" text-anchor="middle">X</text>
+  <text x="68.0" y="272.0" font-size="10" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">NX × D</text>
+  <line x1="106.0" y1="87.0" x2="188.0" y2="87.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="194.0,87.0 188.0,89.7 188.0,84.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="150.0" y="78.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">WQ</text>
+  <line x1="106.0" y1="250.0" x2="188.7" y2="207.7" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="194.0,205.0 189.9,210.1 187.4,205.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="148.0" y="216.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">WK</text>
+  <line x1="106.0" y1="268.0" x2="188.4" y2="297.9" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="194.0,300.0 187.4,300.5 189.3,295.4" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="148.0" y="298.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">WV</text>
+  <rect x="196.0" y="56.0" width="76.0" height="62.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="234.0" y="85.0" font-size="13" fill="#1b1b1b" text-anchor="middle">Q</text>
+  <text x="234.0" y="101.0" font-size="10" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">NQ × DK</text>
+  <rect x="196.0" y="174.0" width="76.0" height="62.0" fill="#3b528b" fill-opacity="0.16" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="234.0" y="203.0" font-size="13" fill="#1b1b1b" text-anchor="middle">K</text>
+  <text x="234.0" y="219.0" font-size="10" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">NX × DK</text>
+  <rect x="196.0" y="272.0" width="76.0" height="62.0" fill="#5ec962" fill-opacity="0.18" stroke="#5ec962" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="234.0" y="301.0" font-size="13" fill="#1b1b1b" text-anchor="middle">V</text>
+  <text x="234.0" y="317.0" font-size="10" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">NX × DV</text>
+  <line x1="272.0" y1="87.0" x2="346.7" y2="127.2" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="352.0,130.0 345.4,129.5 348.0,124.8" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="272.0" y1="205.0" x2="346.6" y2="170.5" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="352.0,168.0 347.7,173.0 345.4,168.1" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="356.0" y="96.0" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.1" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="382.0" y="96.0" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.16" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="408.0" y="96.0" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.22" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="434.0" y="96.0" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.1" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="460.0" y="96.0" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.16" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="356.0" y="123.5" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.16" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="382.0" y="123.5" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.22" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="408.0" y="123.5" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.1" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="434.0" y="123.5" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.16" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="460.0" y="123.5" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.22" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="356.0" y="151.0" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.22" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="382.0" y="151.0" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.1" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="408.0" y="151.0" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.16" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="434.0" y="151.0" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.22" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="460.0" y="151.0" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.1" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="356.0" y="178.5" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.1" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="382.0" y="178.5" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.16" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="408.0" y="178.5" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.22" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="434.0" y="178.5" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.1" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="460.0" y="178.5" width="26.0" height="27.5" fill="#3b528b" fill-opacity="0.16" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="356.0" y="96.0" width="130.0" height="110.0" fill="none" fill-opacity="1.0" stroke="#1b1b1b" stroke-width="1.1" stroke-opacity="0.5"/>
+  <text x="421.0" y="84.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">E = QKᵀ / √DK</text>
+  <text x="421.0" y="224.0" font-size="10" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">NQ × NX</text>
+  <line x1="488.0" y1="151.0" x2="550.0" y2="151.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="556.0,151.0 550.0,153.7 550.0,148.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="522.0" y="142.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">softmax</text>
+  <rect x="558.0" y="96.0" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.195" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="584.0" y="96.0" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.8075" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="610.0" y="96.0" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.395" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="636.0" y="96.0" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.245" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="662.0" y="96.0" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.20750000000000002" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="558.0" y="123.5" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.62" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="584.0" y="123.5" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.27" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="610.0" y="123.5" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.22" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="636.0" y="123.5" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.495" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="662.0" y="123.5" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.245" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="558.0" y="151.0" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.23249999999999998" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="584.0" y="151.0" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.29500000000000004" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="610.0" y="151.0" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.87" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="636.0" y="151.0" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.23249999999999998" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="662.0" y="151.0" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.22" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="558.0" y="178.5" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.37" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="584.0" y="178.5" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.37" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="610.0" y="178.5" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.27" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="636.0" y="178.5" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.2825" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="662.0" y="178.5" width="26.0" height="27.5" fill="#5ec962" fill-opacity="0.5575" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="558.0" y="96.0" width="130.0" height="110.0" fill="none" fill-opacity="1.0" stroke="#1b1b1b" stroke-width="1.1" stroke-opacity="0.5"/>
+  <text x="623.0" y="84.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">A = softmax(E)</text>
+  <line x1="566.0" y1="226.0" x2="674.0" y2="226.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.55"/>
+  <polygon points="680.0,226.0 674.0,228.7 674.0,223.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="623.0" y="244.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.6">each row sums to one</text>
+  <line x1="690.0" y1="151.0" x2="758.0" y2="151.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="764.0,151.0 758.0,153.7 758.0,148.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="234.0" y1="334.0" x2="234.0" y2="352.0" stroke="#5ec962" stroke-width="1.4" stroke-opacity="0.7"/>
+  <line x1="234.0" y1="352.0" x2="800.0" y2="352.0" stroke="#5ec962" stroke-width="1.4" stroke-opacity="0.7"/>
+  <line x1="800.0" y1="352.0" x2="800.0" y2="194.0" stroke="#5ec962" stroke-width="1.4" stroke-opacity="0.7"/>
+  <polygon points="800.0,188.0 802.7,194.0 797.3,194.0" fill="#5ec962" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="766.0" y="120.0" width="76.0" height="62.0" fill="#fde725" fill-opacity="0.4" stroke="#fde725" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="804.0" y="149.0" font-size="13" fill="#1b1b1b" text-anchor="middle">Y</text>
+  <text x="804.0" y="165.0" font-size="10" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">NQ × DV</text>
+  <text x="450.0" y="30.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.6">two matrix multiplies, with a softmax between them</text>
+</svg>
