@@ -241,7 +241,13 @@ a:hover {
 
   .quarto-title-meta {
     font-family: $cs-font-mono;
-    font-size: 0.76rem;
+    // Quarto scales the two halves of this block off the value here — 0.8em on
+    // `.quarto-title-meta-heading`, 0.9em on the contents — from a selector
+    // carrying an id, so the heading is always the smallest type on the page.
+    // At 0.76rem it landed on 10.3px, small enough to lose the uppercase
+    // letterforms it is set in. Raised until the heading clears 11px rather
+    // than pinned at a higher specificity, which would only fight the cascade.
+    font-size: 0.82rem;
     letter-spacing: 0.06em;
     padding-top: 1rem;
     margin-top: 1.1rem;
@@ -805,7 +811,25 @@ div.callout {
   border-radius: 6px;
   background: $cs-surface;
 
-  .callout-title {
+  // The `border-left-width` above never reached a reader. Quarto ships
+  // `.callout.callout-style-default { border-width: 1px 1px 1px 5px }`, and its
+  // 0-2-0 outranks the 0-1-1 of a bare `div.callout` — so the hairline stripe
+  // this theme asks for was drawn as a 5px slab on every callout on the site.
+  // Matching that specificity is what puts the declaration above into effect;
+  // the plain one stays because it is what any non-default callout style reads.
+  &.callout-style-default {
+    border-left-width: 3px;
+  }
+
+  // `.callout-title` is not a class Quarto emits. The header it builds is an
+  // icon container next to `.callout-title-container`, so every rule this theme
+  // aimed at `.callout-title` — the display face here, and the per-type colours
+  // at the bottom of this section — matched nothing and the titles shipped in
+  // the body face at the body colour. Both are listed: the container is what
+  // 1.10 writes, and the bare class costs nothing if a later Quarto brings it
+  // back.
+  .callout-title,
+  .callout-title-container {
     font-family: $cs-font-display;
     font-weight: 600;
     font-size: 0.98rem;
@@ -818,6 +842,16 @@ div.callout {
     padding-bottom: 0.35rem;
   }
 
+  // Lost the same way, and more visibly: `.callout.callout-titled >
+  // .callout-header` is 0-3-0 against the 0-2-1 above, so the header kept
+  // Quarto's `padding-top: 0.2em` and its `margin-bottom: -0.2em`. The title sat
+  // 4px below the border with 5.6px under it — an asymmetric, cramped box on
+  // every titled callout. `padding-bottom` was the only half that ever applied.
+  &.callout-titled > .callout-header {
+    padding-top: 0.75rem;
+    margin-bottom: 0;
+  }
+
   .callout-body-container {
     font-size: 0.97rem;
   }
@@ -827,38 +861,63 @@ div.callout {
   }
 }
 
-// "Key Takeaways" closes every major section; jade makes it the resting point.
-div.callout-tip {
-  border-left-color: $cs-jade;
+// Stripe and title take the same token per type, from the text-safe ramp.
+//
+// Two things are load-bearing about that. The selector is
+// `div.callout.callout-style-default` rather than a bare `div.callout-tip`
+// because Quarto states its own stripe colour at `div.callout-note.callout` —
+// 0-2-1 against the 0-1-1 a bare type class gives — so none of these colours
+// ever reached a callout and the Bootswatch base painted them instead. cosmo
+// and darkly disagree, which put note at #2780e3 in light and #375a7f in dark,
+// and tip at #3fb618 and #00bc8c: not in this palette, and a stripe that
+// changes hue with the scheme is the same base leak the breadcrumb boxes had.
+//
+// And the colour is the text-safe `$cs-tx-*`, not the decorative ramp these
+// rules used to name, for the reason theme-dark.scss gives for having that ramp
+// at all: viridis's dark end does not survive a dark ground. Against the
+// callout's own surface the decorative values come to 1.09 (plum) and 1.91
+// (indigo) in dark and 1.53 (citron) in light — the stripe is the one mark that
+// says which kind of box this is, and at those numbers it says nothing. The
+// text-safe ramp holds every type at 4.9 or better in both schemes, and pairs
+// each stripe with the title above it.
+div.callout.callout-style-default {
+  // "Key Takeaways" closes every major section; jade makes it the resting point.
+  &.callout-tip {
+    border-left-color: $cs-tx-jade;
 
-  .callout-title {
-    color: $cs-tx-jade;
+    .callout-title,
+    .callout-title-container {
+      color: $cs-tx-jade;
+    }
   }
-}
 
-// "Deep Dive" boxes go past the lecture; indigo reads as an aside.
-div.callout-note {
-  border-left-color: $cs-indigo;
+  // "Deep Dive" boxes go past the lecture; indigo reads as an aside.
+  &.callout-note {
+    border-left-color: $cs-tx-indigo;
 
-  .callout-title {
-    color: $cs-tx-indigo;
+    .callout-title,
+    .callout-title-container {
+      color: $cs-tx-indigo;
+    }
   }
-}
 
-div.callout-important {
-  border-left-color: $cs-plum;
+  &.callout-important {
+    border-left-color: $cs-tx-plum;
 
-  .callout-title {
-    color: $cs-tx-plum;
+    .callout-title,
+    .callout-title-container {
+      color: $cs-tx-plum;
+    }
   }
-}
 
-div.callout-warning,
-div.callout-caution {
-  border-left-color: $cs-citron;
+  &.callout-warning,
+  &.callout-caution {
+    border-left-color: $cs-tx-citron;
 
-  .callout-title {
-    color: $cs-tx-citron;
+    .callout-title,
+    .callout-title-container {
+      color: $cs-tx-citron;
+    }
   }
 }
 
