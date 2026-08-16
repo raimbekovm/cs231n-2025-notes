@@ -10,7 +10,10 @@ $cs-paper: #ffffff;
 $cs-surface: #f4f7f8;
 $cs-ink: #14181d;
 $cs-ink-muted: #525c67;
-$cs-ink-faint: #868f99;
+// Text, so 4.5:1 — see the note in theme-dark.scss. This one was the worse of
+// the pair: sharing the control border's value put it at 3.28 on $cs-paper and
+// 3.05 on $cs-surface. Measured now: 4.94 on $cs-paper, 4.59 on $cs-surface.
+$cs-ink-faint: #68717d;
 $cs-rule: #e2e7ea;
 $cs-rule-strong: #c7ced5;
 // The outline of an interactive control — the search field, the scheme pill.

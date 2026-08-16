@@ -241,7 +241,13 @@ a:hover {
 
   .quarto-title-meta {
     font-family: $cs-font-mono;
-    font-size: 0.76rem;
+    // Quarto scales the two halves of this block off the value here — 0.8em on
+    // `.quarto-title-meta-heading`, 0.9em on the contents — from a selector
+    // carrying an id, so the heading is always the smallest type on the page.
+    // At 0.76rem it landed on 10.3px, small enough to lose the uppercase
+    // letterforms it is set in. Raised until the heading clears 11px rather
+    // than pinned at a higher specificity, which would only fight the cascade.
+    font-size: 0.82rem;
     letter-spacing: 0.06em;
     padding-top: 1rem;
     margin-top: 1.1rem;
