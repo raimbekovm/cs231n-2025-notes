@@ -1,5 +1,4 @@
 ---
-title: "CS231n 2025 Lecture Notes"
 subtitle: "Deep Learning for Computer Vision — Stanford University, Spring 2025"
 description: "Modern, in-depth lecture notes for Stanford CS231n covering the 2025 curriculum: CNNs, Transformers, diffusion models, and vision-language models."
 format:
@@ -10,6 +9,12 @@ format:
     toc: false
     page-layout: full
 ---
+
+<!-- The title is a heading rather than a `title:` key so it can carry
+     {.unnumbered}: a book numbers every chapter, the landing page included,
+     and without it lecture 1 would be chapter 2. -->
+
+# CS231n 2025 Lecture Notes {.unnumbered}
 
 ::: {.content-visible when-format="html"}
 
