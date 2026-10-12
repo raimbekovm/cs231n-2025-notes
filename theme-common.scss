@@ -1139,11 +1139,20 @@ main.content:has(.cs-hero) {
     display: none;
   }
 
+  // index.qmd's title is a level-1 heading rather than a `title:` key, so
+  // that it can carry {.unnumbered} and lecture 1 stays chapter 1. Pandoc
+  // wraps the whole page in that heading's section; the heading itself is
+  // hidden because the hero carries the visible title.
+  > section.level1 > h1.unnumbered:first-child {
+    display: none;
+  }
+
   // The extra width is for the hero and the card grid only. Prose keeps the
   // same measure as the lecture pages, or the callout would run 70 characters
-  // past comfortable.
-  > *:not(section),
-  > section > * {
+  // past comfortable. `:where` keeps the level-1 wrapper out of the
+  // specificity, so the `max-width: none` below still outranks this.
+  > :where(section.level1) > *:not(section),
+  > :where(section.level1) > section > * {
     max-width: 44rem;
   }
 
