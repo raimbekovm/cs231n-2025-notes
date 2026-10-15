@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 430" width="660" height="430"
+     role="img" aria-labelledby="confTitle confDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="confTitle">The confusion table and its three margins</title>
+  <desc id="confDesc">A two by two table of true and false positives and negatives, with positive predictive value read down the flagged column, the false negative rate read across the positive row, and the false positive rate read across the negative row.</desc>
+  <text x="355.0" y="44.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.75">predicted</text>
+  <text x="280.0" y="66.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">flagged</text>
+  <text x="430.0" y="66.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">not flagged</text>
+  <text x="80.0" y="152.0" font-size="12" fill="currentColor" text-anchor="start" fill-opacity="0.75">actually</text>
+  <text x="80.0" y="170.0" font-size="13" fill="currentColor" text-anchor="start" font-weight="600">positive</text>
+  <text x="80.0" y="228.0" font-size="12" fill="currentColor" text-anchor="start" fill-opacity="0.75">actually</text>
+  <text x="80.0" y="246.0" font-size="13" fill="currentColor" text-anchor="start" font-weight="600">negative</text>
+  <rect x="205.0" y="120.0" width="150.0" height="76.0" fill="#21918c" fill-opacity="0.12" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.55"/>
+  <text x="280.0" y="164.0" font-size="17" fill="#21918c" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">TP</text>
+  <rect x="355.0" y="120.0" width="150.0" height="76.0" fill="#3b528b" fill-opacity="0.12" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.55"/>
+  <text x="430.0" y="164.0" font-size="17" fill="#3b528b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">FN</text>
+  <rect x="205.0" y="196.0" width="150.0" height="76.0" fill="#440154" fill-opacity="0.12" stroke="#440154" stroke-width="1.0" stroke-opacity="0.55"/>
+  <text x="280.0" y="240.0" font-size="17" fill="#440154" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">FP</text>
+  <rect x="355.0" y="196.0" width="150.0" height="76.0" fill="#1b1b1b" fill-opacity="0.12" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55"/>
+  <text x="430.0" y="240.0" font-size="17" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">TN</text>
+  <line x1="195.0" y1="120.0" x2="195.0" y2="272.0" stroke="#21918c" stroke-width="3" stroke-opacity="0.9"/>
+  <text x="185.0" y="196.0" font-size="13" fill="#21918c" text-anchor="end" font-weight="600">PPV</text>
+  <text x="185.0" y="213.0" font-size="11" fill="#21918c" text-anchor="end" fill-opacity="0.8">down this column</text>
+  <line x1="205.0" y1="112.0" x2="505.0" y2="112.0" stroke="#3b528b" stroke-width="3" stroke-opacity="0.9"/>
+  <text x="519.0" y="116.0" font-size="13" fill="#3b528b" text-anchor="start" font-weight="600">FNR</text>
+  <text x="519.0" y="133.0" font-size="11" fill="#3b528b" text-anchor="start" fill-opacity="0.8">across this row</text>
+  <line x1="205.0" y1="280.0" x2="505.0" y2="280.0" stroke="#440154" stroke-width="3" stroke-opacity="0.9"/>
+  <text x="519.0" y="276.0" font-size="13" fill="#440154" text-anchor="start" font-weight="600">FPR</text>
+  <text x="519.0" y="293.0" font-size="11" fill="#440154" text-anchor="start" fill-opacity="0.8">across this row</text>
+  <text x="330.0" y="338.0" font-size="13" fill="currentColor" text-anchor="middle" font-style="italic">Three criteria, three different denominators.</text>
+  <text x="330.0" y="360.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">Fixing any two of them fixes the third — it is not free to be equalised.</text>
+</svg>

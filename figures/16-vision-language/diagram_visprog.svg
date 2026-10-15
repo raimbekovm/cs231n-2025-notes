@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 430" width="840" height="430"
+     role="img" aria-labelledby="visprogTitle visprogDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="visprogTitle">VisProg's compile-and-execute loop</title>
+  <desc id="visprogDesc">A natural-language instruction is passed to a language model that has been shown a few instruction-and-program pairs in context. It emits a short Python-like program whose four lines each invoke a frozen module — an object detector, an arithmetic selection, a face detector, and an image-processing blur. An interpreter runs the lines in order, threading each result into the next, and returns the final image.</desc>
+  <rect x="24.0" y="44.0" width="190.0" height="52.0" fill="#5ec962" fill-opacity="0.2" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="119.0" y="68.0" font-size="12" fill="#1b1b1b" text-anchor="middle">instruction</text>
+  <text x="119.0" y="84.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.7">natural language</text>
+  <text x="119.0" y="116.0" font-size="11" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">“hide the face of the</text>
+  <text x="119.0" y="132.0" font-size="11" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.85">person on the left”</text>
+  <line x1="214.0" y1="70.0" x2="246.0" y2="70.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.65"/>
+  <polygon points="252.0,70.0 246.0,72.7 246.0,67.3" fill="currentColor" fill-opacity="0.65" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="252.0" y="44.0" width="128.0" height="52.0" fill="#440154" fill-opacity="0.16" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="316.0" y="68.0" font-size="12" fill="#1b1b1b" text-anchor="middle">LLM</text>
+  <text x="316.0" y="84.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.7">in-context examples</text>
+  <text x="316.0" y="116.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">a few instruction–program</text>
+  <text x="316.0" y="134.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.62">pairs in the prompt; nothing trained</text>
+  <line x1="380.0" y1="70.0" x2="412.0" y2="70.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.65"/>
+  <polygon points="418.0,70.0 412.0,72.7 412.0,67.3" fill="currentColor" fill-opacity="0.65" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="418.0" y="44.0" width="130.0" height="52.0" fill="#fde725" fill-opacity="0.44" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="483.0" y="68.0" font-size="12" fill="#1b1b1b" text-anchor="middle">program</text>
+  <text x="483.0" y="84.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.7">Python-like</text>
+  <line x1="483.0" y1="96.0" x2="483.0" y2="124.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.65"/>
+  <polygon points="483.0,130.0 480.3,124.0 485.7,124.0" fill="currentColor" fill-opacity="0.65" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="64.0" y="148.0" width="344.0" height="32.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="3"/>
+  <text x="80.0" y="169.0" font-size="11" fill="#1b1b1b" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">BOX = Loc(image, 'person')</text>
+  <line x1="408.0" y1="164.0" x2="446.0" y2="164.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.55"/>
+  <polygon points="452.0,164.0 446.0,166.7 446.0,161.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="456.0" y="148.0" width="172.0" height="32.0" fill="#21918c" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="3"/>
+  <text x="542.0" y="169.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle">object detector</text>
+  <line x1="641.0" y1="164.0" x2="651.0" y2="164.0" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.6"/>
+  <line x1="643.5" y1="159.7" x2="648.5" y2="168.3" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.6"/>
+  <line x1="648.5" y1="159.7" x2="643.5" y2="168.3" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.6"/>
+  <line x1="70.0" y1="180.0" x2="70.0" y2="184.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="70.0,190.0 67.3,184.0 72.7,184.0" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="64.0" y="190.0" width="344.0" height="32.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="3"/>
+  <text x="80.0" y="211.0" font-size="11" fill="#1b1b1b" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">LEFT = Select(BOX, 'leftmost')</text>
+  <line x1="408.0" y1="206.0" x2="446.0" y2="206.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.55"/>
+  <polygon points="452.0,206.0 446.0,208.7 446.0,203.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="456.0" y="190.0" width="172.0" height="32.0" fill="#21918c" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="3"/>
+  <text x="542.0" y="211.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle">arithmetic</text>
+  <line x1="641.0" y1="206.0" x2="651.0" y2="206.0" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.6"/>
+  <line x1="643.5" y1="201.7" x2="648.5" y2="210.3" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.6"/>
+  <line x1="648.5" y1="201.7" x2="643.5" y2="210.3" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.6"/>
+  <line x1="70.0" y1="222.0" x2="70.0" y2="226.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="70.0,232.0 67.3,226.0 72.7,226.0" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="64.0" y="232.0" width="344.0" height="32.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="3"/>
+  <text x="80.0" y="253.0" font-size="11" fill="#1b1b1b" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">FACE = FaceDet(image, LEFT)</text>
+  <line x1="408.0" y1="248.0" x2="446.0" y2="248.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.55"/>
+  <polygon points="452.0,248.0 446.0,250.7 446.0,245.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="456.0" y="232.0" width="172.0" height="32.0" fill="#21918c" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="3"/>
+  <text x="542.0" y="253.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle">face detector</text>
+  <line x1="641.0" y1="248.0" x2="651.0" y2="248.0" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.6"/>
+  <line x1="643.5" y1="243.7" x2="648.5" y2="252.3" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.6"/>
+  <line x1="648.5" y1="243.7" x2="643.5" y2="252.3" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.6"/>
+  <line x1="70.0" y1="264.0" x2="70.0" y2="268.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.5"/>
+  <polygon points="70.0,274.0 67.3,268.0 72.7,268.0" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="64.0" y="274.0" width="344.0" height="32.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="3"/>
+  <text x="80.0" y="295.0" font-size="11" fill="#1b1b1b" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">OUT  = Blur(image, FACE)</text>
+  <line x1="408.0" y1="290.0" x2="446.0" y2="290.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.55"/>
+  <polygon points="452.0,290.0 446.0,292.7 446.0,287.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="456.0" y="274.0" width="172.0" height="32.0" fill="#21918c" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="3"/>
+  <text x="542.0" y="295.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle">image processing</text>
+  <line x1="641.0" y1="290.0" x2="651.0" y2="290.0" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.6"/>
+  <line x1="643.5" y1="285.7" x2="648.5" y2="294.3" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.6"/>
+  <line x1="648.5" y1="285.7" x2="643.5" y2="294.3" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.6"/>
+  <text x="700.0" y="152.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">every module</text>
+  <text x="700.0" y="170.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.62">is frozen</text>
+  <line x1="236.0" y1="316.0" x2="236.0" y2="338.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.65"/>
+  <polygon points="236.0,344.0 233.3,338.0 238.7,338.0" fill="currentColor" fill-opacity="0.65" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="150.0" y="344.0" width="172.0" height="44.0" fill="#5ec962" fill-opacity="0.2" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="236.0" y="370.5" font-size="11.5" fill="#1b1b1b" text-anchor="middle">interpreter output</text>
+  <rect x="444.0" y="336.0" width="364.0" height="60.0" fill="#440154" fill-opacity="0.09" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="4"/>
+  <text x="464.0" y="358.0" font-size="11.5" fill="#1b1b1b" text-anchor="start" font-weight="600">The program is the explanation</text>
+  <text x="464.0" y="378.0" font-size="10.5" fill="#1b1b1b" text-anchor="start" fill-opacity="0.75">…and the cost: one forward pass per line, errors carried forward.</text>
+</svg>

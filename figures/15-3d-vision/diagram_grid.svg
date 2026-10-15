@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" width="760" height="400"
+     role="img" aria-labelledby="gridTitle gridDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="gridTitle">Taxonomy of geometry representations with the deep-learning tour</title>
+  <desc id="gridDesc">A two-by-two grid whose columns are explicit and implicit and whose rows are non-parametric and parametric. Four labelled arrows trace the moves the deep-learning literature made between the cells.</desc>
+  <text x="258.0" y="44.0" font-size="14" fill="currentColor" text-anchor="middle" font-weight="600">Explicit</text>
+  <text x="566.0" y="44.0" font-size="14" fill="currentColor" text-anchor="middle" font-weight="600">Implicit</text>
+  <text x="96.0" y="145.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">Non-parametric</text>
+  <text x="96.0" y="273.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">Parametric</text>
+  <line x1="412.0" y1="58.0" x2="412.0" y2="330.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.25"/>
+  <line x1="140.0" y1="204.0" x2="700.0" y2="204.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.25"/>
+  <text x="192.0" y="140.0" font-size="13" fill="currentColor" text-anchor="middle">Points</text>
+  <text x="324.0" y="140.0" font-size="13" fill="currentColor" text-anchor="middle">Meshes</text>
+  <text x="500.0" y="140.0" font-size="13" fill="currentColor" text-anchor="middle">Voxels</text>
+  <text x="632.0" y="140.0" font-size="13" fill="currentColor" text-anchor="middle">Level sets</text>
+  <text x="192.0" y="268.0" font-size="13" fill="currentColor" text-anchor="middle">Splines</text>
+  <text x="324.0" y="268.0" font-size="13" fill="currentColor" text-anchor="middle">Subdivision</text>
+  <text x="500.0" y="268.0" font-size="13" fill="currentColor" text-anchor="middle">Algebraic</text>
+  <text x="632.0" y="268.0" font-size="13" fill="currentColor" text-anchor="middle">CSG</text>
+  <line x1="498.0" y1="112.0" x2="217.0" y2="112.0" stroke="#21918c" stroke-width="1.6" stroke-opacity="0.9"/>
+  <polygon points="210.0,112.0 217.0,108.8 217.0,115.2" fill="#21918c" fill-opacity="0.9" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="354.0" y="100.0" font-size="11" fill="#21918c" text-anchor="middle" font-weight="600">voxels → points</text>
+  <line x1="258.0" y1="154.0" x2="258.0" y2="243.0" stroke="#3b528b" stroke-width="1.6" stroke-opacity="0.9"/>
+  <polygon points="258.0,250.0 254.8,243.0 261.1,243.0" fill="#3b528b" fill-opacity="0.9" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="176.0" y="192.0" font-size="11" fill="#3b528b" text-anchor="middle" font-weight="600">points → surfaces</text>
+  <line x1="368.0" y1="300.0" x2="559.0" y2="300.0" stroke="#440154" stroke-width="1.6" stroke-opacity="0.9"/>
+  <polygon points="566.0,300.0 559.0,303.1 559.0,296.9" fill="#440154" fill-opacity="0.9" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="467.0" y="318.0" font-size="11" fill="#440154" text-anchor="middle" font-weight="600">surfaces → fields</text>
+  <line x1="622.0" y1="250.0" x2="232.7" y2="132.0" stroke="#5ec962" stroke-width="1.6" stroke-opacity="0.9" stroke-dasharray="6 4"/>
+  <polygon points="226.0,130.0 233.6,129.0 231.8,135.0" fill="#5ec962" fill-opacity="0.9" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="470.0" y="232.0" font-size="11" fill="#5ec962" text-anchor="middle" font-weight="600">fields → splats</text>
+  <text x="380.0" y="366.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.62">four moves, four different dominant costs; the tour ends beside where it began</text>
+</svg>

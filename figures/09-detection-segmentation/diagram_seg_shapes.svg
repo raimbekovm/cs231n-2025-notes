@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" width="900" height="430"
+     role="img" aria-labelledby="segShapesTitle segShapesDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="segShapesTitle">Constant-resolution and encoder-decoder fully convolutional networks</title>
+  <desc id="segShapesDesc">Two horizontal pipelines of feature maps drawn as rectangles whose height is spatial size and width is channel count. In the upper pipeline every map has the full height of the input. In the lower pipeline the maps shrink in height and grow in width towards a bottleneck, then reverse, ending at the input's height again.</desc>
+  <text x="40.0" y="32.0" font-size="14" fill="currentColor" text-anchor="start" font-weight="600">Constant resolution</text>
+  <text x="40.0" y="50.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">every layer is as wide as the image; the deepest receptive field is still small</text>
+  <rect x="56.0" y="76.0" width="12.0" height="96.0" fill="#3b528b" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="62.0" y="67.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">3</text>
+  <rect x="152.0" y="76.0" width="34.0" height="96.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="169.0" y="67.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">D</text>
+  <rect x="268.0" y="76.0" width="34.0" height="96.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="285.0" y="67.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">D</text>
+  <rect x="384.0" y="76.0" width="34.0" height="96.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="401.0" y="67.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">D</text>
+  <rect x="500.0" y="76.0" width="34.0" height="96.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="517.0" y="67.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">D</text>
+  <rect x="616.0" y="76.0" width="24.0" height="96.0" fill="#5ec962" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="628.0" y="67.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">C</text>
+  <line x1="72.0" y1="124.0" x2="142.0" y2="124.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="148.0,124.0 142.0,126.7 142.0,121.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="190.0" y1="124.0" x2="258.0" y2="124.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="264.0,124.0 258.0,126.7 258.0,121.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="306.0" y1="124.0" x2="374.0" y2="124.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="380.0,124.0 374.0,126.7 374.0,121.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="422.0" y1="124.0" x2="490.0" y2="124.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="496.0,124.0 490.0,126.7 490.0,121.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="538.0" y1="124.0" x2="606.0" y2="124.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="612.0,124.0 606.0,126.7 606.0,121.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="62.0" y="190.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">image</text>
+  <text x="628.0" y="190.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">scores</text>
+  <text x="700.0" y="118.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.8">cost of one</text>
+  <text x="700.0" y="134.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.8">layer × 1000</text>
+  <text x="746.0" y="164.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.6">H × W held throughout</text>
+  <text x="40.0" y="220.0" font-size="14" fill="currentColor" text-anchor="start" font-weight="600">Downsample, then upsample</text>
+  <text x="40.0" y="238.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">deep layers are cheap and see far; an upsampling operation restores the output size</text>
+  <rect x="56.0" y="264.0" width="12.0" height="96.0" fill="#3b528b" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="62.0" y="255.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">3</text>
+  <text x="62.0" y="376.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">H</text>
+  <rect x="140.0" y="278.0" width="22.0" height="68.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="151.0" y="269.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">D₁</text>
+  <text x="151.0" y="362.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">H/2</text>
+  <rect x="240.0" y="289.0" width="34.0" height="46.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="257.0" y="280.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">D₂</text>
+  <text x="257.0" y="351.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">H/4</text>
+  <rect x="352.0" y="297.0" width="50.0" height="30.0" fill="#440154" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="377.0" y="288.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">D₃</text>
+  <text x="377.0" y="343.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">H/8</text>
+  <rect x="476.0" y="289.0" width="34.0" height="46.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="493.0" y="280.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">D₂</text>
+  <text x="493.0" y="351.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">H/4</text>
+  <rect x="580.0" y="278.0" width="22.0" height="68.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="591.0" y="269.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">D₁</text>
+  <text x="591.0" y="362.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">H/2</text>
+  <rect x="668.0" y="264.0" width="24.0" height="96.0" fill="#5ec962" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.7"/>
+  <text x="680.0" y="255.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">C</text>
+  <text x="680.0" y="376.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">H</text>
+  <line x1="72.0" y1="312.0" x2="130.0" y2="312.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="136.0,312.0 130.0,314.7 130.0,309.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="166.0" y1="312.0" x2="230.0" y2="312.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="236.0,312.0 230.0,314.7 230.0,309.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="278.0" y1="312.0" x2="342.0" y2="312.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="348.0,312.0 342.0,314.7 342.0,309.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="406.0" y1="312.0" x2="466.0" y2="312.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="472.0,312.0 466.0,314.7 466.0,309.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="514.0" y1="312.0" x2="570.0" y2="312.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="576.0,312.0 570.0,314.7 570.0,309.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="606.0" y1="312.0" x2="658.0" y2="312.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="664.0,312.0 658.0,314.7 658.0,309.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="150.0" y1="394.0" x2="350.0" y2="394.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.45" stroke-dasharray="4 3"/>
+  <text x="250.0" y="410.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">downsample</text>
+  <line x1="400.0" y1="394.0" x2="660.0" y2="394.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.45" stroke-dasharray="4 3"/>
+  <text x="530.0" y="410.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">upsample</text>
+  <text x="760.0" y="308.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.8">same output</text>
+  <text x="760.0" y="324.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.8">shape, less work</text>
+</svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 348" width="900" height="348"
+     role="img" aria-labelledby="conv3dTitle conv3dDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="conv3dTitle">Temporal extent of an early-fusion filter against a 3D filter</title>
+  <desc id="conv3dDesc">Two panels. In each the input clip is drawn as eight frame columns running left to right in time. On the left the early-fusion filter spans all eight columns and its output is a single block with no temporal axis. On the right the 3D filter spans three columns and is shown again in a shifted position, with an arrow indicating that it slides over time; its output retains all eight columns.</desc>
+  <text x="190.0" y="30.0" font-size="13.5" fill="currentColor" text-anchor="middle" font-weight="600">2D conv (early fusion)</text>
+  <rect x="56.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="90.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="124.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="158.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="192.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="226.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="260.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="294.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <text x="190.0" y="76.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">input clip, T = 8</text>
+  <text x="46.0" y="140.0" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.7">H, W</text>
+  <rect x="54.0" y="114.0" width="272.0" height="34.0" fill="#21918c" fill-opacity="0.3" stroke="#21918c" stroke-width="1.6" stroke-opacity="1.0"/>
+  <text x="190.0" y="202.0" font-size="10" fill="#21918c" text-anchor="middle" font-weight="600">filter</text>
+  <rect x="56.0" y="232.0" width="30.0" height="40.0" fill="#440154" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <text x="126.0" y="290.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.85">output has no t axis</text>
+  <line x1="71.0" y1="190.0" x2="71.0" y2="221.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.45"/>
+  <polygon points="71.0,227.0 68.3,221.0 73.7,221.0" fill="currentColor" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="376.0" y="244.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.7">same motion later in the clip</text>
+  <text x="376.0" y="259.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.7">needs a different filter</text>
+  <text x="630.0" y="30.0" font-size="13.5" fill="currentColor" text-anchor="middle" font-weight="600">3D conv</text>
+  <rect x="496.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="530.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="564.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="598.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="632.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="666.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="700.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="734.0" y="88.0" width="30.0" height="96.0" fill="#3b528b" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <text x="630.0" y="76.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">input clip, T = 8</text>
+  <text x="486.0" y="140.0" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.7">H, W</text>
+  <rect x="494.0" y="114.0" width="102.0" height="34.0" fill="#21918c" fill-opacity="0.3" stroke="#21918c" stroke-width="1.6" stroke-opacity="1.0"/>
+  <text x="545.0" y="202.0" font-size="10" fill="#21918c" text-anchor="middle" font-weight="600">filter</text>
+  <rect x="664.0" y="114.0" width="102.0" height="34.0" fill="none" fill-opacity="1.0" stroke="#21918c" stroke-width="1.4" stroke-opacity="0.85" stroke-dasharray="4 3"/>
+  <line x1="600.0" y1="131.0" x2="654.0" y2="131.0" stroke="#21918c" stroke-width="1.2" stroke-opacity="0.8"/>
+  <polygon points="660.0,131.0 654.0,133.7 654.0,128.3" fill="#21918c" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="715.0" y="202.0" font-size="10" fill="#21918c" text-anchor="middle">slides over t</text>
+  <rect x="496.0" y="232.0" width="30.0" height="40.0" fill="#440154" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="530.0" y="232.0" width="30.0" height="40.0" fill="#440154" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="564.0" y="232.0" width="30.0" height="40.0" fill="#440154" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="598.0" y="232.0" width="30.0" height="40.0" fill="#440154" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="632.0" y="232.0" width="30.0" height="40.0" fill="#440154" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="666.0" y="232.0" width="30.0" height="40.0" fill="#440154" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="700.0" y="232.0" width="30.0" height="40.0" fill="#440154" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <rect x="734.0" y="232.0" width="30.0" height="40.0" fill="#440154" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="0.7" stroke-opacity="0.4"/>
+  <text x="630.0" y="290.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">output keeps T</text>
+  <line x1="511.0" y1="190.0" x2="511.0" y2="221.0" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.45"/>
+  <polygon points="511.0,227.0 508.3,221.0 513.7,221.0" fill="currentColor" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="816.0" y="244.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.7">one filter, any moment</text>
+  <text x="816.0" y="259.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.7">in the clip</text>
+  <line x1="464.0" y1="44.0" x2="464.0" y2="322.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14"/>
+  <text x="56.0" y="340.0" font-size="10.5" fill="currentColor" text-anchor="start" font-style="italic" fill-opacity="0.7">time</text>
+  <line x1="84.0" y1="336.0" x2="122.0" y2="336.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.45"/>
+  <polygon points="128.0,336.0 122.0,338.7 122.0,333.3" fill="currentColor" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+</svg>

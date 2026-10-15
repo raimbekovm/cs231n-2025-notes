@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 234" width="880" height="234"
+     role="img" aria-labelledby="normAxesTitle normAxesDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="normAxesTitle">Normalization layers differ only in which activations they average over</title>
+  <desc id="normAxesDesc">Four copies of the same block of convolutional activations, with axes for batch, channel and spatial position. In each copy a different subset is shaded: batch normalization takes one channel across the whole batch, layer normalization takes one sample across all channels, instance normalization takes one channel of one sample, and group normalization takes a group of channels of one sample.</desc>
+  <polygon points="42.0,66.0 74.0,42.0 192.0,42.0 160.0,66.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35"/>
+  <polygon points="160.0,66.0 192.0,42.0 192.0,132.0 160.0,156.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="42.0" y="66.0" width="118.0" height="90.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.55"/>
+  <line x1="42.0" y1="81.0" x2="160.0" y2="81.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="42.0" y1="96.0" x2="160.0" y2="96.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="42.0" y1="111.0" x2="160.0" y2="111.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="42.0" y1="126.0" x2="160.0" y2="126.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="42.0" y1="141.0" x2="160.0" y2="141.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="50.0" y1="60.0" x2="168.0" y2="60.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="58.0" y1="54.0" x2="176.0" y2="54.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="66.0" y1="48.0" x2="184.0" y2="48.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <polygon points="42.0,96.0 74.0,72.0 192.0,72.0 160.0,96.0" fill="#21918c" fill-opacity="0.341" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.44000000000000006"/>
+  <polygon points="160.0,96.0 192.0,72.0 192.0,87.0 160.0,111.0" fill="#21918c" fill-opacity="0.46499999999999997" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.44000000000000006"/>
+  <rect x="42.0" y="96.0" width="118.0" height="15.0" fill="#21918c" fill-opacity="0.62" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.55"/>
+  <text x="117.0" y="208.0" font-size="13.5" fill="currentColor" text-anchor="middle">Batch norm</text>
+  <polygon points="252.0,66.0 284.0,42.0 402.0,42.0 370.0,66.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35"/>
+  <polygon points="370.0,66.0 402.0,42.0 402.0,132.0 370.0,156.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="252.0" y="66.0" width="118.0" height="90.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.55"/>
+  <line x1="252.0" y1="81.0" x2="370.0" y2="81.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="252.0" y1="96.0" x2="370.0" y2="96.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="252.0" y1="111.0" x2="370.0" y2="111.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="252.0" y1="126.0" x2="370.0" y2="126.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="252.0" y1="141.0" x2="370.0" y2="141.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="260.0" y1="60.0" x2="378.0" y2="60.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="268.0" y1="54.0" x2="386.0" y2="54.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="276.0" y1="48.0" x2="394.0" y2="48.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <polygon points="252.0,66.0 260.0,60.0 378.0,60.0 370.0,66.0" fill="#21918c" fill-opacity="0.341" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.44000000000000006"/>
+  <polygon points="370.0,66.0 378.0,60.0 378.0,150.0 370.0,156.0" fill="#21918c" fill-opacity="0.46499999999999997" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.44000000000000006"/>
+  <rect x="252.0" y="66.0" width="118.0" height="90.0" fill="#21918c" fill-opacity="0.62" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.55"/>
+  <text x="327.0" y="208.0" font-size="13.5" fill="currentColor" text-anchor="middle">Layer norm</text>
+  <polygon points="462.0,66.0 494.0,42.0 612.0,42.0 580.0,66.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35"/>
+  <polygon points="580.0,66.0 612.0,42.0 612.0,132.0 580.0,156.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="462.0" y="66.0" width="118.0" height="90.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.55"/>
+  <line x1="462.0" y1="81.0" x2="580.0" y2="81.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="462.0" y1="96.0" x2="580.0" y2="96.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="462.0" y1="111.0" x2="580.0" y2="111.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="462.0" y1="126.0" x2="580.0" y2="126.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="462.0" y1="141.0" x2="580.0" y2="141.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="470.0" y1="60.0" x2="588.0" y2="60.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="478.0" y1="54.0" x2="596.0" y2="54.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="486.0" y1="48.0" x2="604.0" y2="48.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <polygon points="462.0,96.0 470.0,90.0 588.0,90.0 580.0,96.0" fill="#21918c" fill-opacity="0.341" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.44000000000000006"/>
+  <polygon points="580.0,96.0 588.0,90.0 588.0,105.0 580.0,111.0" fill="#21918c" fill-opacity="0.46499999999999997" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.44000000000000006"/>
+  <rect x="462.0" y="96.0" width="118.0" height="15.0" fill="#21918c" fill-opacity="0.62" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.55"/>
+  <text x="537.0" y="208.0" font-size="13.5" fill="currentColor" text-anchor="middle">Instance norm</text>
+  <polygon points="672.0,66.0 704.0,42.0 822.0,42.0 790.0,66.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35"/>
+  <polygon points="790.0,66.0 822.0,42.0 822.0,132.0 790.0,156.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.35"/>
+  <rect x="672.0" y="66.0" width="118.0" height="90.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.55"/>
+  <line x1="672.0" y1="81.0" x2="790.0" y2="81.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="672.0" y1="96.0" x2="790.0" y2="96.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="672.0" y1="111.0" x2="790.0" y2="111.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="672.0" y1="126.0" x2="790.0" y2="126.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="672.0" y1="141.0" x2="790.0" y2="141.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="680.0" y1="60.0" x2="798.0" y2="60.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="688.0" y1="54.0" x2="806.0" y2="54.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <line x1="696.0" y1="48.0" x2="814.0" y2="48.0" stroke="currentColor" stroke-width="0.55" stroke-opacity="0.3"/>
+  <polygon points="672.0,81.0 680.0,75.0 798.0,75.0 790.0,81.0" fill="#21918c" fill-opacity="0.341" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.44000000000000006"/>
+  <polygon points="790.0,81.0 798.0,75.0 798.0,120.0 790.0,126.0" fill="#21918c" fill-opacity="0.46499999999999997" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.44000000000000006"/>
+  <rect x="672.0" y="81.0" width="118.0" height="45.0" fill="#21918c" fill-opacity="0.62" stroke="currentColor" stroke-width="0.9" stroke-opacity="0.55"/>
+  <text x="747.0" y="208.0" font-size="13.5" fill="currentColor" text-anchor="middle">Group norm</text>
+  <line x1="30.0" y1="156.0" x2="30.0" y2="87.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.6"/>
+  <polygon points="30.0,82.0 32.2,87.0 27.8,87.0" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="20.0" y="115.0" font-size="12" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.75">C</text>
+  <line x1="42.0" y1="169.0" x2="155.0" y2="169.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.6"/>
+  <polygon points="160.0,169.0 155.0,171.2 155.0,166.8" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="101.0" y="182.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">H × W</text>
+  <line x1="166.0" y1="63.0" x2="194.0" y2="42.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.6"/>
+  <polygon points="198.0,39.0 195.3,43.8 192.7,40.2" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="190.0" y="34.0" font-size="12" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.75">N</text>
+  <text x="440.0" y="26.0" font-size="13.5" fill="currentColor" text-anchor="middle" fill-opacity="0.9">Which activations are pooled into one mean and variance</text>
+</svg>

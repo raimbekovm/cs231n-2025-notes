@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 300" width="660" height="300"
+     role="img" aria-labelledby="ucf101Title ucf101Desc" font-family="Source Serif 4, Georgia, serif">
+  <title id="ucf101Title">Accuracy on UCF-101 for appearance, motion and both</title>
+  <desc id="ucf101Desc">A bar chart of five accuracies on UCF-101: a 3D CNN at 65.4, the appearance stream alone at 73.0, the motion stream alone at 83.7, and the two streams fused at 86.9 by averaging and 88.0 by an SVM.</desc>
+  <line x1="46.0" y1="254.0" x2="644.0" y2="254.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <text x="41.0" y="258.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.7">60</text>
+  <line x1="46.0" y1="199.0" x2="644.0" y2="199.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <text x="41.0" y="203.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.7">68</text>
+  <line x1="46.0" y1="144.0" x2="644.0" y2="144.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <text x="41.0" y="148.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.7">76</text>
+  <line x1="46.0" y1="89.0" x2="644.0" y2="89.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <text x="41.0" y="93.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.7">84</text>
+  <line x1="46.0" y1="34.0" x2="644.0" y2="34.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.16"/>
+  <text x="41.0" y="38.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.7">92</text>
+  <text transform="rotate(-90 16 144.0)" x="16.0" y="144.0" font-size="11" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.7">accuracy (%)</text>
+  <rect x="82.2" y="216.9" width="58.0" height="37.1" fill="#3b528b" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="111.2" y="209.9" font-size="12" fill="currentColor" text-anchor="middle" font-weight="600">65.4</text>
+  <text x="111.2" y="270.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">3D CNN</text>
+  <rect x="200.6" y="164.6" width="58.0" height="89.4" fill="#5ec962" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="229.6" y="157.6" font-size="12" fill="currentColor" text-anchor="middle" font-weight="600">73.0</text>
+  <text x="229.6" y="270.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">Spatial</text>
+  <text x="229.6" y="282.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">only</text>
+  <rect x="319.0" y="91.1" width="58.0" height="162.9" fill="#21918c" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="348.0" y="84.1" font-size="12" fill="currentColor" text-anchor="middle" font-weight="600">83.7</text>
+  <text x="348.0" y="270.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">Temporal</text>
+  <text x="348.0" y="282.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">only</text>
+  <rect x="437.4" y="69.1" width="58.0" height="184.9" fill="#440154" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="466.4" y="62.1" font-size="12" fill="currentColor" text-anchor="middle" font-weight="600">86.9</text>
+  <text x="466.4" y="270.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">Two-stream</text>
+  <text x="466.4" y="282.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">(average)</text>
+  <rect x="555.8" y="61.5" width="58.0" height="192.5" fill="#440154" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="584.8" y="54.5" font-size="12" fill="currentColor" text-anchor="middle" font-weight="600">88.0</text>
+  <text x="584.8" y="270.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">Two-stream</text>
+  <text x="584.8" y="282.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.85">(SVM)</text>
+  <line x1="46.0" y1="254.0" x2="644.0" y2="254.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="330.0" y="20.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">UCF-101, appearance against motion</text>
+</svg>

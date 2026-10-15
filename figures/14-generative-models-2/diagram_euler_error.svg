@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" width="700" height="320"
+     role="img" aria-labelledby="eulerErrTitle eulerErrDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="eulerErrTitle">Euler discretisation error against step count</title>
+  <desc id="eulerErrDesc">A log-log plot of the error in the sampler's terminal standard deviation against the number of steps, falling with slope minus one.</desc>
+  <text x="350.0" y="22.0" font-size="13.5" fill="currentColor" text-anchor="middle" font-weight="600">Forward Euler is first order</text>
+  <line x1="86.0" y1="236.0" x2="620.0" y2="236.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="86.0" y1="54.0" x2="86.0" y2="236.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="86.0" y1="236.0" x2="86.0" y2="240.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="86.0" y="252.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">2</text>
+  <line x1="210.4" y1="236.0" x2="210.4" y2="240.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="210.4" y="252.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">10</text>
+  <line x1="334.8" y1="236.0" x2="334.8" y2="240.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="334.8" y="252.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">50</text>
+  <line x1="442.0" y1="236.0" x2="442.0" y2="240.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="442.0" y="252.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">200</text>
+  <line x1="566.4" y1="236.0" x2="566.4" y2="240.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="566.4" y="252.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">1000</text>
+  <line x1="82.0" y1="204.5" x2="86.0" y2="204.5" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="78.0" y="208.0" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.7">1e-3</text>
+  <line x1="82.0" y1="147.7" x2="86.0" y2="147.7" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="78.0" y="151.2" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.7">1e-2</text>
+  <line x1="82.0" y1="91.0" x2="86.0" y2="91.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="78.0" y="94.5" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.7">1e-1</text>
+  <text x="353.0" y="274.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.8">sampling steps T</text>
+  <text x="353.0" y="42.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.8">error in the terminal standard deviation</text>
+  <polyline points="86.00,62.51 117.34,71.74 156.83,82.85 193.17,93.41 224.51,102.78 264.00,114.85 295.34,124.56 334.83,136.93 371.17,148.38 408.70,160.26 442.00,170.83 478.33,182.38 512.83,193.35 549.17,204.92 586.70,216.88 620.00,227.49" fill="none" stroke="#3b528b" stroke-width="2.2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="86.0" cy="62.5" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="117.3" cy="71.7" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="156.8" cy="82.8" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="193.2" cy="93.4" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="224.5" cy="102.8" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="264.0" cy="114.8" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="295.3" cy="124.6" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="334.8" cy="136.9" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="371.2" cy="148.4" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="408.7" cy="160.3" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="442.0" cy="170.8" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="478.3" cy="182.4" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="512.8" cy="193.4" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="549.2" cy="204.9" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="586.7" cy="216.9" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="620.0" cy="227.5" r="2.6" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="295.3" y1="124.6" x2="295.3" y2="236.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35" stroke-dasharray="4 4"/>
+  <text x="295.3" y="228.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.85">T = 30</text>
+  <line x1="334.8" y1="136.9" x2="334.8" y2="236.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35" stroke-dasharray="4 4"/>
+  <text x="334.8" y="228.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.85">T = 50</text>
+  <text x="350.0" y="300.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">Slope -1 on log axes: halving the step size halves the error, and no step count removes it.</text>
+</svg>

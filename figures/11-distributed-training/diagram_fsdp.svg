@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 812 300" width="812" height="300"
+     role="img" aria-labelledby="fsdpTitle fsdpDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="fsdpTitle">Overlapped communication and computation in an FSDP backward pass</title>
+  <desc id="fsdpDesc">Three horizontal lanes against time. The top lane, on the interconnect, all-gathers the weights for the next layer down. The middle lane, on the tensor cores, computes the backward pass for the current layer. The bottom lane, on the interconnect, reduce-scatters the gradients of the previous layer and applies its optimizer step. A highlighted column shows layers three, four and five in flight at the same instant.</desc>
+  <text x="20.0" y="28.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">time</text>
+  <line x1="56.0" y1="24.0" x2="144.0" y2="24.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.5"/>
+  <polygon points="150.0,24.0 144.0,26.7 144.0,21.3" fill="currentColor" fill-opacity="0.5" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="476.0" y="28.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">backward pass sweeps from layer 6 down to layer 1</text>
+  <rect x="341.0" y="58.0" width="94.0" height="184.0" fill="#fde725" fill-opacity="0.24" stroke="#3b528b" stroke-width="1.3" stroke-opacity="1.0" rx="5"/>
+  <text x="156.0" y="90.0" font-size="11.5" fill="currentColor" text-anchor="end">all-gather weights</text>
+  <text x="156.0" y="105.0" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.6">interconnect</text>
+  <rect x="259.0" y="70.0" width="82.0" height="44.0" fill="#3b528b" fill-opacity="0.32" stroke="#3b528b" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="300.0" y="96.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L6</text>
+  <rect x="347.0" y="70.0" width="82.0" height="44.0" fill="#3b528b" fill-opacity="0.32" stroke="#3b528b" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="388.0" y="96.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L5</text>
+  <rect x="435.0" y="70.0" width="82.0" height="44.0" fill="#3b528b" fill-opacity="0.32" stroke="#3b528b" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="476.0" y="96.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L4</text>
+  <rect x="523.0" y="70.0" width="82.0" height="44.0" fill="#3b528b" fill-opacity="0.32" stroke="#3b528b" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="564.0" y="96.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L3</text>
+  <rect x="611.0" y="70.0" width="82.0" height="44.0" fill="#3b528b" fill-opacity="0.32" stroke="#3b528b" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="652.0" y="96.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L2</text>
+  <rect x="699.0" y="70.0" width="82.0" height="44.0" fill="#3b528b" fill-opacity="0.32" stroke="#3b528b" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="740.0" y="96.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L1</text>
+  <text x="156.0" y="148.0" font-size="11.5" fill="currentColor" text-anchor="end">backward pass</text>
+  <text x="156.0" y="163.0" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.6">tensor cores</text>
+  <rect x="171.0" y="128.0" width="82.0" height="44.0" fill="#21918c" fill-opacity="0.32" stroke="#21918c" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="212.0" y="154.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L6</text>
+  <rect x="259.0" y="128.0" width="82.0" height="44.0" fill="#21918c" fill-opacity="0.32" stroke="#21918c" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="300.0" y="154.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L5</text>
+  <rect x="347.0" y="128.0" width="82.0" height="44.0" fill="#21918c" fill-opacity="0.32" stroke="#21918c" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="388.0" y="154.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L4</text>
+  <rect x="435.0" y="128.0" width="82.0" height="44.0" fill="#21918c" fill-opacity="0.32" stroke="#21918c" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="476.0" y="154.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L3</text>
+  <rect x="523.0" y="128.0" width="82.0" height="44.0" fill="#21918c" fill-opacity="0.32" stroke="#21918c" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="564.0" y="154.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L2</text>
+  <rect x="611.0" y="128.0" width="82.0" height="44.0" fill="#21918c" fill-opacity="0.32" stroke="#21918c" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="652.0" y="154.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L1</text>
+  <text x="156.0" y="206.0" font-size="11.5" fill="currentColor" text-anchor="end">reduce-scatter + step</text>
+  <text x="156.0" y="221.0" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.6">interconnect</text>
+  <rect x="171.0" y="186.0" width="82.0" height="44.0" fill="#440154" fill-opacity="0.32" stroke="#440154" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="212.0" y="212.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L5</text>
+  <rect x="259.0" y="186.0" width="82.0" height="44.0" fill="#440154" fill-opacity="0.32" stroke="#440154" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="300.0" y="212.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L4</text>
+  <rect x="347.0" y="186.0" width="82.0" height="44.0" fill="#440154" fill-opacity="0.32" stroke="#440154" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="388.0" y="212.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L3</text>
+  <rect x="435.0" y="186.0" width="82.0" height="44.0" fill="#440154" fill-opacity="0.32" stroke="#440154" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="476.0" y="212.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L2</text>
+  <rect x="523.0" y="186.0" width="82.0" height="44.0" fill="#440154" fill-opacity="0.32" stroke="#440154" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="564.0" y="212.5" font-size="12" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">L1</text>
+  <text x="388.0" y="260.0" font-size="11" fill="#3b528b" text-anchor="middle">three consecutive layers, three resources, one instant</text>
+  <text x="20.0" y="288.0" font-size="11" fill="currentColor" text-anchor="start" fill-opacity="0.7">The gather runs one layer ahead of the arithmetic and the reduction one layer behind it.</text>
+</svg>

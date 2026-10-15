@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 510" width="900" height="510"
+     role="img" aria-labelledby="detFamilyTitle detFamilyDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="detFamilyTitle">R-CNN, Fast R-CNN and Faster R-CNN</title>
+  <desc id="detFamilyDesc">Three horizontal pipelines. The first runs a full backbone once per region after cropping the image. The second runs the backbone once on the whole image and crops its features, with proposals still supplied by an external dashed box. The third replaces that box with a region proposal network reading the same features.</desc>
+  <text x="40.0" y="62.0" font-size="14" fill="currentColor" text-anchor="start" font-weight="600">R-CNN</text>
+  <text x="40.0" y="79.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">one backbone pass per region</text>
+  <rect x="40.0" y="96.0" width="56.0" height="46.0" fill="#3b528b" fill-opacity="0.16" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="68.0" y="123.5" font-size="12.5" fill="currentColor" text-anchor="middle">image</text>
+  <rect x="132.0" y="96.0" width="118.0" height="46.0" fill="none" fill-opacity="1.0" stroke="#21918c" stroke-width="1.3" stroke-opacity="0.85" rx="6" stroke-dasharray="5 3"/>
+  <text x="191.0" y="117.0" font-size="12.5" fill="currentColor" text-anchor="middle">selective search</text>
+  <text x="191.0" y="132.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">CPU, not learned</text>
+  <rect x="266.0" y="96.0" width="118.0" height="46.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="325.0" y="117.0" font-size="12.5" fill="currentColor" text-anchor="middle">warp each crop</text>
+  <text x="325.0" y="132.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">~2000 regions</text>
+  <rect x="400.0" y="96.0" width="118.0" height="46.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="459.0" y="117.0" font-size="12.5" fill="currentColor" text-anchor="middle">backbone CNN</text>
+  <text x="459.0" y="132.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">× 2000</text>
+  <rect x="534.0" y="96.0" width="118.0" height="46.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="593.0" y="117.0" font-size="12.5" fill="currentColor" text-anchor="middle">classify + regress</text>
+  <text x="593.0" y="132.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">per region</text>
+  <rect x="668.0" y="96.0" width="150.0" height="46.0" fill="#5ec962" fill-opacity="0.16" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="743.0" y="123.5" font-size="12.5" fill="currentColor" text-anchor="middle">class + box</text>
+  <line x1="99.0" y1="119.0" x2="123.0" y2="119.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="129.0,119.0 123.0,121.7 123.0,116.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="253.0" y1="119.0" x2="257.0" y2="119.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="263.0,119.0 257.0,121.7 257.0,116.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="387.0" y1="119.0" x2="391.0" y2="119.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="397.0,119.0 391.0,121.7 391.0,116.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="521.0" y1="119.0" x2="525.0" y2="119.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="531.0,119.0 525.0,121.7 525.0,116.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="655.0" y1="119.0" x2="659.0" y2="119.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="665.0,119.0 659.0,121.7 659.0,116.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="40.0" y="216.0" font-size="14" fill="currentColor" text-anchor="start" font-weight="600">Fast R-CNN</text>
+  <text x="40.0" y="233.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">backbone runs once; crop its features instead</text>
+  <rect x="40.0" y="250.0" width="56.0" height="46.0" fill="#3b528b" fill-opacity="0.16" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="68.0" y="277.5" font-size="12.5" fill="currentColor" text-anchor="middle">image</text>
+  <rect x="132.0" y="250.0" width="118.0" height="46.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="191.0" y="271.0" font-size="12.5" fill="currentColor" text-anchor="middle">backbone CNN</text>
+  <text x="191.0" y="286.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">× 1</text>
+  <rect x="400.0" y="250.0" width="118.0" height="46.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="459.0" y="271.0" font-size="12.5" fill="currentColor" text-anchor="middle">RoI pool</text>
+  <text x="459.0" y="286.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">crop features</text>
+  <rect x="534.0" y="250.0" width="118.0" height="46.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="593.0" y="271.0" font-size="12.5" fill="currentColor" text-anchor="middle">small head</text>
+  <text x="593.0" y="286.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">× N regions</text>
+  <rect x="668.0" y="250.0" width="150.0" height="46.0" fill="#5ec962" fill-opacity="0.16" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="743.0" y="277.5" font-size="12.5" fill="currentColor" text-anchor="middle">class + box</text>
+  <line x1="99.0" y1="273.0" x2="123.0" y2="273.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="129.0,273.0 123.0,275.7 123.0,270.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="253.0" y1="273.0" x2="391.0" y2="273.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="397.0,273.0 391.0,275.7 391.0,270.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="521.0" y1="273.0" x2="525.0" y2="273.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="531.0,273.0 525.0,275.7 525.0,270.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="655.0" y1="273.0" x2="659.0" y2="273.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="665.0,273.0 659.0,275.7 659.0,270.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="40.0" y="370.0" font-size="14" fill="currentColor" text-anchor="start" font-weight="600">Faster R-CNN</text>
+  <text x="40.0" y="387.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.7">proposals come from the same features</text>
+  <rect x="40.0" y="404.0" width="56.0" height="46.0" fill="#3b528b" fill-opacity="0.16" stroke="#3b528b" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="68.0" y="431.5" font-size="12.5" fill="currentColor" text-anchor="middle">image</text>
+  <rect x="132.0" y="404.0" width="118.0" height="46.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="191.0" y="425.0" font-size="12.5" fill="currentColor" text-anchor="middle">backbone CNN</text>
+  <text x="191.0" y="440.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">× 1</text>
+  <rect x="266.0" y="404.0" width="118.0" height="46.0" fill="#5ec962" fill-opacity="0.16" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="325.0" y="425.0" font-size="12.5" fill="currentColor" text-anchor="middle">region proposal net</text>
+  <text x="325.0" y="440.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">learned</text>
+  <rect x="400.0" y="404.0" width="118.0" height="46.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="459.0" y="425.0" font-size="12.5" fill="currentColor" text-anchor="middle">RoI align</text>
+  <text x="459.0" y="440.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">crop features</text>
+  <rect x="534.0" y="404.0" width="118.0" height="46.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="593.0" y="425.0" font-size="12.5" fill="currentColor" text-anchor="middle">small head</text>
+  <text x="593.0" y="440.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">× N regions</text>
+  <rect x="668.0" y="404.0" width="150.0" height="46.0" fill="#5ec962" fill-opacity="0.16" stroke="#5ec962" stroke-width="1.3" stroke-opacity="0.85" rx="6"/>
+  <text x="743.0" y="431.5" font-size="12.5" fill="currentColor" text-anchor="middle">class + box</text>
+  <line x1="99.0" y1="427.0" x2="123.0" y2="427.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="129.0,427.0 123.0,429.7 123.0,424.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="253.0" y1="427.0" x2="257.0" y2="427.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="263.0,427.0 257.0,429.7 257.0,424.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="387.0" y1="427.0" x2="391.0" y2="427.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="397.0,427.0 391.0,429.7 391.0,424.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="521.0" y1="427.0" x2="525.0" y2="427.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="531.0,427.0 525.0,429.7 525.0,424.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="655.0" y1="427.0" x2="659.0" y2="427.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="665.0,427.0 659.0,429.7 659.0,424.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="266.0" y="184.0" width="118.0" height="40.0" fill="none" fill-opacity="1.0" stroke="#440154" stroke-width="1.3" stroke-opacity="0.85" rx="6" stroke-dasharray="5 3"/>
+  <text x="325.0" y="202.0" font-size="12.5" fill="currentColor" text-anchor="middle">selective search</text>
+  <text x="325.0" y="217.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">CPU, not learned</text>
+  <line x1="325.0" y1="228.0" x2="416.1" y2="245.8" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.55"/>
+  <polygon points="422.0,247.0 415.6,248.5 416.6,243.2" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="250.0" y="488.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.68">dashed — a hand-designed stage outside the network</text>
+  <text x="662.0" y="488.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.68">purple — the step that dominates the runtime</text>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 400" width="840" height="400"
+     role="img" aria-labelledby="vlaTitle vlaDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="vlaTitle">The pi-zero vision-language-action stack</title>
+  <desc id="vlaDesc">Camera images, a language instruction and joint states enter a pretrained vision-language backbone, whose representation feeds a smaller action expert that emits a chunk of eight continuous future actions by flow matching, which are executed on the robot at up to fifty hertz.</desc>
+  <text x="420.0" y="26.0" font-size="14" fill="currentColor" text-anchor="middle" font-weight="600">A vision-language-action model: pi-zero</text>
+  <text x="420.0" y="46.0" font-size="11" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.65">no explicit state, no transition function — observation and goal in, actions out</text>
+  <rect x="46.0" y="108.0" width="118.0" height="40.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="5"/>
+  <text x="105.0" y="132.0" font-size="11" fill="currentColor" text-anchor="middle">camera images</text>
+  <rect x="46.0" y="158.0" width="118.0" height="40.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="5"/>
+  <text x="105.0" y="182.0" font-size="11" fill="currentColor" text-anchor="middle">instruction</text>
+  <rect x="46.0" y="208.0" width="118.0" height="40.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="5"/>
+  <text x="105.0" y="232.0" font-size="11" fill="currentColor" text-anchor="middle">joint states</text>
+  <rect x="216.0" y="108.0" width="132.0" height="90.0" fill="#21918c" fill-opacity="0.18" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.55" rx="5"/>
+  <text x="282.0" y="145.0" font-size="11.5" fill="currentColor" text-anchor="middle">VLM backbone</text>
+  <text x="282.0" y="163.0" font-size="10" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">PaliGemma, 3B</text>
+  <text x="282.0" y="180.0" font-size="10" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.7">web pretrained</text>
+  <rect x="400.0" y="108.0" width="132.0" height="90.0" fill="#3b528b" fill-opacity="0.18" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.55" rx="5"/>
+  <text x="466.0" y="145.0" font-size="11.5" fill="currentColor" text-anchor="middle">action expert</text>
+  <text x="466.0" y="163.0" font-size="10" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">300M</text>
+  <text x="466.0" y="180.0" font-size="10" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.7">flow matching</text>
+  <line x1="164.0" y1="128.0" x2="210.0" y2="128.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.55"/>
+  <polygon points="216.0,128.0 210.0,130.7 210.0,125.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="164.0" y1="178.0" x2="210.0" y2="178.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.55"/>
+  <polygon points="216.0,178.0 210.0,180.7 210.0,175.3" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="164.0" y1="228.0" x2="211.7" y2="182.2" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.55"/>
+  <polygon points="216.0,178.0 213.5,184.1 209.8,180.2" fill="currentColor" fill-opacity="0.55" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="348.0" y1="153.0" x2="394.0" y2="153.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="400.0,153.0 394.0,155.7 394.0,150.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="650.0" y="96.0" font-size="11" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.75">one action chunk per pass</text>
+  <rect x="578.0" y="122.0" width="18.0" height="30.0" fill="#fde725" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="0"/>
+  <rect x="600.0" y="122.0" width="18.0" height="30.0" fill="#fde725" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="0"/>
+  <rect x="622.0" y="122.0" width="18.0" height="30.0" fill="#fde725" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="0"/>
+  <rect x="644.0" y="122.0" width="18.0" height="30.0" fill="#fde725" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="0"/>
+  <rect x="666.0" y="122.0" width="18.0" height="30.0" fill="#fde725" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="0"/>
+  <rect x="688.0" y="122.0" width="18.0" height="30.0" fill="#fde725" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="0"/>
+  <rect x="710.0" y="122.0" width="18.0" height="30.0" fill="#fde725" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="0"/>
+  <rect x="732.0" y="122.0" width="18.0" height="30.0" fill="#fde725" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="0"/>
+  <line x1="532.0" y1="153.0" x2="568.4" y2="139.1" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="574.0,137.0 569.4,141.7 567.4,136.6" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="666.0" y="172.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.75">up to 50 Hz</text>
+  <text x="666.0" y="190.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">continuous actions, not tokens</text>
+  <rect x="600.0" y="214.0" width="132.0" height="40.0" fill="#5ec962" fill-opacity="0.2" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.55" rx="5"/>
+  <text x="666.0" y="238.0" font-size="11.5" fill="currentColor" text-anchor="middle">robot</text>
+  <line x1="666.0" y1="200.0" x2="666.0" y2="208.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="666.0,214.0 663.3,208.0 668.7,208.0" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="40.0" y1="288.0" x2="800.0" y2="288.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.2"/>
+  <text x="420.0" y="314.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">Pretraining: about 10,000 hours across 7 robot configurations and 68 tasks, plus open cross-embodiment data.</text>
+  <text x="420.0" y="336.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">The backbone supplies semantics the robot data could never contain; the expert supplies a rate the backbone could never reach.</text>
+  <text x="420.0" y="366.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">Nothing here models the environment. The generated trajectory is always fluent, which is not the same as always correct.</text>
+</svg>

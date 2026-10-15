@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 430" width="840" height="430"
+     role="img" aria-labelledby="clipobjTitle clipobjDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="clipobjTitle">CLIP's contrastive training step</title>
+  <desc id="clipobjDesc">A four-by-four grid of cosine similarities between four image embeddings and four caption embeddings. The four diagonal cells are highlighted as the positive pairs; the twelve off-diagonal cells are negatives. An arrow to the right of the grid marks the softmax taken across each row, giving the image-to-text loss; an arrow below marks the softmax taken down each column, giving the text-to-image loss.</desc>
+  <text x="20.0" y="28.0" font-size="13.5" fill="#1b1b1b" text-anchor="start">One training step on a batch of N image–caption pairs</text>
+  <text x="240.0" y="106.0" font-size="12.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.85">v1</text>
+  <text x="292.0" y="106.0" font-size="12.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.85">v2</text>
+  <text x="344.0" y="106.0" font-size="12.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.85">v3</text>
+  <text x="396.0" y="106.0" font-size="12.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.85">v4</text>
+  <text x="318.0" y="84.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">caption embeddings</text>
+  <text x="202.0" y="148.5" font-size="12.5" fill="#1b1b1b" text-anchor="end" fill-opacity="0.85">u1</text>
+  <text x="202.0" y="200.5" font-size="12.5" fill="#1b1b1b" text-anchor="end" fill-opacity="0.85">u2</text>
+  <text x="202.0" y="252.5" font-size="12.5" fill="#1b1b1b" text-anchor="end" fill-opacity="0.85">u3</text>
+  <text x="202.0" y="304.5" font-size="12.5" fill="#1b1b1b" text-anchor="end" fill-opacity="0.85">u4</text>
+  <text x="30.0" y="122.0" font-size="11.5" fill="#1b1b1b" text-anchor="start" fill-opacity="0.72">image</text>
+  <text x="30.0" y="140.0" font-size="11.5" fill="#1b1b1b" text-anchor="start" fill-opacity="0.72">embeddings</text>
+  <rect x="214.0" y="118.0" width="52.0" height="52.0" fill="#fde725" fill-opacity="0.62" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="266.0" y="118.0" width="52.0" height="52.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="318.0" y="118.0" width="52.0" height="52.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="370.0" y="118.0" width="52.0" height="52.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="214.0" y="170.0" width="52.0" height="52.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="266.0" y="170.0" width="52.0" height="52.0" fill="#fde725" fill-opacity="0.62" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="318.0" y="170.0" width="52.0" height="52.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="370.0" y="170.0" width="52.0" height="52.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="214.0" y="222.0" width="52.0" height="52.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="266.0" y="222.0" width="52.0" height="52.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="318.0" y="222.0" width="52.0" height="52.0" fill="#fde725" fill-opacity="0.62" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="370.0" y="222.0" width="52.0" height="52.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="214.0" y="274.0" width="52.0" height="52.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="266.0" y="274.0" width="52.0" height="52.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="318.0" y="274.0" width="52.0" height="52.0" fill="#3b528b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <rect x="370.0" y="274.0" width="52.0" height="52.0" fill="#fde725" fill-opacity="0.62" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35"/>
+  <text x="240.0" y="148.0" font-size="9.5" fill="#1b1b1b" text-anchor="middle">⟨u1,v1⟩</text>
+  <text x="344.0" y="148.0" font-size="9.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.55">⟨u1,v3⟩</text>
+  <line x1="432.0" y1="196.0" x2="474.0" y2="196.0" stroke="#440154" stroke-width="1.5" stroke-opacity="0.75"/>
+  <polygon points="480.0,196.0 474.0,198.7 474.0,193.3" fill="#440154" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="488.0" y="180.4" font-size="12" fill="#1b1b1b" text-anchor="start">softmax across each row</text>
+  <text x="488.0" y="197.4" font-size="11" fill="#1b1b1b" text-anchor="start" fill-opacity="0.68">each image picks its caption</text>
+  <text x="488.0" y="214.4" font-size="11" fill="#440154" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">image → text loss</text>
+  <line x1="344.0" y1="338.0" x2="344.0" y2="370.0" stroke="#21918c" stroke-width="1.5" stroke-opacity="0.75"/>
+  <polygon points="344.0,376.0 341.3,370.0 346.7,370.0" fill="#21918c" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="360.0" y="360.0" font-size="12" fill="#1b1b1b" text-anchor="start">softmax down each column</text>
+  <text x="360.0" y="377.0" font-size="11" fill="#1b1b1b" text-anchor="start" fill-opacity="0.68">each caption picks its image</text>
+  <text x="360.0" y="394.0" font-size="11" fill="#21918c" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">text → image loss</text>
+  <rect x="30.0" y="180.0" width="152.0" height="96.0" fill="#5ec962" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="4"/>
+  <text x="106.0" y="204.0" font-size="12.5" fill="#1b1b1b" text-anchor="middle">N = 4</text>
+  <text x="106.0" y="226.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.8">4 positives</text>
+  <text x="106.0" y="244.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.8">12 negatives</text>
+  <text x="106.0" y="264.0" font-size="11" fill="#1b1b1b" text-anchor="middle" font-style="italic" fill-opacity="0.62">all of them free</text>
+  <text x="420.0" y="408.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">At the real batch size of 32,768 each image must beat 32,767 wrong captions.</text>
+</svg>

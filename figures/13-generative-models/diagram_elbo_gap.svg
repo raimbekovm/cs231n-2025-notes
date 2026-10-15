@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 310" width="760" height="310"
+     role="img" aria-labelledby="egTitle egDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="egTitle">The evidence lower bound and its gap</title>
+  <desc id="egDesc">Three stacked bars, one per choice of encoder output. Every bar has the same lower segment, the negated log marginal likelihood, drawn against a dashed rule. The upper segment is the posterior divergence, zero when the encoder equals the true posterior and growing as it moves away, so the total height is the negated bound.</desc>
+  <text x="20.0" y="28.0" font-size="14" fill="currentColor" text-anchor="start">The bound and the gap sum to log p(x)</text>
+  <text x="20.0" y="48.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.6">negated so bars are positive; nats, one-dimensional conjugate model</text>
+  <line x1="100.0" y1="260.0" x2="700.0" y2="260.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.1" stroke-dasharray="3 4"/>
+  <text x="92.0" y="264.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">0</text>
+  <line x1="100.0" y1="200.0" x2="700.0" y2="200.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.1" stroke-dasharray="3 4"/>
+  <text x="92.0" y="204.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">1</text>
+  <line x1="100.0" y1="140.0" x2="700.0" y2="140.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.1" stroke-dasharray="3 4"/>
+  <text x="92.0" y="144.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">2</text>
+  <line x1="100.0" y1="80.0" x2="700.0" y2="80.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.1" stroke-dasharray="3 4"/>
+  <text x="92.0" y="84.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">3</text>
+  <rect x="125.0" y="159.1" width="90.0" height="100.9" fill="#3b528b" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="170.0" y="149.1" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">1.682</text>
+  <text x="170.0" y="280.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">q = true posterior</text>
+  <text x="170.0" y="298.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">gap 0.000</text>
+  <rect x="325.0" y="159.1" width="90.0" height="100.9" fill="#3b528b" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="325.0" y="129.8" width="90.0" height="29.3" fill="#440154" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="370.0" y="119.8" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">2.170</text>
+  <text x="370.0" y="280.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">q off by a little</text>
+  <text x="370.0" y="298.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">gap 0.488</text>
+  <rect x="525.0" y="159.1" width="90.0" height="100.9" fill="#3b528b" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="525.0" y="92.2" width="90.0" height="66.9" fill="#440154" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="570.0" y="82.2" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">2.797</text>
+  <text x="570.0" y="280.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.75">q = the prior</text>
+  <text x="570.0" y="298.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">gap 1.116</text>
+  <line x1="100.0" y1="159.1" x2="700.0" y2="159.1" stroke="#3b528b" stroke-width="1.4" stroke-opacity="1.0" stroke-dasharray="5 4"/>
+  <line x1="100.0" y1="260.0" x2="700.0" y2="260.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <line x1="100.0" y1="80.0" x2="100.0" y2="260.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <line x1="118.0" y1="96.0" x2="140.0" y2="96.0" stroke="#440154" stroke-width="6.0" stroke-opacity="1.0"/>
+  <text x="148.0" y="100.0" font-size="11" fill="#440154" text-anchor="start">gap = D(q &#8214; p(z | x))</text>
+  <line x1="118.0" y1="116.0" x2="140.0" y2="116.0" stroke="#3b528b" stroke-width="6.0" stroke-opacity="1.0"/>
+  <text x="148.0" y="120.0" font-size="11" fill="#3b528b" text-anchor="start">&#8722; log p(x) = 1.682, fixed</text>
+</svg>

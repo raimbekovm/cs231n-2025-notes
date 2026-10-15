@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" width="700" height="320"
+     role="img" aria-labelledby="cfgTradeTitle cfgTradeDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="cfgTradeTitle">The classifier-free guidance trade-off</title>
+  <desc id="cfgTradeDesc">Two panels, on separate vertical scales: the spread of the guided samples and the mass they place on the wrong class, both against the guidance weight.</desc>
+  <text x="350.0" y="22.0" font-size="13.5" fill="currentColor" text-anchor="middle" font-weight="600">Guidance makes the model narrow, not correct</text>
+  <line x1="78.0" y1="232.0" x2="328.0" y2="232.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="78.0" y1="58.0" x2="78.0" y2="232.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="78.0" y1="232.0" x2="78.0" y2="236.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="78.0" y="248.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">0</text>
+  <line x1="161.3" y1="232.0" x2="161.3" y2="236.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="161.3" y="248.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">2</text>
+  <line x1="244.7" y1="232.0" x2="244.7" y2="236.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="244.7" y="248.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">4</text>
+  <line x1="328.0" y1="232.0" x2="328.0" y2="236.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="328.0" y="248.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">6</text>
+  <line x1="74.0" y1="211.8" x2="78.0" y2="211.8" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="70.0" y="215.3" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.7">0.3</text>
+  <line x1="74.0" y1="171.3" x2="78.0" y2="171.3" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="70.0" y="174.8" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.7">0.4</text>
+  <line x1="74.0" y1="130.8" x2="78.0" y2="130.8" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="70.0" y="134.3" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.7">0.5</text>
+  <line x1="74.0" y1="90.4" x2="78.0" y2="90.4" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="70.0" y="93.9" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.7">0.6</text>
+  <text x="203.0" y="268.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.8">guidance weight w</text>
+  <text x="203.0" y="44.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.8">spread of the samples</text>
+  <line x1="78.0" y1="90.4" x2="328.0" y2="90.4" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4" stroke-dasharray="5 4"/>
+  <text x="324.0" y="81.4" font-size="10" fill="currentColor" text-anchor="end" fill-opacity="0.8">true conditional sigma</text>
+  <polyline points="78.00,91.04 98.83,137.22 119.67,158.71 140.50,171.60 161.33,180.49 203.00,192.26 244.67,199.84 286.33,205.20 328.00,209.22" fill="none" stroke="#3b528b" stroke-width="2.2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="78.0" cy="91.0" r="2.8" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="98.8" cy="137.2" r="2.8" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="119.7" cy="158.7" r="2.8" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="140.5" cy="171.6" r="2.8" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="161.3" cy="180.5" r="2.8" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="203.0" cy="192.3" r="2.8" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="244.7" cy="199.8" r="2.8" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="286.3" cy="205.2" r="2.8" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="328.0" cy="209.2" r="2.8" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="420.0" y1="232.0" x2="668.0" y2="232.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="420.0" y1="58.0" x2="420.0" y2="232.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="420.0" y1="232.0" x2="420.0" y2="236.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="420.0" y="248.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">0</text>
+  <line x1="502.7" y1="232.0" x2="502.7" y2="236.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="502.7" y="248.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">2</text>
+  <line x1="585.3" y1="232.0" x2="585.3" y2="236.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="585.3" y="248.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">4</text>
+  <line x1="668.0" y1="232.0" x2="668.0" y2="236.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="668.0" y="248.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">6</text>
+  <line x1="416.0" y1="232.0" x2="420.0" y2="232.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="412.0" y="235.5" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.7">0</text>
+  <line x1="416.0" y1="172.0" x2="420.0" y2="172.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="412.0" y="175.5" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.7">0.02</text>
+  <line x1="416.0" y1="112.0" x2="420.0" y2="112.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="412.0" y="115.5" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.7">0.04</text>
+  <text x="544.0" y="268.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.8">guidance weight w</text>
+  <text x="544.0" y="44.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.8">mass landing on the wrong class</text>
+  <polyline points="420.00,88.56 440.67,228.60 461.33,232.00 482.00,232.00 502.67,232.00 544.00,232.00 585.33,232.00 626.67,232.00 668.00,232.00" fill="none" stroke="#440154" stroke-width="2.2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="420.0" cy="88.6" r="2.8" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="440.7" cy="228.6" r="2.8" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="461.3" cy="232.0" r="2.8" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="482.0" cy="232.0" r="2.8" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="502.7" cy="232.0" r="2.8" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="544.0" cy="232.0" r="2.8" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="585.3" cy="232.0" r="2.8" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="626.7" cy="232.0" r="2.8" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="668.0" cy="232.0" r="2.8" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="434.0" y="76.6" font-size="10" fill="#440154" text-anchor="start">the true conditional's own tail</text>
+  <text x="350.0" y="300.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">The panels have different vertical scales. At w = 0 the integrator reproduces the true conditional exactly.</text>
+</svg>

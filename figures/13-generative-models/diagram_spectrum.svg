@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="760" height="300"
+     role="img" aria-labelledby="spTitle spDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="spTitle">Two independent axes for classifying methods</title>
+  <desc id="spDesc">A horizontal spectrum from full density estimation to short-code representation learning, with autoregressive models at the density end, autoencoders and PCA and contrastive methods at the representation end, and the variational autoencoder between them. Below it, three boxes for the discriminative, generative and conditional generative arrangements, marked as a separate question.</desc>
+  <text x="20.0" y="28.0" font-size="14" fill="currentColor" text-anchor="start">Two axes, and they are independent</text>
+  <text x="20.0" y="48.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.6">where a method sits, and what it puts in competition</text>
+  <line x1="60.0" y1="128.0" x2="700.0" y2="128.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <line x1="60.0" y1="123.0" x2="60.0" y2="133.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <line x1="700.0" y1="123.0" x2="700.0" y2="133.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <text x="60.0" y="152.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.65">model the full density p(x)</text>
+  <text x="700.0" y="152.0" font-size="11.5" fill="currentColor" text-anchor="end" fill-opacity="0.65">extract a short code z</text>
+  <line x1="92.0" y1="124.0" x2="92.0" y2="110.0" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.55"/>
+  <circle cx="92.0" cy="128.0" r="4.0" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="92.0" y="102.0" font-size="12" fill="#21918c" text-anchor="middle">autoregressive</text>
+  <line x1="303.2" y1="124.0" x2="303.2" y2="110.0" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.55"/>
+  <circle cx="303.2" cy="128.0" r="4.0" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="303.2" y="102.0" font-size="12" fill="#3b528b" text-anchor="middle">VAE</text>
+  <line x1="456.8" y1="124.0" x2="456.8" y2="110.0" stroke="#440154" stroke-width="1.0" stroke-opacity="0.55"/>
+  <circle cx="456.8" cy="128.0" r="4.0" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="456.8" y="102.0" font-size="12" fill="#440154" text-anchor="middle">autoencoder</text>
+  <line x1="572.0" y1="124.0" x2="572.0" y2="110.0" stroke="#440154" stroke-width="1.0" stroke-opacity="0.55"/>
+  <circle cx="572.0" cy="128.0" r="4.0" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="572.0" y="102.0" font-size="12" fill="#440154" text-anchor="middle">PCA</text>
+  <line x1="668.0" y1="124.0" x2="668.0" y2="110.0" stroke="#440154" stroke-width="1.0" stroke-opacity="0.55"/>
+  <circle cx="668.0" cy="128.0" r="4.0" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="668.0" y="102.0" font-size="12" fill="#440154" text-anchor="middle">contrastive</text>
+  <text x="380.0" y="200.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.65">a separate question: what competes for probability mass</text>
+  <rect x="90.0" y="220.0" width="150.0" height="48.0" fill="#5ec962" fill-opacity="0.14" stroke="#5ec962" stroke-width="1.0" stroke-opacity="0.6" rx="4"/>
+  <text x="165.0" y="240.0" font-size="13" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">p(y | x)</text>
+  <text x="165.0" y="258.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.65">discriminative</text>
+  <rect x="330.0" y="220.0" width="150.0" height="48.0" fill="#3b528b" fill-opacity="0.14" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6" rx="4"/>
+  <text x="405.0" y="240.0" font-size="13" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">p(x)</text>
+  <text x="405.0" y="258.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.65">generative</text>
+  <rect x="570.0" y="220.0" width="150.0" height="48.0" fill="#21918c" fill-opacity="0.14" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.6" rx="4"/>
+  <text x="645.0" y="240.0" font-size="13" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">p(x | y)</text>
+  <text x="645.0" y="258.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.65">conditional</text>
+</svg>

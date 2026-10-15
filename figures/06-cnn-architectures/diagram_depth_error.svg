@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 400" width="780" height="400"
+     role="img" aria-labelledby="depthErrTitle depthErrDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="depthErrTitle">ILSVRC winning error against the depth of the winning entry</title>
+  <desc id="depthErrDesc">Bars give the depth of each year's winning entry and a line gives its top-5 error on a logarithmic scale. The two pre-2012 winners are shallow feature pipelines. Error falls from 28% in 2010 to 2.25% in 2017 while depth rises from zero to over a hundred layers, crossing the 5.1% human annotator baseline in 2015.</desc>
+  <line x1="62.0" y1="316.0" x2="706.0" y2="316.0" stroke="currentColor" stroke-width="0.6" stroke-opacity="0.18" stroke-dasharray="3 4"/>
+  <text x="716.0" y="320.0" font-size="11" fill="currentColor" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">2%</text>
+  <line x1="62.0" y1="251.0" x2="706.0" y2="251.0" stroke="currentColor" stroke-width="0.6" stroke-opacity="0.18" stroke-dasharray="3 4"/>
+  <text x="716.0" y="255.0" font-size="11" fill="currentColor" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">4%</text>
+  <line x1="62.0" y1="186.0" x2="706.0" y2="186.0" stroke="currentColor" stroke-width="0.6" stroke-opacity="0.18" stroke-dasharray="3 4"/>
+  <text x="716.0" y="190.0" font-size="11" fill="currentColor" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">8%</text>
+  <line x1="62.0" y1="121.0" x2="706.0" y2="121.0" stroke="currentColor" stroke-width="0.6" stroke-opacity="0.18" stroke-dasharray="3 4"/>
+  <text x="716.0" y="125.0" font-size="11" fill="currentColor" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">16%</text>
+  <line x1="62.0" y1="56.0" x2="706.0" y2="56.0" stroke="currentColor" stroke-width="0.6" stroke-opacity="0.18" stroke-dasharray="3 4"/>
+  <text x="716.0" y="60.0" font-size="11" fill="currentColor" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">32%</text>
+  <text x="50.0" y="320.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">0</text>
+  <text x="50.0" y="255.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">40</text>
+  <text x="50.0" y="190.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">80</text>
+  <text x="50.0" y="125.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">120</text>
+  <text x="50.0" y="60.0" font-size="11" fill="currentColor" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.65">160</text>
+  <line x1="62.0" y1="316.0" x2="706.0" y2="316.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.6"/>
+  <line x1="95.0" y1="316.0" x2="121.0" y2="316.0" stroke="#3b528b" stroke-width="2.4" stroke-opacity="0.55"/>
+  <line x1="187.0" y1="316.0" x2="213.0" y2="316.0" stroke="#3b528b" stroke-width="2.4" stroke-opacity="0.55"/>
+  <rect x="279.0" y="303.0" width="26.0" height="13.0" fill="#3b528b" fill-opacity="0.34" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.55"/>
+  <text x="292.0" y="297.0" font-size="10.5" fill="#3b528b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">8</text>
+  <rect x="371.0" y="303.0" width="26.0" height="13.0" fill="#3b528b" fill-opacity="0.34" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.55"/>
+  <text x="384.0" y="297.0" font-size="10.5" fill="#3b528b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">8</text>
+  <rect x="463.0" y="280.2" width="26.0" height="35.8" fill="#3b528b" fill-opacity="0.34" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.55"/>
+  <text x="476.0" y="274.2" font-size="10.5" fill="#3b528b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">22</text>
+  <rect x="555.0" y="69.0" width="26.0" height="247.0" fill="#3b528b" fill-opacity="0.34" stroke="#3b528b" stroke-width="0.9" stroke-opacity="0.55"/>
+  <text x="568.0" y="63.0" font-size="10.5" fill="#3b528b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">152</text>
+  <text x="660.0" y="304.0" font-size="13" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.35">?</text>
+  <line x1="62.0" y1="228.2" x2="706.0" y2="228.2" stroke="#440154" stroke-width="1.1" stroke-opacity="0.5" stroke-dasharray="6 4"/>
+  <text x="68.0" y="221.2" font-size="10.5" fill="#440154" text-anchor="start" fill-opacity="0.75">human annotator, 5.1%</text>
+  <path d="M 108.0 67.9 L 200.0 76.3 L 292.0 125.1 L 384.0 154.4 L 476.0 203.2 L 568.0 261.7 L 660.0 305.0" fill="none" stroke="#21918c" stroke-width="2.0" stroke-opacity="0.9"/>
+  <circle cx="108.0" cy="67.9" r="4" fill="#21918c"/>
+  <text x="108.0" y="56.9" font-size="10.5" fill="#21918c" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.95">28.19</text>
+  <circle cx="200.0" cy="76.3" r="4" fill="#21918c"/>
+  <text x="200.0" y="65.3" font-size="10.5" fill="#21918c" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.95">25.77</text>
+  <circle cx="292.0" cy="125.1" r="4" fill="#21918c"/>
+  <text x="292.0" y="114.1" font-size="10.5" fill="#21918c" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.95">15.32</text>
+  <circle cx="384.0" cy="154.4" r="4" fill="#21918c"/>
+  <text x="384.0" y="143.4" font-size="10.5" fill="#21918c" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.95">11.20</text>
+  <circle cx="476.0" cy="203.2" r="4" fill="#21918c"/>
+  <text x="476.0" y="192.2" font-size="10.5" fill="#21918c" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.95">6.66</text>
+  <circle cx="568.0" cy="261.7" r="4" fill="#21918c"/>
+  <text x="568.0" y="250.7" font-size="10.5" fill="#21918c" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.95">3.57</text>
+  <circle cx="660.0" cy="305.0" r="4" fill="#21918c"/>
+  <text x="660.0" y="294.0" font-size="10.5" fill="#21918c" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.95">2.25</text>
+  <text x="108.0" y="334.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.8">2010</text>
+  <text x="108.0" y="349.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">NEC-UIUC</text>
+  <text x="200.0" y="334.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.8">2011</text>
+  <text x="200.0" y="349.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">XRCE</text>
+  <text x="292.0" y="334.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.8">2012</text>
+  <text x="292.0" y="349.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">AlexNet</text>
+  <text x="384.0" y="334.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.8">2013</text>
+  <text x="384.0" y="349.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">ZFNet</text>
+  <text x="476.0" y="334.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.8">2014</text>
+  <text x="476.0" y="349.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">GoogLeNet</text>
+  <text x="568.0" y="334.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.8">2015</text>
+  <text x="568.0" y="349.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">ResNet</text>
+  <text x="660.0" y="334.0" font-size="11.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.8">2017</text>
+  <text x="660.0" y="349.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">SENet</text>
+  <text x="614.0" y="366.0" font-size="10" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.5">2016 omitted: its winner was an ensemble</text>
+  <text x="50.0" y="30.0" font-size="11.5" fill="currentColor" text-anchor="end" fill-opacity="0.75">layers</text>
+  <text x="716.0" y="30.0" font-size="11.5" fill="#21918c" text-anchor="start" fill-opacity="0.75">top-5 error</text>
+  <text x="390.0" y="26.0" font-size="14" fill="currentColor" text-anchor="middle" fill-opacity="0.9">ILSVRC winners: error fell as depth rose</text>
+</svg>

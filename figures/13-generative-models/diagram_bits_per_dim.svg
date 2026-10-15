@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 306" width="760" height="306"
+     role="img" aria-labelledby="bdTitle bdDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="bdTitle">CIFAR-10 density in bits per dimension</title>
+  <desc id="bdDesc">Horizontal bars for six models on CIFAR-10, from a uniform baseline at exactly eight bits per dimension down to three point zero zero for the strongest PixelRNN variant, with a multivariate Gaussian at four point seven and the previous state of the art at three point four seven in between.</desc>
+  <text x="20.0" y="30.0" font-size="14" fill="currentColor" text-anchor="start">CIFAR-10 density, bits per dimension</text>
+  <text x="20.0" y="50.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.6">lower is better; a raw subpixel is 8 bits</text>
+  <line x1="333.3" y1="68.0" x2="333.3" y2="262.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="333.3" y="280.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">3</text>
+  <line x1="400.0" y1="68.0" x2="400.0" y2="262.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="400.0" y="280.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">4</text>
+  <line x1="466.7" y1="68.0" x2="466.7" y2="262.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="466.7" y="280.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">5</text>
+  <line x1="533.3" y1="68.0" x2="533.3" y2="262.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="533.3" y="280.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">6</text>
+  <line x1="600.0" y1="68.0" x2="600.0" y2="262.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="600.0" y="280.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">7</text>
+  <line x1="666.7" y1="68.0" x2="666.7" y2="262.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.14" stroke-dasharray="3 4"/>
+  <text x="666.7" y="280.0" font-size="11" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.6">8</text>
+  <text x="286.0" y="92.0" font-size="12" fill="currentColor" text-anchor="end">uniform over 256 values</text>
+  <rect x="300.0" y="78.0" width="366.7" height="20.0" fill="#1b1b1b" fill-opacity="0.28" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="674.7" y="92.0" font-size="11.5" fill="currentColor" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">8.00</text>
+  <text x="286.0" y="124.0" font-size="12" fill="currentColor" text-anchor="end">multivariate Gaussian</text>
+  <rect x="300.0" y="110.0" width="146.7" height="20.0" fill="#440154" fill-opacity="0.82" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="454.7" y="124.0" font-size="11.5" fill="currentColor" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">4.70</text>
+  <text x="286.0" y="156.0" font-size="12" fill="currentColor" text-anchor="end">RIDE (previous best)</text>
+  <rect x="300.0" y="142.0" width="64.7" height="20.0" fill="#440154" fill-opacity="0.82" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="372.7" y="156.0" font-size="11.5" fill="currentColor" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">3.47</text>
+  <text x="286.0" y="188.0" font-size="12" fill="currentColor" text-anchor="end">PixelCNN</text>
+  <rect x="300.0" y="174.0" width="42.7" height="20.0" fill="#21918c" fill-opacity="0.82" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="350.7" y="188.0" font-size="11.5" fill="currentColor" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">3.14</text>
+  <text x="286.0" y="220.0" font-size="12" fill="currentColor" text-anchor="end">Row LSTM</text>
+  <rect x="300.0" y="206.0" width="38.0" height="20.0" fill="#21918c" fill-opacity="0.82" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="346.0" y="220.0" font-size="11.5" fill="currentColor" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">3.07</text>
+  <text x="286.0" y="252.0" font-size="12" fill="currentColor" text-anchor="end">Diagonal BiLSTM</text>
+  <rect x="300.0" y="238.0" width="33.3" height="20.0" fill="#21918c" fill-opacity="0.82" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="341.3" y="252.0" font-size="11.5" fill="currentColor" text-anchor="start" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">3.00</text>
+  <line x1="300.0" y1="68.0" x2="300.0" y2="262.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.35"/>
+  <text x="500.0" y="298.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.6">bits per dimension</text>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 420" width="660" height="420"
+     role="img" aria-labelledby="fairTitle fairDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="fairTitle">False positive rate forced by prevalence</title>
+  <desc id="fairDesc">A rising curve of false positive rate against prevalence at fixed predictive value and false negative rate, with the two COMPAS base rates marked and the resulting gap shaded.</desc>
+  <line x1="110.0" y1="320.0" x2="570.0" y2="320.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="110.0" y1="60.0" x2="110.0" y2="320.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="148.3" y1="320.0" x2="148.3" y2="324.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="148.3" y="338.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">0.1</text>
+  <line x1="225.0" y1="320.0" x2="225.0" y2="324.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="225.0" y="338.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">0.2</text>
+  <line x1="301.7" y1="320.0" x2="301.7" y2="324.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="301.7" y="338.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">0.3</text>
+  <line x1="378.3" y1="320.0" x2="378.3" y2="324.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="378.3" y="338.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">0.4</text>
+  <line x1="455.0" y1="320.0" x2="455.0" y2="324.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="455.0" y="338.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">0.5</text>
+  <line x1="531.7" y1="320.0" x2="531.7" y2="324.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="531.7" y="338.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">0.6</text>
+  <line x1="106.0" y1="320.0" x2="110.0" y2="320.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="101.0" y="324.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.75">0.0</text>
+  <line x1="106.0" y1="262.2" x2="110.0" y2="262.2" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="101.0" y="266.2" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.75">0.2</text>
+  <line x1="106.0" y1="204.4" x2="110.0" y2="204.4" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="101.0" y="208.4" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.75">0.4</text>
+  <line x1="106.0" y1="146.7" x2="110.0" y2="146.7" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="101.0" y="150.7" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.75">0.6</text>
+  <line x1="106.0" y1="88.9" x2="110.0" y2="88.9" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="101.0" y="92.9" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.75">0.8</text>
+  <text x="340.0" y="360.0" font-size="12" fill="currentColor" text-anchor="middle">prevalence in the group</text>
+  <text x="66.0" y="44.0" font-size="12" fill="currentColor" text-anchor="start">false positive rate</text>
+  <polygon points="370.7,233.8 462.7,179.7 462.7,233.8" fill="#fde725" fill-opacity="0.35" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <polyline points="110.00,312.90 111.92,312.53 113.85,312.15 115.77,311.77 117.70,311.39 119.62,311.00 121.55,310.62 123.47,310.23 125.40,309.84 127.32,309.45 129.25,309.05 131.17,308.66 133.10,308.26 135.02,307.86 136.95,307.45 138.87,307.05 140.79,306.64 142.72,306.23 144.64,305.82 146.57,305.40 148.49,304.99 150.42,304.57 152.34,304.14 154.27,303.72 156.19,303.29 158.12,302.87 160.04,302.43 161.97,302.00 163.89,301.57 165.82,301.13 167.74,300.69 169.67,300.24 171.59,299.80 173.51,299.35 175.44,298.90 177.36,298.44 179.29,297.98 181.21,297.53 183.14,297.06 185.06,296.60 186.99,296.13 188.91,295.66 190.84,295.19 192.76,294.71 194.69,294.23 196.61,293.75 198.54,293.27 200.46,292.78 202.38,292.29 204.31,291.80 206.23,291.30 208.16,290.80 210.08,290.30 212.01,289.79 213.93,289.28 215.86,288.77 217.78,288.26 219.71,287.74 221.63,287.22 223.56,286.69 225.48,286.16 227.41,285.63 229.33,285.10 231.26,284.56 233.18,284.02 235.10,283.47 237.03,282.93 238.95,282.37 240.88,281.82 242.80,281.26 244.73,280.70 246.65,280.13 248.58,279.56 250.50,278.99 252.43,278.41 254.35,277.83 256.28,277.24 258.20,276.65 260.13,276.06 262.05,275.46 263.97,274.86 265.90,274.26 267.82,273.65 269.75,273.03 271.67,272.42 273.60,271.79 275.52,271.17 277.45,270.54 279.37,269.90 281.30,269.26 283.22,268.62 285.15,267.97 287.07,267.32 289.00,266.66 290.92,266.00 292.85,265.34 294.77,264.67 296.69,263.99 298.62,263.31 300.54,262.62 302.47,261.93 304.39,261.24 306.32,260.54 308.24,259.83 310.17,259.12 312.09,258.41 314.02,257.69 315.94,256.96 317.87,256.23 319.79,255.49 321.72,254.75 323.64,254.00 325.56,253.25 327.49,252.49 329.41,251.72 331.34,250.95 333.26,250.17 335.19,249.39 337.11,248.60 339.04,247.81 340.96,247.01 342.89,246.20 344.81,245.39 346.74,244.57 348.66,243.74 350.59,242.91 352.51,242.07 354.44,241.22 356.36,240.37 358.28,239.51 360.21,238.64 362.13,237.77 364.06,236.89 365.98,236.00 367.91,235.10 369.83,234.20 371.76,233.29 373.68,232.37 375.61,231.45 377.53,230.51 379.46,229.57 381.38,228.62 383.31,227.67 385.23,226.70 387.15,225.73 389.08,224.75 391.00,223.76 392.93,222.76 394.85,221.75 396.78,220.74 398.70,219.71 400.63,218.68 402.55,217.64 404.48,216.58 406.40,215.52 408.33,214.45 410.25,213.37 412.18,212.28 414.10,211.18 416.03,210.07 417.95,208.95 419.87,207.82 421.80,206.68 423.72,205.52 425.65,204.36 427.57,203.19 429.50,202.00 431.42,200.81 433.35,199.60 435.27,198.38 437.20,197.15 439.12,195.91 441.05,194.66 442.97,193.39 444.90,192.11 446.82,190.82 448.74,189.51 450.67,188.20 452.59,186.87 454.52,185.52 456.44,184.17 458.37,182.80 460.29,181.41 462.22,180.01 464.14,178.60 466.07,177.17 467.99,175.73 469.92,174.27 471.84,172.80 473.77,171.31 475.69,169.80 477.62,168.28 479.54,166.74 481.46,165.19 483.39,163.62 485.31,162.03 487.24,160.43 489.16,158.80 491.09,157.16 493.01,155.50 494.94,153.83 496.86,152.13 498.79,150.41 500.71,148.68 502.64,146.92 504.56,145.15 506.49,143.35 508.41,141.54 510.33,139.70 512.26,137.84 514.18,135.96 516.11,134.05 518.03,132.12 519.96,130.17 521.88,128.20 523.81,126.20 525.73,124.18 527.66,122.13 529.58,120.05 531.51,117.95 533.43,115.83 535.36,113.67 537.28,111.49 539.21,109.28 541.13,107.05 543.05,104.78 544.98,102.48 546.90,100.16 548.83,97.80 550.75,95.41 552.68,92.99 554.60,90.53 556.53,88.04 558.45,85.52 560.38,82.97 562.30,80.37 564.23,77.74 566.15,75.08 568.08,72.37 570.00,69.63" fill="none" stroke="#21918c" stroke-width="2.2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="370.7" y1="233.8" x2="370.7" y2="320.0" stroke="#1b1b1b" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3 3"/>
+  <line x1="462.7" y1="179.7" x2="462.7" y2="320.0" stroke="#1b1b1b" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3 3"/>
+  <polygon points="370.7,228.8 375.7,233.8 370.7,238.8 365.7,233.8" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <polygon points="462.7,174.7 467.7,179.7 462.7,184.7 457.7,179.7" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="360.7" y="219.8" font-size="11" fill="#3b528b" text-anchor="end">p = .39 → 0.30</text>
+  <text x="474.7" y="165.7" font-size="11" fill="#440154" text-anchor="start">p = .51 → 0.49</text>
+  <text x="416.7" y="259.8" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.85">the gap calibration forces</text>
+  <text x="118.0" y="76.0" font-size="12" fill="currentColor" text-anchor="start" fill-opacity="0.85">PPV held at 0.60, FNR held at 0.30 in both groups</text>
+  <text x="118.0" y="94.0" font-size="12" fill="currentColor" text-anchor="start" font-style="italic" fill-opacity="0.7">only the base rate differs — and that is enough</text>
+</svg>

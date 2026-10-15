@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 400" width="840" height="400"
+     role="img" aria-labelledby="samTitle samDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="samTitle">SAM's promptable segmentation architecture</title>
+  <desc id="samDesc">A heavy vision transformer encodes the image once, at roughly 450 milliseconds, and its embedding is cached. Prompts — a point, a box, a rough mask, or a phrase — pass through a small prompt encoder and join the cached embedding in a lightweight mask decoder costing about 50 milliseconds per prompt. The decoder emits three masks with confidence scores, corresponding to the part, the whole object, and the containing group, rather than averaging them into one.</desc>
+  <rect x="24.0" y="92.0" width="92.0" height="52.0" fill="#5ec962" fill-opacity="0.2" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="70.0" y="122.5" font-size="12" fill="#1b1b1b" text-anchor="middle">image</text>
+  <line x1="116.0" y1="118.0" x2="140.0" y2="118.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="146.0,118.0 140.0,120.7 140.0,115.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="146.0" y="84.0" width="116.0" height="68.0" fill="#21918c" fill-opacity="0.22" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="204.0" y="116.0" font-size="12" fill="#1b1b1b" text-anchor="middle">ViT-H</text>
+  <text x="204.0" y="132.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.7">image encoder</text>
+  <text x="204.0" y="172.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">~450 ms</text>
+  <text x="204.0" y="190.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.62">once per image</text>
+  <line x1="262.0" y1="118.0" x2="286.0" y2="118.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="292.0,118.0 286.0,120.7 286.0,115.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="292.0" y="96.0" width="74.0" height="44.0" fill="#21918c" fill-opacity="0.5" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="3"/>
+  <text x="329.0" y="122.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle">embedding</text>
+  <text x="329.0" y="164.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">cached, reused</text>
+  <rect x="146.0" y="232.0" width="116.0" height="21.0" fill="#fde725" fill-opacity="0.45" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="3"/>
+  <text x="204.0" y="247.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">a point</text>
+  <rect x="146.0" y="258.0" width="116.0" height="21.0" fill="#fde725" fill-opacity="0.45" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="3"/>
+  <text x="204.0" y="273.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">a box</text>
+  <rect x="146.0" y="284.0" width="116.0" height="21.0" fill="#fde725" fill-opacity="0.45" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="3"/>
+  <text x="204.0" y="299.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">a rough mask</text>
+  <rect x="146.0" y="310.0" width="116.0" height="21.0" fill="#fde725" fill-opacity="0.45" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.35" rx="3"/>
+  <text x="204.0" y="325.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">a phrase</text>
+  <text x="204.0" y="222.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">prompt</text>
+  <line x1="262.0" y1="285.0" x2="286.0" y2="285.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="292.0,285.0 286.0,287.7 286.0,282.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="292.0" y="262.0" width="74.0" height="46.0" fill="#fde725" fill-opacity="0.4" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="329.0" y="283.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle">prompt</text>
+  <text x="329.0" y="299.0" font-size="10.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.7">encoder</text>
+  <line x1="366.0" y1="130.0" x2="419.7" y2="181.8" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="424.0,186.0 417.8,183.8 421.6,179.9" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="366.0" y1="285.0" x2="419.8" y2="230.3" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="424.0,226.0 421.7,232.2 417.9,228.4" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="428.0" y="182.0" width="112.0" height="50.0" fill="#440154" fill-opacity="0.18" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="484.0" y="211.5" font-size="11" fill="#1b1b1b" text-anchor="middle">mask decoder</text>
+  <text x="484.0" y="252.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">~50 ms</text>
+  <text x="484.0" y="270.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.62">per prompt</text>
+  <line x1="540.0" y1="207.0" x2="592.4" y2="136.8" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="596.0,132.0 594.6,138.4 590.2,135.2" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="600.0" y="110.0" width="208.0" height="48.0" fill="#3b528b" fill-opacity="0.14" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="4"/>
+  <text x="620.0" y="132.0" font-size="12" fill="#1b1b1b" text-anchor="start">the shirt</text>
+  <text x="620.0" y="148.0" font-size="10" fill="#1b1b1b" text-anchor="start" fill-opacity="0.65">part</text>
+  <text x="792.0" y="140.0" font-size="9.5" fill="#1b1b1b" text-anchor="end" fill-opacity="0.55">score</text>
+  <line x1="540.0" y1="207.0" x2="590.0" y2="204.3" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="596.0,204.0 590.2,207.0 589.9,201.6" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="600.0" y="182.0" width="208.0" height="48.0" fill="#3b528b" fill-opacity="0.14" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="4"/>
+  <text x="620.0" y="204.0" font-size="12" fill="#1b1b1b" text-anchor="start">the person</text>
+  <text x="620.0" y="220.0" font-size="10" fill="#1b1b1b" text-anchor="start" fill-opacity="0.65">whole</text>
+  <text x="792.0" y="212.0" font-size="9.5" fill="#1b1b1b" text-anchor="end" fill-opacity="0.55">score</text>
+  <line x1="540.0" y1="207.0" x2="592.2" y2="271.3" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="596.0,276.0 590.1,273.0 594.3,269.6" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="600.0" y="254.0" width="208.0" height="48.0" fill="#3b528b" fill-opacity="0.14" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.4" rx="4"/>
+  <text x="620.0" y="276.0" font-size="12" fill="#1b1b1b" text-anchor="start">the group</text>
+  <text x="620.0" y="292.0" font-size="10" fill="#1b1b1b" text-anchor="start" fill-opacity="0.65">containing set</text>
+  <text x="792.0" y="284.0" font-size="9.5" fill="#1b1b1b" text-anchor="end" fill-opacity="0.55">score</text>
+  <text x="704.0" y="84.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">three masks, not an average of three</text>
+  <text x="704.0" y="320.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.62">one point on a shirt has three correct answers</text>
+  <text x="420.0" y="382.0" font-size="11.5" fill="#1b1b1b" text-anchor="middle" fill-opacity="0.72">Re-encoding per prompt would cost 6.4x more over 16 prompts on one image; the split is what makes interaction affordable.</text>
+</svg>

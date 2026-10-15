@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300"
+     role="img" aria-labelledby="seqCostTitle seqCostDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="seqCostTitle">Sequence length across three diffusion configurations</title>
+  <desc id="seqCostDesc">Horizontal bars on a logarithmic axis comparing tokens per forward pass for pixel-space, latent image and latent video diffusion.</desc>
+  <text x="350.0" y="22.0" font-size="13.5" fill="currentColor" text-anchor="middle" font-weight="600">Where the cost of video generation sits</text>
+  <line x1="268.0" y1="224.0" x2="656.0" y2="224.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="268.0" y1="224.0" x2="268.0" y2="229.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="268.0" y="242.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">1e3</text>
+  <line x1="406.6" y1="224.0" x2="406.6" y2="229.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="406.6" y="242.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">1e4</text>
+  <line x1="545.1" y1="224.0" x2="545.1" y2="229.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.4"/>
+  <text x="545.1" y="242.0" font-size="9.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">1e5</text>
+  <text x="462.0" y="262.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.8">tokens per forward pass, logarithmic</text>
+  <rect x="268.0" y="61.0" width="335.1" height="30.0" fill="#3b528b" fill-opacity="0.35" stroke="#3b528b" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="256.0" y="74.0" font-size="11" fill="currentColor" text-anchor="end">pixel space, 1024x1024</text>
+  <text x="256.0" y="88.0" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.75">262,144 tokens, 4,096x attention</text>
+  <rect x="268.0" y="109.0" width="84.9" height="30.0" fill="#21918c" fill-opacity="0.35" stroke="#21918c" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="256.0" y="122.0" font-size="11" fill="currentColor" text-anchor="end">latent image, FLUX.1</text>
+  <text x="256.0" y="136.0" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.75">4,096 tokens, 1x attention</text>
+  <rect x="268.0" y="157.0" width="260.7" height="30.0" fill="#440154" fill-opacity="0.35" stroke="#440154" stroke-width="1.2" stroke-opacity="1.0" rx="3"/>
+  <text x="256.0" y="170.0" font-size="11" fill="currentColor" text-anchor="end">latent video, Movie Gen</text>
+  <text x="256.0" y="184.0" font-size="9.5" fill="currentColor" text-anchor="end" fill-opacity="0.75">76,032 tokens, 345x attention</text>
+  <text x="350.0" y="286.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">Attention cost is relative to the text-to-image row and quadratic in the token count.</text>
+</svg>

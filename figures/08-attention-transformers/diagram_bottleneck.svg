@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880.0 300.0" width="880.0" height="300.0"
+     role="img" aria-labelledby="bottleneckTitle bottleneckDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="bottleneckTitle">Sequence-to-sequence with recurrent networks, bottlenecked through one context vector</title>
+  <desc id="bottleneckDesc">Four indigo input words feed a chain of four encoder states. The last encoder state produces a single purple context vector c of fixed width. A purple rail carries c to every one of the four decoder states, which chain left to right and emit the translated words above them. No other route connects the source to the output.</desc>
+  <text x="440.0" y="24.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.6">everything the decoder knows about the source passes through c</text>
+  <rect x="60.0" y="210.0" width="64.0" height="40.0" fill="#3b528b" fill-opacity="0.13" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="92.0" y="234.5" font-size="13" fill="#1b1b1b" text-anchor="middle">we</text>
+  <line x1="92.0" y1="206.0" x2="92.0" y2="180.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="92.0,174.0 94.7,180.0 89.3,180.0" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="60.0" y="128.0" width="64.0" height="40.0" fill="#3b528b" fill-opacity="0.07" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="92.0" y="152.5" font-size="13" fill="#1b1b1b" text-anchor="middle">h1</text>
+  <rect x="148.0" y="210.0" width="64.0" height="40.0" fill="#3b528b" fill-opacity="0.13" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="180.0" y="234.5" font-size="13" fill="#1b1b1b" text-anchor="middle">see</text>
+  <line x1="180.0" y1="206.0" x2="180.0" y2="180.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="180.0,174.0 182.7,180.0 177.3,180.0" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="148.0" y="128.0" width="64.0" height="40.0" fill="#3b528b" fill-opacity="0.07" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="180.0" y="152.5" font-size="13" fill="#1b1b1b" text-anchor="middle">h2</text>
+  <line x1="126.0" y1="148.0" x2="140.0" y2="148.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="146.0,148.0 140.0,150.7 140.0,145.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="236.0" y="210.0" width="64.0" height="40.0" fill="#3b528b" fill-opacity="0.13" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="268.0" y="234.5" font-size="13" fill="#1b1b1b" text-anchor="middle">the</text>
+  <line x1="268.0" y1="206.0" x2="268.0" y2="180.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="268.0,174.0 270.7,180.0 265.3,180.0" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="236.0" y="128.0" width="64.0" height="40.0" fill="#3b528b" fill-opacity="0.07" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="268.0" y="152.5" font-size="13" fill="#1b1b1b" text-anchor="middle">h3</text>
+  <line x1="214.0" y1="148.0" x2="228.0" y2="148.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="234.0,148.0 228.0,150.7 228.0,145.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="324.0" y="210.0" width="64.0" height="40.0" fill="#3b528b" fill-opacity="0.13" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="356.0" y="234.5" font-size="13" fill="#1b1b1b" text-anchor="middle">sky</text>
+  <line x1="356.0" y1="206.0" x2="356.0" y2="180.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="356.0,174.0 358.7,180.0 353.3,180.0" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="324.0" y="128.0" width="64.0" height="40.0" fill="#3b528b" fill-opacity="0.07" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="356.0" y="152.5" font-size="13" fill="#1b1b1b" text-anchor="middle">h4</text>
+  <line x1="302.0" y1="148.0" x2="316.0" y2="148.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="322.0,148.0 316.0,150.7 316.0,145.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="390.0" y1="148.0" x2="388.0" y2="148.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="394.0,148.0 388.0,150.7 388.0,145.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="396.0" y="128.0" width="64.0" height="40.0" fill="#440154" fill-opacity="0.3" stroke="#440154" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="428.0" y="152.5" font-size="13" fill="#1b1b1b" text-anchor="middle">c</text>
+  <text x="428.0" y="118.0" font-size="10" fill="#440154" text-anchor="middle" fill-opacity="0.85">fixed width</text>
+  <line x1="428.0" y1="168.0" x2="428.0" y2="288.0" stroke="#440154" stroke-width="1.6" stroke-opacity="0.8"/>
+  <line x1="428.0" y1="288.0" x2="784.0" y2="288.0" stroke="#440154" stroke-width="1.6" stroke-opacity="0.8"/>
+  <line x1="520.0" y1="288.0" x2="520.0" y2="180.0" stroke="#440154" stroke-width="1.4" stroke-opacity="0.8"/>
+  <polygon points="520.0,174.0 522.7,180.0 517.3,180.0" fill="#440154" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="488.0" y="128.0" width="64.0" height="40.0" fill="#21918c" fill-opacity="0.07" stroke="#21918c" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="520.0" y="152.5" font-size="13" fill="#1b1b1b" text-anchor="middle">s1</text>
+  <line x1="520.0" y1="124.0" x2="520.0" y2="98.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="520.0,92.0 522.7,98.0 517.3,98.0" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="488.0" y="46.0" width="64.0" height="40.0" fill="#21918c" fill-opacity="0.13" stroke="#21918c" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="520.0" y="70.5" font-size="11" fill="#1b1b1b" text-anchor="middle">vediamo</text>
+  <line x1="608.0" y1="288.0" x2="608.0" y2="180.0" stroke="#440154" stroke-width="1.4" stroke-opacity="0.8"/>
+  <polygon points="608.0,174.0 610.7,180.0 605.3,180.0" fill="#440154" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="576.0" y="128.0" width="64.0" height="40.0" fill="#21918c" fill-opacity="0.07" stroke="#21918c" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="608.0" y="152.5" font-size="13" fill="#1b1b1b" text-anchor="middle">s2</text>
+  <line x1="608.0" y1="124.0" x2="608.0" y2="98.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="608.0,92.0 610.7,98.0 605.3,98.0" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="576.0" y="46.0" width="64.0" height="40.0" fill="#21918c" fill-opacity="0.13" stroke="#21918c" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="608.0" y="70.5" font-size="11" fill="#1b1b1b" text-anchor="middle">il</text>
+  <line x1="554.0" y1="148.0" x2="568.0" y2="148.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="574.0,148.0 568.0,150.7 568.0,145.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="696.0" y1="288.0" x2="696.0" y2="180.0" stroke="#440154" stroke-width="1.4" stroke-opacity="0.8"/>
+  <polygon points="696.0,174.0 698.7,180.0 693.3,180.0" fill="#440154" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="664.0" y="128.0" width="64.0" height="40.0" fill="#21918c" fill-opacity="0.07" stroke="#21918c" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="696.0" y="152.5" font-size="13" fill="#1b1b1b" text-anchor="middle">s3</text>
+  <line x1="696.0" y1="124.0" x2="696.0" y2="98.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="696.0,92.0 698.7,98.0 693.3,98.0" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="664.0" y="46.0" width="64.0" height="40.0" fill="#21918c" fill-opacity="0.13" stroke="#21918c" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="696.0" y="70.5" font-size="11" fill="#1b1b1b" text-anchor="middle">cielo</text>
+  <line x1="642.0" y1="148.0" x2="656.0" y2="148.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="662.0,148.0 656.0,150.7 656.0,145.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="784.0" y1="288.0" x2="784.0" y2="180.0" stroke="#440154" stroke-width="1.4" stroke-opacity="0.8"/>
+  <polygon points="784.0,174.0 786.7,180.0 781.3,180.0" fill="#440154" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="752.0" y="128.0" width="64.0" height="40.0" fill="#21918c" fill-opacity="0.07" stroke="#21918c" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="784.0" y="152.5" font-size="13" fill="#1b1b1b" text-anchor="middle">s4</text>
+  <line x1="784.0" y1="124.0" x2="784.0" y2="98.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="784.0,92.0 786.7,98.0 781.3,98.0" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="752.0" y="46.0" width="64.0" height="40.0" fill="#21918c" fill-opacity="0.13" stroke="#21918c" stroke-width="1.1" stroke-opacity="0.65" rx="3"/>
+  <text x="784.0" y="70.5" font-size="11" fill="#1b1b1b" text-anchor="middle">&lt;stop&gt;</text>
+  <line x1="730.0" y1="148.0" x2="744.0" y2="148.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.75"/>
+  <polygon points="750.0,148.0 744.0,150.7 744.0,145.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="60.0" y="272.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.6">encoder</text>
+  <text x="488.0" y="190.0" font-size="11.5" fill="currentColor" text-anchor="start" fill-opacity="0.6">decoder</text>
+</svg>

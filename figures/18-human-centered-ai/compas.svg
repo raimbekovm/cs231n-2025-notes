@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 400" width="660" height="400"
+     role="img" aria-labelledby="compasTitle compasDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="compasTitle">COMPAS predictive value against error rates</title>
+  <desc id="compasDesc">Grouped bars showing near-equal positive predictive value for two groups alongside false positive and false negative rates that differ by roughly a factor of two.</desc>
+  <line x1="140.0" y1="300.0" x2="590.0" y2="300.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="140.0" y1="70.0" x2="140.0" y2="300.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <line x1="136.0" y1="300.0" x2="140.0" y2="300.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="131.0" y="304.0" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.75">0%</text>
+  <line x1="136.0" y1="234.3" x2="140.0" y2="234.3" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="131.0" y="238.3" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.75">20%</text>
+  <line x1="136.0" y1="168.6" x2="140.0" y2="168.6" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="131.0" y="172.6" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.75">40%</text>
+  <line x1="136.0" y1="102.9" x2="140.0" y2="102.9" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="131.0" y="106.9" font-size="11" fill="currentColor" text-anchor="end" fill-opacity="0.75">60%</text>
+  <text x="365.0" y="340.0" font-size="12" fill="currentColor" text-anchor="middle"></text>
+  <text x="96.0" y="54.0" font-size="12" fill="currentColor" text-anchor="start">rate</text>
+  <rect x="163.0" y="94.7" width="46.0" height="205.3" fill="#440154" fill-opacity="0.75" stroke="#440154" stroke-width="1.0" stroke-opacity="0.9"/>
+  <text x="186.0" y="86.7" font-size="11" fill="#440154" text-anchor="middle" font-weight="600">62%</text>
+  <rect x="221.0" y="105.8" width="46.0" height="194.2" fill="#3b528b" fill-opacity="0.75" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.9"/>
+  <text x="244.0" y="97.8" font-size="11" fill="#3b528b" text-anchor="middle" font-weight="600">59%</text>
+  <text x="215.0" y="320.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">PPV</text>
+  <rect x="313.0" y="152.1" width="46.0" height="147.9" fill="#440154" fill-opacity="0.75" stroke="#440154" stroke-width="1.0" stroke-opacity="0.9"/>
+  <text x="336.0" y="144.1" font-size="11" fill="#440154" text-anchor="middle" font-weight="600">45%</text>
+  <rect x="371.0" y="224.4" width="46.0" height="75.6" fill="#3b528b" fill-opacity="0.75" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.9"/>
+  <text x="394.0" y="216.4" font-size="11" fill="#3b528b" text-anchor="middle" font-weight="600">23%</text>
+  <text x="365.0" y="320.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">FPR</text>
+  <rect x="463.0" y="208.0" width="46.0" height="92.0" fill="#440154" fill-opacity="0.75" stroke="#440154" stroke-width="1.0" stroke-opacity="0.9"/>
+  <text x="486.0" y="200.0" font-size="11" fill="#440154" text-anchor="middle" font-weight="600">28%</text>
+  <rect x="521.0" y="142.3" width="46.0" height="157.7" fill="#3b528b" fill-opacity="0.75" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.9"/>
+  <text x="544.0" y="134.3" font-size="11" fill="#3b528b" text-anchor="middle" font-weight="600">48%</text>
+  <text x="515.0" y="320.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">FNR</text>
+  <text x="146.0" y="46.0" font-size="12" fill="currentColor" text-anchor="start" font-style="italic">Roughly equal predictive value, error rates apart by a factor of two</text>
+  <rect x="450.0" y="74.0" width="12.0" height="12.0" fill="#440154" fill-opacity="0.75" stroke="#440154" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="468.0" y="85.0" font-size="12" fill="#440154" text-anchor="start">Black</text>
+  <rect x="526.0" y="74.0" width="12.0" height="12.0" fill="#3b528b" fill-opacity="0.75" stroke="#3b528b" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="544.0" y="85.0" font-size="12" fill="#3b528b" text-anchor="start">White</text>
+  <text x="330.0" y="374.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.8">Both facts hold at once because the two groups' base rates differ (51% against 39%).</text>
+</svg>

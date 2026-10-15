@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 432" width="600" height="432"
+     role="img" aria-labelledby="cnnrnnTitle cnnrnnDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="cnnrnnTitle">Temporal extent against state structure</title>
+  <desc id="cnnrnnDesc">A two-by-two grid. The horizontal axis runs from finite to unbounded temporal extent, the vertical from a flat-vector state to a convolutional one. A temporal CNN occupies finite and convolutional, an RNN unbounded and flat-vector, and a recurrent CNN unbounded and convolutional. The fourth cell is empty.</desc>
+  <rect x="96.0" y="62.0" width="456.0" height="256.0" fill="none" fill-opacity="1.0" stroke="#1b1b1b" stroke-width="0.9" stroke-opacity="0.28"/>
+  <line x1="324.0" y1="62.0" x2="324.0" y2="318.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.22" stroke-dasharray="5 4"/>
+  <line x1="96.0" y1="190.0" x2="552.0" y2="190.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.22" stroke-dasharray="5 4"/>
+  <text x="324.0" y="344.0" font-size="12" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.85">temporal extent</text>
+  <text x="210.0" y="362.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">finite</text>
+  <text x="438.0" y="362.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">unbounded</text>
+  <text transform="rotate(-90 30 190.0)" x="30.0" y="190.0" font-size="12" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.85">state structure</text>
+  <text transform="rotate(-90 52 126.0)" x="52.0" y="126.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">convolutional</text>
+  <text transform="rotate(-90 52 254.0)" x="52.0" y="254.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">flat vector</text>
+  <rect x="114.0" y="86.0" width="192.0" height="80.0" fill="#21918c" fill-opacity="0.16" stroke="#21918c" stroke-width="1.2" stroke-opacity="0.75" rx="6"/>
+  <text x="210.0" y="118.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">Temporal CNN</text>
+  <text x="210.0" y="138.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">local window in time,</text>
+  <text x="210.0" y="152.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">shared weights</text>
+  <rect x="342.0" y="86.0" width="192.0" height="80.0" fill="#440154" fill-opacity="0.16" stroke="#440154" stroke-width="1.2" stroke-opacity="0.75" rx="6"/>
+  <text x="438.0" y="118.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">Recurrent CNN</text>
+  <text x="438.0" y="138.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">hidden state is a</text>
+  <text x="438.0" y="152.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">feature map</text>
+  <rect x="342.0" y="214.0" width="192.0" height="80.0" fill="#3b528b" fill-opacity="0.16" stroke="#3b528b" stroke-width="1.2" stroke-opacity="0.75" rx="6"/>
+  <text x="438.0" y="246.0" font-size="13" fill="currentColor" text-anchor="middle" font-weight="600">RNN / LSTM</text>
+  <text x="438.0" y="266.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">hidden state is a</text>
+  <text x="438.0" y="280.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">vector</text>
+  <text x="210.0" y="254.0" font-size="18" fill="currentColor" text-anchor="middle" fill-opacity="0.3">—</text>
+  <text x="300.0" y="400.0" font-size="11" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">The recurrent CNN takes one property from each neighbour;</text>
+  <text x="300.0" y="416.0" font-size="11" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.72">its cost is that the recurrence cannot be parallelised over time.</text>
+</svg>

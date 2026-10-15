@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 280" width="900" height="280"
+     role="img" aria-labelledby="unpoolTitle unpoolDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="unpoolTitle">Nearest neighbour, bed of nails and max unpooling</title>
+  <desc id="unpoolDesc">Three panels, each showing a two by two grid of the values one to four being expanded into a four by four grid. Nearest neighbour replicates each value four times. Bed of nails writes each value to the top-left cell of its block. Max unpooling scatters the four values to irregular positions recorded by an earlier pooling layer.</desc>
+  <text x="158.0" y="34.0" font-size="13.5" fill="currentColor" text-anchor="middle" font-weight="600">Nearest neighbour</text>
+  <rect x="30.0" y="82.0" width="26.0" height="26.0" fill="#3b528b" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="43.0" y="99.7" font-size="13" fill="currentColor" text-anchor="middle">1</text>
+  <rect x="56.0" y="82.0" width="26.0" height="26.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="69.0" y="99.7" font-size="13" fill="currentColor" text-anchor="middle">2</text>
+  <rect x="30.0" y="108.0" width="26.0" height="26.0" fill="#5ec962" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="43.0" y="125.7" font-size="13" fill="currentColor" text-anchor="middle">3</text>
+  <rect x="56.0" y="108.0" width="26.0" height="26.0" fill="#fde725" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="69.0" y="125.7" font-size="13" fill="currentColor" text-anchor="middle">4</text>
+  <text x="56.0" y="150.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">2 × 2</text>
+  <line x1="92.0" y1="108.0" x2="114.0" y2="108.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+  <polygon points="120.0,108.0 114.0,110.7 114.0,105.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="130.0" y="56.0" width="26.0" height="26.0" fill="#3b528b" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="143.0" y="73.5" font-size="12.5" fill="currentColor" text-anchor="middle">1</text>
+  <rect x="156.0" y="56.0" width="26.0" height="26.0" fill="#3b528b" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="169.0" y="73.5" font-size="12.5" fill="currentColor" text-anchor="middle">1</text>
+  <rect x="182.0" y="56.0" width="26.0" height="26.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="195.0" y="73.5" font-size="12.5" fill="currentColor" text-anchor="middle">2</text>
+  <rect x="208.0" y="56.0" width="26.0" height="26.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="221.0" y="73.5" font-size="12.5" fill="currentColor" text-anchor="middle">2</text>
+  <rect x="130.0" y="82.0" width="26.0" height="26.0" fill="#3b528b" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="143.0" y="99.5" font-size="12.5" fill="currentColor" text-anchor="middle">1</text>
+  <rect x="156.0" y="82.0" width="26.0" height="26.0" fill="#3b528b" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="169.0" y="99.5" font-size="12.5" fill="currentColor" text-anchor="middle">1</text>
+  <rect x="182.0" y="82.0" width="26.0" height="26.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="195.0" y="99.5" font-size="12.5" fill="currentColor" text-anchor="middle">2</text>
+  <rect x="208.0" y="82.0" width="26.0" height="26.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="221.0" y="99.5" font-size="12.5" fill="currentColor" text-anchor="middle">2</text>
+  <rect x="130.0" y="108.0" width="26.0" height="26.0" fill="#5ec962" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="143.0" y="125.5" font-size="12.5" fill="currentColor" text-anchor="middle">3</text>
+  <rect x="156.0" y="108.0" width="26.0" height="26.0" fill="#5ec962" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="169.0" y="125.5" font-size="12.5" fill="currentColor" text-anchor="middle">3</text>
+  <rect x="182.0" y="108.0" width="26.0" height="26.0" fill="#fde725" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="195.0" y="125.5" font-size="12.5" fill="currentColor" text-anchor="middle">4</text>
+  <rect x="208.0" y="108.0" width="26.0" height="26.0" fill="#fde725" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="221.0" y="125.5" font-size="12.5" fill="currentColor" text-anchor="middle">4</text>
+  <rect x="130.0" y="134.0" width="26.0" height="26.0" fill="#5ec962" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="143.0" y="151.5" font-size="12.5" fill="currentColor" text-anchor="middle">3</text>
+  <rect x="156.0" y="134.0" width="26.0" height="26.0" fill="#5ec962" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="169.0" y="151.5" font-size="12.5" fill="currentColor" text-anchor="middle">3</text>
+  <rect x="182.0" y="134.0" width="26.0" height="26.0" fill="#fde725" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="195.0" y="151.5" font-size="12.5" fill="currentColor" text-anchor="middle">4</text>
+  <rect x="208.0" y="134.0" width="26.0" height="26.0" fill="#fde725" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="221.0" y="151.5" font-size="12.5" fill="currentColor" text-anchor="middle">4</text>
+  <text x="182.0" y="176.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">4 × 4</text>
+  <text x="158.0" y="238.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">each value copied into its whole block</text>
+  <text x="450.0" y="34.0" font-size="13.5" fill="currentColor" text-anchor="middle" font-weight="600">Bed of nails</text>
+  <rect x="322.0" y="82.0" width="26.0" height="26.0" fill="#3b528b" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="335.0" y="99.7" font-size="13" fill="currentColor" text-anchor="middle">1</text>
+  <rect x="348.0" y="82.0" width="26.0" height="26.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="361.0" y="99.7" font-size="13" fill="currentColor" text-anchor="middle">2</text>
+  <rect x="322.0" y="108.0" width="26.0" height="26.0" fill="#5ec962" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="335.0" y="125.7" font-size="13" fill="currentColor" text-anchor="middle">3</text>
+  <rect x="348.0" y="108.0" width="26.0" height="26.0" fill="#fde725" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="361.0" y="125.7" font-size="13" fill="currentColor" text-anchor="middle">4</text>
+  <text x="348.0" y="150.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">2 × 2</text>
+  <line x1="384.0" y1="108.0" x2="406.0" y2="108.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+  <polygon points="412.0,108.0 406.0,110.7 406.0,105.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="422.0" y="56.0" width="26.0" height="26.0" fill="#3b528b" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="435.0" y="73.5" font-size="12.5" fill="currentColor" text-anchor="middle">1</text>
+  <rect x="448.0" y="56.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="461.0" y="73.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="474.0" y="56.0" width="26.0" height="26.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="487.0" y="73.5" font-size="12.5" fill="currentColor" text-anchor="middle">2</text>
+  <rect x="500.0" y="56.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="513.0" y="73.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="422.0" y="82.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="435.0" y="99.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="448.0" y="82.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="461.0" y="99.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="474.0" y="82.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="487.0" y="99.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="500.0" y="82.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="513.0" y="99.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="422.0" y="108.0" width="26.0" height="26.0" fill="#5ec962" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="435.0" y="125.5" font-size="12.5" fill="currentColor" text-anchor="middle">3</text>
+  <rect x="448.0" y="108.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="461.0" y="125.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="474.0" y="108.0" width="26.0" height="26.0" fill="#fde725" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="487.0" y="125.5" font-size="12.5" fill="currentColor" text-anchor="middle">4</text>
+  <rect x="500.0" y="108.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="513.0" y="125.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="422.0" y="134.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="435.0" y="151.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="448.0" y="134.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="461.0" y="151.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="474.0" y="134.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="487.0" y="151.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="500.0" y="134.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="513.0" y="151.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <text x="474.0" y="176.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">4 × 4</text>
+  <text x="450.0" y="238.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">one cell per block, the rest zero</text>
+  <text x="742.0" y="34.0" font-size="13.5" fill="currentColor" text-anchor="middle" font-weight="600">Max unpooling</text>
+  <rect x="614.0" y="82.0" width="26.0" height="26.0" fill="#3b528b" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="627.0" y="99.7" font-size="13" fill="currentColor" text-anchor="middle">1</text>
+  <rect x="640.0" y="82.0" width="26.0" height="26.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="653.0" y="99.7" font-size="13" fill="currentColor" text-anchor="middle">2</text>
+  <rect x="614.0" y="108.0" width="26.0" height="26.0" fill="#5ec962" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="627.0" y="125.7" font-size="13" fill="currentColor" text-anchor="middle">3</text>
+  <rect x="640.0" y="108.0" width="26.0" height="26.0" fill="#fde725" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="653.0" y="125.7" font-size="13" fill="currentColor" text-anchor="middle">4</text>
+  <text x="640.0" y="150.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">2 × 2</text>
+  <line x1="676.0" y1="108.0" x2="698.0" y2="108.0" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+  <polygon points="704.0,108.0 698.0,110.7 698.0,105.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <rect x="714.0" y="56.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="727.0" y="73.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="740.0" y="56.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="753.0" y="73.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="766.0" y="56.0" width="26.0" height="26.0" fill="#21918c" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="779.0" y="73.5" font-size="12.5" fill="currentColor" text-anchor="middle">2</text>
+  <rect x="792.0" y="56.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="805.0" y="73.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="714.0" y="82.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="727.0" y="99.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="740.0" y="82.0" width="26.0" height="26.0" fill="#3b528b" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="753.0" y="99.5" font-size="12.5" fill="currentColor" text-anchor="middle">1</text>
+  <rect x="766.0" y="82.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="779.0" y="99.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="792.0" y="82.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="805.0" y="99.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="714.0" y="108.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="727.0" y="125.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="740.0" y="108.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="753.0" y="125.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="766.0" y="108.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="779.0" y="125.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="792.0" y="108.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="805.0" y="125.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="714.0" y="134.0" width="26.0" height="26.0" fill="#5ec962" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="727.0" y="151.5" font-size="12.5" fill="currentColor" text-anchor="middle">3</text>
+  <rect x="740.0" y="134.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="753.0" y="151.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="766.0" y="134.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="779.0" y="151.5" font-size="12.5" fill="currentColor" text-anchor="middle">0</text>
+  <rect x="792.0" y="134.0" width="26.0" height="26.0" fill="#fde725" fill-opacity="0.55" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="805.0" y="151.5" font-size="12.5" fill="currentColor" text-anchor="middle">4</text>
+  <text x="766.0" y="176.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.7">4 × 4</text>
+  <text x="742.0" y="238.0" font-size="11.5" fill="currentColor" text-anchor="middle" fill-opacity="0.72">written to the recorded argmax</text>
+  <rect x="740.0" y="82.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="#440154" stroke-width="1.8" stroke-opacity="0.9"/>
+  <rect x="766.0" y="56.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="#440154" stroke-width="1.8" stroke-opacity="0.9"/>
+  <rect x="714.0" y="134.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="#440154" stroke-width="1.8" stroke-opacity="0.9"/>
+  <rect x="792.0" y="134.0" width="26.0" height="26.0" fill="none" fill-opacity="1.0" stroke="#440154" stroke-width="1.8" stroke-opacity="0.9"/>
+  <text x="742.0" y="258.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.6">outlined cells come from the paired max-pool</text>
+</svg>

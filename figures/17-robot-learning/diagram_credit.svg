@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 380" width="840" height="380"
+     role="img" aria-labelledby="creditTitle creditDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="creditTitle">Credit assignment in supervised learning against sequential decision-making</title>
+  <desc id="creditDesc">On the left a loss attaches directly to the prediction that produced it. On the right a trajectory of six states returns zero reward at every step and a single scalar at the end, with dashed arrows fanning back from that scalar to every earlier action.</desc>
+  <text x="420.0" y="26.0" font-size="14" fill="currentColor" text-anchor="middle" font-weight="600">Where the learning signal attaches</text>
+  <text x="150.0" y="58.0" font-size="12.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.75">Supervised</text>
+  <rect x="72.0" y="76.0" width="156.0" height="34.0" fill="#5ec962" fill-opacity="0.15" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="4"/>
+  <text x="150.0" y="98.0" font-size="11" fill="currentColor" text-anchor="middle">prediction</text>
+  <rect x="72.0" y="152.0" width="156.0" height="34.0" fill="none" fill-opacity="1.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5" rx="4"/>
+  <text x="150.0" y="174.0" font-size="11" fill="currentColor" text-anchor="middle">loss</text>
+  <line x1="150.0" y1="152.0" x2="150.0" y2="120.0" stroke="#5ec962" stroke-width="1.4" stroke-opacity="0.8"/>
+  <polygon points="150.0,114.0 152.7,120.0 147.3,120.0" fill="#5ec962" fill-opacity="0.8" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="150.0" y="208.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">one gradient, one output</text>
+  <text x="150.0" y="224.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">responsibility is unambiguous</text>
+  <line x1="268.0" y1="60.0" x2="268.0" y2="300.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.22" stroke-dasharray="4 4"/>
+  <text x="560.0" y="58.0" font-size="12.5" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.75">Sequential decision-making</text>
+  <circle cx="318.0" cy="98.0" r="15.0" fill="#21918c" fill-opacity="0.18" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="318.0" y="102.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">s0</text>
+  <line x1="333.0" y1="98.0" x2="379.0" y2="98.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="385.0,98.0 379.0,100.7 379.0,95.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="359.0" y="87.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">a0</text>
+  <circle cx="400.0" cy="98.0" r="15.0" fill="#21918c" fill-opacity="0.18" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="400.0" y="102.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">s1</text>
+  <line x1="415.0" y1="98.0" x2="461.0" y2="98.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="467.0,98.0 461.0,100.7 461.0,95.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="441.0" y="87.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">a1</text>
+  <circle cx="482.0" cy="98.0" r="15.0" fill="#21918c" fill-opacity="0.18" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="482.0" y="102.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">s2</text>
+  <line x1="497.0" y1="98.0" x2="543.0" y2="98.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="549.0,98.0 543.0,100.7 543.0,95.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="523.0" y="87.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">a2</text>
+  <circle cx="564.0" cy="98.0" r="15.0" fill="#21918c" fill-opacity="0.18" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="564.0" y="102.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">s3</text>
+  <line x1="579.0" y1="98.0" x2="625.0" y2="98.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="631.0,98.0 625.0,100.7 625.0,95.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="605.0" y="87.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">a3</text>
+  <circle cx="646.0" cy="98.0" r="15.0" fill="#21918c" fill-opacity="0.18" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="646.0" y="102.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">s4</text>
+  <line x1="661.0" y1="98.0" x2="707.0" y2="98.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="713.0,98.0 707.0,100.7 707.0,95.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="687.0" y="87.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.7">a4</text>
+  <circle cx="728.0" cy="98.0" r="15.0" fill="#21918c" fill-opacity="0.18" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.5"/>
+  <text x="728.0" y="102.0" font-size="10.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">s5</text>
+  <rect x="754.0" y="80.0" width="62.0" height="36.0" fill="#fde725" fill-opacity="0.35" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.55" rx="4"/>
+  <text x="785.0" y="103.0" font-size="13" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">R</text>
+  <line x1="743.0" y1="98.0" x2="748.0" y2="98.0" stroke="currentColor" stroke-width="1.4" stroke-opacity="0.6"/>
+  <polygon points="754.0,98.0 748.0,100.7 748.0,95.3" fill="currentColor" fill-opacity="0.6" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="523.0" y="128.0" font-size="9.5" fill="currentColor" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace" fill-opacity="0.5">r = 0 at every step</text>
+  <line x1="768.0" y1="120.0" x2="329.0" y2="151.6" stroke="#440154" stroke-width="1.0" stroke-opacity="0.3" stroke-dasharray="3 3"/>
+  <polygon points="324.0,152.0 328.8,149.4 329.1,153.9" fill="#440154" fill-opacity="0.3" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="768.0" y1="120.0" x2="411.0" y2="151.6" stroke="#440154" stroke-width="1.0" stroke-opacity="0.3" stroke-dasharray="3 3"/>
+  <polygon points="406.0,152.0 410.8,149.3 411.2,153.8" fill="#440154" fill-opacity="0.3" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="768.0" y1="120.0" x2="493.0" y2="151.4" stroke="#440154" stroke-width="1.0" stroke-opacity="0.3" stroke-dasharray="3 3"/>
+  <polygon points="488.0,152.0 492.7,149.2 493.2,153.7" fill="#440154" fill-opacity="0.3" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="768.0" y1="120.0" x2="574.9" y2="151.2" stroke="#440154" stroke-width="1.0" stroke-opacity="0.3" stroke-dasharray="3 3"/>
+  <polygon points="570.0,152.0 574.6,149.0 575.3,153.4" fill="#440154" fill-opacity="0.3" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="768.0" y1="120.0" x2="656.8" y2="150.7" stroke="#440154" stroke-width="1.0" stroke-opacity="0.3" stroke-dasharray="3 3"/>
+  <polygon points="652.0,152.0 656.2,148.5 657.4,152.8" fill="#440154" fill-opacity="0.3" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="560.0" y="176.0" font-size="11" fill="#440154" text-anchor="middle" font-style="italic" fill-opacity="0.8">which of these earned it?</text>
+  <text x="560.0" y="208.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">one scalar, arriving once, for every decision in the episode</text>
+  <text x="560.0" y="224.0" font-size="10.5" fill="currentColor" text-anchor="middle" fill-opacity="0.7">a game of Go returns one bit after roughly 250 moves</text>
+  <line x1="40.0" y1="258.0" x2="800.0" y2="258.0" stroke="currentColor" stroke-width="1.0" stroke-opacity="0.2"/>
+  <text x="420.0" y="288.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.75">The action-value function converts the backward question into a forward one:</text>
+  <text x="420.0" y="316.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.75">Q(s, a) is the return expected from here on, so each transition supplies its own target</text>
+  <text x="420.0" y="346.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.75">and credit propagates one step at a time instead of being traced through the sequence.</text>
+</svg>

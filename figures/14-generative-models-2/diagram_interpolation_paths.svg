@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340" width="700" height="340"
+     role="img" aria-labelledby="interpPathsTitle interpPathsDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="interpPathsTitle">Two interpolation paths meeting at one point</title>
+  <desc id="interpPathsDesc">Two noise-data pairs whose straight-line interpolants coincide at the halfway time, with the two different velocity vectors drawn from the shared point.</desc>
+  <text x="350.0" y="22.0" font-size="13.5" fill="currentColor" text-anchor="middle" font-weight="600">Two pairs, one point, two answers</text>
+  <circle cx="190.0" cy="112.0" r="68.0" fill="#3b528b" fill-opacity="0.09" stroke="#3b528b" stroke-width="1.1" stroke-opacity="0.5"/>
+  <text x="72.0" y="116.0" font-size="11.5" fill="#3b528b" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">p_noise</text>
+  <circle cx="510.0" cy="228.0" r="66.0" fill="#440154" fill-opacity="0.09" stroke="#440154" stroke-width="1.1" stroke-opacity="0.5"/>
+  <text x="628.0" y="232.0" font-size="11.5" fill="#440154" text-anchor="middle" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">p_data</text>
+  <line x1="470.0" y1="250.0" x2="150.0" y2="92.0" stroke="#1b1b1b" stroke-width="1.2" stroke-opacity="0.28"/>
+  <circle cx="150.0" cy="92.0" r="3.4" fill="#3b528b" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="470.0" cy="250.0" r="3.4" fill="#440154" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="546.0" y1="198.0" x2="236.0" y2="126.0" stroke="#1b1b1b" stroke-width="1.2" stroke-opacity="0.28"/>
+  <circle cx="236.0" cy="126.0" r="3.4" fill="#3b528b" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="546.0" cy="198.0" r="3.4" fill="#440154" fill-opacity="0.45" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="484.0" y1="256.0" x2="216.0" y2="80.0" stroke="#21918c" stroke-width="1.6" stroke-opacity="0.6"/>
+  <circle cx="216.0" cy="80.0" r="4.2" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="484.0" cy="256.0" r="4.2" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="528.0" y1="204.0" x2="172.0" y2="132.0" stroke="#21918c" stroke-width="1.6" stroke-opacity="0.6"/>
+  <circle cx="172.0" cy="132.0" r="4.2" fill="#3b528b" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <circle cx="528.0" cy="204.0" r="4.2" fill="#440154" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="350.0" y1="168.0" x2="303.2" y2="137.3" stroke="#21918c" stroke-width="1.8" stroke-opacity="0.95"/>
+  <polygon points="298.2,134.0 304.7,135.0 301.7,139.5" fill="#21918c" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="282.1" y="123.4" font-size="11.5" fill="#21918c" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">v1</text>
+  <line x1="350.0" y1="168.0" x2="295.1" y2="156.9" stroke="#21918c" stroke-width="1.8" stroke-opacity="0.95"/>
+  <polygon points="289.2,155.7 295.6,154.3 294.6,159.5" fill="#21918c" fill-opacity="0.95" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="271.5" y="149.3" font-size="11.5" fill="#21918c" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">v2</text>
+  <circle cx="350.0" cy="168.0" r="6.0" fill="#21918c" fill-opacity="1.0" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="300.0" y1="206.0" x2="335.1" y2="181.4" stroke="#21918c" stroke-width="1.2" stroke-opacity="0.7"/>
+  <polygon points="340.0,178.0 336.6,183.7 333.5,179.2" fill="#21918c" fill-opacity="0.7" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="296.0" y="212.0" font-size="11" fill="#21918c" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">x_t at t = 0.5,</text>
+  <text x="296.0" y="228.0" font-size="11" fill="#21918c" text-anchor="end" font-family="JetBrains Mono, SFMono-Regular, Menlo, monospace">from either pair</text>
+  <text x="350.0" y="306.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">Both bold segments pass through the marked point at the same noise level, carrying different velocities.</text>
+  <text x="350.0" y="322.0" font-size="11" fill="currentColor" text-anchor="middle" fill-opacity="0.75">The network sees one input and two targets, and squared error makes it answer with their average.</text>
+</svg>

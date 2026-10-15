@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="700" height="330"
+     role="img" aria-labelledby="privTitle privDesc" font-family="Source Serif 4, Georgia, serif">
+  <title id="privTitle">Privacy built into the lens</title>
+  <desc id="privDesc">A left to right pipeline from scene through an optimised lens to a degraded capture and a shared encoder, feeding an action head that is maximised and an identity head that is minimised, with gradients flowing back to the lens parameters.</desc>
+  <rect x="40.0" y="96.0" width="116.0" height="60.0" fill="#1b1b1b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.6" rx="6"/>
+  <text x="98.0" y="122.0" font-size="14" fill="#1b1b1b" text-anchor="middle" font-weight="600">scene</text>
+  <text x="98.0" y="140.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.75">what is in</text>
+  <text x="98.0" y="153.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.75">the room</text>
+  <rect x="196.0" y="96.0" width="116.0" height="60.0" fill="#21918c" fill-opacity="0.1" stroke="#21918c" stroke-width="1.0" stroke-opacity="0.6" rx="6"/>
+  <text x="254.0" y="122.0" font-size="14" fill="#21918c" text-anchor="middle" font-weight="600">lens φ</text>
+  <text x="254.0" y="140.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.75">optimised, not</text>
+  <text x="254.0" y="153.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.75">chosen</text>
+  <rect x="352.0" y="96.0" width="116.0" height="60.0" fill="#3b528b" fill-opacity="0.1" stroke="#3b528b" stroke-width="1.0" stroke-opacity="0.6" rx="6"/>
+  <text x="410.0" y="122.0" font-size="14" fill="#3b528b" text-anchor="middle" font-weight="600">capture</text>
+  <text x="410.0" y="140.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.75">the only image</text>
+  <text x="410.0" y="153.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.75">ever stored</text>
+  <rect x="508.0" y="96.0" width="116.0" height="60.0" fill="#1b1b1b" fill-opacity="0.1" stroke="#1b1b1b" stroke-width="1.0" stroke-opacity="0.6" rx="6"/>
+  <text x="566.0" y="122.0" font-size="14" fill="#1b1b1b" text-anchor="middle" font-weight="600">encoder</text>
+  <text x="566.0" y="140.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.75">shared</text>
+  <text x="566.0" y="153.0" font-size="10" fill="currentColor" text-anchor="middle" fill-opacity="0.75">backbone</text>
+  <line x1="156.0" y1="126.0" x2="184.0" y2="126.0" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.75"/>
+  <polygon points="190.0,126.0 184.0,128.7 184.0,123.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="312.0" y1="126.0" x2="340.0" y2="126.0" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.75"/>
+  <polygon points="346.0,126.0 340.0,128.7 340.0,123.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="468.0" y1="126.0" x2="496.0" y2="126.0" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.75"/>
+  <polygon points="502.0,126.0 496.0,128.7 496.0,123.3" fill="currentColor" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="624.0" y1="126.0" x2="632.3" y2="97.8" stroke="#21918c" stroke-width="1.5" stroke-opacity="0.75"/>
+  <polygon points="634.0,92.0 634.9,98.5 629.7,97.0" fill="#21918c" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <line x1="624.0" y1="126.0" x2="632.9" y2="176.1" stroke="#440154" stroke-width="1.5" stroke-opacity="0.75"/>
+  <polygon points="634.0,182.0 630.3,176.6 635.6,175.6" fill="#440154" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="640.0" y="88.0" font-size="13" fill="#21918c" text-anchor="start" font-weight="600">action</text>
+  <text x="640.0" y="104.0" font-size="10" fill="#21918c" text-anchor="start" fill-opacity="0.85">maximise</text>
+  <text x="640.0" y="178.0" font-size="13" fill="#440154" text-anchor="start" font-weight="600">identity</text>
+  <text x="640.0" y="194.0" font-size="10" fill="#440154" text-anchor="start" fill-opacity="0.85">minimise</text>
+  <line x1="254.0" y1="196.0" x2="254.0" y2="170.0" stroke="#21918c" stroke-width="1.4" stroke-opacity="0.75" stroke-dasharray="4 3"/>
+  <polygon points="254.0,164.0 256.7,170.0 251.3,170.0" fill="#21918c" fill-opacity="0.75" stroke="none" stroke-width="1.0" stroke-opacity="1.0"/>
+  <text x="254.0" y="214.0" font-size="11" fill="#21918c" text-anchor="middle">gradients reach the glass</text>
+  <text x="350.0" y="296.0" font-size="12" fill="currentColor" text-anchor="middle" fill-opacity="0.85">The degradation happens in the optics, so the sensitive image is never captured —</text>
+  <text x="350.0" y="314.0" font-size="12" fill="currentColor" text-anchor="middle" font-style="italic" fill-opacity="0.85">there is no raw recording to leak, subpoena, or mishandle.</text>
+</svg>
