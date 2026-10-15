@@ -298,6 +298,10 @@ Each page aims to be:
 - **Linked to sources** — every result points at the original paper, not at a
   secondary summary.
 
+For the machine learning these lectures build on, the companion
+[CS229 2018 Lecture Notes](https://raimbekovm.github.io/cs229-2018-notes/) give
+Andrew Ng's Stanford course the same treatment.
+
 ## Roadmap {#roadmap}
 
 Lectures are published as they are written, in course order, following the 2025

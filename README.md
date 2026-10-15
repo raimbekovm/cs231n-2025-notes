@@ -71,6 +71,13 @@ This is an **unofficial** resource, not affiliated with Stanford University. For
 official course materials see [cs231n.stanford.edu](https://cs231n.stanford.edu/)
 and the [2025 lecture videos](https://www.youtube.com/playlist?list=PLoROMvodv4rOmsNzYBMe0gJY2XS8AQg16).
 
+## Companion notes
+
+[CS229 2018 Lecture Notes](https://github.com/raimbekovm/cs229-2018-notes) — the same
+treatment for Stanford's Machine Learning course with Andrew Ng, Autumn 2018: linear
+models, SVMs and kernels, learning theory, EM, PCA and ICA, and reinforcement learning.
+A good place to start if you want the foundations these lectures assume.
+
 ## Found a mistake?
 
 Corrections are genuinely welcome. Every page has an **Edit this page** link at
